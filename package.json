@@ -1,0 +1,22 @@
+{
+  "name": "it-project",
+  "version": "1.0.0",
+  "description": "Web app for IT Project Sem 2 2022",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CaitlynAllan/IT-Project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CaitlynAllan/IT-Project/issues"
+  },
+  "homepage": "https://github.com/CaitlynAllan/IT-Project#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}
