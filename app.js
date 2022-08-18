@@ -8,6 +8,8 @@ const app = express();
 const homeRouter = require('./routes/homeRouter');
 app.use('/', homeRouter);
 
-app.listen(8080, () => {
+const PORT = process.env.PORT || 8080;
+
+app.listen(PORT, () => {
     console.log("App is listening on port 8080")
 });
