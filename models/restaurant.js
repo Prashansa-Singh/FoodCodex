@@ -1,5 +1,4 @@
 const mongoose = require('mongoose')
-const ObjectId = mongoose.Types.ObjectId;
 
 
 /* Experience Schema */
@@ -17,7 +16,7 @@ const restaurantSchema = new mongoose.Schema({
     rating: {type: Number, enum: [0, 1, 2, 3, 4, 5]},
     priceRating: {type: String, enum: ['$', '$$', '$$$', '$$$$']},
     address: {type: String},
-    experiences: {type: [mongoose.Schema.Type.ObjectId], ref: 'ExperienceSet', default: []},
+    experiences: {type: [mongoose.Types.ObjectId], ref: 'Experience', default: []},
 
     cuisine: {type: String},
 
@@ -32,8 +31,9 @@ const restaurantSchema = new mongoose.Schema({
 
 
 const Restaurant = mongoose.model('Restaurant', restaurantSchema)
-const ExperienceSet = mongoose.model('ExperienceSet', restaurantSchema)
+const Experience = mongoose.model('ExperienceSet', experienceSchema)
 
 module.exports = {
-    Restaurant
+    Restaurant,
+    Experience
 }
