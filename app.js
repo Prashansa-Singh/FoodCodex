@@ -22,12 +22,16 @@ app.use((req, res, next) => {
 const PORT = process.env.PORT || 8080;
 
 /* Environment */
-// if ()...
+if (process.env.NODE_ENV !== 'production') {
+    require('dotenv').config()
+}
 
 /* Routers */
 const homeRouter = require('./routes/homeRouter');
 
 
+/* Database */
+require('./models/db')
 
 /* ========================================================================= */
 // Link router
