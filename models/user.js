@@ -1,5 +1,4 @@
 const mongoose = require('mongoose')
-require('./restaurant')
 
 /* User properties */
 const userSchema = new mongoose.Schema({
@@ -9,7 +8,7 @@ const userSchema = new mongoose.Schema({
     displayName: {type: String, required: true},
     darkMode: {type: Boolean, default: false},
 
-    restaurants: {type: [mongoose.Schema.Type.ObjectId], ref: 'Restaurant', default: []},
+    restaurants: {type: [mongoose.Types.ObjectId], ref: 'Restaurant', default: []},
 
     // secret: {type: String, required: true}  // for cookie
 })
