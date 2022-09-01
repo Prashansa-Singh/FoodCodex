@@ -19,7 +19,7 @@ app.use((req, res, next) => {
 })
 
 /* ------------------------------------------------------------------------- */
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8000;
 
 /* Environment */
 if (process.env.NODE_ENV !== 'production') {
@@ -27,7 +27,8 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 /* Routers */
-const homeRouter = require('./routes/homeRouter');
+const homeRouter = require('./routes/home-router');
+const userRouter = require('./routes/user-router')
 
 
 /* Database */
@@ -37,7 +38,7 @@ require('./models/db')
 // Link router
 app.use('/', homeRouter);
 
-
+app.use('/user', userRouter);
 
 /* ------------------------------------------------------------------------- */
 app.listen(PORT, () => {
