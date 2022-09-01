@@ -1,0 +1,18 @@
+# Next
+.next/
+
+# React
+*.log
+logs
+**/*.backup.*
+**/*.back.*
+
+# Modules
+node_modules
+bower_components
+
+# File format
+.DS_*
+
+# IDE
+.idea/
