@@ -37,11 +37,10 @@ require('./models/db')
 
 /* ========================================================================= */
 // Link router
-app.use('/', homeRouter);
+app.use('/', restaurantRouter);
 
 app.use('/user', userRouter);
 
-app.use('/:userId/', restaurantRouter);
 
 /* ------------------------------------------------------------------------- */
 app.listen(PORT, () => {
