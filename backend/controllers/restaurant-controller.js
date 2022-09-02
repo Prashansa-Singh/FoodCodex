@@ -2,9 +2,12 @@ const {User} = require('../models/user')
 const {Restaurant} = require('../models/restaurant')
 
 const getRestaurants = async (req, res) => {
-    // not complete yet
-    const restaurants = await User.findOne(
+    const user = await User.findOne(
         {_id: req.params.userId}).populate("restaurants");
+    const restaurants = user['restaurants'];
+
+    console.log(restaurants)
+    return res.send(JSON.stringify(restaurants));
 }
 
 const createRestaurant = async(req, res, next) => {
@@ -14,12 +17,10 @@ const createRestaurant = async(req, res, next) => {
         await User.updateOne(
             {_id: req.params.userId},
             {$push: {restaurants: restaurant._id}}
-        ).exec()
+        )
 
-        console.log(req.body)
         console.log(restaurant)
-
-        return res.redirect('/')
+        return res.send(`Done. ${restaurant.name} has been added.`)
     }
     catch (err) {
         return next(err)
