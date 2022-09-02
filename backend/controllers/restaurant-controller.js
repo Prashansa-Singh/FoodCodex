@@ -14,7 +14,7 @@ const createRestaurant = async(req, res, next) => {
         await User.updateOne(
             {_id: req.params.userId},
             {$push: {restaurants: restaurant._id}}
-        )
+        ).exec()
 
         console.log(req.body)
         console.log(restaurant)
