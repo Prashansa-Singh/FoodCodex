@@ -28,7 +28,8 @@ if (process.env.NODE_ENV !== 'production') {
 
 /* Routers */
 const homeRouter = require('./routes/home-router');
-const userRouter = require('./routes/user-router')
+const userRouter = require('./routes/user-router');
+const restaurantRouter = require('./routes/restaurant-router');
 
 
 /* Database */
@@ -36,9 +37,10 @@ require('./models/db')
 
 /* ========================================================================= */
 // Link router
-app.use('/', homeRouter);
+app.use('/', restaurantRouter);
 
 app.use('/user', userRouter);
+
 
 /* ------------------------------------------------------------------------- */
 app.listen(PORT, () => {

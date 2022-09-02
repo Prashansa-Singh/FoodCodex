@@ -8,5 +8,4 @@ userRouter.get('/signup', userController.getSignup)
 userRouter.post('/create', userController.createUser)
 
 
-
 module.exports = userRouter
