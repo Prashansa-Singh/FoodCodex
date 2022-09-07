@@ -22,7 +22,7 @@ export default function Signup() {
 				</p>
 
 				<div className={styles.grid}>
-					<ul>
+				<ul>
 						<li>
 							<Link href="/">
 								Home
@@ -44,22 +44,22 @@ export default function Signup() {
 							</Link>
 						</li>
 						<li>
-							<Link href="/view-restaurant-collection">
+							<Link href="/restaurant-collection/view-restaurant-collection">
 								View Restaurant Collection
 							</Link>
 						</li>
 						<li>
-							<Link href="/view-restaurant-record">
+							<Link href="/restaurant-collection/view-restaurant-record">
 								View Restaurant Record
 							</Link>
 						</li>
 						<li>
-							<Link href="/edit-restaurant-record">
+							<Link href="/restaurant-collection/edit-restaurant-record">
 								Edit Restaurant Record
 							</Link>
 						</li>
 						<li>
-							<Link href="/settings">
+							<Link href="/restaurant-collection/settings">
 								Settings
 							</Link>
 						</li>
