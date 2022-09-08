@@ -3,8 +3,8 @@ import Image from 'next/image';
 import styles from './layout.module.css';
 import utilStyles from '../styles/utils.module.css';
 import Link from 'next/link';
+import Header from './header';
 
-const name = 'FoodCodex';
 export const siteTitle = 'FoodCodex';
 
 export default function Layout({ children, home }) {
@@ -32,14 +32,7 @@ export default function Layout({ children, home }) {
                     </>
                 ) : (
                     <>
-                        <Image
-                            priority
-                            src="/foodcodex-logo.png"
-                            className={utilStyles.borderCircle}
-                            height={144}
-                            width={600}
-                            alt="FoodCodex Logo"
-                        />
+                        <Header />
                     </>
                 )}
             </header>
