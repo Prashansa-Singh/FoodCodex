@@ -2,8 +2,8 @@ import Head from 'next/head';
 import Image from 'next/image';
 import styles from './css/layout.module.css';
 import utilStyles from '../styles/utils.module.css';
-import Link from 'next/link';
 import Header from './header';
+import Nav from './navigation';
 
 export const siteTitle = 'FoodCodex';
 
@@ -36,57 +36,9 @@ export default function Layout({ children, home }) {
                     </>
                 )}
             </header>
-            <main>{children}</main>
-            <nav>
-                <ul>
-                    <li>
-                        <Link href="/">
-                            Home
-                        </Link>
-                    </li>
-                    <li>
-                        <Link href="/about">
-                            About
-                        </Link>
-                    </li>
-                    <li>
-                        <Link href="/login">
-                            Login
-                        </Link>
-                    </li>
-                    <li>
-                        <Link href="/signup">
-                            Sign Up
-                        </Link>
-                    </li>
-                    <li>
-                        <Link href="/restaurant-collection/view-restaurant-collection">
-                            View Restaurant Collection
-                        </Link>
-                    </li>
-                    <li>
-                        <Link href="/restaurant-collection/view-restaurant-record">
-                            View Restaurant Record
-                        </Link>
-                    </li>
-                    <li>
-                        <Link href="/restaurant-collection/edit-restaurant-record">
-                            Edit Restaurant Record
-                        </Link>
-                    </li>
-                    <li>
-                        <Link href="/restaurant-collection/settings">
-                            Settings
-                        </Link>
-                    </li>
-                </ul>
-            </nav>
+            <main className={styles.main}>{children}</main>
             {!home && (
-                <div className={styles.backToHome}>
-                    <Link href="/">
-                        <a>← Back to home</a>
-                    </Link>
-                </div>
+                <Nav className={styles.nav} />
             )}
         </div>
     );

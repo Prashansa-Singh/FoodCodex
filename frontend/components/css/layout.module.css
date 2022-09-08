@@ -1,8 +1,15 @@
 .container {
-    max-width: 36rem;
-    padding: 0 1rem;
-    margin: 3rem auto 6rem;
+    margin-top: 3rem;
+    display: grid;
+    grid-template-areas: 
+        'header header'
+        'nav main';
+    grid-template-columns: 0.4fr 2fr;
 }
+
+.header {grid-area: header;}
+.main {grid-area: main; padding: 0 1rem;}
+.nav {grid-area: nav;}
   
 .header {
     display: flex;
@@ -10,6 +17,3 @@
     align-items: center;
 }
   
-.backToHome {
-    margin: 3rem 0 0;
-}
