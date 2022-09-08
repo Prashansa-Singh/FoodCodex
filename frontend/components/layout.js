@@ -43,53 +43,51 @@ export default function Layout({ children, home }) {
                     </>
                 )}
             </header>
-            <body>
-                <main>{children}</main>
-                <nav>
-                    <ul>
-						<li>
-							<Link href="/">
-								Home
-							</Link>
-						</li>
-						<li>
-							<Link href="/about">
-								About
-							</Link>
-						</li>
-						<li>
-							<Link href="/login">
-								Login
-							</Link>
-						</li>
-						<li>
-							<Link href="/signup">
-								Sign Up
-							</Link>
-						</li>
-						<li>
-							<Link href="/restaurant-collection/view-restaurant-collection">
-								View Restaurant Collection
-							</Link>
-						</li>
-						<li>
-							<Link href="/restaurant-collection/view-restaurant-record">
-								View Restaurant Record
-							</Link>
-						</li>
-						<li>
-							<Link href="/restaurant-collection/edit-restaurant-record">
-								Edit Restaurant Record
-							</Link>
-						</li>
-						<li>
-							<Link href="/restaurant-collection/settings">
-								Settings
-							</Link>
-						</li>
-					</ul>
-                </nav>
-            </body>
+            <main>{children}</main>
+            <nav>
+                <ul>
+                    <li>
+                        <Link href="/">
+                            Home
+                        </Link>
+                    </li>
+                    <li>
+                        <Link href="/about">
+                            About
+                        </Link>
+                    </li>
+                    <li>
+                        <Link href="/login">
+                            Login
+                        </Link>
+                    </li>
+                    <li>
+                        <Link href="/signup">
+                            Sign Up
+                        </Link>
+                    </li>
+                    <li>
+                        <Link href="/restaurant-collection/view-restaurant-collection">
+                            View Restaurant Collection
+                        </Link>
+                    </li>
+                    <li>
+                        <Link href="/restaurant-collection/view-restaurant-record">
+                            View Restaurant Record
+                        </Link>
+                    </li>
+                    <li>
+                        <Link href="/restaurant-collection/edit-restaurant-record">
+                            Edit Restaurant Record
+                        </Link>
+                    </li>
+                    <li>
+                        <Link href="/restaurant-collection/settings">
+                            Settings
+                        </Link>
+                    </li>
+                </ul>
+            </nav>
             {!home && (
                 <div className={styles.backToHome}>
                     <Link href="/">
