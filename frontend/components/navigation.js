@@ -48,6 +48,24 @@ export default function Nav() {
         }
     ];
 
+    const navItemsPhone = [
+        {
+            href: '',
+            title: 'Hamburger Menu',
+            icon: '/src/nav-icons/hamburger-menu-icon.svg',
+        },
+        {
+            href: '/restaurant-collection/view-restaurant-collection',
+            title: 'Home Phone',
+            icon: '/src/nav-icons/home-icon.svg',
+        },
+        {
+            href: '/restaurant-collection/edit-restaurant-record',
+            title: 'Add New Restaurant',
+            icon: '/src/nav-icons/add-new-icon.svg',
+        }
+    ];
+
     return (
         <nav className={styles.nav}>
             <ul className={styles.navlist}>
@@ -57,6 +75,19 @@ export default function Nav() {
                             <a>
                                 <div className={styles.icons}>
                                     {title}
+                                    <img src={icon} />
+                                </div>
+                            </a>
+                        </Link>
+                    </li>
+                ))}
+            </ul>
+            <ul className={styles.navbar}>
+                {navItemsPhone.map(({href, title, icon}) => (
+                    <li className={styles.unselected} key={title}>
+                        <Link href={href}>
+                            <a>
+                                <div className={styles.icons}>
                                     <img src={icon} />
                                 </div>
                             </a>

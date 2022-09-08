@@ -4,9 +4,15 @@
 }
 
 .navlist {
+    display: flex;
+    flex-direction: column;
     list-style-type: none;
     margin: 0;
     padding: 0;
+}
+
+.navbar {
+    display: none;
 }
 
 .selected {
@@ -41,4 +47,28 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+
+@media screen and (max-width: 450px) {
+    .nav {
+        box-shadow: 0 -4px 5px 0 rgba(0, 0, 0, 0.2);
+        background-color: #E7E0EC;
+        position: fixed;
+        width: 100%;
+        bottom: 0;
+    }
+
+    .navlist {
+        display: none;
+    }
+
+    .navbar {
+        display: flex;
+        flex-direction: row;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        align-items: center;
+        justify-content: space-around;
+    }
 }
