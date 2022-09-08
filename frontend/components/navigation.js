@@ -17,17 +17,17 @@ export default function Nav() {
             icon: '/src/nav-icons/add-edit-nav-icon.svg',
         },
         {
-            href: '/',
+            href: '/restaurant-collection/customise-tags',
             title: 'Customise Tags',
             icon: '/src/nav-icons/tags-icon.svg',
         },
         {
-            href: '/',
+            href: '/restaurant-collection/share-list',
             title: 'Share My List',
             icon: '/src/nav-icons/share-icon.svg',
         },
         {
-            href: '/',
+            href: '/restaurant-collection/shared-with-me',
             title: 'Shared With Me',
             icon: '/src/nav-icons/share-with-me-icon.svg',
         },
