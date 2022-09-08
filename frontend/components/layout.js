@@ -11,7 +11,7 @@ export default function Layout({ children, home }) {
     return (
         <div className={` ${styles.container} ${home && styles.containerhome}`}>
             <Head>
-                <link rel="icon" href="/foodcodex-icon.png" />
+                <link rel="icon" href="/src/foodcodex-icon.png" />
                 <meta
                     name="description"
                     content="Document experiences at different restaurants"
@@ -23,7 +23,7 @@ export default function Layout({ children, home }) {
                     <>
                         <Image
                             priority
-                            src="/foodcodex-logo.png"
+                            src="/src/foodcodex-logo.png"
                             className={utilStyles.borderCircle}
                             height={144}
                             width={600}

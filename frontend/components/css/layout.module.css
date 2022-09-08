@@ -14,7 +14,7 @@
         'header header'
         'main main';
     grid-template-columns: 0.4fr 2fr;
-    background-image: url('../../public/home-background.svg');
+    background-image: url('../../public/src/home-background.svg');
     min-height: 100vh;
 }
 
