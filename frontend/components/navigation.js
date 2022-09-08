@@ -52,7 +52,7 @@ export default function Nav() {
         <nav className={styles.nav}>
             <ul className={styles.navlist}>
                 {navItems.map(({href, title, icon}) => (
-                    <li className={` ${styles.unselected} ${router.asPath === href && styles.selected}`}>
+                    <li className={` ${styles.unselected} ${router.asPath === href && styles.selected}`} key={title}>
                         <Link href={href}>
                             <a>
                                 <div className={styles.icons}>
