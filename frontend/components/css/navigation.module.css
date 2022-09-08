@@ -36,3 +36,9 @@
 .navtext:hover {
     text-decoration: none;
 }
+
+.icons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
