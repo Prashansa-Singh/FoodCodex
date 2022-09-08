@@ -21,14 +21,7 @@ export default function Layout({ children, home }) {
             <header className={styles.header}>
                 {home ? (
                     <>
-                        <Image
-                            priority
-                            src="/src/foodcodex-logo.png"
-                            className={utilStyles.borderCircle}
-                            height={144}
-                            width={600}
-                            alt="FoodCodex Logo"
-                        />
+                        <img alt='FoodCodex Logo' src='/src/foodcodex-logo.png' />
                     </>
                 ) : (
                     <>
