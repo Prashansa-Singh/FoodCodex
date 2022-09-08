@@ -9,7 +9,7 @@ export const siteTitle = 'FoodCodex';
 
 export default function Layout({ children, home }) {
     return (
-        <div className={styles.container}>
+        <div className={` ${styles.container} ${home && styles.containerhome}`}>
             <Head>
                 <link rel="icon" href="/foodcodex-icon.png" />
                 <meta

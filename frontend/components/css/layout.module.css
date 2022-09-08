@@ -1,10 +1,21 @@
 .container {
-    margin-top: 3rem;
     display: grid;
     grid-template-areas: 
         'header header'
         'nav main';
     grid-template-columns: 0.4fr 2fr;
+    min-height: 100vh;
+    row-gap: 0;
+}
+
+.containerhome {
+    display: grid;
+    grid-template-areas: 
+        'header header'
+        'main main';
+    grid-template-columns: 0.4fr 2fr;
+    background-image: url('../../public/home-background.svg');
+    min-height: 100vh;
 }
 
 .header {grid-area: header;}
