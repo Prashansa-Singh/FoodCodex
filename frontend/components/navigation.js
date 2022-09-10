@@ -70,7 +70,7 @@ export default function Nav() {
         {
             href: '',
             title: 'Hamburger Menu',
-            icon: <div onClick={toggleHamburger}><img src='/src/nav-icons/hamburger-menu-icon.svg' /></div>,
+            icon: <div onClick={toggleHamburger}><Hamburger isOpen={hamburgerOpen} /></div>,
         },
         {
             href: '/restaurant-collection/view-restaurant-collection',
