@@ -1,9 +1,27 @@
 import Link from 'next/link';
 import styles from './css/navigation.module.css';
 import { useRouter } from 'next/router';
+import Hamburger from './hamburger';
+import { useState } from 'react';
 
 export default function Nav() {
     const router = useRouter();
+
+    const [hamburgerOpen, setHamburgerOpen] = useState(false);
+
+    const toggleHamburger = () => {
+        setHamburgerOpen(!hamburgerOpen);
+        openHamburger();
+    }
+
+    const openHamburger = () => {
+        const elem = document.getElementsByClassName(styles.navlist)[0];
+        if (hamburgerOpen) {
+            elem.style.display = "none";
+        }  else {
+            elem.style.display = "flex";
+        }
+    }
 
     const navItems = [
         {
@@ -52,49 +70,53 @@ export default function Nav() {
         {
             href: '',
             title: 'Hamburger Menu',
-            icon: '/src/nav-icons/hamburger-menu-icon.svg',
+            icon: <div onClick={toggleHamburger}><img src='/src/nav-icons/hamburger-menu-icon.svg' /></div>,
         },
         {
             href: '/restaurant-collection/view-restaurant-collection',
             title: 'Home Phone',
-            icon: '/src/nav-icons/home-icon.svg',
+            icon: <img src='/src/nav-icons/home-icon.svg' />,
         },
         {
             href: '/restaurant-collection/edit-restaurant-record',
             title: 'Add New Restaurant',
-            icon: '/src/nav-icons/add-new-icon.svg',
+            icon: <img src='/src/nav-icons/add-new-icon.svg' />,
         }
     ];
 
     return (
         <nav className={styles.nav}>
-            <ul className={styles.navlist}>
-                {navItems.map(({href, title, icon}) => (
-                    <li className={` ${styles.unselected} ${router.asPath === href && styles.selected}`} key={title}>
-                        <Link href={href}>
-                            <a>
-                                <div className={styles.icons}>
-                                    {title}
-                                    <img src={icon} />
-                                </div>
-                            </a>
-                        </Link>
-                    </li>
-                ))}
-            </ul>
-            <ul className={styles.navbar}>
-                {navItemsPhone.map(({href, title, icon}) => (
-                    <li className={styles.unselected} key={title}>
-                        <Link href={href}>
-                            <a>
-                                <div className={styles.icons}>
-                                    <img src={icon} />
-                                </div>
-                            </a>
-                        </Link>
-                    </li>
-                ))}
-            </ul>
+            <div className='navigation'>
+                <ul className={styles.navlist}>
+                    {navItems.map(({href, title, icon}) => (
+                        <li className={` ${styles.unselected} ${router.asPath === href && styles.selected}`} key={title}>
+                            <Link href={href}>
+                                <a>
+                                    <div className={styles.icons}>
+                                        {title}
+                                        <img src={icon} />
+                                    </div>
+                                </a>
+                            </Link>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+            <div>
+                <ul className={styles.navbar}>
+                    {navItemsPhone.map(({href, title, icon}) => (
+                        <li className={styles.unselected} key={title}>
+                            <Link href={href}>
+                                <a>
+                                    <div className={styles.icons}>
+                                        {icon}
+                                    </div>
+                                </a>
+                            </Link>
+                        </li>
+                    ))}
+                </ul>
+            </div>
         </nav>
     );
 }
