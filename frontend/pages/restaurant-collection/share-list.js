@@ -2,7 +2,7 @@ import Head from 'next/head';
 import Layout, { siteTitle } from '../../components/layout';
 import utilStyles from '../../styles/utils.module.css';
 
-export default function ViewRestaurantRecord() {
+export default function ShareList() {
 	return (
 		<Layout>
 			<Head>
@@ -10,11 +10,11 @@ export default function ViewRestaurantRecord() {
 			</Head>
 			<section className={utilStyles.headingMd}>
 				<h1>
-					View Restaurant Record
+					Share My List
 				</h1>
 
 				<p>
-					Page displaying single restaurant record
+					Page where users can share records
 				</p>
 			</section>
 		</Layout>

@@ -2,7 +2,7 @@ import Head from 'next/head';
 import Layout, { siteTitle } from '../../components/layout';
 import utilStyles from '../../styles/utils.module.css';
 
-export default function ViewRestaurantRecord() {
+export default function SharedWithMe() {
 	return (
 		<Layout>
 			<Head>
@@ -10,11 +10,11 @@ export default function ViewRestaurantRecord() {
 			</Head>
 			<section className={utilStyles.headingMd}>
 				<h1>
-					View Restaurant Record
+					Shared With Me
 				</h1>
 
 				<p>
-					Page displaying single restaurant record
+					Displays all of the records shared with the user
 				</p>
 			</section>
 		</Layout>

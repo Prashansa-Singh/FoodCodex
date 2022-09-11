@@ -1,17 +1,17 @@
 import Head from 'next/head';
 import Image from 'next/image';
-import styles from './layout.module.css';
+import styles from './css/layout.module.css';
 import utilStyles from '../styles/utils.module.css';
-import Link from 'next/link';
+import Header from './header';
+import Nav from './navigation';
 
-const name = 'FoodCodex';
 export const siteTitle = 'FoodCodex';
 
 export default function Layout({ children, home }) {
     return (
-        <div className={styles.container}>
+        <div className={` ${styles.container} ${home && styles.containerhome}`}>
             <Head>
-                <link rel="icon" href="/foodcodex-icon.png" />
+                <link rel="icon" href="/src/foodcodex-icon.png" />
                 <meta
                     name="description"
                     content="Document experiences at different restaurants"
@@ -21,81 +21,17 @@ export default function Layout({ children, home }) {
             <header className={styles.header}>
                 {home ? (
                     <>
-                        <Image
-                            priority
-                            src="/foodcodex-logo.png"
-                            className={utilStyles.borderCircle}
-                            height={144}
-                            width={600}
-                            alt="FoodCodex Logo"
-                        />
+                        <img alt='FoodCodex Logo' src='/src/foodcodex-logo.png' />
                     </>
                 ) : (
                     <>
-                        <Image
-                            priority
-                            src="/foodcodex-logo.png"
-                            className={utilStyles.borderCircle}
-                            height={144}
-                            width={600}
-                            alt="FoodCodex Logo"
-                        />
+                        <Header />
                     </>
                 )}
             </header>
-            <body>
-                <main>{children}</main>
-                <nav>
-                    <ul>
-						<li>
-							<Link href="/">
-								Home
-							</Link>
-						</li>
-						<li>
-							<Link href="/about">
-								About
-							</Link>
-						</li>
-						<li>
-							<Link href="/login">
-								Login
-							</Link>
-						</li>
-						<li>
-							<Link href="/signup">
-								Sign Up
-							</Link>
-						</li>
-						<li>
-							<Link href="/restaurant-collection/view-restaurant-collection">
-								View Restaurant Collection
-							</Link>
-						</li>
-						<li>
-							<Link href="/restaurant-collection/view-restaurant-record">
-								View Restaurant Record
-							</Link>
-						</li>
-						<li>
-							<Link href="/restaurant-collection/edit-restaurant-record">
-								Edit Restaurant Record
-							</Link>
-						</li>
-						<li>
-							<Link href="/restaurant-collection/settings">
-								Settings
-							</Link>
-						</li>
-					</ul>
-                </nav>
-            </body>
+            <main className={styles.main}>{children}</main>
             {!home && (
-                <div className={styles.backToHome}>
-                    <Link href="/">
-                        <a>← Back to home</a>
-                    </Link>
-                </div>
+                <Nav className={styles.nav} />
             )}
         </div>
     );
