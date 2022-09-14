@@ -3,7 +3,47 @@ import Layout, { siteTitle } from '../../components/layout';
 import utilStyles from '../../styles/utils.module.css';
 import styles from '../../styles/view-restaurant-collection.module.css'
 
-export default function ViewRestaurantCollection() {
+
+const test_data = {
+    "posts": [
+        {
+            "name": "Hochi Mama",
+            "rating": "5",
+            "label": "",
+			"price": ""
+        },
+        {
+            "name": "Restaurant 2",
+            "rating": "4",
+            "label": "",
+			"price": ""
+        },
+        {
+            "name": "Restaurant 3",
+            "rating": "3",
+            "label": "",
+			"price": ""
+        },
+        {
+            "name": "Restaurant 4",
+            "rating": "1",
+            "label": "",
+			"price": ""
+        }
+    ]
+}
+
+export async function getStaticProps() {
+	const data = test_data;
+
+	return {
+		props: {data,},
+	};
+}
+
+export default function ViewRestaurantCollection({data}) {
+	const contents = data.posts;
+
 	return (
 		<Layout>
 			<Head>
@@ -42,12 +82,14 @@ export default function ViewRestaurantCollection() {
 								</tr>
 							</thead>
 							<tbody>
-								<tr className={styles.tr}>
-									<td className={styles.td}>Example</td>
-									<td className={styles.td}>Example</td>
-									<td className={styles.td}>Example</td>
-									<td className={styles.td}>Example</td>
-								</tr>
+								{contents.map(({ name, rating, label, price }) => (
+									<tr className={styles.tr}>
+										<td className={styles.td}>{name}</td>
+										<td className={styles.td}>{rating}</td>
+										<td className={styles.td}>{label}</td>
+										<td className={styles.td}>{price}</td>
+									</tr>
+								))}
 							</tbody>	
 						</table>
 					</div>
