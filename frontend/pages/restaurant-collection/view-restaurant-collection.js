@@ -3,6 +3,8 @@ import Layout, { siteTitle } from '../../components/layout';
 import utilStyles from '../../styles/utils.module.css';
 import styles from '../../styles/view-restaurant-collection.module.css'
 
+import axios from 'axios';
+
 
 const test_data = {
     "posts": [
@@ -33,8 +35,11 @@ const test_data = {
     ]
 }
 
-export async function getStaticProps() {
-	const data = test_data;
+export async function getServerSideProps() {
+
+	const url = 'http://localhost:8000/retrieve/6310521c744ac9f1587375fa'; // URL for the GET request to backend
+	const response = await axios.get(url);
+	const data = response.data;
 
 	return {
 		props: {data,},
@@ -42,8 +47,6 @@ export async function getStaticProps() {
 }
 
 export default function ViewRestaurantCollection({data}) {
-	const contents = data.posts;
-
 	return (
 		<Layout>
 			<Head>
@@ -82,7 +85,7 @@ export default function ViewRestaurantCollection({data}) {
 								</tr>
 							</thead>
 							<tbody>
-								{contents.map(({ name, rating, label, price }) => (
+								{data.map(({ name, rating, label, price }) => (
 									<tr className={styles.tr}>
 										<td className={styles.td}>{name}</td>
 										<td className={styles.td}>{rating}</td>
@@ -90,7 +93,7 @@ export default function ViewRestaurantCollection({data}) {
 										<td className={styles.td}>{price}</td>
 									</tr>
 								))}
-							</tbody>	
+							</tbody>
 						</table>
 					</div>
 				</div>
