@@ -1,8 +1,10 @@
 import NextAuth from "next-auth";
 import DiscordProvider from "next-auth/providers/discord";
+import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
-// import clientPromise from "../../../lib/mongodb";
+import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
 
+import clientPromise from "../../../lib/mongodb";
 import dbConnect from "../../../lib/mongoose";
 import User from "../../../models/User";
 
@@ -54,6 +56,17 @@ export default NextAuth({
 				}
 			},
 		}),
+		GoogleProvider({
+			clientId: process.env.GOOGLE_CLIENT_ID,
+			clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+			// profile(profile) {
+			// 	return {
+			// 		id: profile.id,
+			// 		name: profile.given_name,
+			// 		email: profile.email,
+			// 	};
+			// },
+		}),
 	],
-	// adapter: MongoDBAdapter(clientPromise),
+	adapter: MongoDBAdapter(clientPromise),
 });
