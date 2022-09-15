@@ -3,42 +3,12 @@ import Layout, { siteTitle } from '../../components/layout';
 import utilStyles from '../../styles/utils.module.css';
 import styles from '../../styles/view-restaurant-collection.module.css'
 
-import axios from 'axios';
-
-
-const test_data = {
-    "posts": [
-        {
-            "name": "Hochi Mama",
-            "rating": "5",
-            "label": "",
-			"price": ""
-        },
-        {
-            "name": "Restaurant 2",
-            "rating": "4",
-            "label": "",
-			"price": ""
-        },
-        {
-            "name": "Restaurant 3",
-            "rating": "3",
-            "label": "",
-			"price": ""
-        },
-        {
-            "name": "Restaurant 4",
-            "rating": "1",
-            "label": "",
-			"price": ""
-        }
-    ]
-}
+import {axiosInstance} from '../api/axiosConfig'
 
 export async function getServerSideProps() {
 
-	const url = 'http://localhost:8000/retrieve/6310521c744ac9f1587375fa'; // URL for the GET request to backend
-	const response = await axios.get(url);
+	const url = '/retrieve/6310521c744ac9f1587375fa'; // URL for the GET request to backend
+	const response = await axiosInstance.get(url);
 	const data = response.data;
 
 	return {
@@ -85,8 +55,8 @@ export default function ViewRestaurantCollection({data}) {
 								</tr>
 							</thead>
 							<tbody>
-								{data.map(({ name, rating, label, price }) => (
-									<tr className={styles.tr}>
+								{data.map(({ _id, name, rating, label, price }) => (
+									<tr className={styles.tr} key={_id}>
 										<td className={styles.td}>{name}</td>
 										<td className={styles.td}>{rating}</td>
 										<td className={styles.td}>{label}</td>
