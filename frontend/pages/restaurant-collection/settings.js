@@ -1,20 +1,20 @@
 import Head from 'next/head';
-import Layout, { siteTitle } from '../components/layout';
-import utilStyles from '../styles/utils.module.css';
+import Layout, { siteTitle } from '../../components/layout';
+import utilStyles from '../../styles/utils.module.css';
 
-export default function About() {
+export default function Settings() {
 	return (
-		<Layout home>
+		<Layout>
 			<Head>
 				<title>{siteTitle}</title>
 			</Head>
 			<section className={utilStyles.headingMd}>
 				<h1>
-					About
+					Settings
 				</h1>
 
 				<p>
-					About page
+					Setting page for users
 				</p>
 			</section>
 		</Layout>
