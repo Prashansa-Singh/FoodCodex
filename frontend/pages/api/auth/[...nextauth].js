@@ -1,22 +1,9 @@
 import NextAuth from "next-auth";
-import DiscordProvider from "next-auth/providers/discord";
-import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
-
-import clientPromise from "../../../lib/mongodb";
-import dbConnect from "../../../lib/mongoose";
-import User from "../../../models/User";
 
 export default NextAuth({
 	// Configure one or more authentication providers
 	providers: [
-		DiscordProvider({
-			clientId: process.env.DISCORD_CLIENT_ID,
-			clientSecret: process.env.DISCORD_CLIENT_SECRET,
-			authorization: { url: "https://discord.com/oauth2/authorize" },
-			token: { url: "https://discord.com/api/oauth2/token" },
-		}),
 		CredentialsProvider({
 			id: "mongodb-credentials",
 
@@ -37,36 +24,14 @@ export default NextAuth({
 
 				// e.g. return { id: 1, name: 'J Smith', email: 'jsmith@example.com' }
 
-				// create/ check db connection
-				await dbConnect();
-
-				// Naiive Implementation - If username and unhashed passwords are the same, return user details
-				// otherwise return null
 				try {
-					console.log(credentials);
+					// Send backend request to authenticate user => receive reply here
 
-					const user = await User.findOne({
-						userName: credentials.username,
-						password: credentials.password,
-					});
-
-					return user;
+					return null;
 				} catch (error) {
 					return null;
 				}
 			},
 		}),
-		GoogleProvider({
-			clientId: process.env.GOOGLE_CLIENT_ID,
-			clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-			// profile(profile) {
-			// 	return {
-			// 		id: profile.id,
-			// 		name: profile.given_name,
-			// 		email: profile.email,
-			// 	};
-			// },
-		}),
 	],
-	adapter: MongoDBAdapter(clientPromise),
 });
