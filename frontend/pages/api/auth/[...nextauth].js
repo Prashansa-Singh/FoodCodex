@@ -1,5 +1,6 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import axios from "axios";
 
 export default NextAuth({
 	// Configure one or more authentication providers
@@ -25,9 +26,19 @@ export default NextAuth({
 				// e.g. return { id: 1, name: 'J Smith', email: 'jsmith@example.com' }
 
 				try {
-					// Send backend request to authenticate user => receive reply here
+					// Send backend request to authenticate user
+					let user = await axios({
+						method: "post",
+						url: "http://localhost:8000/user/validateUser",
+						data: {
+							username: credentials.username,
+							password: credentials.password,
+						},
+					});
 
-					return null;
+					console.log(user.data);
+
+					return user.data;
 				} catch (error) {
 					return null;
 				}

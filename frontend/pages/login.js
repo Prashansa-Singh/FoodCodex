@@ -10,16 +10,14 @@ const LoginComponent = () => {
 	if (session) {
 		return (
 			<div>
-				<h1>Logout - Signed in</h1>
-				<p>Login page for the app</p>
+				<p>Logout - Signed in</p>
 				<button onClick={() => signOut()}>Sign out</button>
 			</div>
 		);
 	} else {
 		return (
 			<div>
-				<h1>Login - Not Signed In</h1>
-				<p>Login page for the app</p>
+				<p>Login - Not Signed In</p>
 				<button onClick={() => signIn()}>Sign in</button>
 			</div>
 		);
@@ -36,6 +34,8 @@ export default function Login() {
 				<h1>Login</h1>
 
 				<p>Login page for the app</p>
+
+				<LoginComponent />
 			</section>
 		</Layout>
 	);
