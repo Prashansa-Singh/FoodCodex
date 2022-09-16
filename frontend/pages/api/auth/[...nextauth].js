@@ -1,21 +1,21 @@
-import NextAuth from "next-auth";
-import CredentialsProvider from "next-auth/providers/credentials";
-import axios from "axios";
+import NextAuth from 'next-auth';
+import CredentialsProvider from 'next-auth/providers/credentials';
+import axios from 'axios';
 
 export default NextAuth({
 	// Configure one or more authentication providers
 	providers: [
 		CredentialsProvider({
-			id: "mongodb-credentials",
+			id: 'mongodb-credentials',
 
 			// The name to display on the sign in form (e.g. 'Sign in with...')
-			name: "FoodCodex Credentials",
+			name: 'FoodCodex Credentials',
 
 			// The credentials used on the sign in page
 			// You can pass any HTML attribute to the <input> tag through the object.
 			credentials: {
-				username: { label: "Username", type: "text" },
-				password: { label: "Password", type: "password" },
+				username: { label: 'Username', type: 'text' },
+				password: { label: 'Password', type: 'password' },
 			},
 
 			async authorize(credentials, req) {
@@ -28,8 +28,8 @@ export default NextAuth({
 				try {
 					// Send backend request to authenticate user
 					let user = await axios({
-						method: "post",
-						url: "http://localhost:8000/user/validateUser",
+						method: 'post',
+						url: 'http://localhost:8000/user/validateUser',
 						data: {
 							username: credentials.username,
 							password: credentials.password,

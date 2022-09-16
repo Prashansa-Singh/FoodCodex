@@ -1,11 +1,11 @@
 // temp
-const path = require("path");
+const path = require('path');
 
-const { User } = require("../models/user");
+const { User } = require('../models/user');
 
 const getSignup = async (req, res) => {
 	// render it later, now just send html file
-	res.sendFile(path.join(__dirname + "/../views/signup.html"));
+	res.sendFile(path.join(__dirname + '/../views/signup.html'));
 };
 
 const createUser = async (req, res, next) => {
@@ -17,7 +17,7 @@ const createUser = async (req, res, next) => {
 		console.log(user);
 
 		await user.save();
-		return res.redirect("/user/signup");
+		return res.redirect('/user/signup');
 	} catch (err) {
 		return next(err);
 	}
