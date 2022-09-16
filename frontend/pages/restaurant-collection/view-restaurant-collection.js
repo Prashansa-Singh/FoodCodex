@@ -1,9 +1,10 @@
 import Head from 'next/head';
+import Link from 'next/link';
 import Layout, { siteTitle } from '../../components/layout';
 import utilStyles from '../../styles/utils.module.css';
-import styles from '../../styles/view-restaurant-collection.module.css'
+import styles from '../../styles/view-restaurant-collection.module.css';
 
-import {axiosInstance} from '../api/axiosConfig'
+import {axiosInstance} from '../api/axiosConfig';
 
 export async function getServerSideProps() {
 
@@ -57,7 +58,11 @@ export default function ViewRestaurantCollection({data}) {
 							<tbody>
 								{data.map(({ _id, name, rating, label, price }) => (
 									<tr className={styles.tr} key={_id}>
-										<td className={styles.td}>{name}</td>
+										<td className={styles.td}>
+											<Link href={{pathname: '/restaurant-collection/view-restaurant-record', query: {_id: _id}}}>
+												{name}
+											</Link>
+										</td>
 										<td className={styles.td}>{rating}</td>
 										<td className={styles.td}>{label}</td>
 										<td className={styles.td}>{price}</td>
