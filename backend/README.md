@@ -16,6 +16,7 @@ npm install express-flash
 npm install mongoose
 
 npm install -D dotenv
+npm install -D jest supertest
 ```
 
 ## Run
