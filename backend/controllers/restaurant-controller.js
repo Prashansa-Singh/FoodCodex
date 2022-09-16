@@ -28,7 +28,27 @@ const createRestaurant = async(req, res, next) => {
 }
 
 
+const getRestaurant = async (req, res) => {
+	try {
+		console.log(
+			`Received the following restaurantId: ${req.body.restaurantId}`
+		);
+
+        let restaurant = await Restaurant.findById(req.body.restaurantId)
+
+		console.log(restaurant);
+
+        if (restaurant) {
+            return res.send(JSON.stringify(restaurant));
+        }
+	} catch (err) {
+		return next(err);
+	}
+}
+
+
 module.exports = {
     getRestaurants,
-    createRestaurant
+    createRestaurant,
+    getRestaurant
 }
