@@ -7,6 +7,6 @@ restaurantRouter.get('/retrieve/:userId/', restaurantController.getRestaurants)
 
 restaurantRouter.post('/retrieve/:userId/restaurants/create-restaurant', restaurantController.createRestaurant)
 
-restaurantRouter.get('/getRestaurant/', restaurantController.getRestaurant)
+restaurantRouter.get('/getRestaurant', restaurantController.getRestaurant)
 
 module.exports = restaurantRouter;
