@@ -6,7 +6,7 @@ export default function About() {
 	return (
 		<Layout home>
 			<Head>
-				<title>{siteTitle}</title>
+				<title>{siteTitle} - About</title>
 			</Head>
 			<section className={utilStyles.headingMd}>
 				<h1>

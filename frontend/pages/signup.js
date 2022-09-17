@@ -6,7 +6,7 @@ export default function Signup() {
 	return (
 		<Layout home>
 			<Head>
-				<title>{siteTitle}</title>
+				<title>{siteTitle} - Signup</title>
 			</Head>
 			<section className={utilStyles.headingMd}>
 				<h1>

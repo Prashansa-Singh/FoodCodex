@@ -21,7 +21,7 @@ export default function ViewRestaurantCollection({data}) {
 	return (
 		<Layout>
 			<Head>
-				<title>{siteTitle}</title>
+				<title>{siteTitle} - Restaurant Collection</title>
 			</Head>
 			<section className={utilStyles.headingMd}>
 				<h1>

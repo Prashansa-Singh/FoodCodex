@@ -6,7 +6,7 @@ export default function EditRestaurantRecord() {
 	return (
 		<Layout>
 			<Head>
-				<title>{siteTitle}</title>
+				<title>{siteTitle} - Edit Restaurant</title>
 			</Head>
 			<section className={utilStyles.headingMd}>
 				<h1>

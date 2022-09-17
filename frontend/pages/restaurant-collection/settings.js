@@ -6,7 +6,7 @@ export default function Settings() {
 	return (
 		<Layout>
 			<Head>
-				<title>{siteTitle}</title>
+				<title>{siteTitle} - Settings</title>
 			</Head>
 			<section className={utilStyles.headingMd}>
 				<h1>

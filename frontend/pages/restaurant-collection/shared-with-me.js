@@ -6,7 +6,7 @@ export default function SharedWithMe() {
 	return (
 		<Layout>
 			<Head>
-				<title>{siteTitle}</title>
+				<title>{siteTitle} - Shared With Me</title>
 			</Head>
 			<section className={utilStyles.headingMd}>
 				<h1>

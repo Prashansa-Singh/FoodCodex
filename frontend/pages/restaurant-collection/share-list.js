@@ -6,7 +6,7 @@ export default function ShareList() {
 	return (
 		<Layout>
 			<Head>
-				<title>{siteTitle}</title>
+				<title>{siteTitle} - Share</title>
 			</Head>
 			<section className={utilStyles.headingMd}>
 				<h1>

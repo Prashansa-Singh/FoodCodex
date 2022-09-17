@@ -6,7 +6,7 @@ export default function Login() {
 	return (
 		<Layout home>
 			<Head>
-				<title>{siteTitle}</title>
+				<title>{siteTitle} - Login</title>
 			</Head>
 			<section className={utilStyles.headingMd}>
 				<h1>
