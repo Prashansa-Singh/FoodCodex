@@ -3,6 +3,7 @@ import Layout, { siteTitle } from '../../components/layout';
 import utilStyles from '../../styles/utils.module.css';
 import styles from '../../styles/view-restaurant-record.module.css';
 import {axiosInstance} from '../api/axiosConfig';
+import Link from 'next/link';
 
 export async function getServerSideProps({query}) {
 
@@ -29,14 +30,22 @@ export default function ViewRestaurantRecord({restaurant_data}) {
 						{restaurant_data.name}
 					</h1>
 					<div className={styles.icon_group}>
-						<div className={styles.icons}>
-							<img src='/src/nav-icons/share-icon.svg' width='40vw' />
-							<p>Share</p>
-						</div>
-						<div className={styles.icons}>
-							<img src='/src/nav-icons/add-edit-nav-icon.svg' width='40vw' />
-							<p>Edit</p>
-						</div>
+						<Link href='/restaurant-collection/share-list'>
+							<a>
+								<div className={styles.icons}>
+									<img src='/src/nav-icons/share-icon.svg' width='40vw' />
+									<p>Share</p>
+								</div>
+							</a>
+                        </Link>
+						<Link href='/restaurant-collection/edit-restaurant-record'>
+							<a>
+								<div className={styles.icons}>
+									<img src='/src/nav-icons/add-edit-nav-icon.svg' width='40vw' />
+									<p>Edit</p>
+								</div>
+							</a>
+                        </Link>
 					</div>
 				</div>
 
