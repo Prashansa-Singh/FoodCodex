@@ -15,7 +15,22 @@ const connectionLogger = createLogger({
     ]
 })
 
+const messageLogger = createLogger({
+    transports: [
+        new transports.File({
+            filename: 'messages.log',
+            level: 'info',
+            format: format.combine(format.timestamp(), format.json())
+        }),
+        new transports.File({
+            filename: 'messages-error.log',
+            level: 'error',
+            format: format.combine(format.timestamp(), format.json())
+        })
+    ]
+})
 
 module.exports = {
-    connectionLogger
+    connectionLogger,
+    messageLogger
 }
