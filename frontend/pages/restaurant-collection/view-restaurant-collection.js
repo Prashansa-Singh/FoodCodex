@@ -18,10 +18,11 @@ export async function getServerSideProps() {
 }
 
 export default function ViewRestaurantCollection({data}) {
+	const title = `${siteTitle} - Restaurant Collection`;
 	return (
 		<Layout>
 			<Head>
-				<title>{siteTitle} - Restaurant Collection</title>
+				<title>{title}</title>
 			</Head>
 			<section className={utilStyles.headingMd}>
 				<h1>
@@ -57,14 +58,12 @@ export default function ViewRestaurantCollection({data}) {
 							</thead>
 							<tbody>
 								{data.map(({ _id, name, rating, label, price }) => (
-									<Link href={{pathname: '/restaurant-collection/view-restaurant-record', query: {_id: _id}}}>
-										<tr className={styles.tr} key={_id}>
-											<td className={styles.td}>{name}</td>
-											<td className={styles.td}>{rating}</td>
-											<td className={styles.td}>{label}</td>
-											<td className={styles.td}>{price}</td>
-										</tr>
-									</Link>
+									<tr className={styles.tr} key={_id}>
+										<Link href={{pathname: '/restaurant-collection/view-restaurant-record', query: {_id: _id}}}><td className={styles.td}>{name}</td></Link>
+										<Link href={{pathname: '/restaurant-collection/view-restaurant-record', query: {_id: _id}}}><td className={styles.td}>{rating}</td></Link>
+										<Link href={{pathname: '/restaurant-collection/view-restaurant-record', query: {_id: _id}}}><td className={styles.td}>{label}</td></Link>
+										<Link href={{pathname: '/restaurant-collection/view-restaurant-record', query: {_id: _id}}}><td className={styles.td}>{price}</td></Link>
+									</tr>
 								))}
 							</tbody>
 						</table>

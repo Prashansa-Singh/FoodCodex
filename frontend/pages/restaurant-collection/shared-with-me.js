@@ -3,10 +3,11 @@ import Layout, { siteTitle } from '../../components/layout';
 import utilStyles from '../../styles/utils.module.css';
 
 export default function SharedWithMe() {
+	const title = `${siteTitle} - Shared With Me`;
 	return (
 		<Layout>
 			<Head>
-				<title>{siteTitle} - Shared With Me</title>
+				<title>{title}</title>
 			</Head>
 			<section className={utilStyles.headingMd}>
 				<h1>

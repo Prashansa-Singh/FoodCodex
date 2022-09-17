@@ -19,10 +19,11 @@ export async function getServerSideProps({query}) {
 }
 
 export default function ViewRestaurantRecord({restaurant_data}) {
+	const title = `${siteTitle} - ${restaurant_data.name}`;
 	return (
 		<Layout>
 			<Head>
-				<title>{`${siteTitle} - ${restaurant_data.name}`}</title>
+				<title>{title}</title>
 			</Head>
 			<section className={utilStyles.headingMd}>
 				<div className={styles.top}>	
