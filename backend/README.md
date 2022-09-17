@@ -1,14 +1,24 @@
 # Backend
-## Stack
-- Node.js
-- Express.js
-- MongoDB
 
-## Pattern
-- Model View Controller 
-- with React-Next.js frontend
+## Run
+```shell
+cd ~/FoodCodex/backend
+```
+``` shell
+npm start
+```
 
 ## Installation and Dependencies
+### installation dependencies
+```shell
+npm install express express-flash mongoose winston express-winston 
+```
+### development dependencies
+```shell
+npm install -D dotenv jest supertest
+```
+
+### each individual
 ```
 npm install express
 npm install express-flash
@@ -21,8 +31,10 @@ npm install -D dotenv
 npm install -D jest supertest
 ```
 
-## Run
-```
-cd ~/IT-Project/backend
-npm start
-```
+---
+
+## Stack
+- Node.js
+- Express.js
+- Winston.js
+- MongoDB
