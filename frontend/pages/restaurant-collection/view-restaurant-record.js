@@ -3,17 +3,18 @@ import Layout, { siteTitle } from '../../components/layout';
 import utilStyles from '../../styles/utils.module.css';
 
 import {axiosInstance} from '../api/axiosConfig';
+import axios from 'axios';
 
 export async function getServerSideProps({query}) {
 
 	const {_id} = query;
-	const url = '/getRestaurant/' + _id; // URL for the GET request to backend
-	console.log(url);
-	//const response = await axiosInstance.get(url);
-	//const restaurant_data = response.data;
+	const url = '/getRestaurant'; // URL for the GET request to backend
+	const response = await axiosInstance.get(url, {data: {restaurantId: _id,}});
+
+	const restaurant_data = response.data;
 
 	return {
-		props: {_id,},
+		props: {restaurant_data,},
 	};
 }
 
@@ -25,7 +26,7 @@ export default function ViewRestaurantRecord({restaurant_data}) {
 			</Head>
 			<section className={utilStyles.headingMd}>
 				<h1>
-					View Restaurant Record
+					{restaurant_data.name}
 				</h1>
 
 				<p>
