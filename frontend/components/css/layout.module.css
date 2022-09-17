@@ -6,6 +6,7 @@
 }
 
 .container {
+    background-image: url('../../public/src/logged-in-background.svg');
     display: grid;
     grid-template-areas: 
         'header header'
