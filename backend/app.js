@@ -3,7 +3,7 @@
 //
 
 const express = require('express');
-const flash = require('express-flash')
+const flash = require('express-flash');
 
 const app = express();
 
@@ -31,6 +31,8 @@ const homeRouter = require('./routes/home-router');
 const userRouter = require('./routes/user-router');
 const restaurantRouter = require('./routes/restaurant-router');
 
+/* Logger */
+const logger = require('./logger');
 
 /* Database */
 require('./models/db')
@@ -44,5 +46,5 @@ app.use('/user', userRouter);
 
 /* ------------------------------------------------------------------------- */
 app.listen(PORT, () => {
-    console.log("App is listening on port" + PORT);
+    logger.connectionLogger.log('info', `App is listening on port ${PORT}`);
 });
