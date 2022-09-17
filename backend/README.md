@@ -13,6 +13,8 @@
 npm install express
 npm install express-flash
 
+npm install winston express-winston
+
 npm install mongoose
 
 npm install -D dotenv
