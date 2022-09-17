@@ -4,6 +4,7 @@ import utilStyles from '../../styles/utils.module.css';
 import styles from '../../styles/view-restaurant-record.module.css';
 import {axiosInstance} from '../api/axiosConfig';
 import Link from 'next/link';
+import Tags from '../../components/tags';
 
 export async function getServerSideProps({query}) {
 
@@ -77,6 +78,7 @@ export default function ViewRestaurantRecord({restaurant_data}) {
 
 					<div className={`${styles.data_container} ${styles.data4}`}>
 						<h5>Tags</h5>
+						<Tags restaurant_data={restaurant_data} />
 					</div>
 					<br/>
 					<br/>
