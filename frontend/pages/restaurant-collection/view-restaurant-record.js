@@ -21,16 +21,16 @@ export default function ViewRestaurantRecord({restaurant_data}) {
 	return (
 		<Layout>
 			<Head>
-				<title>{siteTitle} - {restaurant_data.name}</title>
+				<title>{`${siteTitle} - ${restaurant_data.name}`}</title>
 			</Head>
 			<section className={utilStyles.headingMd}>
-				<div>
-					<div>
-						<img src='/src/nav-icons/share-icon.svg' />
+				<div className={styles.icon_group}>
+					<div className={styles.icons}>
+						<img src='/src/nav-icons/share-icon.svg' width='40vw' />
 						<p>Share</p>
 					</div>
-					<div>
-						<img src='/src/nav-icons/add-edit-nav-icon.svg' />
+					<div className={styles.icons}>
+						<img src='/src/nav-icons/add-edit-nav-icon.svg' width='40vw' />
 						<p>Edit</p>
 					</div>
 				</div>
