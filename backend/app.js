@@ -1,5 +1,5 @@
 //
-//
+// APIs
 //
 
 const express = require('express');
@@ -19,7 +19,7 @@ app.use((req, res, next) => {
 })
 
 /* ------------------------------------------------------------------------- */
-const PORT = process.env.PORT || 8000;
+
 
 /* Environment */
 if (process.env.NODE_ENV !== 'production') {
@@ -43,8 +43,6 @@ app.use('/', restaurantRouter);
 
 app.use('/user', userRouter);
 
+/* ========================================================================= */
 
-/* ------------------------------------------------------------------------- */
-app.listen(PORT, () => {
-    logger.connectionLogger.log('info', `App is listening on port ${PORT}`);
-});
+module.exports = app
