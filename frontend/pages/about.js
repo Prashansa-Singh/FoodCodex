@@ -3,10 +3,11 @@ import Layout, { siteTitle } from '../components/layout';
 import utilStyles from '../styles/utils.module.css';
 
 export default function About() {
+	const title = `${siteTitle} - About`;
 	return (
 		<Layout home>
 			<Head>
-				<title>{siteTitle}</title>
+				<title>{title}</title>
 			</Head>
 			<section className={utilStyles.headingMd}>
 				<h1>

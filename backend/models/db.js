@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const logger = require('../logger')
 
 if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config()
@@ -13,13 +14,13 @@ const mongooseClient = mongoose
         })
     .then((m) => m.connection.getClient())
 
-const db = mongoose.connection.on('error', err => {
-    console.error(err);
+const db = mongoose.connection.on('error', () => {
+    logger.connectionLogger.log('error', 'Failed to connect to MongoDB');
     process.exit(1)
 })
 
 db.once('open', async() => {
-    console.log(`Mongo connection started on ${db.host}:${db.port}`)
+    logger.connectionLogger.log('info', `Mongo connection started on ${db.host}:${db.port}`)
 })
 
 require('./user')

@@ -1,11 +1,22 @@
-const express = require('express')
+const express = require('express');
 
 const userRouter = express.Router();
-const userController = require('../controllers/user-controller')
-
-userRouter.get('/signup', userController.getSignup)
-
-userRouter.post('/create', userController.createUser)
+const userController = require('../controllers/user-controller');
 
 
-module.exports = userRouter
+const restaurantRouter = require('../routes/restaurant-router')
+userRouter.use('/restaurant', restaurantRouter);
+
+const settingsRouter = require('../routes/settings-router')
+userRouter.use('/settings', settingsRouter);
+
+
+
+userRouter.get('/login', userController.loginUser);
+userRouter.get('/logout', userController.logoutUser);
+
+userRouter.post('/validateUser', userController.validateUser);
+
+
+
+module.exports = userRouter;
