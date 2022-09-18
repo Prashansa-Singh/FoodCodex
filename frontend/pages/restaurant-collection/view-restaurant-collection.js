@@ -1,13 +1,14 @@
 import Head from 'next/head';
+import Link from 'next/link';
 import Layout, { siteTitle } from '../../components/layout';
 import utilStyles from '../../styles/utils.module.css';
-import styles from '../../styles/view-restaurant-collection.module.css'
+import styles from '../../styles/view-restaurant-collection.module.css';
 
-import {axiosInstance} from '../api/axiosConfig'
+import {axiosInstance} from '../api/axiosConfig';
 
 export async function getServerSideProps() {
 
-	const url = '/retrieve/6310521c744ac9f1587375fa'; // URL for the GET request to backend
+	const url = '/user/restaurant/6310521c744ac9f1587375fa/view-all'; // URL for the GET request to backend
 	const response = await axiosInstance.get(url);
 	const data = response.data;
 
@@ -17,10 +18,11 @@ export async function getServerSideProps() {
 }
 
 export default function ViewRestaurantCollection({data}) {
+	const title = `${siteTitle} - Restaurant Collection`;
 	return (
 		<Layout>
 			<Head>
-				<title>{siteTitle}</title>
+				<title>{title}</title>
 			</Head>
 			<section className={utilStyles.headingMd}>
 				<h1>
@@ -57,10 +59,10 @@ export default function ViewRestaurantCollection({data}) {
 							<tbody>
 								{data.map(({ _id, name, rating, label, price }) => (
 									<tr className={styles.tr} key={_id}>
-										<td className={styles.td}>{name}</td>
-										<td className={styles.td}>{rating}</td>
-										<td className={styles.td}>{label}</td>
-										<td className={styles.td}>{price}</td>
+										<Link href={{pathname: '/restaurant-collection/view-restaurant-record', query: {_id: _id}}}><td className={styles.td}>{name}</td></Link>
+										<Link href={{pathname: '/restaurant-collection/view-restaurant-record', query: {_id: _id}}}><td className={styles.td}>{rating}</td></Link>
+										<Link href={{pathname: '/restaurant-collection/view-restaurant-record', query: {_id: _id}}}><td className={styles.td}>{label}</td></Link>
+										<Link href={{pathname: '/restaurant-collection/view-restaurant-record', query: {_id: _id}}}><td className={styles.td}>{price}</td></Link>
 									</tr>
 								))}
 							</tbody>

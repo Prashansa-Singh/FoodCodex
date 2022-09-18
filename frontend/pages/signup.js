@@ -35,10 +35,11 @@ export default function Signup() {
 	
 	}
 
+	const title = `${siteTitle} - Signup`;
 	return (
 		<Layout home>
 			<Head>
-				<title>{siteTitle}</title>
+				<title>{title}</title>
 			</Head>
 			<section className={utilStyles.headingMd}>
 				<h1>

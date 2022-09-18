@@ -1,11 +1,12 @@
 .containerhome {
     display: flex !important;
     flex-direction: column;
-    background-image: url('../../public/src/home-background.svg');
+    background-image: url('../../public/src/home-background.svg') !important;
     min-height: 100vh;
 }
 
 .container {
+    background-image: url('../../public/src/logged-in-background.svg');
     display: grid;
     grid-template-areas: 
         'header header'
