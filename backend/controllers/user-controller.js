@@ -4,8 +4,20 @@ const loginUser = async (req, res) => {
 
 }
 
+const createUser = async (req, res, next) => {
+    try {
+        // visualise
+        const body = JSON.parse(Object.keys(req.body))
+        const user = new User(body)
+        console.log(user)
 
-const logoutUser = async (req, res) => {
+        //await user.save()
+        console.log(res.body);
+        return res.send(user);
+    }
+    catch (err) {
+        return next(err)
+    }
 
 }
 
