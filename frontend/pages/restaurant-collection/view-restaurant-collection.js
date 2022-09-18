@@ -8,7 +8,7 @@ import {axiosInstance} from '../api/axiosConfig';
 
 export async function getServerSideProps() {
 
-	const url = '/retrieve/6310521c744ac9f1587375fa'; // URL for the GET request to backend
+	const url = '/user/restaurant/6310521c744ac9f1587375fa/view-all'; // URL for the GET request to backend
 	const response = await axiosInstance.get(url);
 	const data = response.data;
 
