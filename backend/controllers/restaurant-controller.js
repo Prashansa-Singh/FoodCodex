@@ -1,7 +1,7 @@
 const { User } = require('../models/user');
 const { Restaurant } = require('../models/restaurant');
 
-const getRestaurants = async (req, res) => {
+const getAllRestaurants = async (req, res) => {
 	const user = await User.findOne({ _id: req.params.userId }).populate('restaurants');
 	const restaurants = user['restaurants'];
 
@@ -43,9 +43,22 @@ const getRestaurant = async (req, res) => {
 	}
 }
 
+const updateRestaurant = async (req, res, next) => {
+}
+
+
+const deleteRestaurant = async (req, res, next) => {
+}
+
+
+const deleteAllRestaurants = async (req, res, next) => {
+}
 
 module.exports = {
-    getRestaurants,
+	getAllRestaurants,
     createRestaurant,
-    getRestaurant
+    getRestaurant,
+	updateRestaurant,
+	deleteRestaurant,
+	deleteAllRestaurants
 }
