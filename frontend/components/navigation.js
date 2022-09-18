@@ -35,11 +35,6 @@ export default function Nav() {
             icon: '/src/nav-icons/add-edit-nav-icon.svg',
         },
         {
-            href: '/restaurant-collection/customise-tags',
-            title: 'Customise Tags',
-            icon: '/src/nav-icons/tags-icon.svg',
-        },
-        {
             href: '/restaurant-collection/share-list',
             title: 'Share My List',
             icon: '/src/nav-icons/share-icon.svg',

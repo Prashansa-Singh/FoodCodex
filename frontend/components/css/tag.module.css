@@ -1,0 +1,17 @@
+.tag {
+    border-radius: 10px;
+    width: 100px;
+    text-align: center;
+    padding-left: 1px;
+    padding-right: 1px;
+    font-size: 16px;
+}
+
+.tag_container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: space-around;
+    gap: 10px;
+}
