@@ -1,0 +1,62 @@
+.icons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+    line-height: 0%;
+}
+
+.icon_group {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.view_record_container {
+    display: grid;
+    grid-template-areas: 
+        'data1 data2'
+        'data3 data4';
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 2fr;
+    gap: 10px;
+}
+
+.data1 {grid-area: data1;}
+.data2 {grid-area: data2;}
+.data3 {grid-area: data3;}
+.data4 {grid-area: data4;}
+
+.data_container {
+    background-color: #c1c3c0;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.restaurant_details {
+    line-height: 0.5;
+}
+
+.top {
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+    align-items: center;
+}
+
+@media screen and (max-width: 450px) {
+    .view_record_container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .restaurant_details {
+        line-height: 0.8;
+    }
+
+    .icon_group {
+        padding-top: 7%;
+    }
+}
