@@ -20,7 +20,7 @@ if (process.env.NODE_ENV !== 'production') {
 /* Routers */
 const homeRouter = require('./routes/home-router')
 const userRouter = require('./routes/user-router')
-const restaurantRouter = require('./routes/restaurant-router')
+const accountRouter = require('./routes/account-router')
 
 /* Logger */
 const logger = require('./logger')
@@ -34,8 +34,9 @@ require('./models/db')
 
 /* ========================================================================= */
 // Link router
-app.use('/', restaurantRouter)
+app.use('/account', accountRouter)
 app.use('/user', userRouter)
+app.use('/', homeRouter)
 
 /* ========================================================================= */
 

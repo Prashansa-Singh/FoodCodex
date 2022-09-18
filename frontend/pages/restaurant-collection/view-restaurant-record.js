@@ -9,7 +9,7 @@ import Tags from '../../components/tags';
 export async function getServerSideProps({query}) {
 
 	const {_id} = query;
-	const url = '/getRestaurant'; // URL for the GET request to backend
+	const url =  '/user/restaurant/6310521c744ac9f1587375fa/view-one'
 	const response = await axiosInstance.get(url, {data: {restaurantId: _id,}});
 
 	const restaurant_data = response.data;
