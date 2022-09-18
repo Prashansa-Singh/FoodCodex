@@ -3,7 +3,7 @@
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
-		"postinstall": "if [ $FRONTEND_ENV ]; then npm run postinstall-frontend; elif [ $BACKEND_ENV ]; then npm run postinstall-backend; else echo no environment detected, please set CLIENT_ENV or SERVER_ENV; fi",
+		"postinstall": "if [ $FRONTEND_ENV ]; then npm run postinstall-frontend; elif [ $BACKEND_ENV ]; then npm run postinstall-backend; else echo no environment detected, please set FRONTEND_ENV or BACKEND_ENV; fi",
 		"postinstall-frontend": "cd frontend && npm install && npm run build",
 		"postinstall-backend": "cd backend && npm install"
 	}
