@@ -2,7 +2,7 @@ const { User } = require('../models/user');
 const { Restaurant } = require('../models/restaurant');
 
 const getAllRestaurants = async (req, res) => {
-	const user = await User.findOne({ _id: req.params.userId }).populate('restaurants');
+	const user = await User.findOne({ _id: req.body.userId }).populate('restaurants');
 	const restaurants = user['restaurants'];
 
 	console.log(restaurants);
@@ -28,7 +28,7 @@ const createRestaurant = async (req, res, next) => {
 const getRestaurant = async (req, res) => {
 	try {
 		console.log(
-			`Received the following restaurantId: ${req.body.restaurantId}`
+			`Received the following userId: ${req.body.userId} and restaurantId: ${req.body.restaurantId}`
 		);
 
         let restaurant = await Restaurant.findById(req.body.restaurantId)
