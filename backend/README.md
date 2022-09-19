@@ -11,7 +11,7 @@ npm start
 ## Installation and Dependencies
 ### installation dependencies
 ```shell
-npm install express express-flash mongoose winston express-winston 
+npm install express express-flash mongoose winston express-winston cors
 ```
 ### development dependencies
 ```shell
@@ -26,6 +26,8 @@ npm install express-flash
 npm install winston express-winston
 
 npm install mongoose
+
+npm install cors
 
 npm install -D dotenv
 npm install -D jest supertest

@@ -4,8 +4,11 @@ import utilStyles from '../styles/utils.module.css';
 
 import {axiosInstance} from './api/axiosConfig';
 import axios from 'axios';
+import { useRouter } from 'next/router';
 
 export default function Signup() {
+
+	const router = useRouter();
 
 	const submitUser = async (event) => {
 		event.preventDefault();
@@ -19,11 +22,12 @@ export default function Signup() {
 			displayName: displayName,
 		};
 
-		const url = 'http://localhost:8000/account/signup';
+		const url = '/account/signup';
 
-		const res = axiosInstance.post(url, body)
+		axiosInstance.post(url, body)
 		.then(function (response) {
 			console.log(response.data);
+			router.push('/login');
 		})
 		.catch(function (error) {
 			console.log(error);
@@ -32,6 +36,7 @@ export default function Signup() {
 	}
 
 	const title = `${siteTitle} - Signup`;
+
 	return (
 		<Layout home>
 			<Head>
