@@ -11,14 +11,19 @@ const getSignup = async (req, res) => {
 
 const createUser = async (req, res, next) => {
     try {
-        const user = new User(req.body);
+        //const user = new User(req.body);
 
         // visualise
-        console.log(req.body);
-        console.log(user);
+        //console.log(req.body);
+        //console.log(user);
+        const body = JSON.parse(Object.keys(req.body))
+        //console.log(body);
+        const user = new User(body)
+        //console.log(user)
 
-        await user.save();
-        return res.redirect('/user/signup');
+        //await user.save()
+
+        return res;
     } catch (err) {
         return next(err);
     }
