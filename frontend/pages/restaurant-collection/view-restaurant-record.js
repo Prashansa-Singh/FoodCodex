@@ -21,6 +21,7 @@ export async function getServerSideProps({query}) {
 
 export default function ViewRestaurantRecord({restaurant_data}) {
 	const title = `${siteTitle} - ${restaurant_data.name}`;
+	console.log(restaurant_data);
 	return (
 		<Layout>
 			<Head>
@@ -40,14 +41,14 @@ export default function ViewRestaurantRecord({restaurant_data}) {
 								</div>
 							</a>
                         </Link>
-						<Link href='/restaurant-collection/edit-restaurant-record'>
+						<Link href={{pathname: '/restaurant-collection/edit-restaurant-record', query: {_id: restaurant_data._id}}}>
 							<a>
 								<div className={styles.icons}>
 									<img src='/src/nav-icons/add-edit-nav-icon.svg' width='40vw' />
 									<p>Edit</p>
 								</div>
 							</a>
-                        </Link>
+						</Link>
 					</div>
 				</div>
 
