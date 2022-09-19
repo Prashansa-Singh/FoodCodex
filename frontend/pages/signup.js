@@ -13,25 +13,21 @@ export default function Signup() {
 		const password = event.target.password.value;
 		const displayName = event.target.displayName.value;
 
-		const body = JSON.stringify({
+		const body = {
 			userName: userName,
 			password: password,
 			displayName: displayName,
-		});
+		};
 
-		const res = await axios({
-			method: 'post',
-			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-			url: 'http://localhost:8000/account/signup',
-			data: body,
-		})
+		const url = 'http://localhost:8000/account/signup';
+
+		const res = axiosInstance.post(url, body)
 		.then(function (response) {
-			console.log(response);
+			console.log(response.data);
 		})
 		.catch(function (error) {
 			console.log(error);
-		});
-		
+		});	
 	
 	}
 

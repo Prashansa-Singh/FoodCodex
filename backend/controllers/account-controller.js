@@ -14,16 +14,12 @@ const createUser = async (req, res, next) => {
         //const user = new User(req.body);
 
         // visualise
-        //console.log(req.body);
-        //console.log(user);
-        const body = JSON.parse(Object.keys(req.body))
-        //console.log(body);
-        const user = new User(body)
-        //console.log(user)
+        const user = new User(req.body)
+        console.log(user)
 
-        //await user.save()
+        await user.save()
 
-        return res;
+        return res.send(JSON.stringify(user));
     } catch (err) {
         return next(err);
     }
