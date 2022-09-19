@@ -4,9 +4,6 @@ const url = (process.env.NODE_ENV == "production") ? 'https://comp30022-programm
 
 const axiosInstance = axios.create({
     baseURL: url ,
-    headers: {
-        'Content-Type': undefined,
-    }
 });
 
 export { axiosInstance };

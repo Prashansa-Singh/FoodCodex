@@ -22,7 +22,7 @@ export default function Signup() {
 		const res = await axios({
 			method: 'post',
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-			url: 'http://localhost:8000/user/create',
+			url: 'http://localhost:8000/account/signup',
 			data: body,
 		})
 		.then(function (response) {
