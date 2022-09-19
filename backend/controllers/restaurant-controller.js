@@ -11,15 +11,17 @@ const getAllRestaurants = async (req, res) => {
 
 const createRestaurant = async (req, res, next) => {
 	try {
+		const userId = req.body.userId
+		delete req.body.userId
 		const restaurant = new Restaurant(req.body);
 		await restaurant.save();
 		await User.updateOne(
-			{ _id: req.params.userId },
+			{ _id: userId },
 			{ $push: { restaurants: restaurant._id } }
 		);
 
 		console.log(restaurant);
-		return res.send(`Done. ${restaurant.name} has been added.`);
+		return res.send(`Done. ${restaurant.name} has been added to this userId: ${userId}.`);
 	} catch (err) {
 		return next(err);
 	}
