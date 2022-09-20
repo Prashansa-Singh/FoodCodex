@@ -14,10 +14,10 @@ export default function Home() {
 				<title>{siteTitle}</title>
 			</Head>
 			<section className={utilStyles.headingMd}>
-				<Stack direction="row" spacing={25} align = 'center'>
-					<Button variant="contained">LOGIN</Button>
-					<Button variant="contained">SIGN UP</Button>
-					<Button variant="contained" size="large">ABOUT</Button>
+				<Stack direction="row" spacing={25}>
+					<Button className = {utilStyles.homepageButton} variant="contained" style ={{margin: '0 auto', display: "flex"}}>LOGIN</Button>
+					<Button className = {utilStyles.homepageButton} variant="contained" style ={{margin: '0 auto', display: "flex"}}>SIGN UP</Button>
+					<Button className = {utilStyles.homepageButton} variant="contained" style ={{margin: '0 auto', display: "flex"}} size="large">ABOUT</Button>
 				</Stack>	
 				<h1>
 					"Laughter is brightest in the place where food is good"

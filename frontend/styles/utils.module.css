@@ -24,7 +24,6 @@
 	font-size: 1.2rem;
 	line-height: 1.5;
 	text-align: center;
-	margin: auto;
 }
 
 .borderCircle {
@@ -52,3 +51,16 @@
 .lightText {
 	color: #666;
 }
+
+.homepageButton {
+	background: linear-gradient(180deg, #FBB3B8 0%, #FBD233 100%);
+	mix-blend-mode: normal;
+	box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.14), 0px 1px 10px rgba(0, 0, 0, 0.12), 0px 2px 4px rgba(0, 0, 0, 0.2);
+	border-radius: 50px;
+	margin: 0 auto;
+	display: flex;
+	width: 10%;
+	color: black;
+	font-weight: bolder;
+}
+
