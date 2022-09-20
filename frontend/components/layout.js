@@ -21,7 +21,7 @@ export default function Layout({ children, home }) {
             <header className={styles.header}>
                 {home ? (
                     <>
-                        <img alt='FoodCodex Logo' src='/src/foodcodex-logo.png' />
+                        <img alt='FoodCodex Logo' src='/src/foodcodex-logo.png' className={styles.homelogo} />
                     </>
                 ) : (
                     <>
