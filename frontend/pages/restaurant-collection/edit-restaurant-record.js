@@ -63,6 +63,16 @@ export default function EditRestaurantRecord({userId, restaurant_data, new_data}
 			name: (name != "") ? name : restaurant_data.name,
 			cuisine: (cuisine != "") ? cuisine : restaurant_data.cuisine,
 			address: (address != "") ? address : restaurant_data.address,
+			personalOption: event.target.personalOption.value,
+			halalOption: event.target.halalOption.value,
+			veganOption: event.target.veganOption.value,
+			vegetarianOption: event.target.vegetarianOption.value,
+			pescatarianOption: event.target.pescatarianOption.value,
+			nutsFreeOption: event.target.nutsFreeOption.value,
+			dairyFreeOption: event.target.dairyFreeOption.value,
+			glutenFreeOption: event.target.glutenFreeOption.value,
+			allergyFriendlyOption: event.target.allergyFriendlyOption.value,
+			diabetesFriendlyOption: event.target.diabetesFriendlyOption.value,
 		};
 
 		const url = 'user/restaurant/update-one';
@@ -70,7 +80,7 @@ export default function EditRestaurantRecord({userId, restaurant_data, new_data}
 		await axiosInstance.post(url, body)
 		.then(function (response) {
 			console.log(response.data);
-			//router.push('/restaurant-collection/view-restaurant-collection');
+			router.push('/restaurant-collection/view-restaurant-collection');
 		})
 		.catch(function (error) {
 			console.log(error);
