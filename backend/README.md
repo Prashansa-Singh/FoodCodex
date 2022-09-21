@@ -37,4 +37,5 @@ npm install -D jest supertest
 - Node.js
 - Express.js
 - Winston.js
+- SuperTest
 - MongoDB
