@@ -6,7 +6,7 @@ import { useState } from 'react';
 
 export async function getServerSideProps({query}) {
 
-	const {_id, rest_id} = query;
+	const {userId, rest_id} = query;
 	let restaurant_data;
 	let new_data;
 
@@ -15,12 +15,10 @@ export async function getServerSideProps({query}) {
 		new_data = true;
 	} else {
 		const url =  '/user/restaurant/view-one'
-		const response = await axiosInstance.get(url, {data: {userId: _id, restaurantId: rest_id,}});
+		const response = await axiosInstance.get(url, {data: {userId: userId, restaurantId: rest_id,}});
         restaurant_data = response.data;
 		new_data = false;
 	}
-
-	const userId = _id;
 
 	return {
 		props: {userId, restaurant_data, new_data,},
@@ -28,7 +26,6 @@ export async function getServerSideProps({query}) {
 }
 
 export default function EditRestaurantRecord({userId, restaurant_data, new_data}) {
-
 	const title = `${siteTitle} - Edit Restaurant`;
 	const tags = ["Personal", "Halal", "Vegan", "Vegetarian", "Pescatarian", "Nut Free", "Dairy Free", "Gluten Free", "Allergy Friendly", "Diabetes Friendly"]
 	const [checked, setChecked] = useState([]);
@@ -48,6 +45,28 @@ export default function EditRestaurantRecord({userId, restaurant_data, new_data}
 	var selectedTags = checked.length ? checked.reduce((total, item) => {
         return total + ", " + item;
     }) : "";
+
+	const submitEdit = async (event) => {
+		event.preventDefault();
+		const name = event.target.name.value;
+
+		const body = {
+			userId: userId,
+			restaurantId: restaurant_data._id,
+			name: name,
+		};
+
+		const url = 'user/restaurant/update-one';
+
+		axiosInstance.post(url, body)
+		.then(function (response) {
+			console.log(response.data);
+		})
+		.catch(function (error) {
+			console.log(error);
+		});
+
+	}
 
 	return (
 		<Layout>
@@ -99,12 +118,14 @@ export default function EditRestaurantRecord({userId, restaurant_data, new_data}
 							<h1>
 								Edit Restaurant Record
 							</h1>
-							<button>Save</button>
-							<button>Discard</button>
-							<br/>
-							<label> Restaurant Name </label>
-							<input type="text" placeholder={restaurant_data.name} name="name" required/>
-							<br/>
+							<form onSubmit={submitEdit}>
+								<input type='submit' value='Save' />
+								<button>Discard</button>
+								<br/>
+								<label> Restaurant Name </label>
+								<input type="text" placeholder={restaurant_data.name} name="name"/>
+								<br/>
+							</form>
 							<label> Type of Cuisine </label>
 							<input type="text" placeholder={restaurant_data.cuisine} name="cuisine"/>
 							<br/>
