@@ -52,11 +52,15 @@ export default function EditRestaurantRecord({userId, restaurant_data, new_data}
 	const submitEdit = async (event) => {
 		event.preventDefault();
 		const name = event.target.name.value;
+		const cuisine = event.target.cuisine.value;
+		const address = event.target.address.value;
 
 		const body = {
 			userId: userId,
 			restaurantId: restaurant_data._id,
 			name: (name != "") ? name : restaurant_data.name,
+			cuisine: (cuisine != "") ? cuisine : restaurant_data.cuisine,
+			address: (address != "") ? address : restaurant_data.address,
 		};
 
 		const url = 'user/restaurant/update-one';
@@ -127,15 +131,15 @@ export default function EditRestaurantRecord({userId, restaurant_data, new_data}
 								<button>Discard</button>
 								<br/>
 								<label> Restaurant Name </label>
-								<input type="text" placeholder={restaurant_data.name} name="name"/>
+								<input type="text" placeholder={restaurant_data.name} defaultValue={restaurant_data.name} name="name"/>
+								<br/>
+								<label> Type of Cuisine </label>
+								<input type="text" placeholder={restaurant_data.cuisine} defaultValue={restaurant_data.cuisine} name="cuisine"/>
+								<br/>
+								<label> Restaurant Address </label>
+								<input type="text" placeholder={restaurant_data.address} defaultValue={restaurant_data.address} name="address"/>
 								<br/>
 							</form>
-							<label> Type of Cuisine </label>
-							<input type="text" placeholder={restaurant_data.cuisine} name="cuisine"/>
-							<br/>
-							<label> Restaurant Address </label>
-							<input type="text" placeholder={restaurant_data.address} name="address"/>
-							<br/>
 							<label> Rating (out of 5 stars) </label>
 							{restaurant_data.rating}							
 							<br/>
