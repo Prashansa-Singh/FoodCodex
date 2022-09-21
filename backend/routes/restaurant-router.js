@@ -4,7 +4,7 @@ const cors = require('cors')
 const restaurantRouter = express.Router()
 const restaurantController = require('../controllers/restaurant-controller')
 
-restaurantController.use(cors())
+restaurantRouter.use(cors())
 
 
 const experienceRouter = require('../routes/experience-router')
