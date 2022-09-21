@@ -8,12 +8,16 @@ it('SuperTest', () => { })
  * Home: ~/
  */
 describe('Home ~', () => {
-    it('GET / ---> 200', () => {
-        return request(app).get('/').expect(200)
+    it('GET / ---> 200', (done) => {
+        request(app).get('/')
+            .expect(200)
+            .end(done)
     })
 
-    it('GET * ---> 404', () => {
-        return request(app).get('/whatever').expect(404)
+    it('GET * ---> 404', (done) => {
+        request(app).get('/whatever')
+            .expect(404)
+            .end(done)
     })
 })
 
