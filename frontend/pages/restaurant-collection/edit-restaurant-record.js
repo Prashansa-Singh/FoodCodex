@@ -5,6 +5,8 @@ import {axiosInstance} from '../api/axiosConfig';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 
+import Tags from '../../components/tags';
+
 export async function getServerSideProps({query}) {
 
 	const {userId, rest_id} = query;
@@ -68,7 +70,7 @@ export default function EditRestaurantRecord({userId, restaurant_data, new_data}
 		await axiosInstance.post(url, body)
 		.then(function (response) {
 			console.log(response.data);
-			router.push('/restaurant-collection/view-restaurant-collection');
+			//router.push('/restaurant-collection/view-restaurant-collection');
 		})
 		.catch(function (error) {
 			console.log(error);
@@ -139,6 +141,9 @@ export default function EditRestaurantRecord({userId, restaurant_data, new_data}
 								<label> Restaurant Address </label>
 								<input type="text" placeholder={restaurant_data.address} defaultValue={restaurant_data.address} name="address"/>
 								<br/>
+								<label> Tags </label>
+								<Tags restaurant_data={restaurant_data} page='edit' />
+								<br/>
 							</form>
 							<label> Rating (out of 5 stars) </label>
 							{restaurant_data.rating}							
@@ -146,17 +151,7 @@ export default function EditRestaurantRecord({userId, restaurant_data, new_data}
 							<label> Price Range </label>
 							{restaurant_data.priceRating}
 							<br/>
-							<label> Tags </label>
-							{tags.map((item, index) => (
-								<div key={index}>
-									<input value={item} type="checkbox" onChange={handleCheck} />
-									<span className={isSelected(item)}>{item}</span>
-								</div>
-							))}
-							<div>
-								{`Tags selected are: ${selectedTags}`}
-							</div>
-							<br/>
+							
 							<label> Experiences </label>
 							
 						</>

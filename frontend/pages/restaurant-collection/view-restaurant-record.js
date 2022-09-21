@@ -80,7 +80,7 @@ export default function ViewRestaurantRecord({userId, restaurant_data}) {
 
 					<div className={`${styles.data_container} ${styles.data4}`}>
 						<h5>Tags</h5>
-						<Tags restaurant_data={restaurant_data} />
+						<Tags restaurant_data={restaurant_data} page='view' />
 					</div>
 					<br/>
 					<br/>
