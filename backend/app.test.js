@@ -25,5 +25,3 @@ describe('Home ~', () => {
     })
 })
 
-
-request(app.close)

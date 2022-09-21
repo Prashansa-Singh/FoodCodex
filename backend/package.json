@@ -4,7 +4,7 @@
   "description": "Web app for IT Project Sem 2 2022",
   "main": "app.js",
   "scripts": {
-    "test": "jest --watchAll",
+    "test": "jest --forceExit",
     "start": "node server.js"
   },
   "repository": {
