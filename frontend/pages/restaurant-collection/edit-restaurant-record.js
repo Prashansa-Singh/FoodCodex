@@ -6,26 +6,28 @@ import { useState } from 'react';
 
 export async function getServerSideProps({query}) {
 
-	const {_id} = query;
+	const {_id, rest_id} = query;
 	let restaurant_data;
 	let new_data;
 
-	if (_id == undefined) {
+	if (rest_id == undefined) {
 		restaurant_data = {}
 		new_data = true;
 	} else {
-		const url =  '/user/restaurant/6310521c744ac9f1587375fa/view-one'
-		const response = await axiosInstance.get(url, {data: {restaurantId: _id,}});
+		const url =  '/user/restaurant/view-one'
+		const response = await axiosInstance.get(url, {data: {userId: _id, restaurantId: rest_id,}});
         restaurant_data = response.data;
 		new_data = false;
 	}
 
+	const userId = _id;
+
 	return {
-		props: {restaurant_data, new_data,},
+		props: {userId, restaurant_data, new_data,},
 	};
 }
 
-export default function EditRestaurantRecord({restaurant_data, new_data}) {
+export default function EditRestaurantRecord({userId, restaurant_data, new_data}) {
 
 	const title = `${siteTitle} - Edit Restaurant`;
 	const tags = ["Personal", "Halal", "Vegan", "Vegetarian", "Pescatarian", "Nut Free", "Dairy Free", "Gluten Free", "Allergy Friendly", "Diabetes Friendly"]

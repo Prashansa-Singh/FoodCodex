@@ -9,17 +9,18 @@ import Tags from '../../components/tags';
 export async function getServerSideProps({query}) {
 
 	const {_id} = query;
-	const url =  '/user/restaurant/6310521c744ac9f1587375fa/view-one'
-	const response = await axiosInstance.get(url, {data: {restaurantId: _id,}});
+	const user = '6310521c744ac9f1587375fa';
+	const url =  '/user/restaurant/view-one'
+	const response = await axiosInstance.get(url, {data: {userId: user, restaurantId: _id,}});
 
 	const restaurant_data = response.data;
 
 	return {
-		props: {restaurant_data,},
+		props: {_id, restaurant_data,},
 	};
 }
 
-export default function ViewRestaurantRecord({restaurant_data}) {
+export default function ViewRestaurantRecord({_id, restaurant_data}) {
 	const title = `${siteTitle} - ${restaurant_data.name}`;
 	console.log(restaurant_data);
 	return (
@@ -41,7 +42,7 @@ export default function ViewRestaurantRecord({restaurant_data}) {
 								</div>
 							</a>
                         </Link>
-						<Link href={{pathname: '/restaurant-collection/edit-restaurant-record', query: {_id: restaurant_data._id}}}>
+						<Link href={{pathname: '/restaurant-collection/edit-restaurant-record', query: {_id: _id, rest_id: restaurant_data._id}}}>
 							<a>
 								<div className={styles.icons}>
 									<img src='/src/nav-icons/add-edit-nav-icon.svg' width='40vw' />
