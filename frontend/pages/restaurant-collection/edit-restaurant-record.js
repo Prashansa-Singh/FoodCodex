@@ -3,6 +3,7 @@ import Layout, { siteTitle } from '../../components/layout';
 import utilStyles from '../../styles/utils.module.css';
 import {axiosInstance} from '../api/axiosConfig';
 import { useState } from 'react';
+import { useRouter } from 'next/router';
 
 export async function getServerSideProps({query}) {
 
@@ -46,6 +47,8 @@ export default function EditRestaurantRecord({userId, restaurant_data, new_data}
         return total + ", " + item;
     }) : "";
 
+	const router = useRouter();
+
 	const submitEdit = async (event) => {
 		event.preventDefault();
 		const name = event.target.name.value;
@@ -53,14 +56,15 @@ export default function EditRestaurantRecord({userId, restaurant_data, new_data}
 		const body = {
 			userId: userId,
 			restaurantId: restaurant_data._id,
-			name: name,
+			name: (name != "") ? name : restaurant_data.name,
 		};
 
 		const url = 'user/restaurant/update-one';
 
-		axiosInstance.post(url, body)
+		await axiosInstance.post(url, body)
 		.then(function (response) {
 			console.log(response.data);
+			router.push('/restaurant-collection/view-restaurant-collection');
 		})
 		.catch(function (error) {
 			console.log(error);
