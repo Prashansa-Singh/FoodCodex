@@ -5,6 +5,10 @@ const axiosInstance = axios.create({
 		process.env.NODE_ENV == 'production'
 			? 'https://programming-quokkas-backend.herokuapp.com/'
 			: 'http://localhost:8000/',
+	headers: {
+		'Access-Control-Allow-Origin': url,
+		"Content-Type": "application/json",
+	}
 });
 
 export { axiosInstance };
