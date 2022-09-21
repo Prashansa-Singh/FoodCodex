@@ -1,6 +1,5 @@
 const { User } = require('../models/user');
 const { Restaurant } = require('../models/restaurant');
-const { Collection } = require('mongoose');
 
 const getAllRestaurants = async (req, res) => {
 	const user = await User.findOne({ _id: req.params.userId }).populate('restaurants');
