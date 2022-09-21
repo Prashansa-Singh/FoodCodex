@@ -86,7 +86,18 @@ const deleteRestaurant = async (req, res, next) => {
 	}
 }
 
-const deleteAllRestaurants = async (req, res, next) => {
+const deleteAllRestaurants = async (res, next) => {
+	try {
+		const countBefore = await Restaurant.countDocuments({})
+		await Restaurant.deleteMany({})
+		const countAfter = await Restaurant.countDocuments({})
+
+		return res.send(`Number of documents is [Before Deletion: ${countBefore}] and [After Deletion: ${countAfter}].`);
+
+	} catch (err) {
+		return next(err);
+	}
+
 }
 
 module.exports = {
