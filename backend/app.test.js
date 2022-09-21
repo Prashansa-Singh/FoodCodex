@@ -3,24 +3,8 @@ const app = require('./app')
 
 
 /**
- * Control process and close connections
+ * Test
  */
-let server, agent;
-
-beforeEach((done) => {
-    server = app.listen(4000, (err) => {
-        if (err) return done(err);
-        agent = request.agent(server);
-        done();
-    })
-})
-
-afterEach((done) => {
-    return server && server.close(done);
-})
-/** --------------------------------- */
-
-
 it('SuperTest', () => { })
 
 
@@ -41,3 +25,5 @@ describe('Home ~', () => {
     })
 })
 
+
+request(app.close)
