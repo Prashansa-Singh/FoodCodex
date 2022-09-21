@@ -45,7 +45,30 @@ const getRestaurant = async (req, res) => {
 	}
 }
 
+
 const updateRestaurant = async (req, res, next) => {
+	try {
+		const userId = req.body.userId
+		delete req.body.userId
+
+		const restaurantId = req.body.restaurantId
+		delete req.body.restaurantId		
+
+		console.log(
+			`Received the following userId: ${userId} and restaurantId: ${restaurantId}`
+		);
+
+		await Restaurant.updateOne(
+			{_id: restaurantId},
+			{$set: req.body}
+		).lean()
+
+		let restaurant = await Restaurant.findById(restaurantId)
+		console.log(restaurant);
+		return res.send(`Done.  userId: ${userId} with this restaurantId: ${restaurantId} record has been updated.`);
+	} catch (err) {
+		return next(err);
+	}
 }
 
 
