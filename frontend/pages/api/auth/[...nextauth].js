@@ -34,6 +34,8 @@ export default NextAuth({
 
 					// console.log(user);
 					console.log(user.data);
+					user.data.name = user.data._id;
+					console.log(user.data);
 
 					return user.data;
 				} catch (error) {
@@ -42,4 +44,12 @@ export default NextAuth({
 			},
 		}),
 	],
+	// callbacks: {
+	// 	async session({ session, token, user }) {
+	// 		// Send properties to the client, like an access_token from a provider.
+
+	// 		session.accessToken = token.accessToken;
+	// 		return session;
+	// 	},
+	// },
 });
