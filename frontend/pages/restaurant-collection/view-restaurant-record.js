@@ -14,13 +14,14 @@ export async function getServerSideProps({query}) {
 	const response = await axiosInstance.get(url, {data: {userId: user, restaurantId: _id,}});
 
 	const restaurant_data = response.data;
+	const userId = user;
 
 	return {
-		props: {restaurant_data,},
+		props: {userId, restaurant_data,},
 	};
 }
 
-export default function ViewRestaurantRecord({restaurant_data}) {
+export default function ViewRestaurantRecord({userId, restaurant_data}) {
 	const title = `${siteTitle} - ${restaurant_data.name}`;
 	return (
 		<Layout>
@@ -41,14 +42,14 @@ export default function ViewRestaurantRecord({restaurant_data}) {
 								</div>
 							</a>
                         </Link>
-						<Link href='/restaurant-collection/edit-restaurant-record'>
+						<Link href={{pathname: '/restaurant-collection/edit-restaurant-record', query: {_id: userId, rest_id: restaurant_data._id}}}>
 							<a>
 								<div className={styles.icons}>
 									<img src='/src/nav-icons/add-edit-nav-icon.svg' width='40vw' />
 									<p>Edit</p>
 								</div>
 							</a>
-                        </Link>
+						</Link>
 					</div>
 				</div>
 
@@ -79,7 +80,7 @@ export default function ViewRestaurantRecord({restaurant_data}) {
 
 					<div className={`${styles.data_container} ${styles.data4}`}>
 						<h5>Tags</h5>
-						<Tags restaurant_data={restaurant_data} />
+						<Tags restaurant_data={restaurant_data} page='view' />
 					</div>
 					<br/>
 					<br/>
