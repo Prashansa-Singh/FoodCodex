@@ -58,15 +58,28 @@ export default function EditRestaurantRecord({userId, restaurant_data, new_data}
 		};
 
 		const url = 'user/restaurant/update-one';
-
-		await axiosInstance.post(url, body)
-		.then(function (response) {
-			console.log(response.data);
-			router.push('/restaurant-collection/view-restaurant-collection');
+		const urlCreate = 'user/restaurant/create-one';
+		
+		if (new_data){
+			console.log('hello');
+			await axiosInstance.post(urlCreate, body)
+			.then(function (response) {
+				console.log(response.data);
+				router.push('/restaurant-collection/view-restaurant-collection');
+			})
+			.catch(function (error) {
+				console.log(error);
+			});
+		}else{
+			await axiosInstance.post(url, body)
+			.then(function (response) {
+				console.log(response.data);
+				router.push('/restaurant-collection/view-restaurant-collection');
 		})
-		.catch(function (error) {
-			console.log(error);
+			.catch(function (error) {
+				console.log(error);
 		});
+		}	
 
 	}
 
@@ -82,27 +95,32 @@ export default function EditRestaurantRecord({userId, restaurant_data, new_data}
 							<h1>
 								Add Restaurant Record
 							</h1>
-							<button>Save</button>
-							<button>Discard</button>
-							<br/>
-							<label> Restaurant Name </label>
-							<input type="text" placeholder="Restaurant Name" name="name" required/>
-							<br/>
-							<label> Type of Cuisine </label>
-							<input type="text" placeholder="Type of Cuisine" name="cuisine"/>
-							<br/>
-							<label> Restaurant Address </label>
-							<input type="text" placeholder="Restaurant Address" name="address"/>
-							<br/>
-							<label> Rating (out of 5 stars) </label>
-							
-							<br/>
-							<label> Price Range </label>
-							
-							<br/>
-							<label> Tags </label>
-							<br/>
-							<label> Experiences </label>
+							<form onSubmit={submitEdit}>
+								<input type='submit' value='Save' />
+								<button>Discard</button>
+								<br/>
+								<label> Restaurant Name </label>
+								<input type="text" placeholder="Restaurant Name" name="name" required/>
+								<br/>
+								<label> Type of Cuisine </label>
+								<input type="text" placeholder="Type of Cuisine" name="cuisine"/>
+								<br/>
+								<label> Restaurant Address </label>
+								<input type="text" placeholder="Restaurant Address" name="address"/>
+								<br/>
+								<label> Tags </label>
+								<Tags restaurant_data={restaurant_data} page='edit' />
+								<br/>
+							</form>
+								<label> Rating (out of 5 stars) </label>
+								
+								<br/>
+								<label> Price Range </label>
+								
+								<br/>
+								{/* <label> Tags </label>
+								<br/> */}
+								<label> Experiences </label>
 							
 						</>
 					)}
