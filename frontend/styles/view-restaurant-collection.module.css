@@ -76,6 +76,9 @@
     gap: 5px;
 }
 
+.test {
+    background-color: red;
+}
 
 @media screen and (max-width: 450px) {
     .collection_container {

@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import Layout, { siteTitle } from '../../components/layout';
 import Tags from '../../components/tags';
 import utilStyles from '../../styles/utils.module.css';
@@ -37,7 +37,6 @@ export default function ViewRestaurantCollection({data}) {
 	const title = `${siteTitle} - Restaurant Collection`;
 
 	const [filter, setFilter] = useState(filterTags);
-	console.log(filter);
 
 	const submitFilter = (event) => {
 		event.preventDefault();
@@ -64,6 +63,32 @@ export default function ViewRestaurantCollection({data}) {
 			...updateAllergyFriendly,
 			...updateDiabetesFriendly,
 		}));
+	}
+
+	const displayStyles = {
+		visible: {
+			display: 'flex',
+		},
+		invisible: {
+			display: 'none',
+		}
+	}
+
+	const updateTable = ( _id) => {
+		let dataRow;
+		for (let i = 0; i < data.length; i++) {
+			if (data[i]._id === _id) {
+				dataRow = data[i];
+			}
+		}
+		let show = true;
+		Object.keys(filter).forEach(function(option) {
+			if (filter[option]) {
+				show = show && dataRow[option];
+			}
+		});
+
+		return show;
 	}
 
 	return (
@@ -109,7 +134,7 @@ export default function ViewRestaurantCollection({data}) {
 							</thead>
 							<tbody>
 								{data.map(({ _id, name, rating, priceRating }) => (
-									<tr className={styles.tr} key={_id}>
+									<tr className={styles.tr} key={_id} style={{'display': updateTable(_id) ? '' : 'none'}}>
 										<Link href={{pathname: '/restaurant-collection/view-restaurant-record', query: {_id: _id}}}><td className={styles.td}>{name}</td></Link>
 										<Link href={{pathname: '/restaurant-collection/view-restaurant-record', query: {_id: _id}}}><td className={styles.td}>{rating}</td></Link>
 										<Link href={{pathname: '/restaurant-collection/view-restaurant-record', query: {_id: _id}}}><td className={styles.td}>{priceRating}</td></Link>
