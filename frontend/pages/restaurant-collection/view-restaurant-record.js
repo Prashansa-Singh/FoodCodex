@@ -42,7 +42,7 @@ export default function ViewRestaurantRecord({userId, restaurant_data}) {
 								</div>
 							</a>
                         </Link>
-						<Link href={{pathname: '/restaurant-collection/edit-restaurant-record', query: {userId: userId, rest_id: restaurant_data._id}}}>
+						<Link href={{pathname: '/restaurant-collection/edit-restaurant-record', query: {_id: userId, rest_id: restaurant_data._id}}}>
 							<a>
 								<div className={styles.icons}>
 									<img src='/src/nav-icons/add-edit-nav-icon.svg' width='40vw' />

@@ -9,13 +9,15 @@ import Tags from '../../components/tags';
 
 export async function getServerSideProps({query}) {
 
-	const {userId, rest_id} = query;
+	const {_id, rest_id} = query;
 	let restaurant_data;
 	let new_data;
+	let userId = _id;
 
 	if (rest_id == undefined) {
 		restaurant_data = {}
 		new_data = true;
+		userId = '6310521c744ac9f1587375fa';
 	} else {
 		const url =  '/user/restaurant/view-one'
 		const response = await axiosInstance.get(url, {data: {userId: userId, restaurantId: rest_id,}});
