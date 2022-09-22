@@ -9,7 +9,7 @@ experienceRouter.post('/create-one', experienceController.createExperience)
 experienceRouter.post('/update-all', experienceController.updateAllExperiences)
 
 experienceRouter.delete('/delete-one', experienceController.deleteExperience)
-experienceRouter.delete('/delete-all', experienceController.deleteAllExperience)
+experienceRouter.delete('/delete-all', experienceController.deleteAllExperiences)
 
 
 module.exports = experienceRouter;

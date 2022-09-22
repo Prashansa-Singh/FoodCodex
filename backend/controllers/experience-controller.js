@@ -26,7 +26,6 @@ const createExperience = async (req, res, next) => {
 	} catch (err) {
 		return next(err);
 	}
-
 }
 
 
@@ -40,7 +39,7 @@ const deleteExperience = async (req, res, next) => {
 }
 
 
-const deleteAllExperience = async (req, res, next) => {
+const deleteAllExperiences = async (req, res, next) => {
 
 }
 
@@ -50,5 +49,5 @@ module.exports = {
     createExperience,
     updateAllExperiences,
     deleteExperience,
-    deleteAllExperience
+    deleteAllExperiences
 }
