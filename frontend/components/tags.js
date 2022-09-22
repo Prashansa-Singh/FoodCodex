@@ -31,10 +31,14 @@ export default function Tags({restaurant_data, page}) {
 
     const changeColour = (name, bool) => {
         const elem = document.getElementById(name);
+        const xid = "x" + name;
+        const x = document.getElementById(xid);
         if (bool) {
             elem.style.backgroundColor = inactiveColour;
+            x.style.display = "none";
         } else {
             elem.style.backgroundColor = tagColours[name];
+            x.style.display = "flex";
         }
     }
     
@@ -181,12 +185,17 @@ export default function Tags({restaurant_data, page}) {
 
 function getTag(tag, page, name, colour) {
     if (tag == true) {
-        return <Tag name={name} colour={colour} />;
+        if (page === 'edit') {
+            return <Tag name={name} colour={colour} displayX={true} />;
+        } else {
+            return <Tag name={name} colour={colour} displayX={false} />;
+        }
+        
     } else {
         if (page === 'view') {
             return null;
         } else {
-            return <Tag name={name} colour={inactiveColour} />;
+            return <Tag name={name} colour={inactiveColour} displayX={false} />;
         }
     }
 }
