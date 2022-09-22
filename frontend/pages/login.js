@@ -15,20 +15,18 @@ export default function Login() {
 		event.preventDefault();
 		const userName = event.target.userName.value;
 		const password = event.target.password.value;
-		const displayName = event.target.displayName.value;
 
 		const body = {
 			userName: userName,
 			password: password,
-			displayName: displayName,
 		};
 
-		const url = '/account/signup';
+		const url = '/account/login';
 
 		axiosInstance.post(url, body)
 		.then(function (response) {
 			console.log(response.data);
-			router.push('/login');
+			router.push('/view-restaurant');
 		})
 		.catch(function (error) {
 			console.log(error);
