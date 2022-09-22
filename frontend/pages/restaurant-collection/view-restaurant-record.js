@@ -65,32 +65,15 @@ export default function ViewRestaurantRecord({userId, restaurant_data, experienc
 					<p>
 						<i>{restaurant_data.address}</i>
 					</p>
+					<h5>Rating (out of 5 stars)</h5>
+					<p>{restaurant_data.rating}</p>
+					<h5>Price Category</h5>
+					<p>{restaurant_data.priceRating}</p>
+					<Tags restaurant_data={restaurant_data} page='view' />
 				</div>
-
-				<div className={styles.view_record_container}>
-					<div className={`${styles.data_container} ${styles.data1}`}>
-						<h5>Rating (out of 5 stars)</h5>
-						<p>{restaurant_data.rating}</p>
-					</div>
-
-					<div className={`${styles.data_container} ${styles.data2}`}>
-						<h5>Price Category</h5>
-						<p>{restaurant_data.priceRating}</p>
-					</div>
-
-					<div className={`${styles.data_container} ${styles.data4}`}>
-						<h5>Tags</h5>
-						<Tags restaurant_data={restaurant_data} page='view' />
-					</div>
-
-					<div className={`${styles.data_container} ${styles.data3}`}>
-						<h5>Experiences</h5>
-						<Experiences experiences={experiences} />
-
-					</div>
-					<br/>
-					<br/>
-					<br/>
+				<div className={styles.experience_container}>
+					<h5>Experiences</h5>
+					<Experiences experiences={experiences} />
 				</div>
 			</section>
 		</Layout>
