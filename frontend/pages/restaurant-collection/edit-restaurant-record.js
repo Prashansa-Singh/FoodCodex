@@ -70,6 +70,10 @@ export default function EditRestaurantRecord({userId, restaurant_data, new_data}
 
 	}
 
+	const discard = () => {
+		router.push('/restaurant-collection/view-restaurant-collection');
+	}
+
 	return (
 		<Layout>
 			<Head>
@@ -113,7 +117,7 @@ export default function EditRestaurantRecord({userId, restaurant_data, new_data}
 							</h1>
 							<form onSubmit={submitEdit}>
 								<input type='submit' value='Save' />
-								<button>Discard</button>
+								<button type='button' onClick={() => discard()} >Discard</button>
 								<br/>
 								<label> Restaurant Name </label>
 								<input type="text" placeholder={restaurant_data.name} defaultValue={restaurant_data.name} name="name"/>
