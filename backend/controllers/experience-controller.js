@@ -3,8 +3,11 @@ const { Restaurant } = require('../models/restaurant');
 const { Experience } = require('../models/restaurant');
 
 
-const getAllExperiences = (req, res) => {
-
+const getAllExperiences = async (req, res) => {
+	const restaurant = await Restaurant.findOne({ _id: req.body.restaurantId }).populate('experiences');
+	const experiences = restaurant['experiences'];
+	console.log(experiences);
+	return res.send(JSON.stringify(experiences));
 }
 
 
