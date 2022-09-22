@@ -5,6 +5,7 @@ import styles from '../../styles/view-restaurant-record.module.css';
 import {axiosInstance} from '../api/axiosConfig';
 import Link from 'next/link';
 import Tags from '../../components/tags';
+import Experiences from '../../components/experiences';
 
 export async function getServerSideProps({query}) {
 
@@ -16,13 +17,16 @@ export async function getServerSideProps({query}) {
 	const restaurant_data = response.data;
 	const userId = user;
 
+	const experiences_data = await (await axiosInstance.get('user/restaurant/experience/view-all', {data: {restaurantId: _id,}}));
+	const experiences = experiences_data.data;
 	return {
-		props: {userId, restaurant_data,},
+		props: {userId, restaurant_data, experiences},
 	};
 }
 
-export default function ViewRestaurantRecord({userId, restaurant_data}) {
+export default function ViewRestaurantRecord({userId, restaurant_data, experiences}) {
 	const title = `${siteTitle} - ${restaurant_data.name}`;
+	console.log(experiences[0])
 	return (
 		<Layout>
 			<Head>
@@ -74,13 +78,15 @@ export default function ViewRestaurantRecord({userId, restaurant_data}) {
 						<p>{restaurant_data.priceRating}</p>
 					</div>
 
-					<div className={`${styles.data_container} ${styles.data3}`}>
-						<h5>Experiences</h5>
-					</div>
-
 					<div className={`${styles.data_container} ${styles.data4}`}>
 						<h5>Tags</h5>
 						<Tags restaurant_data={restaurant_data} page='view' />
+					</div>
+
+					<div className={`${styles.data_container} ${styles.data3}`}>
+						<h5>Experiences</h5>
+						<Experiences experiences={experiences} />
+
 					</div>
 					<br/>
 					<br/>
