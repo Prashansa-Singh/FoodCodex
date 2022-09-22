@@ -1,11 +1,11 @@
 .collection_container {
     display: grid;
-    grid-template-columns: 0.5fr 2fr;
+    grid-template-columns: 0.8fr 2fr;
     grid-template-areas: 
         'searchbar tables'
         'filter tables';
     padding: 1vw;
-    gap: 5%;
+    row-gap: 10px;
 }
 
 .searchbar {
@@ -33,6 +33,7 @@
     align-items: center;
     background-color: #5989C5;
     border-radius: 10px;
+    padding-bottom: 10px;
 }
 
 .table_container {
@@ -64,6 +65,15 @@
 
 .tr:hover {
     background-color: #98b6db;
+}
+
+.button_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 5px;
+    flex-direction: row;
+    gap: 5px;
 }
 
 
