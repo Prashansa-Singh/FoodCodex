@@ -2,9 +2,7 @@ import Head from 'next/head';
 import Layout, { siteTitle } from '../../components/layout';
 import utilStyles from '../../styles/utils.module.css';
 import {axiosInstance} from '../api/axiosConfig';
-import { useState } from 'react';
 import { useRouter } from 'next/router';
-
 import Tags from '../../components/tags';
 
 export async function getServerSideProps({query}) {
@@ -32,24 +30,6 @@ export async function getServerSideProps({query}) {
 
 export default function EditRestaurantRecord({userId, restaurant_data, new_data}) {
 	const title = `${siteTitle} - Edit Restaurant`;
-	const tags = ["Personal", "Halal", "Vegan", "Vegetarian", "Pescatarian", "Nut Free", "Dairy Free", "Gluten Free", "Allergy Friendly", "Diabetes Friendly"]
-	const [checked, setChecked] = useState([]);
-
-	const handleCheck = (event) => {
-		var updatedList = [...checked];
-		if (event.target.checked) {
-		  	updatedList = [...checked, event.target.value];
-		} else {
-		  	updatedList.splice(checked.indexOf(event.target.value), 1);
-		}
-		setChecked(updatedList);
-	};
-
-	const isSelected = (item) => checked.includes(item) ? "selected_tag" : "not-selected_tag";
-
-	var selectedTags = checked.length ? checked.reduce((total, item) => {
-        return total + ", " + item;
-    }) : "";
 
 	const router = useRouter();
 
@@ -121,15 +101,6 @@ export default function EditRestaurantRecord({userId, restaurant_data, new_data}
 							
 							<br/>
 							<label> Tags </label>
-							{tags.map((item, index) => (
-								<div key={index}>
-									<input value={item} type="checkbox" onChange={handleCheck} />
-									<span className={isSelected(item)}>{item}</span>
-								</div>
-							))}
-							<div>
-								{`Tags selected are: ${selectedTags}`}
-							</div>
 							<br/>
 							<label> Experiences </label>
 							
