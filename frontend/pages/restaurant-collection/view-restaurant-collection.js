@@ -58,12 +58,12 @@ export default function ViewRestaurantCollection({data}) {
 								</tr>
 							</thead>
 							<tbody>
-								{data.map(({ _id, name, rating, label, price }) => (
+								{data.map(({ _id, name, rating, label, priceRating }) => (
 									<tr className={styles.tr} key={_id}>
 										<Link href={{pathname: '/restaurant-collection/view-restaurant-record', query: {_id: _id}}}><td className={styles.td}>{name}</td></Link>
 										<Link href={{pathname: '/restaurant-collection/view-restaurant-record', query: {_id: _id}}}><td className={styles.td}>{rating}</td></Link>
 										<Link href={{pathname: '/restaurant-collection/view-restaurant-record', query: {_id: _id}}}><td className={styles.td}>{label}</td></Link>
-										<Link href={{pathname: '/restaurant-collection/view-restaurant-record', query: {_id: _id}}}><td className={styles.td}>{price}</td></Link>
+										<Link href={{pathname: '/restaurant-collection/view-restaurant-record', query: {_id: _id}}}><td className={styles.td}>{priceRating}</td></Link>
 									</tr>
 								))}
 							</tbody>
