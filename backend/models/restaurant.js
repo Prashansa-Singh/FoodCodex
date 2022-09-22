@@ -3,9 +3,9 @@ const mongoose = require('mongoose')
 
 /* Experience Schema */
 const experienceSchema = new mongoose.Schema({
-    experienceTime: {type: Date, required: true},
-    experienceTitle: {type: String},
-    experienceComment: {type: String, required: true},
+    visitTime: {type: Date, required: true},
+    title: {type: String},
+    comment: {type: String, required: true},
     lastUpdated: {type: Date, required: true},
     timestamps: true
 })
