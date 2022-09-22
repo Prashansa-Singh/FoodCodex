@@ -118,52 +118,52 @@ export default function Tags({restaurant_data, page}) {
                 <span onClick={() => handlePersonalClick()}>
                     {personal}
                 </span>
-                <input type='hidden' name='personalOption' value={personalOptionBool} />
+                <input type='hidden' name='personalOption' value={personalOptionBool} defaultValue={false} />
 
                 <span onClick={() => handleHalalClick()}>
                     {halal}
                 </span>
-                <input type='hidden' name='halalOption' value={halalOptionBool} />
+                <input type='hidden' name='halalOption' value={halalOptionBool} defaultValue={false} />
 
                 <span onClick={() => handleVeganClick()}>
                     {vegan}
                 </span>
-                <input type='hidden' name='veganOption' value={veganOptionBool} />
+                <input type='hidden' name='veganOption' value={veganOptionBool} defaultValue={false} />
 
                 <span onClick={() => handleVegetarianClick()}>
                     {vegetarian}
                 </span>
-                <input type='hidden' name='vegetarianOption' value={vegetarianOptionBool} />
+                <input type='hidden' name='vegetarianOption' value={vegetarianOptionBool} defaultValue={false} />
 
                 <span onClick={() => handlePescatarianClick()}>
                     {pescatarian}
                 </span>
-                <input type='hidden' name='pescatarianOption' value={pescatarianOptionBool} />
+                <input type='hidden' name='pescatarianOption' value={pescatarianOptionBool} defaultValue={false} />
 
                 <span onClick={() => handleNutsFreeClick()}>
                     {nutsFree}
                 </span>
-                <input type='hidden' name='nutsFreeOption' value={nutsFreeOptionBool} />
+                <input type='hidden' name='nutsFreeOption' value={nutsFreeOptionBool} defaultValue={false} />
 
                 <span onClick={() => handleDairyFreeClick()}>
                     {dairyFree}
                 </span>
-                <input type='hidden' name='dairyFreeOption' value={dairyFreeOptionBool} />
+                <input type='hidden' name='dairyFreeOption' value={dairyFreeOptionBool} defaultValue={false} />
 
                 <span onClick={() => handleGlutenFreeClick()}>
                     {glutenFree}
                 </span>
-                <input type='hidden' name='glutenFreeOption' value={glutenFreeOptionBool} />
+                <input type='hidden' name='glutenFreeOption' value={glutenFreeOptionBool} defaultValue={false} />
 
                 <span onClick={() => handleAllergyFriendlyClick()}>
                     {allergyFriendly}
                 </span>
-                <input type='hidden' name='allergyFriendlyOption' value={allergyFriendlyOptionBool} />
+                <input type='hidden' name='allergyFriendlyOption' value={allergyFriendlyOptionBool} defaultValue={false} />
 
                 <span onClick={() => handleDiabetesFriendlyClick()}>
                     {diabetesFriendly}
                 </span>
-                <input type='hidden' name='diabetesFriendlyOption' value={diabetesFriendlyOptionBool} />
+                <input type='hidden' name='diabetesFriendlyOption' value={diabetesFriendlyOptionBool} defaultValue={false} />
             </div>
         )
     }
