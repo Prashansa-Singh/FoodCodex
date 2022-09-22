@@ -6,9 +6,8 @@ const experienceSchema = new mongoose.Schema({
     visitTime: {type: Date, required: true},
     title: {type: String},
     comment: {type: String, required: true},
-    lastUpdated: {type: Date, required: true},
-    timestamps: true
-})
+    lastUpdated: {type: Date, default: Date.now}
+}, {timestamps: true})
 
 
 /* Restaurant Record Schema */
