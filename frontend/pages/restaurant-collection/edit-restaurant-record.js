@@ -143,7 +143,7 @@ export default function EditRestaurantRecord({userId, restaurant_data, new_data}
 								<br/>
 
 								<label> Price Range </label>
-								<img className={`${check? 'checkedCircle': 'emptyCircle'}`} />
+								{/* <div className={utilStyles.emptyCircle`${check? 'checkedCircle': 'emptyCircle'}` } /> */}
 								{/* <Price iconSize="l" showOutOf={true} enableUserInteraction={true} onClick={handlePriceAction}/> */}
 								<br/>
 								</form>	
