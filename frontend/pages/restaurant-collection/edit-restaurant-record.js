@@ -4,6 +4,10 @@ import utilStyles from '../../styles/utils.module.css';
 import {axiosInstance} from '../api/axiosConfig';
 import { useRouter } from 'next/router';
 import Tags from '../../components/tags';
+import { useState } from 'react';
+import Rating from "./Rating/rating";
+import Price from "./Price/rating";
+
 
 export async function getServerSideProps({query}) {
 
@@ -33,6 +37,22 @@ export default function EditRestaurantRecord({userId, restaurant_data, new_data}
 
 	const router = useRouter();
 
+	// Ratings
+	const [ratingValue, setRatingValue] = useState(-1);
+
+  	const handleRatingAction = (value) => {
+    	setRatingValue(value);
+  	};
+
+	// price ratings
+	const [priceValue, setPriceValue] = useState(-1);
+	const [check, setCheck] = useState(false);
+
+
+  	const handlePriceAction = (value) => {
+    	setPriceValue(value);
+  	};
+
 	const submitEdit = async (event) => {
 		event.preventDefault();
 		const name = event.target.name.value;
@@ -45,6 +65,8 @@ export default function EditRestaurantRecord({userId, restaurant_data, new_data}
 			name: (name != "") ? name : restaurant_data.name,
 			cuisine: (cuisine != "") ? cuisine : restaurant_data.cuisine,
 			address: (address != "") ? address : restaurant_data.address,
+			rating: ratingValue,
+			priceRating: priceValue,
 			personalOption: event.target.personalOption.value,
 			halalOption: event.target.halalOption.value,
 			veganOption: event.target.veganOption.value,
@@ -101,7 +123,7 @@ export default function EditRestaurantRecord({userId, restaurant_data, new_data}
 							</h1>
 							<form onSubmit={submitEdit}>
 								<input type='submit' value='Save' />
-								<button>Discard</button>
+								<button type='button' onClick={() => discard()} >Discard</button>
 								<br/>
 								<label> Restaurant Name </label>
 								<input type="text" placeholder="Restaurant Name" name="name" required/>
@@ -115,15 +137,18 @@ export default function EditRestaurantRecord({userId, restaurant_data, new_data}
 								<label> Tags </label>
 								<Tags restaurant_data={restaurant_data} page='edit' />
 								<br/>
-							</form>
+							
 								<label> Rating (out of 5 stars) </label>
-								
+								<Rating iconSize="l" showOutOf={true} enableUserInteraction={true} onClick={handleRatingAction}/>
 								<br/>
+
 								<label> Price Range </label>
-								
+								<img className={`${check? 'checkedCircle': 'emptyCircle'}`} />
+								{/* <Price iconSize="l" showOutOf={true} enableUserInteraction={true} onClick={handlePriceAction}/> */}
 								<br/>
-								{/* <label> Tags </label>
-								<br/> */}
+								</form>	
+								
+								
 								<label> Experiences </label>
 							
 						</>
