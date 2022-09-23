@@ -65,13 +65,10 @@ export default function ViewRestaurantCollection({data}) {
 		}));
 	}
 
-	const displayStyles = {
-		visible: {
-			display: 'flex',
-		},
-		invisible: {
-			display: 'none',
-		}
+	const clearFilter = () => {
+		setFilter({...filterTags});
+		console.log(filterTags);
+		window.location.reload(); 
 	}
 
 	const updateTable = ( _id) => {
@@ -119,6 +116,7 @@ export default function ViewRestaurantCollection({data}) {
 								<Tags restaurant_data={filterTags} page='edit' />
 								<div className={styles.button_container}>
 									<input type='submit' value='Apply' />
+									<button type='button' onClick={() => clearFilter()}>Discard</button>
 								</div>
 							</form>
 						</div>
