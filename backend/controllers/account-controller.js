@@ -12,9 +12,10 @@ const signupUser = async (req, res, next) => {
     }
 };
 
-const deleteUser = async  (req, res, next) => {
+const deleteUser = async (req, res, next) => {
     try {
-
+        await User.deleteOne({userName: req.body.userName})
+        return res.sendStatus(204)
     }
     catch (err) {
         return next(err);
