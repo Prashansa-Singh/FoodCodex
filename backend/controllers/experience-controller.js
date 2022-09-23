@@ -44,7 +44,6 @@ const updateAllExperiences = async (req, res, next) => {
         // Loop through all experiences and update
 		let i = 0
 		for (i = 0; i < arrayLength; i++) {
-            
             let experience = experiences[i]
 
             const experienceId = experience._id
