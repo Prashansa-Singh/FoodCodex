@@ -1,6 +1,7 @@
 import styles from './css/experience.module.css';
 import TextField from '@mui/material/TextField';
 import { axiosInstance } from '../pages/api/axiosConfig';
+import { useRouter } from 'next/router';
 
 const defaultTime = () => {
     const today = new Date();
@@ -27,11 +28,12 @@ const defaultTime = () => {
 }
 
 export default function ExperienceForm({id}) {
+    const router = useRouter();
 
     const submitExperience = async (event) => {
         event.preventDefault();
         const title = event.target.experiencetitle.value;
-        const visitTime = event.target.experiencetime.value;
+        let visitTime = event.target.experiencetime.value;
         const comment = event.target.experiencecomment.value;
 
         const body = {
@@ -46,6 +48,7 @@ export default function ExperienceForm({id}) {
         await axiosInstance.post(url, body)
 			.then(function (response) {
 				console.log(response.data);
+                router.push('/restaurant-collection/view-restaurant-collection');                
 		})
 			.catch(function (error) {
 				console.log(error);
@@ -53,25 +56,37 @@ export default function ExperienceForm({id}) {
 
     }
 
-    return (            
-        <form className={styles.experience_form} onSubmit={submitExperience}>
-            <label><b>Title:</b></label>
-            <input type='text' name='experiencetitle' placeholder='Title of the Experience' required />
-            <TextField
-                id="datetime-local"
-                label="Time Visited"
-                type="datetime-local"
-                defaultValue={defaultTime()}
-                name='experiencetime'
-                sx={{ width: 250 }}
-                InputLabelProps={{
-                    shrink: true,
-                }}
-            />
-            <label><b>Comment:</b></label>
-            <textarea name='experiencecomment' placeholder='Type comment here' className={styles.textarea} required />
-            <input type='submit' value='Save' />
-        </form>      
+    const openForm = () => {
+        document.getElementById("experienceform").style.display = "flex";
+    }
+
+    const closeForm = () => {
+        document.getElementById("experienceform").style.display = "none";
+    }
+
+    return ( 
+        <>
+            <button className={styles.addbutton}><img src='/src/plus-icon.svg' onClick={() => openForm()} /></button>
+            <form id='experienceform' className={styles.experience_form} onSubmit={submitExperience}>
+                <label><b>Title:</b></label>
+                <input type='text' name='experiencetitle' placeholder='Title of the Experience' required />
+                <TextField
+                    id="datetime-local"
+                    label="Time Visited"
+                    type="datetime-local"
+                    defaultValue={defaultTime()}
+                    name='experiencetime'
+                    sx={{ width: 250 }}
+                    InputLabelProps={{
+                        shrink: true,
+                    }}
+                />
+                <label><b>Comment:</b></label>
+                <textarea name='experiencecomment' placeholder='Type comment here' className={styles.textarea} required />
+                <input type='submit' value='Save' />
+                <button type='button' onClick={() => closeForm()} >Discard</button>
+            </form> 
+        </>                
     );
 }
 

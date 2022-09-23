@@ -6,7 +6,6 @@ export default function Experiences({experiences, id}) {
     return (
         <div className={styles.experiences_container}>
             <h5>Experiences</h5>
-            <button className={styles.addbutton}><img src='/src/plus-icon.svg' /></button>
             <ExperienceForm id={id} />
             {experiences.map(experience => {
                 return (

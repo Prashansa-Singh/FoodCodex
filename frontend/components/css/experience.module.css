@@ -41,7 +41,7 @@
 }
 
 .experience_form {
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: flex-start;
     padding: 10px;
