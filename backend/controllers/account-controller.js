@@ -1,22 +1,16 @@
 const { User } = require('../models/user');
 
 
-const createUser = async (req, res, next) => {
+const signupUser = async (req, res, next) => {
     try {
-        //const user = new User(req.body);
-
-        // visualise
         const user = new User(req.body)
-        console.log(user)
-
         await user.save()
-
-        return res.send(JSON.stringify(user));
-    } catch (err) {
+        return res.sendStatus(201)
+    }
+    catch (err) {
         return next(err);
     }
 };
-
 
 const deleteUser = async  (req, res, next) => {
     try {
@@ -29,6 +23,6 @@ const deleteUser = async  (req, res, next) => {
 
 
 module.exports = {
-    createUser,
+    signupUser,
     deleteUser
 };

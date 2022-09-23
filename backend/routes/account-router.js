@@ -8,7 +8,7 @@ accountRouter.use(cors())
 accountRouter.options('/signup', cors());
 
 
-accountRouter.post('/signup', cors(), accountController.createUser);
+accountRouter.post('/signup', cors(), accountController.signupUser);
 
 accountRouter.delete('/delete', cors(), accountController.deleteUser);
 
