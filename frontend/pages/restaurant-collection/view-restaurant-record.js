@@ -26,7 +26,6 @@ export async function getServerSideProps({query}) {
 
 export default function ViewRestaurantRecord({userId, restaurant_data, experiences}) {
 	const title = `${siteTitle} - ${restaurant_data.name}`;
-	console.log(experiences[0])
 	return (
 		<Layout>
 			<Head>
@@ -71,7 +70,7 @@ export default function ViewRestaurantRecord({userId, restaurant_data, experienc
 					<p>{restaurant_data.priceRating}</p>
 					<Tags restaurant_data={restaurant_data} page='view' />
 					<br />
-					<Experiences experiences={experiences} />	
+					<Experiences experiences={experiences} id={restaurant_data._id} />	
 				</div>
 				<br />
 				<br />
