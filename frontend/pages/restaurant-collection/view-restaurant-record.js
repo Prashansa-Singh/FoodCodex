@@ -70,11 +70,12 @@ export default function ViewRestaurantRecord({userId, restaurant_data, experienc
 					<h5>Price Category</h5>
 					<p>{restaurant_data.priceRating}</p>
 					<Tags restaurant_data={restaurant_data} page='view' />
+					<br />
+					<Experiences experiences={experiences} />	
 				</div>
-				<div className={styles.experience_container}>
-					<h5>Experiences</h5>
-					<Experiences experiences={experiences} />
-				</div>
+				<br />
+				<br />
+				<br />								
 			</section>
 		</Layout>
 	);

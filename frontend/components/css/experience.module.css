@@ -15,6 +15,53 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-bottom: 10px;
+    padding-bottom: 20px;
     gap: 5px;
+    background-color: #c1c3c0;
+    text-align: center;
+    border-radius: 10px;
+    position: relative;
+}
+
+.addbutton {
+    background: linear-gradient(180deg, #93C5FD 0%, #1D4ED8 100%);
+    box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.14), 0px 1px 10px rgba(0, 0, 0, 0.12), 0px 2px 4px rgba(0, 0, 0, 0.2);
+    border-radius: 50px;
+    border: none;
+    width: 43px;
+    height: 43px;
+    cursor: pointer;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+
+.addbutton:active {
+    transform: translateY(4px);
+}
+
+.experience_form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+    background: #F6FAFF;
+    border: 1px solid #79747E;
+    border-radius: 12px;
+    width: 80%;
+    line-height: 0;
+    font-size: 16px;
+    gap: 10px;
+}
+
+.textarea {
+    width: 100%;
+    height: 100px;
+    padding: 10px 10px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    font-size: 14px;
+    resize: none;
 }
