@@ -16,6 +16,7 @@ const shareRouter = require('../routes/share-router')
 restaurantRouter.use('/share', shareRouter)
 
 restaurantRouter.options('/delete-one', cors());
+restaurantRouter.options('/delete-all', cors());
 
 restaurantRouter.get('/view-all', restaurantController.getAllRestaurants)
 restaurantRouter.get('/view-one', restaurantController.getRestaurant)
@@ -24,7 +25,7 @@ restaurantRouter.post('/create-one', restaurantController.createRestaurant)
 restaurantRouter.post('/update-one', restaurantController.updateRestaurant)
 
 restaurantRouter.delete('/delete-one', cors(), restaurantController.deleteRestaurant)
-restaurantRouter.delete('/delete-all', restaurantController.deleteAllRestaurants)
+restaurantRouter.delete('/delete-all', cors(), restaurantController.deleteAllRestaurants)
 
 
 module.exports = restaurantRouter;
