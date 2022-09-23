@@ -9,9 +9,10 @@ experienceRouter.use(cors())
 experienceRouter.get('/view-all', experienceController.getAllExperiences)
 
 experienceRouter.options('/create-one', cors());
-
 experienceRouter.post('/create-one', cors(), experienceController.createExperience)
-experienceRouter.post('/update-all', experienceController.updateAllExperiences)
+
+experienceRouter.options('/update-all', cors());
+experienceRouter.post('/update-all', cors(), experienceController.updateAllExperiences)
 
 experienceRouter.delete('/delete-one', experienceController.deleteExperience)
 experienceRouter.delete('/delete-all', experienceController.deleteAllExperiences)
