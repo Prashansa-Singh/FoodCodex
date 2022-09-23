@@ -33,7 +33,36 @@ const createExperience = async (req, res, next) => {
 
 
 const updateAllExperiences = async (req, res, next) => {
+    try {
+        const restaurantId = req.body.restaurantId
+		delete req.body.restaurantId
+        console.log(`Received the following restaurantId: ${restaurantId}`);
 
+        const experiences = req.body.updatedExperienceData
+        const arrayLength = experiences.length
+        
+        // Loop through all experiences and update
+		let i = 0
+		for (i = 0; i < arrayLength; i++) {
+            
+            let experience = experiences[i]
+
+            const experienceId = experience._id
+            delete experience._id
+            console.log(`Received the following experienceId: ${experienceId}`);
+
+            await Experience.updateOne(
+                {_id: experienceId},
+                {$set: experience}
+            ).lean()
+
+            let updatedExperience = await Experience.findById(experienceId)
+            console.log(updatedExperience)
+		}
+        return res.send(`Done.  Experiences of restaurantId: ${restaurantId} has been updated.`);
+	} catch (err) {
+		return next(err);
+	}
 }
 
 
