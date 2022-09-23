@@ -48,7 +48,7 @@ export default function ExperienceForm({id}) {
         await axiosInstance.post(url, body)
 			.then(function (response) {
 				console.log(response.data);
-                router.push('/restaurant-collection/view-restaurant-collection');                
+                window.location.reload();               
 		})
 			.catch(function (error) {
 				console.log(error);
@@ -62,6 +62,7 @@ export default function ExperienceForm({id}) {
 
     const closeForm = () => {
         document.getElementById("experienceform").style.display = "none";
+        document.getElementById("experienceform").reset();
     }
 
     return ( 
