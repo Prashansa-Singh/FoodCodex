@@ -7,7 +7,7 @@ const cors = require('cors');
 accountRouter.use(cors())
 
 accountRouter.options('/signup', cors());
-
+accountRouter.options('/delete', cors());
 
 accountRouter.post('/signup', cors(), accountController.signupUser);
 
