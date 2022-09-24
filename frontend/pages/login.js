@@ -8,6 +8,12 @@ import {axiosInstance} from './api/axiosConfig';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 
+// Login Page Style
+import React from 'react'
+import { Grid, Paper, TextField } from '@material-ui/core'
+import { Stack } from '@mui/system';
+
+
 export default function Login() {
 	
 	const router = useRouter();
@@ -37,16 +43,28 @@ export default function Login() {
 
 	const title = `${siteTitle} - Login`;
 
-
+	// Login page styles
+	const paperStyle={padding :20,height:'70vh',width:280, margin:20, margin:'auto'}
 
 	return (
 		<Layout home>
 			<Head>
 				<title>{title}</title>
 			</Head>
-			<section className={utilStyles.headingMd}>
-				<h1>Login</h1>
 
+			<section className={utilStyles.headingMd}>
+				<Grid>
+					<Paper elevation={10} style={paperStyle}>
+						<h1>Login</h1>
+						<TextField id="outlined-basic" label="Username" variant="outlined" placeholder='Enter username' required/>
+						<TextField id="outlined-basic" label="Password" variant="outlined" placeholder='Enter password' type='password' required/>
+						<Stack>
+							<Button className={utilStyles.loginButton} variant="contained">LOGIN</Button>
+						</Stack>
+						
+					</Paper>
+				</Grid>
+				
 				<form onSubmit={submitUser}>
 					<label> Enter a user name </label>
 					<input type="text" placeholder="Username" name="userName" required/>
