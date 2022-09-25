@@ -44,7 +44,7 @@ export default function Login() {
 	const title = `${siteTitle} - Login`;
 
 	// Login page styles
-	const paperStyle={padding :20,height:'70vh',width:280, margin:20, margin:'auto'}
+	const paperStyle={padding :20,height:'70vh',width:280, margin:20, margin: 'auto'}
 
 	return (
 		<Layout home>

@@ -54,7 +54,7 @@
 .loginButton {
 	/* Auto layout */
 	/* padding: 6px 6px 6px 8px; */
-	margin: auto; 
+	margin: 20px 0; 
 	background: linear-gradient(180deg, #FFCC4D 0%, #FF6726 100%);
 	/* 08 dp */
 
@@ -62,3 +62,4 @@
 	border-radius: 4px;
 
 }
+
