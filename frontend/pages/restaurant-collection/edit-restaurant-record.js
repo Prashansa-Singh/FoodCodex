@@ -148,7 +148,6 @@ export default function EditRestaurantRecord({userId, restaurant_data, new_data}
 								<br/>
 								</form>	
 								
-								
 								<label> Experiences </label>
 							
 						</>

@@ -1,13 +1,11 @@
 import Head from 'next/head';
 import Layout, { siteTitle } from '../components/layout';
 import utilStyles from '../styles/utils.module.css';
-//import LoginButton from '../components/loginbutton';
-import {axiosInstance} from '../api/axiosConfig';
+import LoginButton from '../components/loginbutton';
+
 
 export default function Login() {
 	
-	const router = useRouter();
-
 	const title = `${siteTitle} - Login`;
 	return (
 		<Layout home>
