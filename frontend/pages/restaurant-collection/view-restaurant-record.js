@@ -6,6 +6,10 @@ import {axiosInstance} from '../api/axiosConfig';
 import Link from 'next/link';
 import Tags from '../../components/tags';
 
+import { Rating } from "@mui/material";
+import PaidIcon from '@mui/icons-material/Paid';
+import PaidOutlinedIcon from '@mui/icons-material/PaidOutlined';
+
 export async function getServerSideProps({query}) {
 
 	const {_id} = query;
@@ -66,12 +70,12 @@ export default function ViewRestaurantRecord({userId, restaurant_data}) {
 				<div className={styles.view_record_container}>
 					<div className={`${styles.data_container} ${styles.data1}`}>
 						<h5>Rating (out of 5 stars)</h5>
-						<p>{restaurant_data.rating}</p>
+						<p>{<Rating name="read-only" value={restaurant_data.rating} readOnly />}</p>
 					</div>
 
 					<div className={`${styles.data_container} ${styles.data2}`}>
 						<h5>Price Category</h5>
-						<p>{restaurant_data.priceRating}</p>
+						<p>{<Rating icon={<PaidIcon/>} emptyIcon={<PaidOutlinedIcon/>} name="read-only" value={restaurant_data.priceRating} readOnly />}</p>
 					</div>
 
 					<div className={`${styles.data_container} ${styles.data3}`}>
