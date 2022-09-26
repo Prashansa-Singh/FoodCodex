@@ -63,3 +63,11 @@
 
 }
 
+.paperStyle{
+	padding :20px;
+	height: 70vh;
+	width:280px;
+	margin:20px;
+	margin: 'auto';
+}
+

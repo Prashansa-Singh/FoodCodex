@@ -2,7 +2,6 @@ import Head from 'next/head';
 import Layout, { siteTitle } from '../components/layout';
 import utilStyles from '../styles/utils.module.css';
 import LoginButton from '../components/loginbutton';
-import Button from '@mui/material/Button';
 
 import {axiosInstance} from './api/axiosConfig';
 import axios from 'axios';
@@ -10,8 +9,9 @@ import { useRouter } from 'next/router';
 
 // Login Page Style
 import React from 'react'
-import { Grid, Paper, TextField } from '@material-ui/core'
+import { Grid, Paper, TextField, Typography} from '@material-ui/core'
 import { Stack } from '@mui/system';
+import Button from '@mui/material/Button';
 
 
 export default function Login() {
@@ -44,7 +44,7 @@ export default function Login() {
 	const title = `${siteTitle} - Login`;
 
 	// Login page styles
-	const paperStyle={padding :20,height:'70vh',width:280, margin:20, margin: 'auto'}
+	// const paperStyle={padding :20,height:'70vh',width:280, margin:20, margin: 'auto'}
 
 	return (
 		<Layout home>
@@ -53,19 +53,22 @@ export default function Login() {
 			</Head>
 
 			<section className={utilStyles.headingMd}>
-				<Grid>
-					<Paper elevation={10} style={paperStyle}>
-						<h1>Login</h1>
-						<TextField id="outlined-basic" label="Username" variant="outlined" placeholder='Enter username' required/>
-						<TextField id="outlined-basic" label="Password" variant="outlined" placeholder='Enter password' type='password' required/>
-						<Stack>
-							<Button className={utilStyles.loginButton} variant="contained">LOGIN</Button>
-						</Stack>
-						
-					</Paper>
-				</Grid>
 				
 				<form onSubmit={submitUser}>
+					<Grid align='center'>
+						<Paper elevation={10} className={utilStyles.paperStyle}>
+							<h1>Login</h1>
+							<TextField id="outlined-basic" label="Username" variant="outlined" placeholder='Enter username' required/>
+							<TextField id="outlined-basic" label="Password" variant="outlined" placeholder='Enter password' type='password' required/>
+							
+							<Stack>
+								<Button type="submit" className={utilStyles.loginButton} variant="contained">LOGIN</Button>
+							</Stack>
+
+							<Typography> New here? </Typography>
+						</Paper>
+					</Grid>
+					
 					<label> Enter a user name </label>
 					<input type="text" placeholder="Username" name="userName" required/>
 					<br/>
