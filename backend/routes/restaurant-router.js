@@ -15,12 +15,14 @@ restaurantRouter.use('/experience', experienceRouter)
 const shareRouter = require('../routes/share-router')
 restaurantRouter.use('/share', shareRouter)
 
+restaurantRouter.options('/create-one', cors());
+restaurantRouter.options('/update-one', cors());
 
 restaurantRouter.get('/view-all', restaurantController.getAllRestaurants)
 restaurantRouter.get('/view-one', restaurantController.getRestaurant)
 
-restaurantRouter.post('/create-one', restaurantController.createRestaurant)
-restaurantRouter.post('/update-one', restaurantController.updateRestaurant)
+restaurantRouter.post('/create-one', cors(), restaurantController.createRestaurant)
+restaurantRouter.post('/update-one', cors(), restaurantController.updateRestaurant)
 
 restaurantRouter.options('/delete-one', cors());
 restaurantRouter.delete('/delete-one', cors(), restaurantController.deleteRestaurant)
