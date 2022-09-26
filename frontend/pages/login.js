@@ -1,10 +1,10 @@
 import Head from 'next/head';
 import Layout, { siteTitle } from '../components/layout';
 import utilStyles from '../styles/utils.module.css';
+import Styles from '../components/css/login-signup.module.css';
 import LoginButton from '../components/loginbutton';
 
 import {axiosInstance} from './api/axiosConfig';
-import axios from 'axios';
 import { useRouter } from 'next/router';
 
 // Login Page Style
@@ -43,9 +43,6 @@ export default function Login() {
 
 	const title = `${siteTitle} - Login`;
 
-	// Login page styles
-	// const paperStyle={padding :20,height:'70vh',width:280, margin:20, margin: 'auto'}
-
 	return (
 		<Layout home>
 			<Head>
@@ -53,30 +50,32 @@ export default function Login() {
 			</Head>
 
 			<section className={utilStyles.headingMd}>
-				
 				<form onSubmit={submitUser}>
 					<Grid align='center'>
-						<Paper elevation={10} className={utilStyles.paperStyle}>
+
+						<Paper elevation={10} className={Styles.paperStyle}>
 							<h1>Login</h1>
+
 							<TextField id="outlined-basic" label="Username" variant="outlined" placeholder='Enter username' required/>
 							<TextField id="outlined-basic" label="Password" variant="outlined" placeholder='Enter password' type='password' required/>
 							
 							<Stack>
-								<Button type="submit" className={utilStyles.loginButton} variant="contained">LOGIN</Button>
+								<Button type="submit" className={Styles.loginButton} variant="contained">LOGIN</Button>
 							</Stack>
 
 							<Typography> New here? </Typography>
+
 						</Paper>
 					</Grid>
 					
-					<label> Enter a user name </label>
+					{/* <label> Enter a user name </label>
 					<input type="text" placeholder="Username" name="userName" required/>
 					<br/>
 
 					<label> Set a password </label>
 					<input type="password" placeholder="Password" name="password" required/>
 					<br/>
-					<Button className = {utilStyles.homepageButton} variant="contained" size="large">LOGIN</Button>
+					<Button className = {utilStyles.homepageButton} variant="contained" size="large">LOGIN</Button> */}
 					{/* <input type="submit" className='loginButton' /> */}
 				</form>
 				<LoginButton />
