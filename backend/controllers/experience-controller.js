@@ -35,7 +35,6 @@ const createExperience = async (req, res, next) => {
 const updateAllExperiences = async (req, res, next) => {
     try {
         const restaurantId = req.body.restaurantId
-		delete req.body.restaurantId
         console.log(`Received the following restaurantId: ${restaurantId}`);
 
         const experiences = req.body.updatedExperienceData
