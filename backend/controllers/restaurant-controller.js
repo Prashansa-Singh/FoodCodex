@@ -73,11 +73,44 @@ const updateRestaurant = async (req, res, next) => {
 
 
 const deleteRestaurant = async (req, res, next) => {
+	try {
+		const restaurantId = req.body.restaurantId
+		const countBefore = await Restaurant.countDocuments({ _id: restaurantId })
+		await Restaurant.deleteOne({_id: restaurantId})
+		const countAfter = await Restaurant.countDocuments({ _id: restaurantId })
+
+		return res.send(`Number of documents with restaurantId: ${restaurantId} is [Before Deletion: ${countBefore}] and [After Deletion: ${countAfter}].`);
+
+	} catch (err) {
+		return next(err);
+	}
 }
 
 
 const deleteAllRestaurants = async (req, res, next) => {
+	try {
+		const userId = req.body.userId
+		const user = await User.findOne({ _id: userId }).populate('restaurants');
+		const restaurants = user['restaurants'];
+		const arrayLength = restaurants.length;
+
+		// Loop through each of user's restaurant records and delete
+		let i = 0
+		for (i = 0; i < arrayLength; i++) {
+			const restaurantId = restaurants[i]._id		
+			await Restaurant.deleteOne({_id: restaurantId})
+		}
+
+		// Return number of restaurants before and after deletion for this user
+		const countBefore = arrayLength
+		const userAfterDeletion = await User.findOne({ _id: userId }).populate('restaurants');
+		const countAfter = userAfterDeletion['restaurants'].length
+		return res.send(`Number of restaurants for userId: ${userId} is [Before Deletion: ${countBefore}] and [After Deletion: ${countAfter}].`);
+	} catch (err) {
+		return next(err);
+	}
 }
+
 
 module.exports = {
 	getAllRestaurants,
