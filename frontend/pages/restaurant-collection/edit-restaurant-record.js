@@ -45,10 +45,10 @@ export default function EditRestaurantRecord({userId, restaurant_data, new_data}
 	const router = useRouter();
 
 	// Ratings method 2
-	const [value, setValue] = React.useState(2);
+	const [value, setValue] = React.useState(restaurant_data.rating);
 	console.log(value);
 
-	const [priceValue, setPriceValue] = React.useState(1);
+	const [priceValue, setPriceValue] = React.useState(restaurant_data.priceValue);
 	console.log(priceValue);
 
 	// // Ratings
@@ -92,8 +92,6 @@ export default function EditRestaurantRecord({userId, restaurant_data, new_data}
 			allergyFriendlyOption: event.target.allergyFriendlyOption.value,
 			diabetesFriendlyOption: event.target.diabetesFriendlyOption.value,
 		};
-
-		
 
 
 		const url = 'user/restaurant/update-one';
@@ -156,14 +154,11 @@ export default function EditRestaurantRecord({userId, restaurant_data, new_data}
 								<br/>
 							
 								<label> Rating (out of 5 stars) </label>
-								<Rating name="half-rating" precision={0.5} defaultValue={0} max={5}/>
+								<Rating precision={0.5} onChange={(event, newValue) => {setValue(newValue)}}/>
 								<br/>
 
 								<label> Price Range </label>
-								<Rating icon={<PaidIcon/>} emptyIcon={<PaidOutlinedIcon/>} defaultValue={0} max ={5}/>
-
-								{/* <div className={utilStyles.emptyCircle`${check? 'checkedCircle': 'emptyCircle'}` } /> */}
-								{/* <Price iconSize="l" showOutOf={true} enableUserInteraction={true} onClick={handlePriceAction}/> */}
+								<Rating icon={<PaidIcon/>} emptyIcon={<PaidOutlinedIcon/>} onChange={(event, newPriceValue) => {setPriceValue(newPriceValue)}}/>
 								<br/>
 								</form>	
 								
@@ -193,12 +188,11 @@ export default function EditRestaurantRecord({userId, restaurant_data, new_data}
 								<Tags restaurant_data={restaurant_data} page='edit' />
 								<br/>
 								<label> Rating (out of 5 stars) </label>
-								<Rating name="half-rating" precision={0.5} defaultValue={restaurant_data.rating} max={5}/>
-								{/* {restaurant_data.rating}							 */}
+								<Rating precision={0.5} defaultValue={restaurant_data.rating} onChange={(event, newValue) => {setValue(newValue)}}/>
+					
 								<br/>
 								<label> Price Range </label>
-								<Rating icon={<PaidIcon/>} emptyIcon={<PaidOutlinedIcon/>} defaultValue={restaurant_data.priceRating} max ={5}/>
-								{/* {restaurant_data.priceRating} */}
+								<Rating icon={<PaidIcon/>} emptyIcon={<PaidOutlinedIcon/>} defaultValue={restaurant_data.priceRating} onChange={(event, newPriceValue) => {setPriceValue(newPriceValue)}}/>
 								<br/>
 							</form>
 							
