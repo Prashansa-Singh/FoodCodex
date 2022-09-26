@@ -14,7 +14,7 @@ const experienceSchema = new mongoose.Schema({
 const restaurantSchema = new mongoose.Schema({
     name: {type: String, required: true},
     rating: {type: Number, enum: [0, 1, 2, 3, 4, 5]},
-    priceRating: {type: Number, enum: [0, 1, 2, 3]},
+    priceRating: {type: Number, enum: [0, 1, 2, 3, 4]},
     address: {type: String},
     experiences: {type: [mongoose.Types.ObjectId], ref: 'Experience', default: []},
 

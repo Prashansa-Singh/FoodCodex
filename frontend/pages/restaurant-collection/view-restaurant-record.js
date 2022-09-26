@@ -10,6 +10,10 @@ import { useRouter } from 'next/router';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 
+import { Rating } from "@mui/material";
+import PaidIcon from '@mui/icons-material/Paid';
+import PaidOutlinedIcon from '@mui/icons-material/PaidOutlined';
+
 export async function getServerSideProps({query}) {
 
 	const {_id} = query;
