@@ -11,11 +11,6 @@ import PaidIcon from '@mui/icons-material/Paid';
 import PaidOutlinedIcon from '@mui/icons-material/PaidOutlined';
 import priceIconComp from './Price-icon-component/price-icon-comp';
 
-// import { useState } from 'react';
-// import Rating from "./Rating/rating";
-// import Price from "./Price/rating";
-
-
 export async function getServerSideProps({query}) {
 
 	const {_id, rest_id} = query;
@@ -50,22 +45,6 @@ export default function EditRestaurantRecord({userId, restaurant_data, new_data}
 
 	const [priceValue, setPriceValue] = React.useState(restaurant_data.priceValue);
 	console.log(priceValue);
-
-	// // Ratings
-	// const [ratingValue, setRatingValue] = useState(-1);
-
-  	// const handleRatingAction = (value) => {
-    // 	setRatingValue(value);
-  	// };
-
-	// // price ratings
-	// const [priceValue, setPriceValue] = useState(-1);
-	// const [check, setCheck] = useState(false);
-
-
-  	// const handlePriceAction = (value) => {
-    // 	setPriceValue(value);
-  	// };
 
 	const submitEdit = async (event) => {
 		event.preventDefault();
