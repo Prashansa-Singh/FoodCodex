@@ -9,7 +9,6 @@ import { Rating } from "@mui/material";
 import * as React from 'react';
 import PaidIcon from '@mui/icons-material/Paid';
 import PaidOutlinedIcon from '@mui/icons-material/PaidOutlined';
-import priceIconComp from './Price-icon-component/price-icon-comp';
 
 export async function getServerSideProps({query}) {
 
