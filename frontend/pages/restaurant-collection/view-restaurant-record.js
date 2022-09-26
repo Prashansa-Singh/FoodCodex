@@ -6,6 +6,9 @@ import {axiosInstance} from '../api/axiosConfig';
 import Link from 'next/link';
 import Tags from '../../components/tags';
 import Experiences from '../../components/experiences';
+import { useRouter } from 'next/router';
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
 export async function getServerSideProps({query}) {
 
@@ -26,6 +29,43 @@ export async function getServerSideProps({query}) {
 
 export default function ViewRestaurantRecord({userId, restaurant_data, experiences}) {
 	const title = `${siteTitle} - ${restaurant_data.name}`;
+
+	const router = useRouter();
+
+	const confirmDelete = () => {
+		
+		const body = {
+			restaurantId: restaurant_data._id,
+		};
+
+		const url = 'user/restaurant/delete-one';
+
+		confirmAlert({
+			title: 'Confirm to delete',
+			message: 'Are you sure you wish to delete this restaurant record?',
+			buttons: [
+			  {
+				label: 'Yes',
+				onClick: () => deleteRestaurant(url, body),
+			  },
+			  {
+				label: 'No',
+			  }
+			]
+		});
+	}
+
+	const deleteRestaurant = async (url, body) => {
+		await axiosInstance.delete(url, {data: body})
+		.then(function (response) {
+			console.log(response.data);
+			router.push('/restaurant-collection/view-restaurant-collection');
+		})
+		.catch(function (error) {
+			console.log(error);
+		});
+	}
+
 	return (
 		<Layout>
 			<Head>
@@ -72,6 +112,10 @@ export default function ViewRestaurantRecord({userId, restaurant_data, experienc
 					<br />
 					<Experiences experiences={experiences} id={restaurant_data._id} />	
 				</div>
+        <div className={styles.button_container}>
+					<button onClick={() => confirmDelete()} className={styles.delete_button} >Delete Restaurant</button>
+				</div>
+
 				<br />
 				<br />
 				<br />								

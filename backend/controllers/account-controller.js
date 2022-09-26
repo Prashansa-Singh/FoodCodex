@@ -1,34 +1,21 @@
 const { User } = require('../models/user');
 
 
-// temp
-const path = require('path');
-const getSignup = async (req, res) => {
-    // render it later, now just send html file
-    res.sendFile(path.join(__dirname + '/../views/signup.html'));
-};
-
-
-const createUser = async (req, res, next) => {
+const signupUser = async (req, res, next) => {
     try {
-        //const user = new User(req.body);
-
-        // visualise
         const user = new User(req.body)
-        console.log(user)
-
         await user.save()
-
-        return res.send(JSON.stringify(user));
-    } catch (err) {
+        return res.sendStatus(201)
+    }
+    catch (err) {
         return next(err);
     }
 };
 
-
-const deleteUser = async  (req, res, next) => {
+const deleteUser = async (req, res, next) => {
     try {
-
+        await User.deleteOne({userName: req.body.userName})
+        return res.sendStatus(204)
     }
     catch (err) {
         return next(err);
@@ -37,7 +24,6 @@ const deleteUser = async  (req, res, next) => {
 
 
 module.exports = {
-    getSignup,
-    createUser,
+    signupUser,
     deleteUser
 };
