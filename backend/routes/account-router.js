@@ -3,12 +3,15 @@ const express = require('express');
 const accountRouter = express.Router();
 const accountController = require('../controllers/account-controller');
 
+const cors = require('cors');
+accountRouter.use(cors())
 
-accountRouter.get('/', accountController.getSignup);
+accountRouter.options('/signup', cors());
+accountRouter.options('/delete', cors());
 
-accountRouter.post('/signup', accountController.createUser);
+accountRouter.post('/signup', cors(), accountController.signupUser);
 
-accountRouter.delete('/delete', accountController.deleteUser);
+accountRouter.delete('/delete', cors(), accountController.deleteUser);
 
 
 module.exports = accountRouter;

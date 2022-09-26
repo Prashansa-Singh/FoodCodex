@@ -1,5 +1,9 @@
-const status200 = (req, res) => {
-    res.sendStatus(200, 'OK');
+const OK200 = (req, res) => {
+    res.sendStatus(200, 'OK')
+}
+
+const NotFound404 = (req, res) => {
+    res.sendStatus(404, 'Not Found')
 }
 
 const aboutUs = (req, res) => {
@@ -11,7 +15,8 @@ const contactUs = (req, res) => {
 }
 
 module.exports = {
-    status200,
+    OK200,
+    NotFound404,
     aboutUs,
     contactUs
 }

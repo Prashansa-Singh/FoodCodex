@@ -3,12 +3,11 @@ const mongoose = require('mongoose')
 
 /* Experience Schema */
 const experienceSchema = new mongoose.Schema({
-    experienceTime: {type: Date, required: true},
-    experience: {type: String},
-
-    // entered and edited time
-    entryTimestamp: {type: Date, required: true},
-})
+    visitTime: {type: Date, required: true},
+    title: {type: String},
+    comment: {type: String, required: true},
+    lastUpdated: {type: Date, default: Date.now}
+}, {timestamps: true})
 
 
 /* Restaurant Record Schema */
