@@ -20,7 +20,7 @@ export async function getServerSideProps({query}) {
 	const restaurant_data = response.data;
 	const userId = user;
 
-	const experiences_data = await (await axiosInstance.get('user/restaurant/experience/view-all', {data: {restaurantId: _id,}}));
+	const experiences_data = (await axiosInstance.get('user/restaurant/experience/view-all', {data: {restaurantId: _id,}}));
 	const experiences = experiences_data.data;
 	return {
 		props: {userId, restaurant_data, experiences},
