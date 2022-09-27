@@ -72,5 +72,37 @@
 	left: 309px;
 	top: 407px;
 
+/* 
+.yellowStar{
+	position: absolute;
+	left: 8.48%;
+	right: 8.36%;
+	top: 8.32%;
+	bottom: 12.48%;
+	
+	background: #5989C5;
+}
+
+.emptyStar{
+	position: absolute;
+left: 8.48%;
+right: 8.36%;
+top: 8.32%;
+bottom: 12.48%;
+
+background: #BAD1EF;
+} */
+
+.emptyCircle{
+	background-image:  url('../public/src/emptyCircle.svg');
+	width: 30px;
+	height: 30px;
+}
+
+.checkedCircle{
+	background-image:  url('../public/src/checkedCircle.svg');
+	width: 30px;
+	height: 30px;
+
 
 }
