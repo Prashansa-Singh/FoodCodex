@@ -4,13 +4,10 @@ import utilStyles from '../styles/utils.module.css';
 import Styles from '../components/css/login-signup.module.css';
 
 import {axiosInstance} from './api/axiosConfig';
-import axios from 'axios';
 import { useRouter } from 'next/router';
 
 import React from 'react'
-import { Grid, Paper, TextField } from '@material-ui/core'
-import { Stack } from '@mui/system';
-import Button from '@mui/material/Button';
+import { Typography, Box, Button, Grid, Paper, TextField, Stack } from '@mui/material';
 
 export default function Signup() {
 
@@ -56,13 +53,13 @@ export default function Signup() {
 						<Paper elevation={10} className={Styles.paperStyle}>
 							<h1>Sign Up</h1>
 
-							<TextField  label="E-mail" variant="outlined" placeholder='e.g. john@gmail.com' required/>
-							<TextField  label="Password" variant="outlined" placeholder='At least 8 symbols' type='password' required/>
-							<TextField id="outlined-basic" label="Confirm Password" variant="outlined" placeholder='At least 8 symbols' type='password' required/>
+							<TextField  label="E-mail" variant="outlined" placeholder='e.g. john@gmail.com' required margin="dense"/>
+							<TextField  label="Password" variant="outlined" placeholder='At least 8 symbols' type='password' required margin="dense"/>
+							<TextField id="outlined-basic" label="Confirm Password" variant="outlined" placeholder='At least 8 symbols' type='password' required margin="dense"/>
 
-							<Stack>
+							<Box>
 								<Button type="submit" className={Styles.loginButton} variant="contained">SIGN UP</Button>
-							</Stack>
+							</Box>
 							
 						</Paper>
 					</Grid>

@@ -8,10 +8,8 @@ import {axiosInstance} from './api/axiosConfig';
 import { useRouter } from 'next/router';
 
 // Login Page Style
-import React from 'react'
-import { Grid, Paper, TextField, Typography} from '@material-ui/core'
-import { Stack } from '@mui/system';
-import Button from '@mui/material/Button';
+import React from 'react';
+import { Typography, Button, Grid, Paper, TextField, Stack, Box } from '@mui/material';
 
 
 export default function Login() {
@@ -56,12 +54,12 @@ export default function Login() {
 						<Paper elevation={10} className={Styles.paperStyle}>
 							<h1>Login</h1>
 
-							<TextField id="outlined-basic" label="Username" variant="outlined" placeholder='Enter username' required/>
-							<TextField id="outlined-basic" label="Password" variant="outlined" placeholder='Enter password' type='password' required/>
+							<TextField id="outlined-basic" label="Username" variant="outlined" placeholder='Enter username' required margin="dense"/>
+							<TextField id="outlined-basic" label="Password" variant="outlined" placeholder='Enter password' type='password' required margin="dense"/>
 							
-							<Stack>
+							<Box>
 								<Button type="submit" className={Styles.loginButton} variant="contained">LOGIN</Button>
-							</Stack>
+							</Box>
 
 							<Typography> New here? </Typography>
 
