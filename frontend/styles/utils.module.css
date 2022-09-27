@@ -52,6 +52,7 @@
 	color: #666;
 }
 
+/* homepage  */
 .homepageButton {
 	background: linear-gradient(180deg, #FBB3B8 0%, #FBD233 100%);
 	mix-blend-mode: normal;
@@ -63,6 +64,13 @@
 	color: black;
 	font-weight: bolder;
 }
+
+.homepageText{
+	position: absolute;
+	width: 806px;
+	height: 210px;
+	left: 309px;
+	top: 407px;
 
 /* 
 .yellowStar{
