@@ -3,19 +3,18 @@ const mongoose = require('mongoose')
 
 /* Experience Schema */
 const experienceSchema = new mongoose.Schema({
-    experienceTime: {type: Date, required: true},
-    experience: {type: String},
-
-    // entered and edited time
-    entryTimestamp: {type: Date, required: true},
-})
+    visitTime: {type: Date, required: true},
+    title: {type: String},
+    comment: {type: String, required: true},
+    lastUpdated: {type: Date, default: Date.now}
+}, {timestamps: true})
 
 
 /* Restaurant Record Schema */
 const restaurantSchema = new mongoose.Schema({
     name: {type: String, required: true},
     rating: {type: Number, enum: [0, 1, 2, 3, 4, 5]},
-    priceRating: {type: Number, enum: [0, 1, 2, 3]},
+    priceRating: {type: Number, enum: [0, 1, 2, 3, 4]},
     address: {type: String},
     experiences: {type: [mongoose.Types.ObjectId], ref: 'Experience', default: []},
 

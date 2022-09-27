@@ -42,4 +42,42 @@ export default NextAuth({
 			},
 		}),
 	],
+	session: {
+		strategy: "jwt",
+		maxAge: 60 * 15, // 15 minutes
+	},
+	callbacks: {
+		async jwt({ token, user, account, profile, isNewUser }) {
+			// Add custom fields to JWT Token
+			// console.log(`Account JWT: ${account}`);
+			// console.log(`Token JWT: ${JSON.stringify(token)}`);
+			// console.log(`User: ${JSON.stringify(user)}`);
+
+			if (user) {
+				token._id = user._id
+				token.username = user.userName
+				token.displayName = user.displayName
+				token.darkMode = user.darkMode
+			}
+
+			// console.log(`Token: ${JSON.stringify(token)}`);
+
+			return token;
+		},
+		async session({ session, token, user }) {
+			// Send properties to the client, like an access_token from a provider.
+			// console.log(`Session: ${JSON.stringify(session)}`);
+			// console.log(`Token: ${JSON.stringify(token)}`);
+			// console.log(`User: ${JSON.stringify(user)}`);
+
+			session.user._id = token._id
+			session.user.username = token.username
+			session.user.displayName = token.displayName
+			session.user.darkMode = token.darkMode
+
+			// console.log(`Final Session: ${JSON.stringify(session)}`);
+
+			return session;
+		},
+	},
 });

@@ -17,6 +17,7 @@
     row-gap: 1px;
     column-gap: 0;
     align-items: stretch;
+    background-size: cover;
 }
 
 .header {grid-area: header; text-align: center;}
@@ -33,4 +34,10 @@
         row-gap: 7.5vh;    
     }
 }
-  
+
+/* for home logo */
+.homelogo {
+    margin-top: 100px;
+    width: 45%;
+    height: auto;
+}
