@@ -109,9 +109,11 @@ export default function ViewRestaurantRecord({userId, restaurant_data, experienc
 						<i>{restaurant_data.address}</i>
 					</p>
 					<h5>Rating (out of 5 stars)</h5>
-					<p>{restaurant_data.rating}</p>
+					<p>{<Rating name="read-only" value={restaurant_data.rating} readOnly />}</p>
+					
 					<h5>Price Category</h5>
-					<p>{restaurant_data.priceRating}</p>
+					<p>{<Rating icon={<PaidIcon/>} emptyIcon={<PaidOutlinedIcon/>} name="read-only" value={restaurant_data.priceRating} readOnly />}</p>
+
 					<Tags restaurant_data={restaurant_data} page='view' />
 					<br />
 					<Experiences experiences={experiences} id={restaurant_data._id} />	
