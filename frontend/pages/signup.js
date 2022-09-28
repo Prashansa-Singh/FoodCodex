@@ -9,10 +9,6 @@ import { useRouter } from 'next/router';
 import React from 'react'
 import { Typography, Box, Button, Grid, Paper, TextField, Stack } from '@mui/material';
 
-import {axiosInstance} from './api/axiosConfig';
-import axios from 'axios';
-import { useRouter } from 'next/router';
-
 export default function Signup() {
 
 	const router = useRouter();
