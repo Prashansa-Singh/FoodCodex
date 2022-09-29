@@ -3,6 +3,7 @@ import styles from './css/navigation.module.css';
 import { useRouter } from 'next/router';
 import Hamburger from './hamburger';
 import { useState } from 'react';
+import { signOut } from 'next-auth/react';
 
 export default function Nav() {
     const router = useRouter();
@@ -18,7 +19,7 @@ export default function Nav() {
         const elem = document.getElementsByClassName(styles.navlist)[0];
         if (hamburgerOpen) {
             elem.style.display = "none";
-        }  else {
+        } else {
             elem.style.display = "flex";
         }
     }
@@ -56,7 +57,7 @@ export default function Nav() {
         },
         {
             href: '/',
-            title: 'Logout',
+            title: <div onClick={() => signOut({ callbackUrl: '/' })}>Logout</div>,
             icon: '/src/nav-icons/logout-icon.svg',
         }
     ];
@@ -83,7 +84,7 @@ export default function Nav() {
         <nav className={styles.nav}>
             <div className='navigation'>
                 <ul className={styles.navlist}>
-                    {navItems.map(({href, title, icon}) => (
+                    {navItems.map(({ href, title, icon }) => (
                         <li className={` ${styles.unselected} ${router.asPath === href && styles.selected}`} key={title}>
                             <Link href={href}>
                                 <a>
@@ -99,7 +100,7 @@ export default function Nav() {
             </div>
             <div>
                 <ul className={styles.navbar}>
-                    {navItemsPhone.map(({href, title, icon}) => (
+                    {navItemsPhone.map(({ href, title, icon }) => (
                         <li className={styles.unselected} key={title}>
                             <Link href={href}>
                                 <a>
