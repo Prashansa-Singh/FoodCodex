@@ -27,7 +27,7 @@ export default NextAuth({
 
 				try {
 					// Send backend request to authenticate user
-					let user = await axiosInstance.post('user/validateUser', {
+					let user = await axiosInstance.post('user/validate-user', {
 						username: credentials.username,
 						password: credentials.password,
 					});
