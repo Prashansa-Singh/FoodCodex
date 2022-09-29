@@ -4,22 +4,27 @@ import utilStyles from '../styles/utils.module.css';
 import Styles from '../components/css/login-signup.module.css';
 import LoginButton from '../components/loginbutton';
 
-
-import { axiosInstance } from './api/axiosConfig';
 import { useRouter } from 'next/router';
-
-import { useState } from 'react';
-import { signIn } from "next-auth/react"
+import { useState, useEffect } from 'react';
+import { signIn, useSession } from "next-auth/react"
 
 // Login Page Style
 import React from 'react';
 import { Typography, Button, Grid, Paper, TextField, Stack, Box } from '@mui/material';
 
 
-export default function Login() {
-	const [error, setError] = useState(null)
+export default function Login({ props }) {
+	const router = useRouter();
+	const { data: session } = useSession()
 
-	// const router = useRouter();
+	// Redirect if user session detected
+	useEffect(() => {
+		if (session !== null && session !== undefined) {
+			router.push('/restaurant-collection/view-restaurant-collection');
+		}
+	})
+
+	const [error, setError] = useState(null)
 
 	const errorStatus = {
 		"CredentialsSignin": "Incorrect username or password, please try again",
@@ -39,6 +44,7 @@ export default function Login() {
 
 		// console.log(loginResponse)
 
+		// Check for Login Errors
 		let errorCode = null;
 		if (loginResponse) {
 			errorCode = loginResponse.error
