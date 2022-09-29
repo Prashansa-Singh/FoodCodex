@@ -5,8 +5,11 @@ import Styles from '../components/css/login-signup.module.css';
 import LoginButton from '../components/loginbutton';
 
 
-import {axiosInstance} from './api/axiosConfig';
+import { axiosInstance } from './api/axiosConfig';
 import { useRouter } from 'next/router';
+
+import { useState } from 'react';
+import { signIn } from "next-auth/react"
 
 // Login Page Style
 import React from 'react';
@@ -14,30 +17,43 @@ import { Typography, Button, Grid, Paper, TextField, Stack, Box } from '@mui/mat
 
 
 export default function Login() {
-	
-	const router = useRouter();
+	const [error, setError] = useState(null)
+
+	// const router = useRouter();
+
+	const errorStatus = {
+		"CredentialsSignin": "Incorrect username or password, please try again",
+		"Default": "Unknown error occured",
+		"null": ""
+	}
 
 	const submitUser = async (event) => {
 		event.preventDefault();
+
 		const userName = event.target.userName.value;
 		const password = event.target.password.value;
 
-		const body = {
-			userName: userName,
-			password: password,
-		};
+		// console.log(`${userName} and ${password}`)
 
-		const url = '/account/login';
+		let loginResponse = await signIn("mongodb-credentials", { username: userName, password: password, redirect: false })
 
-		axiosInstance.post(url, body)
-		.then(function (response) {
-			console.log(response.data);
-			router.push('/view-restaurant');
-		})
-		.catch(function (error) {
-			console.log(error);
-		});	
-	
+		// console.log(loginResponse)
+
+		let errorCode = null;
+		if (loginResponse) {
+			errorCode = loginResponse.error
+
+			if (errorStatus[errorCode] !== undefined) {
+				setError(errorStatus[errorCode])
+			}
+			else {
+				setError(errorStatus["Default"])
+			}
+		}
+
+		// reset form details
+		event.target.userName.value = '';
+		event.target.password.value = '';
 	}
 
 	const title = `${siteTitle} - Login`;
@@ -53,29 +69,20 @@ export default function Login() {
 					<Grid align='center'>
 
 						<Paper elevation={10} className={Styles.paperStyle}>
+							{error != null && <h5>{error}</h5>}
 							<h1>Login</h1>
 
-							<TextField id="outlined-basic" label="Username" variant="outlined" placeholder='Enter username' required margin="dense"/>
-							<TextField id="outlined-basic" label="Password" variant="outlined" placeholder='Enter password' type='password' required margin="dense"/>
-							
+							<TextField id="outlined-username" label="Username" variant="outlined" name="userName" placeholder='Enter username' required margin="dense" />
+							<TextField id="outlined-password" label="Password" variant="outlined" name="password" placeholder='Enter password' type='password' required margin="dense" />
+
 							<Box>
 								<Button type="submit" className={Styles.loginButton} variant="contained">LOGIN</Button>
 							</Box>
 
-							<Typography> New here? </Typography>
+							<Button variant="contained" href="/signup">New here?</Button>
 
 						</Paper>
 					</Grid>
-					
-					{/* <label> Enter a user name </label>
-					<input type="text" placeholder="Username" name="userName" required/>
-					<br/>
-
-					<label> Set a password </label>
-					<input type="password" placeholder="Password" name="password" required/>
-					<br/>
-					<Button className = {utilStyles.homepageButton} variant="contained" size="large">LOGIN</Button> */}
-					{/* <input type="submit" className='loginButton' /> */}
 				</form>
 				<LoginButton />
 			</section>
