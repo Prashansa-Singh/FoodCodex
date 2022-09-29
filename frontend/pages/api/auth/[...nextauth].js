@@ -27,7 +27,7 @@ export default NextAuth({
 
 				try {
 					// Send backend request to authenticate user
-					let user = await axiosInstance.post('user/validateUser', {
+					let user = await axiosInstance.post('user/validate-user', {
 						username: credentials.username,
 						password: credentials.password,
 					});
@@ -57,7 +57,6 @@ export default NextAuth({
 				token._id = user._id
 				token.username = user.userName
 				token.displayName = user.displayName
-				token.darkMode = user.darkMode
 			}
 
 			// console.log(`Token: ${JSON.stringify(token)}`);
@@ -73,11 +72,13 @@ export default NextAuth({
 			session.user._id = token._id
 			session.user.username = token.username
 			session.user.displayName = token.displayName
-			session.user.darkMode = token.darkMode
 
 			// console.log(`Final Session: ${JSON.stringify(session)}`);
 
 			return session;
 		},
 	},
+	pages: {
+		signIn: '/login',
+	}
 });

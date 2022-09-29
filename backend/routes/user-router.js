@@ -15,7 +15,7 @@ userRouter.use('/settings', settingsRouter);
 userRouter.get('/login', userController.loginUser);
 userRouter.get('/logout', userController.logoutUser);
 
-userRouter.post('/validateUser', userController.validateUser);
+userRouter.post('/validate-user', userController.validateUser);
 
 
 
