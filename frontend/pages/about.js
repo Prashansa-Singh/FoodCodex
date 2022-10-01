@@ -9,7 +9,7 @@ export default function About() {
 			<Head>
 				<title>{title}</title>
 			</Head>
-			<section className={utilStyles.headingMd}>
+			<section className={utilStyles.headingMdCenter}>
 				<h1>
 					About
 				</h1>

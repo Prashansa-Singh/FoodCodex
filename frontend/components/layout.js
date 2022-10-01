@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import styles from './css/layout.module.css';
 import Nav from './navigation';
+import Image from 'next/image';
 
 export const siteTitle = 'FoodCodex';
 
@@ -26,6 +27,17 @@ export default function Layout({ children, home }) {
                 <Nav className={styles.nav} />
             )}
             <main className={styles.main}>{children}</main>
+            {!home && (
+                <div className={styles.background}>
+                    <Image 
+                        src="/src/logged-in-background.svg"
+                        alt="Background"
+                        layout="fill"
+                        objectFit="cover"
+                        objectPosition="center"
+                    />
+                </div>
+            )}
         </div>
     );
 }

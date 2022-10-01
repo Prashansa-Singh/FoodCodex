@@ -13,7 +13,7 @@ export default function Home() {
 			<Head>
 				<title>{siteTitle}</title>
 			</Head>
-			<section className={utilStyles.headingMd}>
+			<section className={utilStyles.headingMdCenter}>
 				<Stack direction="row" spacing={25}>
 					<Button className = {utilStyles.homepageButton} variant="contained" style ={{margin: '0 auto', display: "flex"}} onClick={() => {
     window.location.href= "/login"}}>LOGIN</Button>
