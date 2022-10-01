@@ -25,8 +25,9 @@
 @media screen and (max-width: 450px) {
     .container {
         display: flex;
-        flex-direction: column;  
-        row-gap: 7.5vh;    
+        flex-direction: column-reverse;  
+        row-gap: 7.5vh;   
+        margin-left: 0; 
     }
 }
 
