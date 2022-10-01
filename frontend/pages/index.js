@@ -1,13 +1,9 @@
 import Head from 'next/head';
-// import Link from 'next/link';
 import Layout, { siteTitle } from '../components/layout';
 import utilStyles from '../styles/utils.module.css';
-
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
-import Image from 'next/image'
-import foodPic from '../public/src/homepage-foodpic.jpg'
 
 
 export default function Home() {
@@ -30,19 +26,8 @@ export default function Home() {
 				<h1 classname = {utilStyles.homepageText}>
 					"Laughter is brightest in the place where food is good"
 				</h1>
-				
-				<Image
-        			src={foodPic}
-       				alt="Home page laughter pic"
-        			// width={500} automatically provided
-        			// height={500} automatically provided
-        			// blurDataURL="data:..." automatically provided
-        			// placeholder="blur" // Optional blur-up while loading
-      			/>
-				{/* <p>
-					Home page for unauthorised users
-				</p> */}
-						
+
+                <img src='/src/homepage-foodpic.jpg' alt="Home page laughter pic" className={utilStyles.image} />						
 			</section>
 		</Layout>
 	);

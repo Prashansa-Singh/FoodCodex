@@ -84,7 +84,8 @@
 	background-image:  url('../public/src/checkedCircle.svg');
 	width: 30px;
 	height: 30px;
-
-
 }
 
+.image {
+	max-height: 20vw;
+}

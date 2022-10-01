@@ -1,6 +1,6 @@
 .containerhome {
-    display: flex !important;
-    flex-direction: column;
+    display: flex;
+    flex-direction: column !important;
     background-image: url('../../public/src/home-background.svg') !important;
     min-height: 100vh;
     margin-left: 0 !important;
@@ -30,9 +30,7 @@
     }
 }
 
-/* for home logo */
 .homelogo {
-    margin-top: 100px;
-    width: 45%;
+    width: 40vw;
     height: auto;
 }
