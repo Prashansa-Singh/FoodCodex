@@ -3,21 +3,16 @@
     flex-direction: column;
     background-image: url('../../public/src/home-background.svg') !important;
     min-height: 100vh;
+    margin-left: 0 !important;
 }
 
 .container {
     background-image: url('../../public/src/logged-in-background.svg');
-    display: grid;
-    grid-template-areas: 
-        'header header'
-        'nav main';
-    grid-template-columns: 0.4fr 2fr;
-    grid-template-rows: 10vh 90vh;
-    min-height: 100vh;
-    row-gap: 1px;
-    column-gap: 0;
+    display: flex;
+    flex-direction: row;
     align-items: stretch;
     background-size: cover;
+    margin-left: 18vw;
 }
 
 .header {grid-area: header; text-align: center;}

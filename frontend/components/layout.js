@@ -25,10 +25,10 @@ export default function Layout({ children, home }) {
                     </>
                 ) : (<></>)}
             </header>
-            <main className={styles.main}>{children}</main>
             {!home && (
                 <Nav className={styles.nav} />
             )}
+            <main className={styles.main}>{children}</main>
         </div>
     );
 }

@@ -1,6 +1,11 @@
 .nav {
     box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.2);
     background-color: #E7E0EC;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 18vw;
 }
 
 .navlist {
@@ -50,7 +55,7 @@
 }
 
 .logo {
-    height: 10vh;
+    max-width: 100%;
 }
 
 @media screen and (max-width: 450px) {
