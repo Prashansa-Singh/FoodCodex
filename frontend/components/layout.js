@@ -23,11 +23,7 @@ export default function Layout({ children, home }) {
                     <>
                         <img alt='FoodCodex Logo' src='/src/foodcodex-logo.png' className={styles.homelogo} />
                     </>
-                ) : (
-                    <>
-                        <Header />
-                    </>
-                )}
+                ) : (<></>)}
             </header>
             <main className={styles.main}>{children}</main>
             {!home && (
