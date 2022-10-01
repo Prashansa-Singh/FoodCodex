@@ -63,6 +63,16 @@ export default function ViewRestaurantCollection({data}) {
 			...updateAllergyFriendly,
 			...updateDiabetesFriendly,
 		}));
+		filterIconChange();
+	}
+
+	const filterIconChange = () => {
+		const icon = document.getElementById('filterIcon');
+		if (Object.values(filter).includes(true)) {
+			icon.src = '/src/nav-icons/filter-icon.svg';
+		} else {
+			icon.src = '/src/nav-icons/filter-applied-icon.svg';
+		}
 	}
 
 	const clearFilter = () => {
@@ -117,7 +127,7 @@ export default function ViewRestaurantCollection({data}) {
 						placeholder="Search..." 
 					/>
 					<div className={styles.filter}>
-						<img className={styles.icon} src='/src/nav-icons/filter-icon.svg' alt='Filter Icon' onClick={openPopUp} />
+						<img className={styles.icon} src='/src/nav-icons/filter-icon.svg' alt='Filter Icon' onClick={openPopUp} id='filterIcon' />
 						<div className={styles.filter_options} id='filter'>
 							<p className={styles.close} onClick={closePopUp}>&#10006;</p>
 							<form onSubmit={submitFilter}>
