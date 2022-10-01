@@ -27,6 +27,17 @@ export default function Layout({ children, home }) {
                 <Nav className={styles.nav} />
             )}
             <main className={styles.main}>{children}</main>
+            {home && (
+                <div className={styles.background}>
+                    <Image 
+                        src="/src/home-background.svg"
+                        alt="Home Background"
+                        layout="fill"
+                        objectFit="cover"
+                        objectPosition="center"
+                    />
+                </div>
+            )}
             {!home && (
                 <div className={styles.background}>
                     <Image 

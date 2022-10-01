@@ -1,8 +1,6 @@
 .containerhome {
     display: flex;
     flex-direction: column !important;
-    background-image: url('../../public/src/home-background.svg') !important;
-    min-height: 100vh;
     margin-left: 0 !important;
 }
 
