@@ -71,6 +71,16 @@ export default function ViewRestaurantCollection({data}) {
 		window.location.reload(); 
 	}
 
+	const openPopUp = () => {
+		const elem = document.getElementById('filter');
+		elem.style.display = 'flex';
+	}
+
+	const closePopUp = () => {
+		const elem = document.getElementById('filter');
+		elem.style.display = 'none';
+	}
+
 	const updateTable = ( _id) => {
 		let dataRow;
 		for (let i = 0; i < data.length; i++) {
@@ -107,11 +117,9 @@ export default function ViewRestaurantCollection({data}) {
 						placeholder="Search..." 
 					/>
 					<div className={styles.filter}>
-						<div className={styles.filter_icon_heading}>
-							<img className={styles.icon} src='/src/nav-icons/filter-icon.svg' alt='Filter Icon' />
-							<h4>Filter</h4>
-						</div>
-						<div className={styles.filter_options}>
+						<img className={styles.icon} src='/src/nav-icons/filter-icon.svg' alt='Filter Icon' onClick={openPopUp} />
+						<div className={styles.filter_options} id='filter'>
+							<p className={styles.close} onClick={closePopUp}>&#10006;</p>
 							<form onSubmit={submitFilter}>
 								<Tags restaurant_data={filterTags} page='edit' />
 								<div className={styles.button_container}>
