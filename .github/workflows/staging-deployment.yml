@@ -1,10 +1,6 @@
 name: Staging Deployment to Heroku
 
 on:
-    push:
-        branches:
-            - deployment-fix
-
     pull_request:
         branches:
             - main
