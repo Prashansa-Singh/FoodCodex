@@ -1,13 +1,12 @@
-name: Deployment to Heroku
+name: Production Deployment to Heroku
 
 on:
     push:
         branches:
             - master
-            - deployment-fix
 
 jobs:
-    backend_deployment:
+    backend_prod_deployment:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
@@ -17,12 +16,12 @@ jobs:
                   heroku_app_name: 'programming-quokkas-backend' #Must be unique in Heroku
                   heroku_email: ${{secrets.HEROKU_EMAIL}}
                   buildpack: 'https://github.com/heroku/heroku-buildpack-multi-procfile'
-                  branch: 'deployment-fix'
+                  branch: 'main'
                   healthcheck: 'https://programming-quokkas-backend.herokuapp.com/'
                   checkstring: 'OK'
                   delay: 15
 
-    frontend_deployment:
+    frontend_prod_deployment:
         needs: backend_deployment
         runs-on: ubuntu-latest
         steps:
@@ -33,4 +32,4 @@ jobs:
                   heroku_app_name: 'comp30022-programming-quokkas' #Must be unique in Heroku
                   heroku_email: ${{secrets.HEROKU_EMAIL}}
                   buildpack: 'https://github.com/heroku/heroku-buildpack-multi-procfile'
-                  branch: 'deployment-fix'
+                  branch: 'main'
