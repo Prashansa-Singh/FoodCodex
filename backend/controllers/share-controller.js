@@ -47,6 +47,7 @@ const getShareLink = async (req, res, next) => {
 
         console.log(restaurant)
         await restaurant.save()
+        res.send(restaurant._id)
     }
     catch (err) {
         return next (err)
