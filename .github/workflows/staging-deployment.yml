@@ -5,6 +5,10 @@ on:
         branches:
             - deployment-fix
 
+    pull_request:
+        branches:
+            - main
+
 jobs:
     backend_staging_deployment:
         runs-on: ubuntu-latest
@@ -16,7 +20,7 @@ jobs:
                   heroku_app_name: 'quokkas-staging-backend' #Must be unique in Heroku
                   heroku_email: ${{secrets.HEROKU_EMAIL}}
                   buildpack: 'https://github.com/heroku/heroku-buildpack-multi-procfile'
-                  branch: 'deployment-fix' #${{ github.head_ref || github.ref_name }}
+                  branch: ${{ github.head_ref || github.ref_name }}
                   healthcheck: 'https://quokkas-staging-backend.herokuapp.com/'
                   checkstring: 'OK'
                   delay: 15
@@ -32,4 +36,4 @@ jobs:
                   heroku_app_name: 'quokkas-staging-frontend' #Must be unique in Heroku
                   heroku_email: ${{secrets.HEROKU_EMAIL}}
                   buildpack: 'https://github.com/heroku/heroku-buildpack-multi-procfile'
-                  branch: 'deployment-fix' #${{ github.head_ref || github.ref_name }}
+                  branch: ${{ github.head_ref || github.ref_name }}
