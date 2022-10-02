@@ -1,4 +1,4 @@
-name: Deploy
+name: Deployment to Heroku
 
 on:
     push:
@@ -17,8 +17,7 @@ jobs:
                   heroku_app_name: 'programming-quokkas-backend' #Must be unique in Heroku
                   heroku_email: ${{secrets.HEROKU_EMAIL}}
                   buildpack: 'https://github.com/heroku/heroku-buildpack-multi-procfile'
-                  appdir: 'backend'
                   branch: 'deployment-fix'
                   healthcheck: 'https://programming-quokkas-backend.herokuapp.com/'
                   checkstring: 'OK'
-                  delay: 100
+                  delay: 10
