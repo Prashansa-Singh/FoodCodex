@@ -3,6 +3,7 @@ const express = require('express')
 const shareRouter = express.Router()
 const shareController = require('../controllers/share-controller')
 
+shareRouter.get('/link/:linkId', shareController.getShareLink)
 shareRouter.post('/generate-link', shareController.generateShareLink)
 
 shareRouter.get('/view-all', shareController.getAllSharedRestaurants)
