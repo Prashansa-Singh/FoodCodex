@@ -7,14 +7,7 @@ on:
             - main
 
 jobs:
-    # branch_name:
-    #     runs-on: ubuntu-latest
-    #     steps:
-    #         - run: echo "BRANCH_NAME=$(echo ${GITHUB_HEAD_REF} | tr / -)" >> $GITHUB_ENV
-    #         - run: echo ${{ env.BRANCH_NAME }}
-
     backend_staging_deployment:
-        # needs: [branch_name]
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
