@@ -1,0 +1,42 @@
+name: Staging Deployment to Heroku
+
+on:
+    pull_request:
+        branches:
+            - master
+            - main
+
+jobs:
+    branch_name:
+        runs-on: ubuntu-latest
+        steps:
+            - run: echo "BRANCH_NAME=$(echo ${GITHUB_HEAD_REF} | tr / -)" >> $GITHUB_ENV
+            - run: echo ${{ env.BRANCH_NAME }}
+
+    backend_staging_deployment:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+              with:
+                  heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+                  heroku_app_name: 'quokkas-staging-backend' #Must be unique in Heroku
+                  heroku_email: ${{secrets.HEROKU_EMAIL}}
+                  buildpack: 'https://github.com/heroku/heroku-buildpack-multi-procfile'
+                  branch: ${{ env.BRANCH_NAME }}
+                  healthcheck: 'https://quokkas-staging-backend.herokuapp.com/'
+                  checkstring: 'OK'
+                  delay: 15
+
+    frontend_staging_deployment:
+        needs: backend_staging_deployment
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+              with:
+                  heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+                  heroku_app_name: 'quokkas-staging-frontend' #Must be unique in Heroku
+                  heroku_email: ${{secrets.HEROKU_EMAIL}}
+                  buildpack: 'https://github.com/heroku/heroku-buildpack-multi-procfile'
+                  branch: ${{ env.BRANCH_NAME }}
