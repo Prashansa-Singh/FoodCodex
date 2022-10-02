@@ -23,6 +23,12 @@
 .headingMd {
 	font-size: 1.2rem;
 	line-height: 1.5;
+	text-align: left;
+}
+
+.headingMdCenter {
+	font-size: 1.2rem;
+	line-height: 1.5;
 	text-align: center;
 }
 
@@ -84,7 +90,8 @@
 	background-image:  url('../public/src/checkedCircle.svg');
 	width: 30px;
 	height: 30px;
-
-
 }
 
+.image {
+	max-height: 20vw;
+}

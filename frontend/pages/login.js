@@ -70,7 +70,7 @@ export default function Login({ props }) {
 				<title>{title}</title>
 			</Head>
 
-			<section className={utilStyles.headingMd}>
+			<section className={utilStyles.headingMdCenter}>
 				<form onSubmit={submitUser}>
 					<Grid align='center'>
 

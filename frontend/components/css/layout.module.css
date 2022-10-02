@@ -1,23 +1,17 @@
 .containerhome {
-    display: flex !important;
-    flex-direction: column;
-    background-image: url('../../public/src/home-background.svg') !important;
-    min-height: 100vh;
+    display: flex;
+    flex-direction: column !important;
+    margin-left: 0 !important;
 }
 
 .container {
-    background-image: url('../../public/src/logged-in-background.svg');
-    display: grid;
-    grid-template-areas: 
-        'header header'
-        'nav main';
-    grid-template-columns: 0.4fr 2fr;
-    grid-template-rows: 10vh 90vh;
-    min-height: 100vh;
-    row-gap: 1px;
-    column-gap: 0;
-    align-items: stretch;
-    background-size: cover;
+    display: flex;
+    flex-direction: row;
+    margin-left: 18vw;
+}
+
+.background {
+    z-index: -1;
 }
 
 .header {grid-area: header; text-align: center;}
@@ -25,19 +19,19 @@
 .main {
     grid-area: main; 
     padding: 0 1rem; 
+    width: 100%;
 }
 
 @media screen and (max-width: 450px) {
     .container {
         display: flex;
-        flex-direction: column;  
-        row-gap: 7.5vh;    
+        flex-direction: column-reverse;  
+        row-gap: 7.5vh;   
+        margin-left: 0; 
     }
 }
 
-/* for home logo */
 .homelogo {
-    margin-top: 100px;
-    width: 45%;
+    width: 40vw;
     height: auto;
 }
