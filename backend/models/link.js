@@ -3,8 +3,10 @@ const mongoose = require('mongoose')
 
 const linkSchema = new mongoose.Schema({
 
-    sender: {type: mongoose.Types.ObjectId},
-    receiver: {type: mongoose.Types.ObjectId},
+    senderId: {type: mongoose.Types.ObjectId},
+    receiverId: {type: mongoose.Types.ObjectId},
+
+    restaurantId: {type: mongoose.Types.ObjectId},
 
     shareName: {type: Boolean, default: true},
     shareRating: {type: Boolean, default: true},
