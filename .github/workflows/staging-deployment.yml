@@ -10,6 +10,13 @@ jobs:
     backend_staging_deployment:
         runs-on: ubuntu-latest
         steps:
+            - name: Get branch name (Pull request)
+            shell: bash
+            run: echo "BRANCH_NAME=$(echo ${GITHUB_HEAD_REF} | tr / -)" >> $GITHUB_ENV
+
+            - name: Debug
+            run: echo ${{ env.BRANCH_NAME }}
+
             - uses: actions/checkout@v2
             - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
               with:
@@ -17,7 +24,7 @@ jobs:
                   heroku_app_name: 'quokkas-staging-backend' #Must be unique in Heroku
                   heroku_email: ${{secrets.HEROKU_EMAIL}}
                   buildpack: 'https://github.com/heroku/heroku-buildpack-multi-procfile'
-                  remote_branch: ${{ github.head_ref }}
+                  branch: ${{ env.BRANCH_NAME }}
                   healthcheck: 'https://quokkas-staging-backend.herokuapp.com/'
                   checkstring: 'OK'
                   delay: 15
@@ -26,6 +33,13 @@ jobs:
         needs: backend_staging_deployment
         runs-on: ubuntu-latest
         steps:
+            - name: Get branch name (Pull request)
+                shell: bash
+                run: echo "BRANCH_NAME=$(echo ${GITHUB_HEAD_REF} | tr / -)" >> $GITHUB_ENV
+
+            - name: Debug
+                run: echo ${{ env.BRANCH_NAME }}
+
             - uses: actions/checkout@v2
             - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
               with:
@@ -33,4 +47,4 @@ jobs:
                   heroku_app_name: 'quokkas-staging-frontend' #Must be unique in Heroku
                   heroku_email: ${{secrets.HEROKU_EMAIL}}
                   buildpack: 'https://github.com/heroku/heroku-buildpack-multi-procfile'
-                  remote_branch: ${{ github.head_ref }}
+                  branch: ${{ env.BRANCH_NAME }}
