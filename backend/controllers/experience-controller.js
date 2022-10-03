@@ -90,6 +90,17 @@ const updateExperience = async (req, res, next) => {
 
 
 const deleteExperience = async (req, res, next) => {
+	try {
+		const experienceId = req.body.experienceId
+		const countBefore = await Experience.countDocuments({ _id: experienceId })
+		await Experience.deleteOne({_id: experienceId})
+		const countAfter = await Experience.countDocuments({ _id: experienceId })
+
+		return res.send(`Number of documents with experienceId: ${experienceId} is [Before Deletion: ${countBefore}] and [After Deletion: ${countAfter}].`);
+
+	} catch (err) {
+		return next(err);
+	}
 
 }
 
