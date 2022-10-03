@@ -64,6 +64,31 @@ const updateAllExperiences = async (req, res, next) => {
 }
 
 
+const updateExperience = async (req, res, next) => {
+    try {
+        const restaurantId = req.body.restaurantId
+		delete req.body.restaurantId
+
+		const experienceId = req.body.experienceId
+		delete req.body.experienceId
+
+		console.log(`Received the following restaurantId: ${restaurantId} and experienceId: ${experienceId}`);
+
+		await Experience.updateOne(
+			{_id: experienceId},
+			{$set: req.body}
+		).lean()    
+       
+		let updatedExperience = await Experience.findById(experienceId)
+		console.log(updatedExperience)
+		
+        return res.send(`Done.  The experienceId ${experienceId} of restaurantId: ${restaurantId} has been updated.`);
+	} catch (err) {
+		return next(err);
+	}
+}
+
+
 const deleteExperience = async (req, res, next) => {
 
 }
@@ -78,6 +103,7 @@ module.exports = {
     getAllExperiences,
     createExperience,
     updateAllExperiences,
+	updateExperience,
     deleteExperience,
     deleteAllExperiences
 }
