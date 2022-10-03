@@ -141,11 +141,12 @@ export default function ViewRestaurantCollection({data}) {
 					</div>
 					<div className={styles.table_container}>
 						<table className={styles.table}>
-							<thead>
-								<tr>
+							<thead className={styles.thead}>
+								<tr className={styles.tr}>
 									<th className={styles.th}>Name</th>
 									<th className={styles.th}>Rating</th>
 									<th className={styles.th}>Price</th>
+									<th className={styles.th}>Label</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -154,6 +155,7 @@ export default function ViewRestaurantCollection({data}) {
 										<Link href={{pathname: '/restaurant-collection/view-restaurant-record', query: {_id: _id}}}><td className={styles.td}>{name}</td></Link>
 										<Link href={{pathname: '/restaurant-collection/view-restaurant-record', query: {_id: _id}}}><td className={styles.td}>{rating}</td></Link>
 										<Link href={{pathname: '/restaurant-collection/view-restaurant-record', query: {_id: _id}}}><td className={styles.td}>{priceRating}</td></Link>
+										<Link href={{pathname: '/restaurant-collection/view-restaurant-record', query: {_id: _id}}}><td className={styles.td}></td></Link>
 									</tr>
 								))}
 							</tbody>
