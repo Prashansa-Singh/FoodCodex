@@ -15,7 +15,7 @@ export default function About() {
 				</h1>
 
 				<p>
-					About page
+					About Us Page
 				</p>
 			</section>
 		</Layout>

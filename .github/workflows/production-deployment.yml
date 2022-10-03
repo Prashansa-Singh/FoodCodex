@@ -1,0 +1,35 @@
+name: Production Deployment to Heroku
+
+on:
+    push:
+        branches:
+            - master
+
+jobs:
+    backend_prod_deployment:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+              with:
+                  heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+                  heroku_app_name: 'programming-quokkas-backend' #Must be unique in Heroku
+                  heroku_email: ${{secrets.HEROKU_EMAIL}}
+                  buildpack: 'https://github.com/heroku/heroku-buildpack-multi-procfile'
+                  branch: 'main'
+                  healthcheck: 'https://programming-quokkas-backend.herokuapp.com/'
+                  checkstring: 'OK'
+                  delay: 15
+
+    frontend_prod_deployment:
+        needs: backend_deployment
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+              with:
+                  heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+                  heroku_app_name: 'comp30022-programming-quokkas' #Must be unique in Heroku
+                  heroku_email: ${{secrets.HEROKU_EMAIL}}
+                  buildpack: 'https://github.com/heroku/heroku-buildpack-multi-procfile'
+                  branch: 'main'
