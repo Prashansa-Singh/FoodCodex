@@ -11,6 +11,9 @@ experienceRouter.get('/view-all', experienceController.getAllExperiences)
 experienceRouter.options('/create-one', cors());
 experienceRouter.post('/create-one', cors(), experienceController.createExperience)
 
+experienceRouter.options('/update-one', cors());
+experienceRouter.post('/update-one', cors(), experienceController.updateExperience)
+
 experienceRouter.options('/update-all', cors());
 experienceRouter.post('/update-all', cors(), experienceController.updateAllExperiences)
 
