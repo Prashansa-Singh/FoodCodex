@@ -11,7 +11,7 @@ on:
 
 jobs:
     backend_prod_deployment:
-        if: ${{ github.event.pull_request.merged }}
+        if: ${{ github.event.pull_request.merged || github.event_name == 'push' }}
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
@@ -28,7 +28,7 @@ jobs:
 
     frontend_prod_deployment:
         needs: backend_prod_deployment
-        if: ${{ github.event.pull_request.merged }}
+        if: ${{ github.event.pull_request.merged || github.event_name == 'push' }}
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
