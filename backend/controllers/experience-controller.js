@@ -106,7 +106,27 @@ const deleteExperience = async (req, res, next) => {
 
 
 const deleteAllExperiences = async (req, res, next) => {
+	try {
+		const restaurantId = req.body.restaurantId
+		const restaurant = await Restaurant.findOne({ _id: restaurantId }).populate('experiences');
+		const experiences = restaurant['experiences'];
+		const arrayLength = experiences.length;
 
+		// Loop through each of restaurant's experiences and delete
+		let i = 0
+		for (i = 0; i < arrayLength; i++) {
+			const experienceId = experiences[i]._id		
+			await Experience.deleteOne({_id: experienceId})
+		}
+
+		// Return number of restaurants before and after deletion for this user
+		const countBefore = arrayLength
+		const restaurantAfterDeletion = await Restaurant.findOne({ _id: restaurantId }).populate('experiences');
+		const countAfter = restaurantAfterDeletion['experiences'].length
+		return res.send(`Number of experiences for restaurantId: ${restaurantId} is [Before Deletion: ${countBefore}] and [After Deletion: ${countAfter}].`);
+	} catch (err) {
+		return next(err);
+	}
 }
 
 
