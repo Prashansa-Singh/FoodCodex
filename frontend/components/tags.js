@@ -18,7 +18,6 @@ const tagColours = {
 const inactiveColour = '#d7d6d4';
 
 export default function Tags({restaurant_data, page}) {
-    console.log(restaurant_data)
     const onTagsDefault = {
         personalOption: restaurant_data.personalOption,
         halalOption: restaurant_data.halalOption,
