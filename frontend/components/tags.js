@@ -18,6 +18,7 @@ const tagColours = {
 const inactiveColour = '#d7d6d4';
 
 export default function Tags({restaurant_data, page}) {
+    console.log(restaurant_data)
     const onTagsDefault = {
         personalOption: restaurant_data.personalOption,
         halalOption: restaurant_data.halalOption,
@@ -125,11 +126,13 @@ function getTag(tag, page, name, colour) {
     if (tag == true) {
         if (page === 'edit') {
             return <Tag name={name} colour={colour} displayX={true} />;
+        } else if (page === 'viewAll') {
+            return <Tag name={name} colour={colour} displayX={false} page={page} />;
         } else {
             return <Tag name={name} colour={colour} displayX={false} />;
         }  
     } else {
-        if (page === 'view') {
+        if (page === 'view' || page === 'viewAll') {
             return null;
         } else {
             return <Tag name={name} colour={inactiveColour} displayX={false} />;
