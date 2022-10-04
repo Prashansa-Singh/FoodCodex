@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import { useRef, useState } from 'react';
+import { resolve } from 'styled-jsx/css';
 import Layout, { siteTitle } from '../../components/layout';
 import Tags from '../../components/tags';
 import utilStyles from '../../styles/utils.module.css';
@@ -107,7 +108,7 @@ export default function ViewRestaurantCollection({data}) {
 
 		return show;
 	}
-
+	
 	return (
 		<Layout>
 			<Head>
@@ -141,19 +142,34 @@ export default function ViewRestaurantCollection({data}) {
 					</div>
 					<div className={styles.table_container}>
 						<table className={styles.table}>
-							<thead>
-								<tr>
+							<thead className={styles.thead}>
+								<tr className={styles.tr}>
 									<th className={styles.th}>Name</th>
 									<th className={styles.th}>Rating</th>
 									<th className={styles.th}>Price</th>
+									<th className={styles.th}>Label</th>
 								</tr>
 							</thead>
 							<tbody>
-								{data.map(({ _id, name, rating, priceRating }) => (
+								{data.map(({ _id, name, rating, priceRating, personalOption, halalOption, veganOption, vegetarianOption, pescatarianOption, nutsFreeOption, dairyFreeOption, glutenFreeOption, allergyFriendlyOption, diabetesFriendlyOption }) => (
 									<tr className={styles.tr} key={_id} style={{'display': updateTable(_id) ? '' : 'none'}}>
 										<Link href={{pathname: '/restaurant-collection/view-restaurant-record', query: {_id: _id}}}><td className={styles.td}>{name}</td></Link>
 										<Link href={{pathname: '/restaurant-collection/view-restaurant-record', query: {_id: _id}}}><td className={styles.td}>{rating}</td></Link>
 										<Link href={{pathname: '/restaurant-collection/view-restaurant-record', query: {_id: _id}}}><td className={styles.td}>{priceRating}</td></Link>
+										<Link href={{pathname: '/restaurant-collection/view-restaurant-record', query: {_id: _id}}}>
+											<td className={styles.td}><Tags restaurant_data={{
+												personalOption: personalOption,
+												halalOption: halalOption,
+												veganOption: veganOption,
+												vegetarianOption: vegetarianOption,
+												pescatarianOption: pescatarianOption,
+												nutsFreeOption: nutsFreeOption,
+												dairyFreeOption: dairyFreeOption,
+												glutenFreeOption: glutenFreeOption,
+												allergyFriendlyOption: allergyFriendlyOption,
+												diabetesFriendlyOption: diabetesFriendlyOption
+											}} page='viewAll' /></td>
+										</Link>
 									</tr>
 								))}
 							</tbody>
