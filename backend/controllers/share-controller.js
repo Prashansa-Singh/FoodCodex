@@ -3,17 +3,16 @@ const { Restaurant } = require('../models/restaurant');
 const { Link } = require('../models/link');
 
 
-const getAllSharedRestaurants = (req, res) => {
-
-}
-
-
-const generateShareLink = async (req, res, next) => {
+/**
+ * Generate a public link to share a restaurant
+ * Returns: linkId, a string
+ * cat ~/user/restaurant/share/public/{returned linkId}
+ */
+const generateRestaurantShareLink = async (req, res, next) => {
     try {
         const link = new Link(req.body)
         await link.save()
-        // make dynamic
-        return res.send(`/user/restaurant/share/public/${link._id}`)
+        return res.send(link._id)
     }
     catch (err) {
         return next(err)
@@ -21,7 +20,12 @@ const generateShareLink = async (req, res, next) => {
 }
 
 
-const getShareLink = async (req, res, next) => {
+/**
+ * View a shared restaurant via opening the link
+ * open ~/user/restaurant/share/public/linkId
+ * Returns: restaurantId, a newly created temporary restaurant record
+ */
+const viewSharedRestaurant = async (req, res, next) => {
     try {
         const link = await Link.findById(req.params.linkId)
         const record = await Restaurant.findById(link.restaurantId)
@@ -54,6 +58,7 @@ const getShareLink = async (req, res, next) => {
     }
 }
 
+
 const shareRestaurant = async (req, res, next) => {
 
 }
@@ -66,8 +71,8 @@ const shareAllRestaurants = async (req, res, next) => {
 module.exports = {
     getAllSharedRestaurants,
 
-    generateShareLink,
-    getShareLink,
+    generateRestaurantShareLink,
+    viewSharedRestaurant,
 
     shareRestaurant,
     shareAllRestaurants
