@@ -6,7 +6,7 @@ const { Link } = require('../models/link');
 /**
  * Generate a public link to share a restaurant
  * Returns: linkId, a string
- * cat ~/user/restaurant/share/public/{returned linkId}
+ * cat `~/user/restaurant/share/public/${linkId}`
  */
 const generateRestaurantShareLink = async (req, res, next) => {
     try {
@@ -35,7 +35,7 @@ const readSharedRestaurant = async (linkId) => {
     if (link['sharePriceRating'] === true) restaurant.priceRating = record.priceRating;
     if (link['shareCuisine'] === true) restaurant.cuisine = record.cuisine;
     if (link['shareAddress'] === true) restaurant.address = record.address;
-    if (link['shareOptions'] === true) {
+    if (link['shareOptionTags'] === true) {
         restaurant.halalOption = record.halalOption
         restaurant.veganOption = record.veganOption
         restaurant.vegetarianOption = record.vegetarianOption
@@ -46,19 +46,20 @@ const readSharedRestaurant = async (linkId) => {
         restaurant.allergyFriendlyOption = record.allergyFriendlyOption
         restaurant.diabetesFriendlyOption = record.diabetesFriendlyOption
     }
+
     return restaurant;
 }
 
 
 /**
  * View a shared restaurant via opening the link
- * open ~/user/restaurant/share/public/linkId
- * Returns: a restaurant object with specified shared fields shown
+ * open `~/user/restaurant/share/public/${linkId}`
+ * Returns: a JSON restaurant object with specified shared fields
  */
 const viewSharedRestaurant = async (req, res, next) => {
     try {
-        const restaurant = readSharedRestaurant(req.params.linkId)
-        res.send(restaurant)
+        const restaurant = await readSharedRestaurant(req.params.linkId)
+        res.send(JSON.stringify(restaurant))
     }
     catch (err) {
         return next (err)
@@ -66,21 +67,7 @@ const viewSharedRestaurant = async (req, res, next) => {
 }
 
 
-const shareRestaurant = async (req, res, next) => {
-
-}
-
-const shareAllRestaurants = async (req, res, next) => {
-
-}
-
-
 module.exports = {
-    getAllSharedRestaurants,
-
     generateRestaurantShareLink,
     viewSharedRestaurant,
-
-    shareRestaurant,
-    shareAllRestaurants
 }
