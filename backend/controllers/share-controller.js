@@ -1,4 +1,3 @@
-const { User } = require('../models/user');
 const { Restaurant } = require('../models/restaurant');
 const { Link } = require('../models/link');
 
@@ -30,7 +29,7 @@ const readSharedRestaurant = async (linkId) => {
     const record = await Restaurant.findById(link.restaurantId)
 
     let restaurant = {}
-    if (link['shareName'] === true) restaurant.name = record.name;
+    restaurant.name = record.name;
     if (link['shareRating'] === true) restaurant.rating = record.rating;
     if (link['sharePriceRating'] === true) restaurant.priceRating = record.priceRating;
     if (link['shareCuisine'] === true) restaurant.cuisine = record.cuisine;
@@ -59,7 +58,7 @@ const readSharedRestaurant = async (linkId) => {
 const viewSharedRestaurant = async (req, res, next) => {
     try {
         const restaurant = await readSharedRestaurant(req.params.linkId)
-        res.send(JSON.stringify(restaurant))
+        return res.send(JSON.stringify(restaurant))
     }
     catch (err) {
         return next (err)
