@@ -59,7 +59,7 @@ export default function Nav() {
             icon: '/src/nav-icons/about-us-icon.svg',
         },
         {
-            href: '/',
+            href: '/logout',
             title: <div onClick={(e) => {
                 e.preventDefault()
                 router.push('/logout')
