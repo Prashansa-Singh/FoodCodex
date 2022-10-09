@@ -16,8 +16,8 @@ export default function About() {
 				<h1 classname = {utilStyles.homepageText}>
 					About Us
 				</h1>
-				<Box>
-					<Paper elevation={10}>
+				<Box align='center'>
+					<Paper elevation={10} className={utilStyles.aboutPaper}>
 						<h5>
 							Programming Quokkas are a group of passionate rockstar developers dedicated to bring the best restaurant recording experience for you
 						

@@ -3,6 +3,7 @@ import Image from 'next/image';
 import styles from './css/layout.module.css';
 import utilStyles from '../styles/utils.module.css';
 import Header from './header';
+import Footer from './footer';
 import Nav from './navigation';
 
 export const siteTitle = 'FoodCodex';
@@ -26,7 +27,9 @@ export default function Layout({ children, home }) {
                 ) : (
                     <>
                         <Header />
+                        <Footer/>
                     </>
+    
                 )}
             </header>
             <main className={styles.main}>{children}</main>
