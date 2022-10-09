@@ -60,7 +60,10 @@ export default function Nav() {
         },
         {
             href: '/',
-            title: <div onClick={() => router.push('/api/auth/signout')}>Logout</div>,
+            title: <div onClick={(e) => {
+                e.preventDefault()
+                router.push('/logout')
+            }}>Logout</div>,
             icon: '/src/nav-icons/logout-icon.svg',
         }
     ];

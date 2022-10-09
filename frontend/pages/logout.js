@@ -33,11 +33,11 @@ export default function Logout() {
                         <h1>Would you like to logout?</h1>
 
                         <Box>
-                            <Button type="submit" className={Styles.loginButton} variant="contained" onClick={() => signOut({ callbackUrl: '/' })}>Yes logout</Button>
+                            <Button className={Styles.loginButton} variant="contained" onClick={() => { signOut({ redirect: true, callbackUrl: '/' }) }}>Yes logout</Button>
                         </Box>
 
                         <Box>
-                            <Button type="submit" variant="contained" onClick={() => router.push('/')}>Cancel</Button>
+                            <Button variant="contained" onClick={() => { router.push('/restaurant-collection/view-restaurant-collection') }}>Cancel</Button>
                         </Box>
 
                     </Paper>
