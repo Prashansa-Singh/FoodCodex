@@ -80,6 +80,6 @@ export default NextAuth({
 	},
 	pages: {
 		signIn: '/login',
-		signOut: '/signout',
+		signOut: '/logout',
 	}
 });

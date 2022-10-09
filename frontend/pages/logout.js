@@ -2,18 +2,21 @@ import Head from 'next/head';
 import Layout, { siteTitle } from '../components/layout';
 import utilStyles from '../styles/utils.module.css';
 import Styles from '../components/css/login-signup.module.css';
-import LoginButton from '../components/loginbutton';
 
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
-import { signIn, signOut, useSession } from "next-auth/react"
+import { signOut, useSession } from "next-auth/react"
 
 // Login Page Style
 import React from 'react';
 import { Typography, Button, Grid, Paper, TextField, Stack, Box } from '@mui/material';
 
 
-export default function Login({ props }) {
+export default function Logout() {
+    // const { data: session, status } = useSession({
+    //     required: true,
+    // });
+
     const router = useRouter();
 
     const title = `${siteTitle} - Logout`;
@@ -34,12 +37,11 @@ export default function Login({ props }) {
                         </Box>
 
                         <Box>
-                            <Button type="submit" className={Styles.loginButton} variant="contained" nClick={() => router.push('/')}>Cancel</Button>
+                            <Button type="submit" variant="contained" onClick={() => router.push('/')}>Cancel</Button>
                         </Box>
 
                     </Paper>
                 </Grid>
-                <LoginButton />
             </section>
         </Layout >
     );
