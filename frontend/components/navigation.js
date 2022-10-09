@@ -59,8 +59,11 @@ export default function Nav() {
             icon: '/src/nav-icons/about-us-icon.svg',
         },
         {
-            href: '/',
-            title: <div onClick={() => signOut({ callbackUrl: '/' })}>Logout</div>,
+            href: '/logout',
+            title: <div onClick={(e) => {
+                e.preventDefault()
+                router.push('/logout')
+            }}>Logout</div>,
             icon: '/src/nav-icons/logout-icon.svg',
         }
     ];
