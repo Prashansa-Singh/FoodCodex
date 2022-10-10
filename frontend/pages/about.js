@@ -2,6 +2,7 @@ import { Grid, Paper, Box, Card } from '@mui/material';
 import Head from 'next/head';
 import Layout, { siteTitle } from '../components/layout';
 import utilStyles from '../styles/utils.module.css';
+import abtStyles from '../components/css/about.module.css';
 
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 
@@ -13,11 +14,11 @@ export default function About() {
 				<title>{title}</title>
 			</Head>
 			<section className={utilStyles.headingMd}>
-				<h1 classname = {utilStyles.homepageText}>
+				<h1>
 					About Us
 				</h1>
 				<Box align='center'>
-					<Paper elevation={10} className={utilStyles.aboutPaper}>
+					<Paper elevation={10} className={abtStyles.aboutPaper}>
 						<h5>
 							Programming Quokkas are a group of passionate rockstar developers dedicated to bring the best restaurant recording experience for you
 						
@@ -26,7 +27,7 @@ export default function About() {
 					</Paper>
 				</Box>
 
-				<h1 classname = {utilStyles.homepageText}>
+				<h1 >
 					Meet Our Developers 
 				</h1>
 
