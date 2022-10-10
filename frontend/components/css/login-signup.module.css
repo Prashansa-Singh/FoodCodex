@@ -1,30 +1,4 @@
 
-@media screen and (max-width: 450px) {
-    .loginButton {
-        /* Auto layout */
-        /* padding: 6px 6px 6px 8px; */
-        margin: 20px 0; 
-        background: linear-gradient(180deg, #FFCC4D 0%, #FF6726 100%);
-        /* 08 dp */
-    
-        box-shadow: 0px 8px 10px rgba(0, 0, 0, 0.14), 0px 3px 14px rgba(0, 0, 0, 0.12), 0px 5px 5px rgba(0, 0, 0, 0.2);
-        border-radius: 4px;
-    
-    }
-    
-    .paperStyle{
-        padding :20px;
-        height: 70vh;
-        width:280px;
-        margin:20px;
-        margin: 'auto';
-    }
-
-}
-
-@media screen and (min-wdith:451px){
-    
-}
 
 .loginButton {
 	/* Auto layout */
@@ -41,9 +15,34 @@
 }
 
 .paperStyle{
-	padding: 20px;
-	height: 60vh;
-	width: 280px;
-	margin: 20px;
-	margin: 'auto';
+    display: flex;
+    flex-direction: column;
+    height: 75vh;
+    width: 25vw;
+    overflow: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+@media screen and (max-width: 450px) {
+    .loginButton {
+        /* Auto layout */
+        /* padding: 6px 6px 6px 8px; */
+        margin: 20px 0; 
+        background: linear-gradient(180deg, #FFCC4D 0%, #FF6726 100%);
+        /* 08 dp */
+    
+        box-shadow: 0px 8px 10px rgba(0, 0, 0, 0.14), 0px 3px 14px rgba(0, 0, 0, 0.12), 0px 5px 5px rgba(0, 0, 0, 0.2);
+        border-radius: 4px;
+    
+    }
+    
+    .paperStyle{
+        padding: 20px;
+        height: 80vh;
+        width: 80vw;
+        margin: 20px;
+        margin: 'auto';
+    }
+
 }
