@@ -17,12 +17,11 @@ export default function Signup() {
 		event.preventDefault();
 		const userName = event.target.userName.value;
 		const password = event.target.password.value;
-		const displayName = event.target.displayName.value;
 
 		const body = {
 			userName: userName,
 			password: password,
-			displayName: displayName,
+			displayName: userName,
 		};
 
 		const url = '/account/signup';
@@ -53,9 +52,9 @@ export default function Signup() {
 						<Paper elevation={10} className={Styles.paperStyle}>
 							<h1>Sign Up</h1>
 
-							<TextField  label="E-mail" variant="outlined" placeholder='e.g. john@gmail.com' required margin="dense"/>
-							<TextField  label="Password" variant="outlined" placeholder='At least 8 symbols' type='password' required margin="dense"/>
-							<TextField id="outlined-basic" label="Confirm Password" variant="outlined" placeholder='At least 8 symbols' type='password' required margin="dense"/>
+							<TextField name='userName' label="Username" variant="outlined" placeholder='e.g. johnsmith1' required margin="dense"/>
+							<TextField name='password' label="Password" variant="outlined" placeholder='At least 8 symbols' type='password' required margin="dense"/>
+							<TextField name='confirmPassword' id="outlined-basic" label="Confirm Password" variant="outlined" placeholder='At least 8 symbols' type='password' required margin="dense"/>
 
 							<Box>
 								<Button type="submit" className={Styles.loginButton} variant="contained">SIGN UP</Button>
