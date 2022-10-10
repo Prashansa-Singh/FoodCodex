@@ -48,7 +48,6 @@ export default function About() {
 					
 					</Paper>
 				</Box>
-
 				<h1 >
 					Meet Our Developers 
 				</h1>
@@ -60,7 +59,6 @@ export default function About() {
 					<AccountCircleOutlinedIcon  sx={{ fontSize: 80 }}/>
 					<AccountCircleOutlinedIcon  sx={{ fontSize: 80 }}/>
 				</Box>
-				
 			</section>
 		</Layout>
 	);
