@@ -1,7 +1,7 @@
 import styles from './css/header.module.css';
+import Link from "next/link";
 
-
-const NavLink = [
+const navLink = [
     {
         href: '/',
         title: 'Home',
@@ -9,12 +9,37 @@ const NavLink = [
     }
 ]
 
-export default function Header() {
+export default function Header({about}) {
 
     return (
 
-        <div className={styles.headers}>
-            <img alt='FoodCodex Logo' src='/src/foodcodex-logo.png' className={styles.logo} />
-        </div>
+        <>
+
+        <header>
+            {about? (
+                <>
+                    {navLink.map(({ href, title, icon }) => (
+                        <Link href={href}>
+                            <a>
+                                <div className={styles.icons}>
+                                    {title}
+                                    <img src={icon} />
+                                  
+                                </div>
+                            </a>
+                        </Link>
+                    ))}
+                </>
+
+            ) : (
+                <div className={styles.headers}>
+                    <img alt='FoodCodex Logo' src='/src/foodcodex-logo.png' className={styles.logo} />
+                </div>     
+            )}
+        </header>
+        </>
+        
+        
+    
     );
 }

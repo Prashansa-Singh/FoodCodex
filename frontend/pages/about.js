@@ -5,6 +5,7 @@ import utilStyles from '../styles/utils.module.css';
 import abtStyles from '../components/css/about.module.css';
 
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
+import Header from '../components/header';
 
 export default function About() {
 	const title = `${siteTitle} - About`;

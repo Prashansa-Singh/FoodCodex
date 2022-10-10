@@ -21,13 +21,14 @@ export default function Layout({ children, home }) {
             </Head>
             <header className={styles.header}>
                 {home ? (
-                    <>
+                    <>  
+                        {/* <Header/> */}
                         <img alt='FoodCodex Logo' src='/src/foodcodex-logo.png' className={styles.homelogo} />
                     </>
                 ) : (
                     <>
                         <Header />
-                        <Footer/>
+                        {/* <Footer/>  */}
                     </>
     
                 )}
