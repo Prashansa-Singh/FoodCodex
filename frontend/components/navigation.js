@@ -17,10 +17,13 @@ export default function Nav() {
 
     const openHamburger = () => {
         const elem = document.getElementsByClassName(styles.navlist)[0];
+        const logo = document.getElementById("logo");
         if (hamburgerOpen) {
             elem.style.display = "none";
+            logo.style.display = "none";
         } else {
             elem.style.display = "flex";
+            logo.style.display = "flex";
         }
     }
 
@@ -56,8 +59,11 @@ export default function Nav() {
             icon: '/src/nav-icons/about-us-icon.svg',
         },
         {
-            href: '/',
-            title: <div onClick={() => signOut({ callbackUrl: '/' })}>Logout</div>,
+            href: '/logout',
+            title: <div onClick={(e) => {
+                e.preventDefault()
+                router.push('/logout')
+            }}>Logout</div>,
             icon: '/src/nav-icons/logout-icon.svg',
         }
     ];
@@ -82,7 +88,8 @@ export default function Nav() {
 
     return (
         <nav className={styles.nav}>
-            <div className='navigation'>
+            <div>
+                <img alt='FoodCodex Logo' src='/src/foodcodex-logo.png' className={styles.logo} id='logo' />
                 <ul className={styles.navlist}>
                     {navItems.map(({ href, title, icon }) => (
                         <li className={` ${styles.unselected} ${router.asPath === href && styles.selected}`} key={title}>

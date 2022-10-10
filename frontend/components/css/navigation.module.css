@@ -1,6 +1,10 @@
 .nav {
     box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.2);
     background-color: #E7E0EC;
+    position: fixed;
+    left: 0;
+    height: 100%;
+    width: 18vw;
 }
 
 .navlist {
@@ -49,6 +53,10 @@
     justify-content: space-between;
 }
 
+.logo {
+    max-width: 100%;
+}
+
 @media screen and (max-width: 450px) {
     .nav {
         box-shadow: 0 -4px 5px 0 rgba(0, 0, 0, 0.2);
@@ -56,8 +64,13 @@
         position: fixed;
         width: 100%;
         bottom: 0;
+        height: auto;
     }
 
+    .logo {
+        display: none;
+    }
+    
     .navlist {
         display: none;
     }

@@ -23,6 +23,12 @@
 .headingMd {
 	font-size: 1.2rem;
 	line-height: 1.5;
+	text-align: left;
+}
+
+.headingMdCenter {
+	font-size: 1.2rem;
+	line-height: 1.5;
 	text-align: center;
 }
 
@@ -74,7 +80,6 @@
 	top: 407px;
 }
 
-
-
-/* p, h1h2h3h4h5h6, section, primary_btn, secondary_btn, a */
-
+.image {
+	max-height: 20vw;
+}

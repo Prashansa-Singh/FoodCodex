@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import { useRef, useState } from 'react';
+import { resolve } from 'styled-jsx/css';
 import Layout, { siteTitle } from '../../components/layout';
 import Tags from '../../components/tags';
 import utilStyles from '../../styles/utils.module.css';
@@ -63,12 +64,32 @@ export default function ViewRestaurantCollection({data}) {
 			...updateAllergyFriendly,
 			...updateDiabetesFriendly,
 		}));
+		filterIconChange();
+	}
+
+	const filterIconChange = () => {
+		const icon = document.getElementById('filterIcon');
+		if (Object.values(filter).includes(true)) {
+			icon.src = '/src/nav-icons/filter-icon.svg';
+		} else {
+			icon.src = '/src/nav-icons/filter-applied-icon.svg';
+		}
 	}
 
 	const clearFilter = () => {
 		setFilter({...filterTags});
 		console.log(filterTags);
 		window.location.reload(); 
+	}
+
+	const openPopUp = () => {
+		const elem = document.getElementById('filter');
+		elem.style.display = 'flex';
+	}
+
+	const closePopUp = () => {
+		const elem = document.getElementById('filter');
+		elem.style.display = 'none';
 	}
 
 	const updateTable = ( _id) => {
@@ -87,7 +108,7 @@ export default function ViewRestaurantCollection({data}) {
 
 		return show;
 	}
-
+	
 	return (
 		<Layout>
 			<Head>
@@ -107,11 +128,9 @@ export default function ViewRestaurantCollection({data}) {
 						placeholder="Search..." 
 					/>
 					<div className={styles.filter}>
-						<div className={styles.filter_icon_heading}>
-							<img className={styles.icon} src='/src/nav-icons/filter-icon.svg' alt='Filter Icon' />
-							<h4>Filter</h4>
-						</div>
-						<div className={styles.filter_options}>
+						<img className={styles.icon} src='/src/nav-icons/filter-icon.svg' alt='Filter Icon' onClick={openPopUp} id='filterIcon' />
+						<div className={styles.filter_options} id='filter'>
+							<p className={styles.close} onClick={closePopUp}>&#10006;</p>
 							<form onSubmit={submitFilter}>
 								<Tags restaurant_data={filterTags} page='edit' />
 								<div className={styles.button_container}>
@@ -123,19 +142,34 @@ export default function ViewRestaurantCollection({data}) {
 					</div>
 					<div className={styles.table_container}>
 						<table className={styles.table}>
-							<thead>
-								<tr>
+							<thead className={styles.thead}>
+								<tr className={styles.tr}>
 									<th className={styles.th}>Name</th>
 									<th className={styles.th}>Rating</th>
 									<th className={styles.th}>Price</th>
+									<th className={styles.th}>Label</th>
 								</tr>
 							</thead>
 							<tbody>
-								{data.map(({ _id, name, rating, priceRating }) => (
+								{data.map(({ _id, name, rating, priceRating, personalOption, halalOption, veganOption, vegetarianOption, pescatarianOption, nutsFreeOption, dairyFreeOption, glutenFreeOption, allergyFriendlyOption, diabetesFriendlyOption }) => (
 									<tr className={styles.tr} key={_id} style={{'display': updateTable(_id) ? '' : 'none'}}>
 										<Link href={{pathname: '/restaurant-collection/view-restaurant-record', query: {_id: _id}}}><td className={styles.td}>{name}</td></Link>
 										<Link href={{pathname: '/restaurant-collection/view-restaurant-record', query: {_id: _id}}}><td className={styles.td}>{rating}</td></Link>
 										<Link href={{pathname: '/restaurant-collection/view-restaurant-record', query: {_id: _id}}}><td className={styles.td}>{priceRating}</td></Link>
+										<Link href={{pathname: '/restaurant-collection/view-restaurant-record', query: {_id: _id}}}>
+											<td className={styles.td}><Tags restaurant_data={{
+												personalOption: personalOption,
+												halalOption: halalOption,
+												veganOption: veganOption,
+												vegetarianOption: vegetarianOption,
+												pescatarianOption: pescatarianOption,
+												nutsFreeOption: nutsFreeOption,
+												dairyFreeOption: dairyFreeOption,
+												glutenFreeOption: glutenFreeOption,
+												allergyFriendlyOption: allergyFriendlyOption,
+												diabetesFriendlyOption: diabetesFriendlyOption
+											}} page='viewAll' /></td>
+										</Link>
 									</tr>
 								))}
 							</tbody>

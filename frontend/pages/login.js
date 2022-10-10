@@ -13,7 +13,7 @@ import React from 'react';
 import { Typography, Button, Grid, Paper, TextField, Stack, Box } from '@mui/material';
 
 
-export default function Login({ props }) {
+export default function Login() {
 	const router = useRouter();
 	const { data: session } = useSession()
 
@@ -70,7 +70,7 @@ export default function Login({ props }) {
 				<title>{title}</title>
 			</Head>
 
-			<section className={utilStyles.headingMd}>
+			<section className={utilStyles.headingMdCenter}>
 				<form onSubmit={submitUser}>
 					<Grid align='center'>
 
@@ -85,12 +85,12 @@ export default function Login({ props }) {
 								<Button type="submit" className={Styles.loginButton} variant="contained">LOGIN</Button>
 							</Box>
 
-							<Button variant="contained" href="/signup">New here?</Button>
-
+							<Box>
+								<Button variant="contained" href="/signup">New here?</Button>
+							</Box>
 						</Paper>
 					</Grid>
 				</form>
-				<LoginButton />
 			</section>
 		</Layout>
 	);

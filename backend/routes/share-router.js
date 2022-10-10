@@ -1,11 +1,14 @@
 const express = require('express')
+const cors = require('cors')
 
 const shareRouter = express.Router()
 const shareController = require('../controllers/share-controller')
 
-shareRouter.get('/view-all', shareController.getAllSharedRestaurants)
-shareRouter.post('/send-one', shareController.shareRestaurant)
-shareRouter.post('/send-all', shareController.shareAllRestaurants)
+shareRouter.use(cors())
+shareRouter.options('/generate-link', cors())
+
+shareRouter.post('/generate-link', cors(), shareController.generateRestaurantShareLink)
+shareRouter.get('/public/:linkId', shareController.viewSharedRestaurant)
 
 
 module.exports = shareRouter;
