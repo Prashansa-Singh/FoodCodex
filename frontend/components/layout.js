@@ -1,8 +1,5 @@
 import Head from 'next/head';
 import styles from './css/layout.module.css';
-import utilStyles from '../styles/utils.module.css';
-import Header from './header';
-import Footer from './footer';
 import Nav from './navigation';
 import Image from 'next/image';
 
@@ -21,17 +18,10 @@ export default function Layout({ children, home }) {
             </Head>
             <header className={styles.header}>
                 {home ? (
-                    <>  
-                        {/* <Header/> */}
+                    <>
                         <img alt='FoodCodex Logo' src='/src/foodcodex-logo.png' className={styles.homelogo} />
                     </>
-                ) : (
-                    <>
-                        <Header />
-                        {/* <Footer/>  */}
-                    </>
-    
-                )}
+                ) : (<></>)}
             </header>
             {!home && (
                 <Nav className={styles.nav} />

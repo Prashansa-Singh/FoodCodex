@@ -7,6 +7,7 @@ import abtStyles from '../components/css/about.module.css';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import Link from "next/link";
 import styles from '../components/css/header.module.css';
+import Footer from '../components/footer';
 
 
 const navLink = [
@@ -60,6 +61,7 @@ export default function About() {
 					<AccountCircleOutlinedIcon  sx={{ fontSize: 80 }}/>
 				</Box>
 			</section>
+			<Footer></Footer>
 		</Layout>
 	);
 }
