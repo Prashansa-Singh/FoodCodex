@@ -5,7 +5,18 @@ import utilStyles from '../styles/utils.module.css';
 import abtStyles from '../components/css/about.module.css';
 
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
-import Header from '../components/header';
+import Link from "next/link";
+import styles from '../components/css/header.module.css';
+
+
+const navLink = [
+    {
+        href: '/',
+        // title: 'Home',
+        icon: '/src/nav-icons/home-icon.svg',
+    }
+]
+
 
 export default function About() {
 	const title = `${siteTitle} - About`;
@@ -14,7 +25,18 @@ export default function About() {
 			<Head>
 				<title>{title}</title>
 			</Head>
+	
 			<section className={utilStyles.headingMd}>
+				{navLink.map(({ href, title, icon }) => (
+					<Link href={href}>
+						<a>
+							<div className={styles.icons}>
+								{/* {title} */}
+								<img src={icon} />
+							</div>
+						</a>
+					</Link>
+				))}
 				<h1>
 					About Us
 				</h1>
