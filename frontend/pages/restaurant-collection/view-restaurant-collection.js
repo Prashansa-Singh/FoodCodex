@@ -6,51 +6,65 @@ import Layout, { siteTitle } from '../../components/layout';
 import Tags from '../../components/tags';
 import utilStyles from '../../styles/utils.module.css';
 import styles from '../../styles/view-restaurant-collection.module.css';
+import { useSession, getSession } from "next-auth/react"
 
-import {axiosInstance} from '../api/axiosConfig';
+import { axiosInstance } from '../api/axiosConfig';
 
-export async function getServerSideProps() {
+export async function getServerSideProps(context) {
+	const session = await getSession(context);
 
-	const user = '6310521c744ac9f1587375fa';
+	if (!session) {
+		return {
+			redirect: {
+				destination: '/login',
+				permanent: false,
+			},
+		}
+	}
+
+	// const user = '6310521c744ac9f1587375fa';
+	// console.log(session)
+	const user = await session.user._id
+
 	const url = '/user/restaurant/view-all'; // URL for the GET request to backend
-	const response = await axiosInstance.get(url, {data: {userId: user,}});
+	const response = await axiosInstance.get(url, { data: { userId: user, } });
 	const data = response.data;
 
 	return {
-		props: {data,},
+		props: { data, },
 	};
 }
 
 const filterTags = {
 	personalOption: false,
-    halalOption: false,
-    veganOption: false,
-    vegetarianOption: false,
-    pescatarianOption: false,
-    nutsFreeOption: false,
-    dairyFreeOption: false,
-    glutenFreeOption: false,
-    allergyFriendlyOption: false,
-    diabetesFriendlyOption: false
+	halalOption: false,
+	veganOption: false,
+	vegetarianOption: false,
+	pescatarianOption: false,
+	nutsFreeOption: false,
+	dairyFreeOption: false,
+	glutenFreeOption: false,
+	allergyFriendlyOption: false,
+	diabetesFriendlyOption: false
 }
 
-export default function ViewRestaurantCollection({data}) {
+export default function ViewRestaurantCollection({ data }) {
 	const title = `${siteTitle} - Restaurant Collection`;
 
 	const [filter, setFilter] = useState(filterTags);
 
 	const submitFilter = (event) => {
 		event.preventDefault();
-		let updatePersonal = {personalOption:event.target.personalOption.value === 'true'}; 
-		let updateHalal = {halalOption:event.target.halalOption.value === 'true'}; 
-		let updateVegan = {veganOption:event.target.veganOption.value === 'true'}; 
-		let updateVegetarian = {vegetarianOption:event.target.vegetarianOption.value === 'true'}; 
-		let updatePescatarian = {pescatarianOption:event.target.pescatarianOption.value === 'true'}; 
-		let updateNutsFree = {nutsFreeOption:event.target.nutsFreeOption.value === 'true'}; 
-		let updateDairyFree = {dairyFreeOption:event.target.dairyFreeOption.value === 'true'}; 
-		let updateGlutenFree = {glutenFreeOption:event.target.glutenFreeOption.value === 'true'}; 
-		let updateAllergyFriendly = {allergyFriendlyOption:event.target.allergyFriendlyOption.value === 'true'}; 
-		let updateDiabetesFriendly = {diabetesFriendlyOption:event.target.diabetesFriendlyOption.value === 'true'}; 
+		let updatePersonal = { personalOption: event.target.personalOption.value === 'true' };
+		let updateHalal = { halalOption: event.target.halalOption.value === 'true' };
+		let updateVegan = { veganOption: event.target.veganOption.value === 'true' };
+		let updateVegetarian = { vegetarianOption: event.target.vegetarianOption.value === 'true' };
+		let updatePescatarian = { pescatarianOption: event.target.pescatarianOption.value === 'true' };
+		let updateNutsFree = { nutsFreeOption: event.target.nutsFreeOption.value === 'true' };
+		let updateDairyFree = { dairyFreeOption: event.target.dairyFreeOption.value === 'true' };
+		let updateGlutenFree = { glutenFreeOption: event.target.glutenFreeOption.value === 'true' };
+		let updateAllergyFriendly = { allergyFriendlyOption: event.target.allergyFriendlyOption.value === 'true' };
+		let updateDiabetesFriendly = { diabetesFriendlyOption: event.target.diabetesFriendlyOption.value === 'true' };
 		setFilter(filter => ({
 			...filter,
 			...updatePersonal,
@@ -77,9 +91,9 @@ export default function ViewRestaurantCollection({data}) {
 	}
 
 	const clearFilter = () => {
-		setFilter({...filterTags});
+		setFilter({ ...filterTags });
 		console.log(filterTags);
-		window.location.reload(); 
+		window.location.reload();
 	}
 
 	const openPopUp = () => {
@@ -92,7 +106,7 @@ export default function ViewRestaurantCollection({data}) {
 		elem.style.display = 'none';
 	}
 
-	const updateTable = ( _id) => {
+	const updateTable = (_id) => {
 		let dataRow;
 		for (let i = 0; i < data.length; i++) {
 			if (data[i]._id === _id) {
@@ -100,7 +114,7 @@ export default function ViewRestaurantCollection({data}) {
 			}
 		}
 		let show = true;
-		Object.keys(filter).forEach(function(option) {
+		Object.keys(filter).forEach(function (option) {
 			if (filter[option]) {
 				show = show && dataRow[option];
 			}
@@ -108,7 +122,7 @@ export default function ViewRestaurantCollection({data}) {
 
 		return show;
 	}
-	
+
 	return (
 		<Layout>
 			<Head>
@@ -120,12 +134,12 @@ export default function ViewRestaurantCollection({data}) {
 				</h1>
 
 				<div className={styles.collection_container}>
-					<input 
+					<input
 						className={styles.searchbar}
 						id='searchbar'
-						type="search" 
+						type="search"
 						name="search"
-						placeholder="Search..." 
+						placeholder="Search..."
 					/>
 					<div className={styles.filter}>
 						<img className={styles.icon} src='/src/nav-icons/filter-icon.svg' alt='Filter Icon' onClick={openPopUp} id='filterIcon' />
@@ -152,11 +166,11 @@ export default function ViewRestaurantCollection({data}) {
 							</thead>
 							<tbody>
 								{data.map(({ _id, name, rating, priceRating, personalOption, halalOption, veganOption, vegetarianOption, pescatarianOption, nutsFreeOption, dairyFreeOption, glutenFreeOption, allergyFriendlyOption, diabetesFriendlyOption }) => (
-									<tr className={styles.tr} key={_id} style={{'display': updateTable(_id) ? '' : 'none'}}>
-										<Link href={{pathname: '/restaurant-collection/view-restaurant-record', query: {_id: _id}}}><td className={styles.td}>{name}</td></Link>
-										<Link href={{pathname: '/restaurant-collection/view-restaurant-record', query: {_id: _id}}}><td className={styles.td}>{rating}</td></Link>
-										<Link href={{pathname: '/restaurant-collection/view-restaurant-record', query: {_id: _id}}}><td className={styles.td}>{priceRating}</td></Link>
-										<Link href={{pathname: '/restaurant-collection/view-restaurant-record', query: {_id: _id}}}>
+									<tr className={styles.tr} key={_id} style={{ 'display': updateTable(_id) ? '' : 'none' }}>
+										<Link href={{ pathname: '/restaurant-collection/view-restaurant-record', query: { _id: _id } }}><td className={styles.td}>{name}</td></Link>
+										<Link href={{ pathname: '/restaurant-collection/view-restaurant-record', query: { _id: _id } }}><td className={styles.td}>{rating}</td></Link>
+										<Link href={{ pathname: '/restaurant-collection/view-restaurant-record', query: { _id: _id } }}><td className={styles.td}>{priceRating}</td></Link>
+										<Link href={{ pathname: '/restaurant-collection/view-restaurant-record', query: { _id: _id } }}>
 											<td className={styles.td}><Tags restaurant_data={{
 												personalOption: personalOption,
 												halalOption: halalOption,
