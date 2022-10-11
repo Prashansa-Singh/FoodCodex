@@ -24,7 +24,7 @@ export async function getServerSideProps(context) {
 
 	// const user = '6310521c744ac9f1587375fa';
 	// console.log(session)
-	const user = await session.user._id
+	const user = await session.user._id;
 
 	const url = '/user/restaurant/view-all'; // URL for the GET request to backend
 	const response = await axiosInstance.get(url, { data: { userId: user, } });
