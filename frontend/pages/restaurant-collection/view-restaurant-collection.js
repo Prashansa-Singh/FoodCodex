@@ -6,7 +6,7 @@ import Layout, { siteTitle } from '../../components/layout';
 import Tags from '../../components/tags';
 import utilStyles from '../../styles/utils.module.css';
 import styles from '../../styles/view-restaurant-collection.module.css';
-import { useSession, getSession } from "next-auth/react"
+import { getSession } from "next-auth/react"
 
 import { axiosInstance } from '../api/axiosConfig';
 

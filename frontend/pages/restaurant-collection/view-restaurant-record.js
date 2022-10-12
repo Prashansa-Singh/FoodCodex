@@ -14,7 +14,7 @@ import { Rating } from "@mui/material";
 import PaidIcon from '@mui/icons-material/Paid';
 import PaidOutlinedIcon from '@mui/icons-material/PaidOutlined';
 
-import { useSession, getSession } from "next-auth/react"
+import { getSession } from "next-auth/react"
 
 export async function getServerSideProps(context) {
 	const session = await getSession(context);
