@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import Layout, { siteTitle } from '../../components/layout';
 import utilStyles from '../../styles/utils.module.css';
-import {axiosInstance} from '../api/axiosConfig';
+import { axiosInstance } from '../api/axiosConfig';
 import { useRouter } from 'next/router';
 import Tags from '../../components/tags';
 
@@ -10,9 +10,24 @@ import * as React from 'react';
 import PaidIcon from '@mui/icons-material/Paid';
 import PaidOutlinedIcon from '@mui/icons-material/PaidOutlined';
 
-export async function getServerSideProps({query}) {
+import { getSession } from "next-auth/react"
 
-	const {_id, rest_id} = query;
+export async function getServerSideProps(context) {
+	const session = await getSession(context);
+
+	if (!session) {
+		return {
+			redirect: {
+				destination: '/login',
+				permanent: false,
+			},
+		}
+	}
+
+	// const { _id, rest_id } = query;
+	const _id = await session.user._id;
+	const { rest_id } = context.query;
+
 	let restaurant_data;
 	let new_data;
 	let userId = _id;
@@ -20,20 +35,20 @@ export async function getServerSideProps({query}) {
 	if (rest_id == undefined) {
 		restaurant_data = {}
 		new_data = true;
-		userId = '6310521c744ac9f1587375fa';
+		// userId = '6310521c744ac9f1587375fa';
 	} else {
-		const url =  '/user/restaurant/view-one'
-		const response = await axiosInstance.get(url, {data: {userId: userId, restaurantId: rest_id,}});
-        restaurant_data = response.data;
+		const url = '/user/restaurant/view-one'
+		const response = await axiosInstance.get(url, { data: { userId: userId, restaurantId: rest_id, } });
+		restaurant_data = response.data;
 		new_data = false;
 	}
 
 	return {
-		props: {userId, restaurant_data, new_data,},
+		props: { userId, restaurant_data, new_data, },
 	};
 }
 
-export default function EditRestaurantRecord({userId, restaurant_data, new_data}) {
+export default function EditRestaurantRecord({ userId, restaurant_data, new_data }) {
 	const title = `${siteTitle} - Edit Restaurant`;
 
 	const router = useRouter();
@@ -74,27 +89,27 @@ export default function EditRestaurantRecord({userId, restaurant_data, new_data}
 
 		const url = 'user/restaurant/update-one';
 		const urlCreate = 'user/restaurant/create-one';
-		
-		if (new_data){
+
+		if (new_data) {
 			console.log('hello');
 			await axiosInstance.post(urlCreate, body)
-			.then(function (response) {
-				console.log(response.data);
-				router.push('/restaurant-collection/view-restaurant-collection');
-			})
-			.catch(function (error) {
-				console.log(error);
-			});
-		}else{
+				.then(function (response) {
+					console.log(response.data);
+					router.push('/restaurant-collection/view-restaurant-collection');
+				})
+				.catch(function (error) {
+					console.log(error);
+				});
+		} else {
 			await axiosInstance.post(url, body)
-			.then(function (response) {
-				console.log(response.data);
-				router.push('/restaurant-collection/view-restaurant-collection');
-			})
-			.catch(function (error) {
-				console.log(error);
-			});
-		}	
+				.then(function (response) {
+					console.log(response.data);
+					router.push('/restaurant-collection/view-restaurant-collection');
+				})
+				.catch(function (error) {
+					console.log(error);
+				});
+		}
 
 	}
 
@@ -117,31 +132,31 @@ export default function EditRestaurantRecord({userId, restaurant_data, new_data}
 							<form onSubmit={submitEdit}>
 								<input type='submit' value='Save' />
 								<button type='button' onClick={() => discard()} >Discard</button>
-								<br/>
+								<br />
 								<label> Restaurant Name </label>
-								<input type="text" placeholder="Restaurant Name" name="name" required/>
-								<br/>
+								<input type="text" placeholder="Restaurant Name" name="name" required />
+								<br />
 								<label> Type of Cuisine </label>
-								<input type="text" placeholder="Type of Cuisine" name="cuisine"/>
-								<br/>
+								<input type="text" placeholder="Type of Cuisine" name="cuisine" />
+								<br />
 								<label> Restaurant Address </label>
-								<input type="text" placeholder="Restaurant Address" name="address"/>
-								<br/>
+								<input type="text" placeholder="Restaurant Address" name="address" />
+								<br />
 								<label> Tags </label>
 								<Tags restaurant_data={restaurant_data} page='edit' />
-								<br/>
-							
+								<br />
+
 								<label> Rating (out of 5 stars) </label>
-								<Rating precision={0.5} onChange={(event, newValue) => {setValue(newValue)}}/>
-								<br/>
+								<Rating precision={0.5} onChange={(event, newValue) => { setValue(newValue) }} />
+								<br />
 
 								<label> Price Range </label>
-								<Rating icon={<PaidIcon/>} emptyIcon={<PaidOutlinedIcon/>} onChange={(event, newPriceValue) => {setPriceValue(newPriceValue)}}/>
-								<br/>
-								</form>	
-								
-								<label> Experiences </label>
-							
+								<Rating icon={<PaidIcon />} emptyIcon={<PaidOutlinedIcon />} onChange={(event, newPriceValue) => { setPriceValue(newPriceValue) }} />
+								<br />
+							</form>
+
+							<label> Experiences </label>
+
 						</>
 					)}
 					{!new_data && (
@@ -152,30 +167,30 @@ export default function EditRestaurantRecord({userId, restaurant_data, new_data}
 							<form onSubmit={submitEdit}>
 								<input type='submit' value='Save' />
 								<button type='button' onClick={() => discard()} >Discard</button>
-								<br/>
+								<br />
 								<label> Restaurant Name </label>
-								<input type="text" placeholder={restaurant_data.name} defaultValue={restaurant_data.name} name="name"/>
-								<br/>
+								<input type="text" placeholder={restaurant_data.name} defaultValue={restaurant_data.name} name="name" />
+								<br />
 								<label> Type of Cuisine </label>
-								<input type="text" placeholder={restaurant_data.cuisine} defaultValue={restaurant_data.cuisine} name="cuisine"/>
-								<br/>
+								<input type="text" placeholder={restaurant_data.cuisine} defaultValue={restaurant_data.cuisine} name="cuisine" />
+								<br />
 								<label> Restaurant Address </label>
-								<input type="text" placeholder={restaurant_data.address} defaultValue={restaurant_data.address} name="address"/>
-								<br/>
+								<input type="text" placeholder={restaurant_data.address} defaultValue={restaurant_data.address} name="address" />
+								<br />
 								<label> Tags </label>
 								<Tags restaurant_data={restaurant_data} page='edit' />
-								<br/>
+								<br />
 								<label> Rating (out of 5 stars) </label>
-								<Rating precision={0.5} defaultValue={restaurant_data.rating} onChange={(event, newValue) => {setValue(newValue)}}/>
-					
-								<br/>
+								<Rating precision={0.5} defaultValue={restaurant_data.rating} onChange={(event, newValue) => { setValue(newValue) }} />
+
+								<br />
 								<label> Price Range </label>
-								<Rating icon={<PaidIcon/>} emptyIcon={<PaidOutlinedIcon/>} defaultValue={restaurant_data.priceRating} onChange={(event, newPriceValue) => {setPriceValue(newPriceValue)}}/>
-								<br/>
+								<Rating icon={<PaidIcon />} emptyIcon={<PaidOutlinedIcon />} defaultValue={restaurant_data.priceRating} onChange={(event, newPriceValue) => { setPriceValue(newPriceValue) }} />
+								<br />
 							</form>
-							
+
 							<label> Experiences </label>
-							
+
 						</>
 					)}
 				</>
