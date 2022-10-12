@@ -5,7 +5,7 @@ import Styles from '../styles/login-signup.module.css';
 
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
-import { signOut, useSession } from "next-auth/react"
+import { signOut, useSession, getSession } from "next-auth/react"
 
 // Login Page Style
 import React from 'react';
@@ -13,9 +13,9 @@ import { Typography, Button, Grid, Paper, TextField, Stack, Box } from '@mui/mat
 
 
 export default function Logout() {
-    // const { data: session, status } = useSession({
-    //     required: true,
-    // });
+    const { data: session, status } = useSession({
+        required: true,
+    });
 
     const router = useRouter();
 
@@ -45,4 +45,20 @@ export default function Logout() {
             </section>
         </Layout >
     );
+}
+
+export async function getServerSideProps(context) {
+    const session = await getSession(context);
+
+    if (!session) {
+        return {
+            redirect: {
+                destination: '/login',
+                permanent: false,
+            },
+        }
+    }
+    return {
+        props: {}
+    }
 }
