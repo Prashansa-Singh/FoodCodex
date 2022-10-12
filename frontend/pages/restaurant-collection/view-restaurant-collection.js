@@ -30,8 +30,12 @@ export async function getServerSideProps(context) {
 	const response = await axiosInstance.get(url, { data: { userId: user, } });
 	const data = response.data;
 
+	const displayNameUrl = '/user/view-display-name';
+	const displayNameResponse = await axiosInstance.get(displayNameUrl, {data: {userId: user,}});
+	const displayName = displayNameResponse.data;
+
 	return {
-		props: { data, },
+		props: {data, displayName},
 	};
 }
 
@@ -48,7 +52,7 @@ const filterTags = {
 	diabetesFriendlyOption: false
 }
 
-export default function ViewRestaurantCollection({ data }) {
+export default function ViewRestaurantCollection({data, displayName}) {
 	const title = `${siteTitle} - Restaurant Collection`;
 
 	const [filter, setFilter] = useState(filterTags);
@@ -130,7 +134,7 @@ export default function ViewRestaurantCollection({ data }) {
 			</Head>
 			<section className={utilStyles.headingMd}>
 				<h1>
-					Restaurant Collection
+					Welcome Back {displayName.displayName}
 				</h1>
 
 				<div className={styles.collection_container}>

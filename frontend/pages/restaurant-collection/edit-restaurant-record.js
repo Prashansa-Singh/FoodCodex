@@ -86,12 +86,10 @@ export default function EditRestaurantRecord({ userId, restaurant_data, new_data
 			diabetesFriendlyOption: event.target.diabetesFriendlyOption.value,
 		};
 
-
 		const url = 'user/restaurant/update-one';
 		const urlCreate = 'user/restaurant/create-one';
-
-		if (new_data) {
-			console.log('hello');
+		
+		if (new_data){
 			await axiosInstance.post(urlCreate, body)
 				.then(function (response) {
 					console.log(response.data);
