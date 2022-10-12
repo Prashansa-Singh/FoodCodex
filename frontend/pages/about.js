@@ -26,7 +26,7 @@ export default function About() {
 				<title>{title}</title>
 			</Head>
 	
-			<section className={utilStyles.headingMd}>
+			<section className={utilStyles.headingMdCenter}>
 				{navLink.map(({ href, title, icon }) => (
 					<Link href={href}>
 						<a>
