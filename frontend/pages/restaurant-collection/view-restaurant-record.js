@@ -57,7 +57,7 @@ export default function ViewRestaurantRecord({userId, restaurant_data, experienc
 			  }
 			]
 		});
-	}
+	} 
 
 	const deleteRestaurant = async (url, body) => {
 		await axiosInstance.delete(url, {data: body})
@@ -70,6 +70,8 @@ export default function ViewRestaurantRecord({userId, restaurant_data, experienc
 		});
 	}
 
+	
+
 	return (
 		<Layout>
 			<Head>
@@ -81,7 +83,7 @@ export default function ViewRestaurantRecord({userId, restaurant_data, experienc
 						{restaurant_data.name}
 					</h1>
 					<div className={styles.icon_group}>
-						<Link href='/restaurant-collection/share-list'>
+						<Link href={{pathname: '/restaurant-collection/share-list', query: {_id: restaurant_data._id}}}>
 							<a>
 								<div className={styles.icons}>
 									<img src='/src/nav-icons/share-icon.svg' width='40vw' />
