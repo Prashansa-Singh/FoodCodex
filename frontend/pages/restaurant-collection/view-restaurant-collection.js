@@ -172,7 +172,42 @@ export default function ViewRestaurantCollection({data, displayName}) {
 	}
 
 
-	const sortTable = (c, ascendingOrder) => {
+	const sortTable = (colNum, ascendingOrder) => {
+		if (typeof window !== 'undefined') {
+			let table, rows, switching, i, x, y, shouldSwitch;
+			table = document.getElementById("restaurantTable");
+			switching = true;
+
+			while (switching) {
+				switching = false;
+				rows = table.rows;
+
+				// Loop over all table rows except header row
+				for (i = 1; i < (rows.length - 1); i++) {
+					shouldSwitch = false;
+					x = rows[i].getElementsByTagName("td")[colNum];
+					y = rows[i + 1].getElementsByTagName("td")[colNum];
+
+					// compare current and next row to determine if they should be switched
+					if (ascendingOrder) {
+						if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+							shouldSwitch = true;
+							break;
+						}
+					} else {
+						// descending order comparison
+						if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+							shouldSwitch = true;
+							break;
+						}
+					}
+				}
+				if (shouldSwitch) {
+					rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+					switching = true;
+				}
+			}
+		}
 	}
 
 
