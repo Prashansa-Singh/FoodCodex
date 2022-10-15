@@ -52,6 +52,19 @@ const filterTags = {
 	diabetesFriendlyOption: false
 }
 
+
+const columnSortsInitial = {
+	nameSortAsc: false,
+	ratingSortAsc: false,
+	priceSortAsc: false,
+}
+
+const sortableColumns = {
+	nameCol: 0,
+	ratingCol: 1,
+	priceCol: 2
+}
+
 export default function ViewRestaurantCollection({data, displayName}) {
 	const title = `${siteTitle} - Restaurant Collection`;
 
@@ -127,6 +140,42 @@ export default function ViewRestaurantCollection({data, displayName}) {
 		return show;
 	}
 
+
+	const [colSorts, setColSorts] = useState(columnSortsInitial);
+
+
+	const handleSortClick = (colNum) => {
+		if (typeof window !== 'undefined') {
+
+			// change sort order for this column
+			let sortKey = Object.keys(colSorts)[colNum]
+			colSorts[sortKey] = !colSorts[sortKey]
+			setColSorts(colSorts)
+
+			sortTable(colNum, colSorts[sortKey]);
+		}
+
+	}
+
+	const sortName = () => {
+		handleSortClick(sortableColumns.nameCol);
+	}
+
+
+	const sortRating = () => {
+		handleSortClick(sortableColumns.ratingCol);
+	}
+
+
+	const sortPrice = () => {
+		handleSortClick(sortableColumns.priceCol);
+	}
+
+
+	const sortTable = (c, ascendingOrder) => {
+	}
+
+
 	return (
 		<Layout>
 			<Head>
@@ -159,12 +208,18 @@ export default function ViewRestaurantCollection({data, displayName}) {
 						</div>
 					</div>
 					<div className={styles.table_container}>
-						<table className={styles.table}>
+						<table id="restaurantTable" className={styles.table}>
 							<thead className={styles.thead}>
 								<tr className={styles.tr}>
-									<th className={styles.th}>Name</th>
-									<th className={styles.th}>Rating</th>
-									<th className={styles.th}>Price</th>
+									<th className={styles.th}>Name
+										<img className={styles.icon} src='/src/nav-icons/sort-icon.svg' alt='Sort Name Icon' onClick={sortName} id='sortIcon'></img>
+									</th>
+									<th className={styles.th}>Rating
+										<img className={styles.icon} src='/src/nav-icons/sort-icon.svg' alt='Sort Rating Icon' onClick={sortRating} id='sortIcon'></img>
+									</th>
+									<th className={styles.th}>Price
+										<img className={styles.icon} src='/src/nav-icons/sort-icon.svg' alt='Sort Price Icon' onClick={sortPrice} id='sortIcon'></img>
+									</th>
 									<th className={styles.th}>Label</th>
 								</tr>
 							</thead>
