@@ -2,6 +2,8 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { useRef, useState } from 'react';
 import { resolve } from 'styled-jsx/css';
+import TextField from '@mui/material/TextField';
+import InputAdornment from '@mui/material/InputAdornment';
 import Layout, { siteTitle } from '../../components/layout';
 import Tags from '../../components/tags';
 import utilStyles from '../../styles/utils.module.css';
@@ -240,13 +242,17 @@ export default function ViewRestaurantCollection({ data, displayName }) {
 				</h1>
 
 				<div className={styles.collection_container}>
-					<input
-						className={styles.searchbar}
+					<TextField
 						id='searchbar'
+						size="small"
 						type="search"
 						name="search"
 						placeholder="Search..."
+						variant="outlined"
 						onChange={changeSearchName}
+						InputProps={{
+							startAdornment: <InputAdornment position="start"><img src="/src/nav-icons/search-icon.svg" /></InputAdornment>,
+						}}
 					/>
 					<div className={styles.filter}>
 						<img className={styles.icon} src='/src/nav-icons/filter-icon.svg' alt='Filter Icon' onClick={openPopUp} id='filterIcon' />
