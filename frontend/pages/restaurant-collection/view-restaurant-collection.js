@@ -2,6 +2,8 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { useRef, useState } from 'react';
 import { resolve } from 'styled-jsx/css';
+import TextField from '@mui/material/TextField';
+import InputAdornment from '@mui/material/InputAdornment';
 import Layout, { siteTitle } from '../../components/layout';
 import Tags from '../../components/tags';
 import utilStyles from '../../styles/utils.module.css';
@@ -31,11 +33,11 @@ export async function getServerSideProps(context) {
 	const data = response.data;
 
 	const displayNameUrl = '/user/view-display-name';
-	const displayNameResponse = await axiosInstance.get(displayNameUrl, {data: {userId: user,}});
+	const displayNameResponse = await axiosInstance.get(displayNameUrl, { data: { userId: user, } });
 	const displayName = displayNameResponse.data;
 
 	return {
-		props: {data, displayName},
+		props: { data, displayName },
 	};
 }
 
@@ -65,7 +67,7 @@ const sortableColumns = {
 	priceCol: 2
 }
 
-export default function ViewRestaurantCollection({data, displayName}) {
+export default function ViewRestaurantCollection({ data, displayName }) {
 	const title = `${siteTitle} - Restaurant Collection`;
 
 	const [filter, setFilter] = useState(filterTags);
@@ -136,6 +138,14 @@ export default function ViewRestaurantCollection({data, displayName}) {
 				show = show && dataRow[option];
 			}
 		});
+
+		if (searchName !== null) {
+			let restaurantNameLC = dataRow["name"].toLowerCase();
+
+			if (!restaurantNameLC.includes(searchName)) {
+				show = false
+			}
+		}
 
 		return show;
 	}
@@ -210,6 +220,20 @@ export default function ViewRestaurantCollection({data, displayName}) {
 		}
 	}
 
+	const [searchName, setSearchName] = useState('');
+
+	const changeSearchName = (event) => {
+		event.preventDefault();
+
+		let searchStringLC = (event.target.value).toLowerCase();
+
+		if (event.target.value === '') {
+			setSearchName(null);
+		}
+		else {
+			setSearchName(searchStringLC);
+		}
+	}
 
 	return (
 		<Layout>
@@ -222,12 +246,17 @@ export default function ViewRestaurantCollection({data, displayName}) {
 				</h1>
 
 				<div className={styles.collection_container}>
-					<input
-						className={styles.searchbar}
+					<TextField
 						id='searchbar'
+						size="small"
 						type="search"
 						name="search"
 						placeholder="Search..."
+						variant="outlined"
+						onChange={changeSearchName}
+						InputProps={{
+							startAdornment: <InputAdornment position="start"><img src="/src/nav-icons/search-icon.svg" /></InputAdornment>,
+						}}
 					/>
 					<div className={styles.filter}>
 						<img className={styles.icon} src='/src/nav-icons/filter-icon.svg' alt='Filter Icon' onClick={openPopUp} id='filterIcon' />
