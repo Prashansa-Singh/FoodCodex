@@ -140,7 +140,9 @@ export default function ViewRestaurantCollection({ data, displayName }) {
 		});
 
 		if (searchName !== null) {
-			if (!dataRow["name"].includes(searchName)) {
+			let restaurantNameLC = dataRow["name"].toLowerCase();
+
+			if (!restaurantNameLC.includes(searchName)) {
 				show = false
 			}
 		}
@@ -223,11 +225,13 @@ export default function ViewRestaurantCollection({ data, displayName }) {
 	const changeSearchName = (event) => {
 		event.preventDefault();
 
+		let searchStringLC = (event.target.value).toLowerCase();
+
 		if (event.target.value === '') {
 			setSearchName(null);
 		}
 		else {
-			setSearchName(event.target.value);
+			setSearchName(searchStringLC);
 		}
 	}
 
