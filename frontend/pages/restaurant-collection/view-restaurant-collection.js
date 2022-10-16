@@ -31,11 +31,11 @@ export async function getServerSideProps(context) {
 	const data = response.data;
 
 	const displayNameUrl = '/user/view-display-name';
-	const displayNameResponse = await axiosInstance.get(displayNameUrl, {data: {userId: user,}});
+	const displayNameResponse = await axiosInstance.get(displayNameUrl, { data: { userId: user, } });
 	const displayName = displayNameResponse.data;
 
 	return {
-		props: {data, displayName},
+		props: { data, displayName },
 	};
 }
 
@@ -65,7 +65,7 @@ const sortableColumns = {
 	priceCol: 2
 }
 
-export default function ViewRestaurantCollection({data, displayName}) {
+export default function ViewRestaurantCollection({ data, displayName }) {
 	const title = `${siteTitle} - Restaurant Collection`;
 
 	const [filter, setFilter] = useState(filterTags);
@@ -136,6 +136,12 @@ export default function ViewRestaurantCollection({data, displayName}) {
 				show = show && dataRow[option];
 			}
 		});
+
+		if (searchName !== null) {
+			if (!dataRow["name"].includes(searchName)) {
+				show = false
+			}
+		}
 
 		return show;
 	}
@@ -210,6 +216,18 @@ export default function ViewRestaurantCollection({data, displayName}) {
 		}
 	}
 
+	const [searchName, setSearchName] = useState('');
+
+	const changeSearchName = (event) => {
+		event.preventDefault();
+
+		if (event.target.value === '') {
+			setSearchName(null);
+		}
+		else {
+			setSearchName(event.target.value);
+		}
+	}
 
 	return (
 		<Layout>
@@ -228,6 +246,7 @@ export default function ViewRestaurantCollection({data, displayName}) {
 						type="search"
 						name="search"
 						placeholder="Search..."
+						onChange={changeSearchName}
 					/>
 					<div className={styles.filter}>
 						<img className={styles.icon} src='/src/nav-icons/filter-icon.svg' alt='Filter Icon' onClick={openPopUp} id='filterIcon' />
