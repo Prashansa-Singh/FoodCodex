@@ -52,6 +52,19 @@ const filterTags = {
 	diabetesFriendlyOption: false
 }
 
+
+const columnSortsInitial = {
+	nameSortAsc: false,
+	ratingSortAsc: false,
+	priceSortAsc: false,
+}
+
+const sortableColumns = {
+	nameCol: 0,
+	ratingCol: 1,
+	priceCol: 2
+}
+
 export default function ViewRestaurantCollection({data, displayName}) {
 	const title = `${siteTitle} - Restaurant Collection`;
 
@@ -127,6 +140,77 @@ export default function ViewRestaurantCollection({data, displayName}) {
 		return show;
 	}
 
+
+	const [colSorts, setColSorts] = useState(columnSortsInitial);
+
+
+	const handleSortClick = (colNum) => {
+		if (typeof window !== 'undefined') {
+
+			// change sort order for this column
+			let sortKey = Object.keys(colSorts)[colNum]
+			colSorts[sortKey] = !colSorts[sortKey]
+			setColSorts(colSorts)
+
+			sortTable(colNum, colSorts[sortKey]);
+		}
+
+	}
+
+	const sortName = () => {
+		handleSortClick(sortableColumns.nameCol);
+	}
+
+
+	const sortRating = () => {
+		handleSortClick(sortableColumns.ratingCol);
+	}
+
+
+	const sortPrice = () => {
+		handleSortClick(sortableColumns.priceCol);
+	}
+
+
+	const sortTable = (colNum, ascendingOrder) => {
+		if (typeof window !== 'undefined') {
+			let table, rows, switching, i, x, y, shouldSwitch;
+			table = document.getElementById("restaurantTable");
+			switching = true;
+
+			while (switching) {
+				switching = false;
+				rows = table.rows;
+
+				// Loop over all table rows except header row
+				for (i = 1; i < (rows.length - 1); i++) {
+					shouldSwitch = false;
+					x = rows[i].getElementsByTagName("td")[colNum];
+					y = rows[i + 1].getElementsByTagName("td")[colNum];
+
+					// compare current and next row to determine if they should be switched
+					if (ascendingOrder) {
+						if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+							shouldSwitch = true;
+							break;
+						}
+					} else {
+						// descending order comparison
+						if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+							shouldSwitch = true;
+							break;
+						}
+					}
+				}
+				if (shouldSwitch) {
+					rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+					switching = true;
+				}
+			}
+		}
+	}
+
+
 	return (
 		<Layout>
 			<Head>
@@ -159,12 +243,18 @@ export default function ViewRestaurantCollection({data, displayName}) {
 						</div>
 					</div>
 					<div className={styles.table_container}>
-						<table className={styles.table}>
+						<table id="restaurantTable" className={styles.table}>
 							<thead className={styles.thead}>
 								<tr className={styles.tr}>
-									<th className={styles.th}>Name</th>
-									<th className={styles.th}>Rating</th>
-									<th className={styles.th}>Price</th>
+									<th className={styles.th}>Name
+										<img className={styles.icon} src='/src/nav-icons/sort-icon.svg' alt='Sort Name Icon' onClick={sortName} id='sortIcon'></img>
+									</th>
+									<th className={styles.th}>Rating
+										<img className={styles.icon} src='/src/nav-icons/sort-icon.svg' alt='Sort Rating Icon' onClick={sortRating} id='sortIcon'></img>
+									</th>
+									<th className={styles.th}>Price
+										<img className={styles.icon} src='/src/nav-icons/sort-icon.svg' alt='Sort Price Icon' onClick={sortPrice} id='sortIcon'></img>
+									</th>
 									<th className={styles.th}>Label</th>
 								</tr>
 							</thead>
