@@ -12,3 +12,4 @@ shareRouter.get('/public/:linkId', shareController.viewSharedRestaurant)
 
 
 module.exports = shareRouter;
+

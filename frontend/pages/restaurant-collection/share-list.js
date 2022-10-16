@@ -40,7 +40,7 @@ export default function ShareList({userId, restaurant_data, experiences}) {
 			restaurantId: restaurant_data._id,
 		};
 
-		const url = 'user/restaurant/share/generate-link';
+		const url = '/user/restaurant/share/generate-link';
 
 		confirmAlert({
 			title: 'Confirm to share',
@@ -48,7 +48,7 @@ export default function ShareList({userId, restaurant_data, experiences}) {
 			buttons: [
 			  {
 				label: 'Yes',
-				onClick: () => shareRestaurant(url, body),
+				onClick: () => generateRestaurantShareLink(url, body),
 			  },
 			  {
 				label: 'No',
@@ -57,7 +57,7 @@ export default function ShareList({userId, restaurant_data, experiences}) {
 		});
 	} 
 
-	const shareRestaurant = async (url, body) => {
+	const generateRestaurantShareLink = async (url, body) => {
 		await axiosInstance.post(url, {data: body})
 		.then(function (response) {
 			console.log(response.data);
