@@ -20,17 +20,20 @@ export async function getServerSideProps(context) {
 		}
 	}
 
+	const userId = await session.user._id;
+	// console.log(userId)
+
 	return {
-		props: {},
+		props: { userId },
 	};
 }
 
-export default function Settings() {
+export default function Settings({ userId }) {
 	const title = `${siteTitle} - Settings`;
 
 	const confirmDelete = () => {
 
-		const userId = '6310539f4af1428a18a7509d';
+		// const userId = '6310539f4af1428a18a7509d';
 
 		const body = {
 			userId: userId,
