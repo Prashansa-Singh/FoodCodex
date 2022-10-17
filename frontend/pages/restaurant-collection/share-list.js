@@ -141,7 +141,7 @@ export default function ShareList({userId, restaurant_data, experiences}) {
 			console.log(response.data);
 			console.log("sharelink --> " + shareLink);
 			console.log(typeof(shareLink));
-			router.push('/restaurant-collection/share-list');
+			//router.push('/restaurant-collection/share-list');
 		})
 		.catch(function (error) {
 			console.log(error);
