@@ -7,7 +7,8 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
 import { axiosInstance } from '../api/axiosConfig';
 import Button from '@mui/material/Button';
 
-import { getSession } from "next-auth/react"
+import { getSession, signOut } from "next-auth/react"
+import { Router } from 'next/router';
 
 export async function getServerSideProps(context) {
 	const session = await getSession(context);
@@ -76,6 +77,50 @@ export default function Settings({ userId }) {
 			});
 	}
 
+	const confirmAccountDeletion = () => {
+		const body = {
+			userId: userId,
+		};
+
+		const url = 'account/delete';
+
+		confirmAlert({
+			title: 'Confirm to delete',
+			message: 'Are you sure you wish to delete your FoodCodex Account?',
+			buttons: [
+				{
+					label: 'Yes',
+					onClick: () => deleteAccount(url, body),
+				},
+				{
+					label: 'No',
+				}
+			]
+		});
+	}
+
+	const deleteAccount = async (url, body) => {
+
+		// Delete the account and clear local session
+		await axiosInstance.delete(url, { data: body })
+			.then(function (response) {
+				console.log(response.data);
+				confirmAlert({
+					title: 'Success',
+					message: 'Your Account Has Been Deleted',
+					buttons: [
+						{
+							label: 'Ok',
+							onClick: () => { signOut({ redirect: true, callbackUrl: '/' }) }
+						}
+					]
+				});
+			})
+			.catch(function (error) {
+				console.log(error);
+			});
+	}
+
 	return (
 		<Layout>
 			<Head>
@@ -95,7 +140,7 @@ export default function Settings({ userId }) {
 					</Button>
 
 					<Button
-						onClick={() => { }}
+						onClick={() => confirmAccountDeletion()}
 						variant="contained"
 						color="error"
 					>

@@ -86,8 +86,7 @@ const deleteRestaurant = async (req, res, next) => {
 	}
 }
 
-
-const deleteAllRestaurants = async (req, res, next) => {
+const deleteAllRestaurantsInteract = async (req) => {
 	try {
 		const userId = req.body.userId
 		const user = await User.findOne({ _id: userId }).populate('restaurants');
@@ -105,6 +104,19 @@ const deleteAllRestaurants = async (req, res, next) => {
 			{ _id: userId },
 			{ $set: { restaurants: [] } }
 		);
+
+		return arrayLength
+	}
+	catch (err){
+		console.error(err);
+	}
+}
+
+
+const deleteAllRestaurants = async (req, res, next) => {
+	try {
+		const userId = req.body.userId
+		const arrayLength = await deleteAllRestaurantsInteract(req)
 
 		// Return number of restaurants before and after deletion for this user
 		const countBefore = arrayLength
