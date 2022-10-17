@@ -58,6 +58,11 @@ export default function ShareList({userId, restaurant_data, experiences}) {
 	} 
 
 	const generateRestaurantShareLink = async (url, body) => {
+		// try {
+		// 	const response = await axiosInstance.post()
+		// } catch(error) {
+			
+		// }
 		await axiosInstance.post(url, {data: body})
 		.then(function (response) {
 			console.log(response.data);
