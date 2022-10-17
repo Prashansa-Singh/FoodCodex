@@ -23,6 +23,6 @@
 
 .button_container {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
 }
