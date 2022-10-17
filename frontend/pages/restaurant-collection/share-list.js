@@ -9,6 +9,7 @@ import Tags from '../../components/tags';
 import Experiences from '../../components/experiences';
 import { useRouter } from 'next/router';
 import { confirmAlert } from 'react-confirm-alert';
+import { Typography, Button, Grid, Paper, TextField, Stack, Box } from '@mui/material';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 
 
@@ -33,15 +34,23 @@ export async function getServerSideProps({query}) {
 export default function ShareList({userId, restaurant_data, experiences}) {
 	const title = `${siteTitle} - Share`;
 	const router = useRouter();
+	var shareLink;
 	// console.log(restaurant_data);
-	console.log(restaurant_data._id);
 
 	const confirmShare = () => {
 		
 		const body = {
-
+			senderId: userId,
 			restaurantId: restaurant_data._id,
+			shareName: true,
+			shareRating: true,
+			sharePriceRating: true,
+			shareCuisine: true,
+			shareAddress: true,
+			shareOptionTags: true
 		};
+
+		console.log("body "+ typeof(body));
 
 		const url = '/user/restaurant/share/generate-link';
 
@@ -68,9 +77,12 @@ export default function ShareList({userId, restaurant_data, experiences}) {
 		// }
 
 		// console.log({body});
-		await axiosInstance.post(url, {data: body})
+		await axiosInstance.post(url, body)
+		// console.log("body "+ typeof(body.restaurantId))
 		.then(function (response) {
+			shareLink = JSON.stringify(response.data);
 			console.log(response.data);
+			console.log(typeof(shareLink));
 			router.push('/restaurant-collection/share-list');
 		})
 		.catch(function (error) {
@@ -95,6 +107,13 @@ export default function ShareList({userId, restaurant_data, experiences}) {
 				<div className={styles.button_container}>
 					<button onClick={() => confirmShare()} className={styles.delete_button} >Share Restaurant</button>
 				</div>
+
+				<Box>
+					Here is your link: 
+					<Paper>
+						{"/user/restaurant/share/public/" + shareLink}
+					</Paper>
+				</Box>
 			</section>
 		</Layout>
 	);
