@@ -33,10 +33,13 @@ export async function getServerSideProps({query}) {
 export default function ShareList({userId, restaurant_data, experiences}) {
 	const title = `${siteTitle} - Share`;
 	const router = useRouter();
+	// console.log(restaurant_data);
+	console.log(restaurant_data._id);
 
 	const confirmShare = () => {
 		
 		const body = {
+
 			restaurantId: restaurant_data._id,
 		};
 
@@ -63,6 +66,8 @@ export default function ShareList({userId, restaurant_data, experiences}) {
 		// } catch(error) {
 			
 		// }
+
+		// console.log({body});
 		await axiosInstance.post(url, {data: body})
 		.then(function (response) {
 			console.log(response.data);
