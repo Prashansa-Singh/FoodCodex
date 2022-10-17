@@ -5,6 +5,7 @@ import styles from '../../styles/settings.module.css';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import { axiosInstance } from '../api/axiosConfig';
+import Button from '@mui/material/Button';
 
 import { getSession } from "next-auth/react"
 
@@ -85,7 +86,21 @@ export default function Settings({ userId }) {
 					Settings
 				</h1>
 				<div className={styles.button_container}>
-					<button onClick={() => confirmDelete()} className={styles.delete_button} >Delete All Restaurants</button>
+					<Button
+						onClick={() => confirmDelete()}
+						variant="contained"
+						color="error"
+					>
+						Delete All Restaurants
+					</Button>
+
+					<Button
+						onClick={() => { }}
+						variant="contained"
+						color="error"
+					>
+						Delete Account
+					</Button>
 				</div>
 			</section>
 		</Layout>
