@@ -45,6 +45,7 @@ export async function getServerSideProps(context) {
 	};
 }
 
+
 export default function ViewRestaurantRecord({ userId, restaurant_data, experiences }) {
 	const title = `${siteTitle} - ${restaurant_data.name}`;
 
