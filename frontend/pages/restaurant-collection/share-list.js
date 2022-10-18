@@ -32,15 +32,15 @@ export async function getServerSideProps({query}) {
 	};
 }
 
-const customShareOptions = {
-	shareName : true,
-	shareRating : false,
-	sharePriceRating : false,
-	shareCuisine : false,
-	shareAddress : false,
-	shareOptionTags : false
+// const customShareOptions = {
+// 	shareName : true,
+// 	shareRating : false,
+// 	sharePriceRating : false,
+// 	shareCuisine : false,
+// 	shareAddress : false,
+// 	shareOptionTags : false
 	
-}
+// }
 
 export default function ShareList({userId, restaurant_data, experiences}) {
 	const title = `${siteTitle} - Share`;
@@ -48,50 +48,50 @@ export default function ShareList({userId, restaurant_data, experiences}) {
 	var shareLink;
 
 
-	// useState of customeShareOptions 
-	const [options, setOptions] = useState(customShareOptions);
+	// // useState of customeShareOptions 
+	// const [options, setOptions] = useState(customShareOptions);
 
-	// submitOptions, setOptions, Options indicator function
-	const submitOptions = (event) => {
-		event.preventDefault();
-		let updateShareName = {shareName: event.target.shareName.value === 'true'}
-		setOptions(options => ({
-			...options,
-			...updateShareName,
-		}));
+	// // submitOptions, setOptions, Options indicator function
+	// const submitOptions = (event) => {
+	// 	event.preventDefault();
+	// 	let updateShareName = {shareName: event.target.shareName.value === 'true'}
+	// 	setOptions(options => ({
+	// 		...options,
+	// 		...updateShareName,
+	// 	}));
 
-		optionsColorChange();
+	// 	optionsColorChange();
 
-	}
+	// }
 
-	// optionsColorChange
-	const optionsColorChange = () => {
-		const icon = document.getElementById('filterIcon');
-		if (Object.values(options).includes(true)) {
-			icon.src = '/src/nav-icons/filter-icon.svg';
-		} else {
-			icon.src = '/src/nav-icons/filter-applied-icon.svg';
-		}
-	}
+	// // optionsColorChange
+	// const optionsColorChange = () => {
+	// 	const icon = document.getElementById('filterIcon');
+	// 	if (Object.values(options).includes(true)) {
+	// 		icon.src = '/src/nav-icons/filter-icon.svg';
+	// 	} else {
+	// 		icon.src = '/src/nav-icons/filter-applied-icon.svg';
+	// 	}
+	// }
 
-	// cancelOptions
-	const cancelOptions = () => {
-		setOptions({ ...customShareOptions });
-		console.log(customShareOptions);
-		window.location.reload();
-	}
+	// // cancelOptions
+	// const cancelOptions = () => {
+	// 	setOptions({ ...customShareOptions });
+	// 	console.log(customShareOptions);
+	// 	window.location.reload();
+	// }
 
-	// openPopUp
-	const openPopUp = () => {
-		const elem = document.getElementById('filter');
-		elem.style.display = 'flex';
-	}
-	// closePopUp
-	const closePopUp = () => {
-		const elem = document.getElementById('filter');
-		elem.style.display = 'none';
-	}
-	// updateBody
+	// // openPopUp
+	// const openPopUp = () => {
+	// 	const elem = document.getElementById('filter');
+	// 	elem.style.display = 'flex';
+	// }
+	// // closePopUp
+	// const closePopUp = () => {
+	// 	const elem = document.getElementById('filter');
+	// 	elem.style.display = 'none';
+	// }
+	// // updateBody
 
 
 	const confirmShare = () => {
