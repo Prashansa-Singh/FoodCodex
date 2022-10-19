@@ -21,12 +21,12 @@ export const getStaticPaths = async () => {
     // 1.get id dynamically and concat to /user/restaurant
     // 2. data 
     // 3. presenting 
-    // const res = await axiosInstance.get('/user/restaurant/share/public');
-    const res = await fetch('https://jsonplaceholder.typicode.com/users');
-    const data = await res.json();
+    const res = await axiosInstance.get('/user/restaurant/share/public');
+    // const res = await fetch('https://jsonplaceholder.typicode.com/users');
+    // const data = await res.json();
     console.log('here');
     console.log('res --->' + res);
-    // const data = res.data;
+    const data = res.data;
     console.log('data --->' + data);
     const paths = data.map(shareData => {
         // console.log('Error parsing JSON from response:', resClone );
@@ -51,10 +51,10 @@ export const getStaticProps = async (params) => {
     const id = params.linkId; // this was context.params.name
     console.log('context.param.name --->' + id);
     // line 30 id should be unique share link 
-    const res = await fetch('https://jsonplaceholder.typicode.com/users' + id);
-    // const res = await axiosInstance.get('/user/restaurant/share/public' + id);
-    const data = await res.json();
-    // const data = res.data;
+    // const res = await fetch('https://jsonplaceholder.typicode.com/users' + id);
+    const res = await axiosInstance.get('/user/restaurant/share/public' + id);
+    // const data = await res.json();
+    const data = res.data;
     console.log("data in getStaticProps--->" + data);
 
     return {
