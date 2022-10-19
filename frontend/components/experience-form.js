@@ -36,10 +36,14 @@ export default function ExperienceForm({id}) {
         let visitTime = event.target.experiencetime.value;
         const comment = event.target.experiencecomment.value;
 
+        // Update to correct timezone
+        let visitDate = new Date(visitTime);
+        visitDate.setTime(visitDate.getTime() + 11 * 60 * 60 * 1000)
+
         const body = {
             restaurantId: id, 
             title: title, 
-            visitTime: visitTime,
+            visitTime: visitDate,
             comment: comment,
         };
 
