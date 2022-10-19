@@ -174,8 +174,8 @@ export default function ShareList({userId, restaurant_data, experiences}) {
 					Here is your link: 
 					<Link href={shareURL}>
 						<Paper>		
-							{/* {shareURL} */}
-							Click to Direct
+							
+							Click to Direct : {shareURL}
 						</Paper>
 					</Link>
 

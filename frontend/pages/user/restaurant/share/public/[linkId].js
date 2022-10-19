@@ -36,9 +36,10 @@ export const getStaticProps = async (context) => {
     // line 30 id should be unique share link 
     const res = await axiosInstance.get('/user/restaurant/share/public' + id);
     const data = res.data;
+    console.log("data in getStaticProps--->" + data);
 
     return {
-        props: { shareData: data}
+        props: { shareData: "data"}
     }
     
 }
@@ -46,7 +47,7 @@ export const getStaticProps = async (context) => {
 const restaurantDetails = ({ shareData }) => {
     return (
         <div>
-            <h1>{ shareData.name } </h1>
+            <h1>{ shareData } </h1>
             <h1>
                 Shared Restaurant
             </h1>

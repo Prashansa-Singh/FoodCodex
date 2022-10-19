@@ -274,7 +274,7 @@ export default function ViewRestaurantCollection({ data, displayName }) {
 					<div className={styles.table_container}>
 						<table id="restaurantTable" className={styles.table}>
 							<thead className={styles.thead}>
-								<tr className={styles.tr}>
+								<tr className={styles.tr}> 
 									<th className={styles.th}>Name
 										<img className={styles.icon} src='/src/nav-icons/sort-icon.svg' alt='Sort Name Icon' onClick={sortName} id='sortIcon'></img>
 									</th>
