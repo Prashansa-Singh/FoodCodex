@@ -125,45 +125,25 @@ export default function ShareList({userId, restaurant_data, experiences}) {
 		});
 	} 
 
-	async function generateRestaurantShareLink (url, body){
+	const generateRestaurantShareLink = async (url, body) => {
+		// try {
+		// 	const response = await axiosInstance.post()
+		// } catch(error) {
+		// }
+
+		
 		await axiosInstance.post(url, body)
 		.then(function (response) {
 			shareLink = JSON.stringify(response.data);
 			console.log(response.data);
 			console.log("sharelink --> " + shareLink);
 			console.log(typeof(shareLink));
+			//router.push('/restaurant-collection/shared-with-me');
 		})
 		.catch(function (error) {
 			console.log(error);
 		});
-
-		return (
-			<Layout>
-				{shareLink}
-			</Layout>
-
-		)
-
 	}
-	// const generateRestaurantShareLink = async (url, body) => {
-	// 	// try {
-	// 	// 	const response = await axiosInstance.post()
-	// 	// } catch(error) {
-	// 	// }
-
-		
-	// 	await axiosInstance.post(url, body)
-	// 	.then(function (response) {
-	// 		shareLink = JSON.stringify(response.data);
-	// 		console.log(response.data);
-	// 		console.log("sharelink --> " + shareLink);
-	// 		console.log(typeof(shareLink));
-	// 		//router.push('/restaurant-collection/shared-with-me');
-	// 	})
-	// 	.catch(function (error) {
-	// 		console.log(error);
-	// 	});
-	// }
 
 	// --------------------- Presenting Sharing URLs ---------------------------
 	const baseURL = (process.env.NODE_ENV == "production") ? process.env.NEXT_PUBLIC_PRODUCTION_BACKEND : process.env.NEXT_PUBLIC_DEVELOPMENT_BACKEND; //backend to frontend 
