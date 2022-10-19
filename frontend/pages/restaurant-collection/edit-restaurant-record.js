@@ -130,32 +130,56 @@ export default function EditRestaurantRecord({ userId, restaurant_data, new_data
 								Add Restaurant Record
 							</h1>
 							<form onSubmit={submitEdit}>
-								<button type='submit' className={styles.submitButton}><b>Save</b></button>
-								<button type='button' className={styles.discardButton} onClick={() => discard()}><b>Discard</b></button>	
-								<br />
-								<label> Restaurant Name </label>
-								<input type="text" placeholder="Restaurant Name" name="name" required />
-								<br />
-								<label> Type of Cuisine </label>
-								<input type="text" placeholder="Type of Cuisine" name="cuisine" />
-								<br />
-								<label> Restaurant Address </label>
-								<input type="text" placeholder="Restaurant Address" name="address" />
-								<br />
+								<div className={styles.button_container}>
+									<button type='submit' className={styles.submitButton}><b>Save</b></button>
+									<button type='button' className={styles.discardButton} onClick={() => discard()}><b>Discard</b></button>	
+								</div>	
+								<div className={styles.editFormTop}>
+									<TextField 
+										id="outlined-restaurant-name" 
+										label="Restaurant Name" 
+										variant="outlined" 
+										name="name" 
+										placeholder="Restaurant Name"
+										required 
+										margin="dense" 
+										className={styles.textFields}
+									/>
+									<TextField 
+										id="outlined-restaurant-cuisine" 
+										label="Type of Cuisine" 
+										variant="outlined" 
+										name="cuisine" 
+										placeholder="Type of Cuisine"
+										required 
+										margin="dense" 
+										className={styles.textFields}
+									/>
+								</div>
+								<TextField 
+									id="outlined-restaurant-address" 
+									label="Restaurant Address" 
+									variant="outlined" 
+									name="address" 
+									placeholder="Restaurant Address"
+									required 
+									margin="dense" 
+									className={styles.address}
+								/>
+								<div className={styles.editFormBottom}>
+									<div className={styles.picker}>
+										<label> Rating (out of 5 stars): </label>
+										<Rating precision={0.5} onChange={(event, newValue) => { setValue(newValue) }} />
+									</div>
+									<div className={styles.picker}>
+										<label> Price Range: </label>
+										<Rating icon={<PaidIcon />} emptyIcon={<PaidOutlinedIcon />} onChange={(event, newPriceValue) => { setPriceValue(newPriceValue) }} />
+									</div>
+								</div>
+								<br/>
 								<label> Tags </label>
 								<Tags restaurant_data={restaurant_data} page='edit' />
-								<br />
-
-								<label> Rating (out of 5 stars) </label>
-								<Rating precision={0.5} onChange={(event, newValue) => { setValue(newValue) }} />
-								<br />
-
-								<label> Price Range </label>
-								<Rating icon={<PaidIcon />} emptyIcon={<PaidOutlinedIcon />} onChange={(event, newPriceValue) => { setPriceValue(newPriceValue) }} />
-								<br />
 							</form>
-
-							<label> Experiences </label>
 
 						</>
 					)}
@@ -217,7 +241,6 @@ export default function EditRestaurantRecord({ userId, restaurant_data, new_data
 								<br/>
 								<label> Tags: </label>
 								<Tags restaurant_data={restaurant_data} page='edit' />
-								<br />
 							</form>
 						</>
 					)}
