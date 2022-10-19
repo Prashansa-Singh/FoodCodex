@@ -136,12 +136,10 @@ export default function ShareList({userId, restaurant_data, experiences}) {
 		await axiosInstance.post(url, body)
 		.then(function (response) {
 			shareLink = response.data;
-			// shareLink = JSON.stringify(response.data);
 			setShareId(shareLink);
 			console.log("shareId --> " + shareId);
 			console.log(response.data);
 			console.log("sharelink --> " + shareLink);
-			console.log(typeof(shareLink));
 			//router.push('/restaurant-collection/shared-with-me');
 		})
 		.catch(function (error) {
@@ -150,7 +148,7 @@ export default function ShareList({userId, restaurant_data, experiences}) {
 	}
 
 	// --------------------- Presenting Sharing URLs ---------------------------
-	const baseURL = (process.env.NODE_ENV == "production") ? process.env.NEXT_PUBLIC_PRODUCTION_BACKEND : process.env.NEXT_PUBLIC_DEVELOPMENT_BACKEND; //backend to frontend 
+	const baseURL = (process.env.NODE_ENV == "production") ? process.env.NEXT_PUBLIC_PRODUCTION_BACKEND : process.env.NEXT_PUBLIC_DEVELOPMENT_FRONTEND; //backend to frontend 
 	const midURL = "user/restaurant/share/public/";
 	const shareURL = baseURL + midURL + shareId;
 
@@ -174,12 +172,12 @@ export default function ShareList({userId, restaurant_data, experiences}) {
 
 				<Box>
 					Here is your link: 
-					<Paper>		
-						{shareURL}
-					</Paper>
-
-					{/* <Link href={midURL + shareLink}>
-					</Link> */}
+					<Link href={shareURL}>
+						<Paper>		
+							{/* {shareURL} */}
+							Click to Direct
+						</Paper>
+					</Link>
 
 				</Box>
 

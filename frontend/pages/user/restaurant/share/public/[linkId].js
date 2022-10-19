@@ -7,8 +7,10 @@ export const getStaticPaths = async () => {
     // 2. data 
     // 3. presenting 
     const res = await axiosInstance.get('/user/restaurant/share/public');
+    console.log('here');
+    console.log('res --->' + res);
     const data = res.data;
-
+    console.log('data --->' + data);
     const paths = data.map(shareData => {
         // console.log('Error parsing JSON from response:', resClone );
         return {
@@ -28,10 +30,11 @@ export const getStaticPaths = async () => {
 // pages are available at build time and ahead of users' request,
 // might need to check if getServerSideProps is more appropriate here
 export const getStaticProps = async (context) => {
+    console.log("context --->" + context);
     const id = context.params.linkId; // this was context.params.name
     console.log('context.param.name --->' + id);
     // line 30 id should be unique share link 
-    const res = await axiosInstance.get('/user/restaurant/share/public/' + id);
+    const res = await axiosInstance.get('/user/restaurant/share/public' + id);
     const data = res.data;
 
     return {

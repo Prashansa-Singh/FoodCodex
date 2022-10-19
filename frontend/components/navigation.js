@@ -3,7 +3,7 @@ import styles from './css/navigation.module.css';
 import { useRouter } from 'next/router';
 import Hamburger from './hamburger';
 import { useState } from 'react';
-import { signOut } from 'next-auth/react';
+import { signOut } from 'next-auth/react'; 
 
 export default function Nav() {
     const router = useRouter();
