@@ -47,7 +47,6 @@ export default function ShareList({userId, restaurant_data, experiences}) {
 	const [shareId, setShareId] = useState(null);
 	let shareLink;
 
-
 	// // useState of customeShareOptions 
 	// const [options, setOptions] = useState(customShareOptions);
 
