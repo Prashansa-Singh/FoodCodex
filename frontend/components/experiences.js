@@ -7,11 +7,13 @@ export default function Experiences({experiences, id}) {
         <div className={styles.experiences_container}>
             <h5>Experiences</h5>
             <ExperienceForm id={id} />
-            {experiences.reverse().map(experience => {
-                return (
-                    <Experience experience={experience} />
-                );
-            })}
+            <div className={styles.cards}>
+                {experiences.reverse().map(experience => {
+                    return (
+                        <Experience experience={experience} />
+                    );
+                })}
+            </div>
         </div>
     );
 }

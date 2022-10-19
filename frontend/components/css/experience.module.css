@@ -2,13 +2,28 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding: 5px;
+    padding: 10px;
     background: #F6FAFF;
     border: 1px solid #79747E;
     border-radius: 12px;
-    width: 80%;
     line-height: 0;
     font-size: 16px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    flex: 0 0 30%;
+}
+.experience_container:hover {
+    box-shadow: 0 16px 32px 0 rgba(0,0,0,0.4);
+}
+
+.cards {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 2%;
+    justify-content: center;
+    align-items: center;
 }
 
 .experiences_container {
@@ -17,7 +32,7 @@
     align-items: center;
     padding-bottom: 20px;
     gap: 5px;
-    background-color: #c1c3c0;
+    background-color: #E7E0EC;
     text-align: center;
     border-radius: 10px;
     position: relative;
@@ -40,11 +55,50 @@
     transform: translateY(4px);
 }
 
+.submitButton {
+    background-color: #24B25C;
+    cursor: pointer;
+    padding: 1%;
+    min-width: 7vw;
+    border-radius: 15px;
+    border: none;
+    font-size: 16px;
+}
+
+.submitButton:hover {
+    background-color: #1d8e49;
+}
+
+.submitButton:active {
+    background-color: #1d8e49;
+    transform: translateY(4px);
+}
+
+.discardButton {
+    background-color: #F28157;
+    cursor: pointer;
+    padding: 1%;
+    min-width: 7vw;
+    border-radius: 15px;
+    border: none;
+    font-size: 16px;
+}
+
+.discardButton:hover {
+    background-color: #cb4210;
+}
+
+.discardButton:active {
+    background-color: #cb4210;
+    transform: translateY(4px);
+}
+
 .experience_form {
     display: none;
     flex-direction: column;
-    align-items: flex-start;
-    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
     background: #F6FAFF;
     border: 1px solid #79747E;
     border-radius: 12px;
@@ -52,6 +106,31 @@
     line-height: 0;
     font-size: 16px;
     gap: 10px;
+}
+
+.experience_form:hover {
+    box-shadow: 0 16px 32px 0 rgba(0,0,0,0.4);
+}
+
+.formTop {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+    width: 100%;
+}
+
+.formButtons {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.comment {
+    width: 100%;
 }
 
 .textarea {
@@ -64,4 +143,15 @@
     background-color: #f8f8f8;
     font-size: 14px;
     resize: none;
+}
+
+@media screen and (max-width: 450px) {
+    .experiences_container {
+        z-index: -1;
+    }
+
+    .cards {
+        flex-direction: column;
+    }
+
 }

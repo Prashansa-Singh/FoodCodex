@@ -65,7 +65,7 @@ export default function Login() {
 	const title = `${siteTitle} - Login`;
 
 	return (
-		<Layout home>
+		<Layout homeOther>
 			<Head>
 				<title>{title}</title>
 			</Head>
