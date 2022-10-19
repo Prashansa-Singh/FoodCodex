@@ -1,7 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import { useRef, useState } from 'react';
-import { resolve } from 'styled-jsx/css';
+import { useState } from 'react';
 import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
 import Layout, { siteTitle } from '../../components/layout';
@@ -111,7 +110,7 @@ export default function ViewRestaurantCollection({ data, displayName }) {
 
 	const clearFilter = () => {
 		setFilter({ ...filterTags });
-		console.log(filterTags);
+		closePopUp();
 		window.location.reload();
 	}
 
@@ -265,8 +264,8 @@ export default function ViewRestaurantCollection({ data, displayName }) {
 							<form onSubmit={submitFilter}>
 								<Tags restaurant_data={filterTags} page='edit' />
 								<div className={styles.button_container}>
-									<input type='submit' value='Apply' />
-									<button type='button' onClick={() => clearFilter()}>Discard</button>
+									<button type='submit'  className={styles.submitButton} onClick={() => closePopUp()}><b>Apply</b></button>
+									<button type='button'  className={styles.discardButton} onClick={() => clearFilter()}><b>Discard</b></button>
 								</div>
 							</form>
 						</div>
@@ -275,14 +274,23 @@ export default function ViewRestaurantCollection({ data, displayName }) {
 						<table id="restaurantTable" className={styles.table}>
 							<thead className={styles.thead}>
 								<tr className={styles.tr}>
-									<th className={styles.th}>Name
-										<img className={styles.icon} src='/src/nav-icons/sort-icon.svg' alt='Sort Name Icon' onClick={sortName} id='sortIcon'></img>
+									<th className={styles.th}>
+										<div className={styles.hcontent}>
+											Name
+											<img className={styles.sortIcon} src='/src/nav-icons/sort-icon.svg' alt='Sort Name Icon' onClick={sortName} id='sortIcon'></img>
+										</div>
 									</th>
-									<th className={styles.th}>Rating
-										<img className={styles.icon} src='/src/nav-icons/sort-icon.svg' alt='Sort Rating Icon' onClick={sortRating} id='sortIcon'></img>
+									<th className={styles.th}>
+										<div className={styles.hcontent}>
+											Rating
+											<img className={styles.sortIcon} src='/src/nav-icons/sort-icon.svg' alt='Sort Rating Icon' onClick={sortRating} id='sortIcon'></img>
+										</div>
 									</th>
-									<th className={styles.th}>Price
-										<img className={styles.icon} src='/src/nav-icons/sort-icon.svg' alt='Sort Price Icon' onClick={sortPrice} id='sortIcon'></img>
+									<th className={styles.th}>
+										<div className={styles.hcontent}>
+											Price
+											<img className={styles.sortIcon} src='/src/nav-icons/sort-icon.svg' alt='Sort Price Icon' onClick={sortPrice} id='sortIcon'></img>
+										</div>
 									</th>
 									<th className={styles.th}>Label</th>
 								</tr>

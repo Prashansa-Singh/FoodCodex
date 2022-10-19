@@ -7,8 +7,6 @@
     padding: 1vw;
     row-gap: 2vh;
     column-gap: 40vw;
-    align-items: center;
-    justify-items: center;
 }
 
 .searchbar {
@@ -20,6 +18,11 @@
 }
 
 .icon {
+    max-width: 25px;
+    cursor: pointer;
+}
+
+.sortIcon {
     max-width: 25px;
     cursor: pointer;
 }
@@ -46,6 +49,54 @@
     left: 35%;
 }
 
+.button_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 5px;
+    flex-direction: row;
+    gap: 10px;
+    padding-top: 5vh;
+}
+
+.submitButton {
+    background-color: #24B25C;
+    cursor: pointer;
+    padding: 1%;
+    min-width: 7vw;
+    border-radius: 15px;
+    border: none;
+    font-size: 16px;
+}
+
+.submitButton:hover {
+    background-color: #1d8e49;
+}
+
+.submitButton:active {
+    background-color: #1d8e49;
+    transform: translateY(4px);
+}
+
+.discardButton {
+    background-color: #F28157;
+    cursor: pointer;
+    padding: 1%;
+    min-width: 7vw;
+    border-radius: 15px;
+    border: none;
+    font-size: 16px;
+}
+
+.discardButton:hover {
+    background-color: #cb4210;
+}
+
+.discardButton:active {
+    background-color: #cb4210;
+    transform: translateY(4px);
+}
+
 .close {
     text-align: right;
     cursor: pointer;
@@ -57,25 +108,33 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
-    height: 63vh;
+    height: 66vh;
     overflow-y: scroll;
 }
 
 .table {
-    border: 1px solid;
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.thead {
+    position: sticky;
+    top: 0;
+    z-index: 0;
+    text-align: center;
+    vertical-align: middle;
 }
 
 .th {
     border: 1px solid;
-    text-align: center;
-    vertical-align: middle;
     padding: 2%;
     background-color: #5989C5;
-    position: sticky;
-    top: 0;
-    z-index: 0;
+}
+
+.hcontent {
+    display: flex;
+    justify-content: center;
 }
 
 .td {
@@ -86,15 +145,6 @@
 
 .tr:hover {
     background-color: #98b6db;
-}
-
-.button_container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-top: 5px;
-    flex-direction: row;
-    gap: 5px;
 }
 
 @media screen and (max-width: 450px) {
@@ -109,13 +159,31 @@
         margin-left: 10vw;
     }
 
+    .sortIcon {
+        width: 4vw;
+    }
+
     .filter_options {
-        width: 75%;
-        top: 10%;
-        left: 12.5%;
+        width: 87%;
+        top: 15%;
+        left: 6.5%;
+    }
+
+    .button_container {
+        padding-top: 1.5vh;
+    }
+
+    .submitButton {
+        min-width: 20vw;
+    }
+
+    .discardButton {
+        min-width: 20vw;
     }
 
     .table_container {
         height: 60vh;
+        font-size: 16px;
     }
+
 }
