@@ -44,6 +44,7 @@ export async function getServerSideProps({query}) {
 export default function ShareList({userId, restaurant_data, experiences}) {
 	const title = `${siteTitle} - Share`;
 	const router = useRouter();
+	const [shareId, setShareId] = useState(null);
 	let shareLink;
 
 
@@ -134,7 +135,10 @@ export default function ShareList({userId, restaurant_data, experiences}) {
 		
 		await axiosInstance.post(url, body)
 		.then(function (response) {
-			shareLink = JSON.stringify(response.data);
+			shareLink = response.data;
+			// shareLink = JSON.stringify(response.data);
+			setShareId(shareLink);
+			console.log("shareId --> " + shareId);
 			console.log(response.data);
 			console.log("sharelink --> " + shareLink);
 			console.log(typeof(shareLink));
@@ -148,7 +152,7 @@ export default function ShareList({userId, restaurant_data, experiences}) {
 	// --------------------- Presenting Sharing URLs ---------------------------
 	const baseURL = (process.env.NODE_ENV == "production") ? process.env.NEXT_PUBLIC_PRODUCTION_BACKEND : process.env.NEXT_PUBLIC_DEVELOPMENT_BACKEND; //backend to frontend 
 	const midURL = "user/restaurant/share/public/";
-	const shareURL = baseURL + midURL + shareLink;
+	const shareURL = baseURL + midURL + shareId;
 
 	return (
 		<Layout>
