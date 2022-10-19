@@ -21,7 +21,6 @@ export async function getServerSideProps({query}) {
 	const user = '6310521c744ac9f1587375fa';
 	const url =  '/user/restaurant/view-one'
 	const response = await axiosInstance.get(url, {data: {userId: user, restaurantId: _id,}});
-
 	const restaurant_data = response.data;
 	const userId = user;
 
@@ -45,7 +44,7 @@ export async function getServerSideProps({query}) {
 export default function ShareList({userId, restaurant_data, experiences}) {
 	const title = `${siteTitle} - Share`;
 	const router = useRouter();
-	var shareLink;
+	let shareLink;
 
 
 	// // useState of customeShareOptions 
@@ -126,27 +125,50 @@ export default function ShareList({userId, restaurant_data, experiences}) {
 		});
 	} 
 
-	const generateRestaurantShareLink = async (url, body) => {
-		// try {
-		// 	const response = await axiosInstance.post()
-		// } catch(error) {
-			
-		// }
-
-		// console.log({body});
+	async function generateRestaurantShareLink (url, body){
 		await axiosInstance.post(url, body)
-		// console.log("body "+ typeof(body.restaurantId))
 		.then(function (response) {
 			shareLink = JSON.stringify(response.data);
 			console.log(response.data);
 			console.log("sharelink --> " + shareLink);
 			console.log(typeof(shareLink));
-			//router.push('/restaurant-collection/share-list');
 		})
 		.catch(function (error) {
 			console.log(error);
 		});
+
+		return (
+			<Layout>
+				{shareLink}
+			</Layout>
+
+		)
+
 	}
+	// const generateRestaurantShareLink = async (url, body) => {
+	// 	// try {
+	// 	// 	const response = await axiosInstance.post()
+	// 	// } catch(error) {
+	// 	// }
+
+		
+	// 	await axiosInstance.post(url, body)
+	// 	.then(function (response) {
+	// 		shareLink = JSON.stringify(response.data);
+	// 		console.log(response.data);
+	// 		console.log("sharelink --> " + shareLink);
+	// 		console.log(typeof(shareLink));
+	// 		//router.push('/restaurant-collection/shared-with-me');
+	// 	})
+	// 	.catch(function (error) {
+	// 		console.log(error);
+	// 	});
+	// }
+
+	// --------------------- Presenting Sharing URLs ---------------------------
+	const baseURL = (process.env.NODE_ENV == "production") ? process.env.NEXT_PUBLIC_PRODUCTION_BACKEND : process.env.NEXT_PUBLIC_DEVELOPMENT_BACKEND; //backend to frontend 
+	const midURL = "user/restaurant/share/public/";
+	const shareURL = baseURL + midURL + shareLink;
 
 	return (
 		<Layout>
@@ -168,10 +190,13 @@ export default function ShareList({userId, restaurant_data, experiences}) {
 
 				<Box>
 					Here is your link: 
-					<Paper>
-						
-						{"/user/restaurant/share/public/" + shareLink}
+					<Paper>		
+						{shareURL}
 					</Paper>
+
+					{/* <Link href={midURL + shareLink}>
+					</Link> */}
+
 				</Box>
 
 				{/* <div className={styles.filter}>

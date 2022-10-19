@@ -1,26 +1,38 @@
 import Head from 'next/head';
 import Link from 'next/link';
+import { axiosInstance } from '../../../../api/axiosConfig';
 
 export const getStaticPaths = async () => {
-    const res = await fetch('http://localhost:3000/user/restaurant/share/public');
-    const data = await res.json();
+    // 1.get id dynamically and concat to /user/restaurant
+    // 2. data 
+    // 3. presenting 
+    const res = await axiosInstance.get('/user/restaurant/share/public');
+    const data = res.data;
 
     const paths = data.map(shareData => {
+        // console.log('Error parsing JSON from response:', resClone );
         return {
-            params: {id: shareData.restaurantId.toString() }
+            // linkId needs to be the same as page setup name 
+            params: {linkId: shareData.name.toString() }
         }
     })
 
+    // { fallback: false } means if it's other routes will return 404
     return {
         paths, 
         fallback: false
     }
 }
 
+// ------------------- Note -------------------------
+// pages are available at build time and ahead of users' request,
+// might need to check if getServerSideProps is more appropriate here
 export const getStaticProps = async (context) => {
-    const id = context.params.id;
-    const res = await fetch('http://localhost:3000/user/restaurant/share/public/' + id);
-    const data = await res.json();
+    const id = context.params.linkId; // this was context.params.name
+    console.log('context.param.name --->' + id);
+    // line 30 id should be unique share link 
+    const res = await axiosInstance.get('/user/restaurant/share/public/' + id);
+    const data = res.data;
 
     return {
         props: { shareData: data}
@@ -31,7 +43,10 @@ export const getStaticProps = async (context) => {
 const restaurantDetails = ({ shareData }) => {
     return (
         <div>
-            <h1>{ shareData.restaurantId } </h1>
+            <h1>{ shareData.name } </h1>
+            <h1>
+                Shared Restaurant
+            </h1>
         </div>
     )
 }
