@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import Layout, { siteTitle } from '../components/layout';
 import utilStyles from '../styles/utils.module.css';
-import Styles from '../components/css/login-signup.module.css';
+import Styles from '../styles/login-signup.module.css';
 import LoginButton from '../components/loginbutton';
 
 import { useRouter } from 'next/router';
@@ -13,7 +13,7 @@ import React from 'react';
 import { Typography, Button, Grid, Paper, TextField, Stack, Box } from '@mui/material';
 
 
-export default function Login({ props }) {
+export default function Login() {
 	const router = useRouter();
 	const { data: session } = useSession()
 
@@ -65,7 +65,7 @@ export default function Login({ props }) {
 	const title = `${siteTitle} - Login`;
 
 	return (
-		<Layout home>
+		<Layout homeOther>
 			<Head>
 				<title>{title}</title>
 			</Head>
@@ -85,12 +85,12 @@ export default function Login({ props }) {
 								<Button type="submit" className={Styles.loginButton} variant="contained">LOGIN</Button>
 							</Box>
 
-							<Button variant="contained" href="/signup">New here?</Button>
-
+							<Box>
+								<Button variant="contained" href="/signup">New here?</Button>
+							</Box>
 						</Paper>
 					</Grid>
 				</form>
-				<LoginButton />
 			</section>
 		</Layout>
 	);

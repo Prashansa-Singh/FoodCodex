@@ -1,55 +1,88 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
+import TextField from '@mui/material/TextField';
+import InputAdornment from '@mui/material/InputAdornment';
 import Layout, { siteTitle } from '../../components/layout';
 import Tags from '../../components/tags';
 import utilStyles from '../../styles/utils.module.css';
 import styles from '../../styles/view-restaurant-collection.module.css';
+import { getSession } from "next-auth/react"
 
-import {axiosInstance} from '../api/axiosConfig';
+import { axiosInstance } from '../api/axiosConfig';
 
-export async function getServerSideProps() {
+export async function getServerSideProps(context) {
+	const session = await getSession(context);
 
-	const user = '6310521c744ac9f1587375fa';
+	if (!session) {
+		return {
+			redirect: {
+				destination: '/login',
+				permanent: false,
+			},
+		}
+	}
+
+	// const user = '6310521c744ac9f1587375fa';
+	// console.log(session)
+	const user = await session.user._id;
+
 	const url = '/user/restaurant/view-all'; // URL for the GET request to backend
-	const response = await axiosInstance.get(url, {data: {userId: user,}});
+	const response = await axiosInstance.get(url, { data: { userId: user, } });
 	const data = response.data;
 
+	const displayNameUrl = '/user/view-display-name';
+	const displayNameResponse = await axiosInstance.get(displayNameUrl, { data: { userId: user, } });
+	const displayName = displayNameResponse.data;
+
 	return {
-		props: {data,},
+		props: { data, displayName },
 	};
 }
 
 const filterTags = {
 	personalOption: false,
-    halalOption: false,
-    veganOption: false,
-    vegetarianOption: false,
-    pescatarianOption: false,
-    nutsFreeOption: false,
-    dairyFreeOption: false,
-    glutenFreeOption: false,
-    allergyFriendlyOption: false,
-    diabetesFriendlyOption: false
+	halalOption: false,
+	veganOption: false,
+	vegetarianOption: false,
+	pescatarianOption: false,
+	nutsFreeOption: false,
+	dairyFreeOption: false,
+	glutenFreeOption: false,
+	allergyFriendlyOption: false,
+	diabetesFriendlyOption: false
 }
 
-export default function ViewRestaurantCollection({data}) {
+
+const columnSortsInitial = {
+	nameSortAsc: false,
+	ratingSortAsc: false,
+	priceSortAsc: false,
+}
+
+const sortableColumns = {
+	nameCol: 0,
+	ratingCol: 1,
+	priceCol: 2
+}
+
+export default function ViewRestaurantCollection({ data, displayName }) {
 	const title = `${siteTitle} - Restaurant Collection`;
 
 	const [filter, setFilter] = useState(filterTags);
 
 	const submitFilter = (event) => {
 		event.preventDefault();
-		let updatePersonal = {personalOption:event.target.personalOption.value === 'true'}; 
-		let updateHalal = {halalOption:event.target.halalOption.value === 'true'}; 
-		let updateVegan = {veganOption:event.target.veganOption.value === 'true'}; 
-		let updateVegetarian = {vegetarianOption:event.target.vegetarianOption.value === 'true'}; 
-		let updatePescatarian = {pescatarianOption:event.target.pescatarianOption.value === 'true'}; 
-		let updateNutsFree = {nutsFreeOption:event.target.nutsFreeOption.value === 'true'}; 
-		let updateDairyFree = {dairyFreeOption:event.target.dairyFreeOption.value === 'true'}; 
-		let updateGlutenFree = {glutenFreeOption:event.target.glutenFreeOption.value === 'true'}; 
-		let updateAllergyFriendly = {allergyFriendlyOption:event.target.allergyFriendlyOption.value === 'true'}; 
-		let updateDiabetesFriendly = {diabetesFriendlyOption:event.target.diabetesFriendlyOption.value === 'true'}; 
+		let updatePersonal = { personalOption: event.target.personalOption.value === 'true' };
+		let updateHalal = { halalOption: event.target.halalOption.value === 'true' };
+		let updateVegan = { veganOption: event.target.veganOption.value === 'true' };
+		let updateVegetarian = { vegetarianOption: event.target.vegetarianOption.value === 'true' };
+		let updatePescatarian = { pescatarianOption: event.target.pescatarianOption.value === 'true' };
+		let updateNutsFree = { nutsFreeOption: event.target.nutsFreeOption.value === 'true' };
+		let updateDairyFree = { dairyFreeOption: event.target.dairyFreeOption.value === 'true' };
+		let updateGlutenFree = { glutenFreeOption: event.target.glutenFreeOption.value === 'true' };
+		let updateAllergyFriendly = { allergyFriendlyOption: event.target.allergyFriendlyOption.value === 'true' };
+		let updateDiabetesFriendly = { diabetesFriendlyOption: event.target.diabetesFriendlyOption.value === 'true' };
 		setFilter(filter => ({
 			...filter,
 			...updatePersonal,
@@ -76,9 +109,9 @@ export default function ViewRestaurantCollection({data}) {
 	}
 
 	const clearFilter = () => {
-		setFilter({...filterTags});
-		console.log(filterTags);
-		window.location.reload(); 
+		setFilter({ ...filterTags });
+		closePopUp();
+		window.location.reload();
 	}
 
 	const openPopUp = () => {
@@ -91,7 +124,7 @@ export default function ViewRestaurantCollection({data}) {
 		elem.style.display = 'none';
 	}
 
-	const updateTable = ( _id) => {
+	const updateTable = (_id) => {
 		let dataRow;
 		for (let i = 0; i < data.length; i++) {
 			if (data[i]._id === _id) {
@@ -99,13 +132,106 @@ export default function ViewRestaurantCollection({data}) {
 			}
 		}
 		let show = true;
-		Object.keys(filter).forEach(function(option) {
+		Object.keys(filter).forEach(function (option) {
 			if (filter[option]) {
 				show = show && dataRow[option];
 			}
 		});
 
+		if (searchName !== null) {
+			let restaurantNameLC = dataRow["name"].toLowerCase();
+
+			if (!restaurantNameLC.includes(searchName)) {
+				show = false
+			}
+		}
+
 		return show;
+	}
+
+
+	const [colSorts, setColSorts] = useState(columnSortsInitial);
+
+
+	const handleSortClick = (colNum) => {
+		if (typeof window !== 'undefined') {
+
+			// change sort order for this column
+			let sortKey = Object.keys(colSorts)[colNum]
+			colSorts[sortKey] = !colSorts[sortKey]
+			setColSorts(colSorts)
+
+			sortTable(colNum, colSorts[sortKey]);
+		}
+
+	}
+
+	const sortName = () => {
+		handleSortClick(sortableColumns.nameCol);
+	}
+
+
+	const sortRating = () => {
+		handleSortClick(sortableColumns.ratingCol);
+	}
+
+
+	const sortPrice = () => {
+		handleSortClick(sortableColumns.priceCol);
+	}
+
+
+	const sortTable = (colNum, ascendingOrder) => {
+		if (typeof window !== 'undefined') {
+			let table, rows, switching, i, x, y, shouldSwitch;
+			table = document.getElementById("restaurantTable");
+			switching = true;
+
+			while (switching) {
+				switching = false;
+				rows = table.rows;
+
+				// Loop over all table rows except header row
+				for (i = 1; i < (rows.length - 1); i++) {
+					shouldSwitch = false;
+					x = rows[i].getElementsByTagName("td")[colNum];
+					y = rows[i + 1].getElementsByTagName("td")[colNum];
+
+					// compare current and next row to determine if they should be switched
+					if (ascendingOrder) {
+						if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+							shouldSwitch = true;
+							break;
+						}
+					} else {
+						// descending order comparison
+						if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+							shouldSwitch = true;
+							break;
+						}
+					}
+				}
+				if (shouldSwitch) {
+					rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+					switching = true;
+				}
+			}
+		}
+	}
+
+	const [searchName, setSearchName] = useState('');
+
+	const changeSearchName = (event) => {
+		event.preventDefault();
+
+		let searchStringLC = (event.target.value).toLowerCase();
+
+		if (event.target.value === '') {
+			setSearchName(null);
+		}
+		else {
+			setSearchName(searchStringLC);
+		}
 	}
 
 	return (
@@ -115,16 +241,21 @@ export default function ViewRestaurantCollection({data}) {
 			</Head>
 			<section className={utilStyles.headingMd}>
 				<h1>
-					Restaurant Collection
+					Welcome Back {displayName.displayName}
 				</h1>
 
 				<div className={styles.collection_container}>
-					<input 
-						className={styles.searchbar}
+					<TextField
 						id='searchbar'
-						type="search" 
+						size="small"
+						type="search"
 						name="search"
-						placeholder="Search..." 
+						placeholder="Search..."
+						variant="outlined"
+						onChange={changeSearchName}
+						InputProps={{
+							startAdornment: <InputAdornment position="start"><img src="/src/nav-icons/search-icon.svg" /></InputAdornment>,
+						}}
 					/>
 					<div className={styles.filter}>
 						<img className={styles.icon} src='/src/nav-icons/filter-icon.svg' alt='Filter Icon' onClick={openPopUp} id='filterIcon' />
@@ -133,27 +264,57 @@ export default function ViewRestaurantCollection({data}) {
 							<form onSubmit={submitFilter}>
 								<Tags restaurant_data={filterTags} page='edit' />
 								<div className={styles.button_container}>
-									<input type='submit' value='Apply' />
-									<button type='button' onClick={() => clearFilter()}>Discard</button>
+									<button type='submit'  className={styles.submitButton} onClick={() => closePopUp()}><b>Apply</b></button>
+									<button type='button'  className={styles.discardButton} onClick={() => clearFilter()}><b>Discard</b></button>
 								</div>
 							</form>
 						</div>
 					</div>
 					<div className={styles.table_container}>
-						<table className={styles.table}>
-							<thead>
-								<tr>
-									<th className={styles.th}>Name</th>
-									<th className={styles.th}>Rating</th>
-									<th className={styles.th}>Price</th>
+						<table id="restaurantTable" className={styles.table}>
+							<thead className={styles.thead}>
+								<tr className={styles.tr}>
+									<th className={styles.th}>
+										<div className={styles.hcontent}>
+											Name
+											<img className={styles.sortIcon} src='/src/nav-icons/sort-icon.svg' alt='Sort Name Icon' onClick={sortName} id='sortIcon'></img>
+										</div>
+									</th>
+									<th className={styles.th}>
+										<div className={styles.hcontent}>
+											Rating
+											<img className={styles.sortIcon} src='/src/nav-icons/sort-icon.svg' alt='Sort Rating Icon' onClick={sortRating} id='sortIcon'></img>
+										</div>
+									</th>
+									<th className={styles.th}>
+										<div className={styles.hcontent}>
+											Price
+											<img className={styles.sortIcon} src='/src/nav-icons/sort-icon.svg' alt='Sort Price Icon' onClick={sortPrice} id='sortIcon'></img>
+										</div>
+									</th>
+									<th className={styles.th}>Label</th>
 								</tr>
 							</thead>
 							<tbody>
-								{data.map(({ _id, name, rating, priceRating }) => (
-									<tr className={styles.tr} key={_id} style={{'display': updateTable(_id) ? '' : 'none'}}>
-										<Link href={{pathname: '/restaurant-collection/view-restaurant-record', query: {_id: _id}}}><td className={styles.td}>{name}</td></Link>
-										<Link href={{pathname: '/restaurant-collection/view-restaurant-record', query: {_id: _id}}}><td className={styles.td}>{rating}</td></Link>
-										<Link href={{pathname: '/restaurant-collection/view-restaurant-record', query: {_id: _id}}}><td className={styles.td}>{priceRating}</td></Link>
+								{data.map(({ _id, name, rating, priceRating, personalOption, halalOption, veganOption, vegetarianOption, pescatarianOption, nutsFreeOption, dairyFreeOption, glutenFreeOption, allergyFriendlyOption, diabetesFriendlyOption }) => (
+									<tr className={styles.tr} key={_id} style={{ 'display': updateTable(_id) ? '' : 'none' }}>
+										<Link href={{ pathname: '/restaurant-collection/view-restaurant-record', query: { _id: _id } }}><td className={styles.td}>{name}</td></Link>
+										<Link href={{ pathname: '/restaurant-collection/view-restaurant-record', query: { _id: _id } }}><td className={styles.td}>{rating}</td></Link>
+										<Link href={{ pathname: '/restaurant-collection/view-restaurant-record', query: { _id: _id } }}><td className={styles.td}>{priceRating}</td></Link>
+										<Link href={{ pathname: '/restaurant-collection/view-restaurant-record', query: { _id: _id } }}>
+											<td className={styles.td}><Tags restaurant_data={{
+												personalOption: personalOption,
+												halalOption: halalOption,
+												veganOption: veganOption,
+												vegetarianOption: vegetarianOption,
+												pescatarianOption: pescatarianOption,
+												nutsFreeOption: nutsFreeOption,
+												dairyFreeOption: dairyFreeOption,
+												glutenFreeOption: glutenFreeOption,
+												allergyFriendlyOption: allergyFriendlyOption,
+												diabetesFriendlyOption: diabetesFriendlyOption
+											}} page='viewAll' /></td>
+										</Link>
 									</tr>
 								))}
 							</tbody>

@@ -36,10 +36,14 @@ export default function ExperienceForm({id}) {
         let visitTime = event.target.experiencetime.value;
         const comment = event.target.experiencecomment.value;
 
+        // Update to correct timezone
+        let visitDate = new Date(visitTime);
+        visitDate.setTime(visitDate.getTime() + 11 * 60 * 60 * 1000)
+
         const body = {
             restaurantId: id, 
             title: title, 
-            visitTime: visitTime,
+            visitTime: visitDate,
             comment: comment,
         };
 
@@ -67,25 +71,27 @@ export default function ExperienceForm({id}) {
 
     return ( 
         <>
-            <button className={styles.addbutton}><img src='/src/plus-icon.svg' onClick={() => openForm()} /></button>
+            <button className={styles.addbutton} onClick={() => openForm()}><img src='/src/plus-icon.svg' /></button>
             <form id='experienceform' className={styles.experience_form} onSubmit={submitExperience}>
-                <label><b>Title:</b></label>
-                <input type='text' name='experiencetitle' placeholder='Title of the Experience' required />
-                <TextField
-                    id="datetime-local"
-                    label="Time Visited"
-                    type="datetime-local"
-                    defaultValue={defaultTime()}
-                    name='experiencetime'
-                    sx={{ width: 250 }}
-                    InputLabelProps={{
-                        shrink: true,
-                    }}
-                />
-                <label><b>Comment:</b></label>
-                <textarea name='experiencecomment' placeholder='Type comment here' className={styles.textarea} required />
-                <input type='submit' value='Save' />
-                <button type='button' onClick={() => closeForm()} >Discard</button>
+                <div className={styles.formTop}>
+                    <TextField id="outlined-title" label="Title" variant="outlined" name="experiencetitle" placeholder='Title of the Experience' required margin="dense" />
+                    <TextField
+                        id="datetime-local"
+                        label="Time Visited"
+                        type="datetime-local"
+                        defaultValue={defaultTime()}
+                        name='experiencetime'
+                        sx={{ width: 250 }}
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                    />
+                </div>
+                <TextField id="outlined-comment" label="Comment" variant="outlined" name="experiencecomment" placeholder='Type comment here' required margin="dense" multiline rows={4} className={styles.comment} />
+                <div className={styles.formButtons}>
+                    <button type='submit' className={styles.submitButton}><b>Save</b></button>
+                    <button type='button' className={styles.discardButton} onClick={() => closeForm()}><b>Discard</b></button>
+                </div>
             </form> 
         </>                
     );

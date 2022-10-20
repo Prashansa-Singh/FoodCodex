@@ -5,7 +5,7 @@ import utilStyles from '../styles/utils.module.css';
 export default function About() {
 	const title = `${siteTitle} - About`;
 	return (
-		<Layout home>
+		<Layout homeOther>
 			<Head>
 				<title>{title}</title>
 			</Head>
@@ -15,7 +15,7 @@ export default function About() {
 				</h1>
 
 				<p>
-					About page
+					About Us Page
 				</p>
 			</section>
 		</Layout>
