@@ -149,6 +149,10 @@
     cursor: pointer;
 }
 
+.viewTop {
+    line-height: 0.5;
+}
+
 @media screen and (max-width: 450px) {
     .collection_container {
         grid-template-columns: 2fr 1fr;
