@@ -13,6 +13,7 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
 import { Rating } from "@mui/material";
 import PaidIcon from '@mui/icons-material/Paid';
 import PaidOutlinedIcon from '@mui/icons-material/PaidOutlined';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 import { getSession } from "next-auth/react"
 
@@ -95,6 +96,10 @@ export default function ViewRestaurantRecord({ userId, restaurant_data, experien
 						{restaurant_data.name}
 					</h1>
 					<div className={styles.icon_group}>
+						<div className={styles.icons}>
+							<DeleteIcon className={styles.bin} onClick={() => confirmDelete()} />
+							<p>Delete</p>
+						</div>
 						<Link href='/restaurant-collection/share-list'>
 							<a>
 								<div className={styles.icons}>
@@ -132,11 +137,6 @@ export default function ViewRestaurantRecord({ userId, restaurant_data, experien
 					<br />
 					<Experiences experiences={experiences} id={restaurant_data._id} />
 				</div>
-				<br />
-				<div className={styles.button_container}>
-					<button onClick={() => confirmDelete()} className={styles.delete_button} >Delete Restaurant</button>
-				</div>
-
 				<br />
 				<br />
 				<br />
