@@ -79,7 +79,7 @@ export default function ExperienceEdit({experience, restId}) {
             </div>
             <h2>Edit Experience</h2>
             <div className={styles.editFormInner}>
-                <div className={styles.formTop}>
+                <div className={styles.formTopEdit}>
                     <TextField 
                         id="outlined-title" 
                         label="Title" 
