@@ -28,7 +28,6 @@ const defaultTime = () => {
 }
 
 export default function ExperienceForm({id}) {
-    const router = useRouter();
 
     const submitExperience = async (event) => {
         event.preventDefault();

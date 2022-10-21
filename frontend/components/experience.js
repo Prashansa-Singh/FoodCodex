@@ -1,7 +1,5 @@
 import styles from './css/experience.module.css';
-import DeleteIcon from '@mui/icons-material/Delete';
-import { confirmAlert } from 'react-confirm-alert';
-import { axiosInstance } from '../pages/api/axiosConfig';
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 
 export default function Experience({experience}) {
     const displayTime = () => {
@@ -23,48 +21,21 @@ export default function Experience({experience}) {
         );
     }
 
-    const confirmDelete = () => {
-
-		const body = {
-			experienceId: experience._id,
-		};
-
-		const url = 'user/restaurant/experience/delete-one';
-
-		confirmAlert({
-			title: 'Confirm to delete',
-			message: 'Are you sure you wish to delete this experience?',
-			buttons: [
-				{
-					label: 'Yes',
-					onClick: () => deleteExperience(url, body),
-				},
-				{
-					label: 'No',
-				}
-			]
-		});
-	}
-
-    const deleteExperience = async (url, body) => {
-        await axiosInstance.delete(url, {data: body})
-        .then(function (response) {
-            console.log(response.data);
-            window.location.reload(); 
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
+    const openView = () => {
+        const viewId = "experience_view" + experience._id;
+        document.getElementById(viewId).style.display = "flex";
     }
 
     return (
         <div className={styles.experience_container}>
             <div className={styles.topExperienceContainer}>
                 <p><b>{experience.title}</b></p>
-                <DeleteIcon className={styles.bin} onClick={() => confirmDelete()} />
+                <MoreHorizIcon className={styles.more} onClick={() => openView()} />
             </div>
             {displayTime()}
-            <p>{experience.comment}</p>
+            <div className={styles.commentContainer}>
+                <p>{experience.comment}</p>
+            </div>
         </div>
     );
 }

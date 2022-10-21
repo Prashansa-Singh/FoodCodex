@@ -13,6 +13,16 @@
     flex: 0 0 30%;
     width: 20vw;
 }
+
+
+.commentContainer {
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: left;
+}
+
 .experience_container:hover {
     box-shadow: 0 16px 32px 0 rgba(0,0,0,0.4);
 }
@@ -154,17 +164,61 @@
     width: 100%;
 }
 
-.bin {
+.more:hover {
     cursor: pointer;
 }
 
-.bin:hover {
-    color: #cb4210;
+.view_experience {
+    display: none;
+    background-color: #9868A6;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+    border: 1px solid #000000;
+    border-radius: 12px;
+    line-height: 0;
+    font-size: 16px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    position: fixed;
+    top: 15%;
+    left: 35%;
+    width: 50%;
+    height: 75%;
 }
 
-.bin:active {
-    color: #cb4210;
+.close_container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.viewIcon:hover {
+    cursor: pointer;
+    color: white;
+}
+
+.viewIcon:active {
     transform: translateY(2px);
+}
+
+.viewTitle {
+    font-size: 20px;
+}
+
+.viewInformation {
+    padding: 2vw;
+    width: 100%;
+    height: 100%;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+}
+
+.viewComment {
+    word-break: break-all;
+    white-space: normal;
+    line-height: 1.5;
 }
 
 @media screen and (max-width: 450px) {

@@ -1,6 +1,7 @@
 import styles from './css/experience.module.css';
 import Experience from './experience';
 import ExperienceForm from './experience-form';
+import ExperienceView from './experience-view';
 
 export default function Experiences({experiences, id}) {
     return (
@@ -10,7 +11,10 @@ export default function Experiences({experiences, id}) {
             <div className={styles.cards}>
                 {experiences.reverse().map(experience => {
                     return (
-                        <Experience experience={experience} key={experience._id} />
+                        <div key={experience._id} >
+                            <Experience experience={experience} />
+                            <ExperienceView experience={experience} />
+                        </div>
                     );
                 })}
             </div>
