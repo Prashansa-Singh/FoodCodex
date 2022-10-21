@@ -35,8 +35,6 @@ const getRestaurant = async (req, res) => {
 
 		let restaurant = await Restaurant.findById(req.body.restaurantId)
 
-		console.log(restaurant);
-
 		if (restaurant) {
 			return res.send(JSON.stringify(restaurant));
 		}

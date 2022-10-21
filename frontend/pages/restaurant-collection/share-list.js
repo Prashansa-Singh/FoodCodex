@@ -17,17 +17,23 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
 
 export async function getServerSideProps({query}) {
 
-	const {_id} = query;
+	// --------------- Single Restaurant Data -------------
 	const user = '6310521c744ac9f1587375fa';
 	const url =  '/user/restaurant/view-one'
-	const response = await axiosInstance.get(url, {data: {userId: user, restaurantId: _id,}});
+	const { rest_id } = query;
+	const response = await axiosInstance.get(url, {data: {userId: user, restaurantId: rest_id,}});
 	const restaurant_data = response.data;
 	const userId = user;
 
-	const experiences_data = (await axiosInstance.get('user/restaurant/experience/view-all', {data: {restaurantId: _id,}}));
-	const experiences = experiences_data.data;
+
+
+	// ------------- Share id ---------------- post restId to get shareId, put shareId in get request to get sharedRestaurantdata, pass this restaurantdata to linkId.js using Link href, query, render restaurantData in linkId page by having getServerSideProps get the url. If I want to add restaurant data, call post API, restaurant data in body to add that in restaurant collection. router.push(viewrestaurantcollection)
+	// if same share at once, might crash, at the start, id is empty, thenignore, from second time onwards, get the restaurantdata by using viewRestaurantRouter in the backend,
+
+	const resShare = await axiosInstance.get('user/restaurant/share/public' + id);
+	
 	return {
-		props: {userId, restaurant_data, experiences},
+		props: {userId, restaurant_data},
 	};
 }
 
@@ -197,3 +203,5 @@ export default function ShareList({userId, restaurant_data, experiences}) {
 		</Layout>
 	);
 }
+
+// getstaticprops return query with the share data, render it on the linkId page? 

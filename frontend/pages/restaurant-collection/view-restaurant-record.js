@@ -34,8 +34,10 @@ export async function getServerSideProps(context) {
 	const user = await session.user._id;
 	const url = '/user/restaurant/view-one'
 	const response = await axiosInstance.get(url, { data: { userId: user, restaurantId: _id, } });
+	console.log('response -->' + response);
 
 	const restaurant_data = response.data;
+	console.log('restaurant_data -->' + JSON.stringify(restaurant_data._id));
 	const userId = user;
 
 	const experiences_data = (await axiosInstance.get('user/restaurant/experience/view-all', { data: { restaurantId: _id, } }));
@@ -98,7 +100,7 @@ export default function ViewRestaurantRecord({ userId, restaurant_data, experien
 						{restaurant_data.name}
 					</h1>
 					<div className={styles.icon_group}>
-						<Link href={{pathname: '/restaurant-collection/share-list', query: {_id: restaurant_data._id}}}>
+						<Link href={{pathname: '/restaurant-collection/share-list', query: {_id: userId, rest_id: restaurant_data._id } }}>
 							<a>
 								<div className={styles.icons}>
 									<img src='/src/nav-icons/share-icon.svg' width='40vw' />
