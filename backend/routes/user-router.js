@@ -19,5 +19,7 @@ userRouter.post('/validate-user', userController.validateUser);
 
 userRouter.get('/view-display-name', userController.getDisplayName);
 
+userRouter.post('/update-display-name', userController.updateDisplayName);
+
 
 module.exports = userRouter;
