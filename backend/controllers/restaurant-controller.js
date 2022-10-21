@@ -33,13 +33,13 @@ const getRestaurant = async (req, res) => {
 			`Received the following userId: ${req.body.userId} and restaurantId: ${req.body.restaurantId}`
 		);
 
-        let restaurant = await Restaurant.findById(req.body.restaurantId)
+		let restaurant = await Restaurant.findById(req.body.restaurantId)
 
 		console.log(restaurant);
 
-        if (restaurant) {
-            return res.send(JSON.stringify(restaurant));
-        }
+		if (restaurant) {
+			return res.send(JSON.stringify(restaurant));
+		}
 	} catch (err) {
 		return next(err);
 	}
@@ -52,15 +52,15 @@ const updateRestaurant = async (req, res, next) => {
 		delete req.body.userId
 
 		const restaurantId = req.body.restaurantId
-		delete req.body.restaurantId		
+		delete req.body.restaurantId
 
 		console.log(
 			`Received the following userId: ${userId} and restaurantId: ${restaurantId}`
 		);
 
 		await Restaurant.updateOne(
-			{_id: restaurantId},
-			{$set: req.body}
+			{ _id: restaurantId },
+			{ $set: req.body }
 		).lean()
 
 		let restaurant = await Restaurant.findById(restaurantId)
@@ -76,7 +76,7 @@ const deleteRestaurant = async (req, res, next) => {
 	try {
 		const restaurantId = req.body.restaurantId
 		const countBefore = await Restaurant.countDocuments({ _id: restaurantId })
-		await Restaurant.deleteOne({_id: restaurantId})
+		await Restaurant.deleteOne({ _id: restaurantId })
 		const countAfter = await Restaurant.countDocuments({ _id: restaurantId })
 
 		return res.send(`Number of documents with restaurantId: ${restaurantId} is [Before Deletion: ${countBefore}] and [After Deletion: ${countAfter}].`);
@@ -86,8 +86,7 @@ const deleteRestaurant = async (req, res, next) => {
 	}
 }
 
-
-const deleteAllRestaurants = async (req, res, next) => {
+const deleteAllRestaurantsInteract = async (req) => {
 	try {
 		const userId = req.body.userId
 		const user = await User.findOne({ _id: userId }).populate('restaurants');
@@ -97,9 +96,27 @@ const deleteAllRestaurants = async (req, res, next) => {
 		// Loop through each of user's restaurant records and delete
 		let i = 0
 		for (i = 0; i < arrayLength; i++) {
-			const restaurantId = restaurants[i]._id		
-			await Restaurant.deleteOne({_id: restaurantId})
+			const restaurantId = restaurants[i]._id
+			await Restaurant.deleteOne({ _id: restaurantId })
 		}
+
+		await User.updateOne(
+			{ _id: userId },
+			{ $set: { restaurants: [] } }
+		);
+
+		return arrayLength
+	}
+	catch (err){
+		console.error(err);
+	}
+}
+
+
+const deleteAllRestaurants = async (req, res, next) => {
+	try {
+		const userId = req.body.userId
+		const arrayLength = await deleteAllRestaurantsInteract(req)
 
 		// Return number of restaurants before and after deletion for this user
 		const countBefore = arrayLength
@@ -114,8 +131,8 @@ const deleteAllRestaurants = async (req, res, next) => {
 
 module.exports = {
 	getAllRestaurants,
-    createRestaurant,
-    getRestaurant,
+	createRestaurant,
+	getRestaurant,
 	updateRestaurant,
 	deleteRestaurant,
 	deleteAllRestaurants

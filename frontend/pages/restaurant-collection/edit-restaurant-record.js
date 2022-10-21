@@ -176,6 +176,7 @@ export default function EditRestaurantRecord({ userId, restaurant_data, new_data
 										<Rating icon={<PaidIcon />} emptyIcon={<PaidOutlinedIcon />} onChange={(event, newPriceValue) => { setPriceValue(newPriceValue) }} />
 									</div>
 								</div>
+								<br/>
 								<label> Tags </label>
 								<Tags restaurant_data={restaurant_data} page='edit' />
 							</form>

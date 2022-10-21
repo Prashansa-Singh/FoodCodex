@@ -109,16 +109,14 @@ export default function Tags({restaurant_data, page}) {
             );
         } else {
             return (
-                <>
-                    {tag}
-                </>
+                <>{tag}</>
             );
         }
     }
 
     return (
         <div className={styles.tag_container}>
-            {tags.map(({name, tag}) => (displayTags(name, tag, page)))}
+            {tags.map(({name, tag}) => displayTags(name, tag, page))}
         </div>
     );
 }
