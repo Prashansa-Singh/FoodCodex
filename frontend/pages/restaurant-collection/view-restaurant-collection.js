@@ -275,21 +275,21 @@ export default function ViewRestaurantCollection({ data, displayName }) {
 							<thead className={styles.thead}>
 								<tr className={styles.tr}>
 									<th className={styles.th}>
-										<div className={styles.hcontent}>
+										<div className={styles.hcontent} onClick={sortName}>
 											Name
-											<img className={styles.sortIcon} src='/src/nav-icons/sort-icon.svg' alt='Sort Name Icon' onClick={sortName} id='sortIcon'></img>
+											<img className={styles.sortIcon} src='/src/nav-icons/sort-icon.svg' alt='Sort Name Icon' id='sortIcon'></img>
 										</div>
 									</th>
 									<th className={styles.th}>
-										<div className={styles.hcontent}>
+										<div className={styles.hcontent} onClick={sortRating}>
 											Rating
-											<img className={styles.sortIcon} src='/src/nav-icons/sort-icon.svg' alt='Sort Rating Icon' onClick={sortRating} id='sortIcon'></img>
+											<img className={styles.sortIcon} src='/src/nav-icons/sort-icon.svg' alt='Sort Rating Icon' id='sortIcon'></img>
 										</div>
 									</th>
 									<th className={styles.th}>
-										<div className={styles.hcontent}>
+										<div className={styles.hcontent} onClick={sortPrice}>
 											Price
-											<img className={styles.sortIcon} src='/src/nav-icons/sort-icon.svg' alt='Sort Price Icon' onClick={sortPrice} id='sortIcon'></img>
+											<img className={styles.sortIcon} src='/src/nav-icons/sort-icon.svg' alt='Sort Price Icon' id='sortIcon'></img>
 										</div>
 									</th>
 									<th className={styles.th}>Tags</th>

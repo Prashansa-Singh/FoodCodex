@@ -135,6 +135,7 @@
 .hcontent {
     display: flex;
     justify-content: center;
+    cursor: pointer;
 }
 
 .td {
@@ -145,6 +146,7 @@
 
 .tr:hover {
     background-color: #98b6db;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 450px) {
