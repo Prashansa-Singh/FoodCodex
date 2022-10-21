@@ -8,7 +8,9 @@ import Tags from '../../components/tags';
 import Experiences from '../../components/experiences';
 import { useRouter } from 'next/router';
 import { confirmAlert } from 'react-confirm-alert';
+import { useState } from 'react';
 import 'react-confirm-alert/src/react-confirm-alert.css';
+
 
 import { Rating } from "@mui/material";
 import PaidIcon from '@mui/icons-material/Paid';
@@ -48,10 +50,47 @@ export async function getServerSideProps(context) {
 }
 
 
+const generateRestaurantShareLink = async (url, body) => {
+	 
+
+	await axiosInstance.post(url, body)
+	.then(function (response) {
+		shareLink = response.data;
+		setShareId(shareLink);
+		console.log("shareId --> " + shareId);
+		console.log(response.data);
+		console.log("sharelink --> " + shareLink);
+		//router.push('/restaurant-collection/shared-with-me');
+	})
+	.catch(function (error) {
+		console.log(error);
+	});
+
+	return {
+		shareId
+	}
+}
+
+const getSharedRestaurantData = async (concatedURL) => {
+	
+	const response = await axiosInstance.get(concatedURL);
+	console.log("getSharedRestaurantData's response" + response);
+	const responseData = response.data;
+
+	return {
+		response, responseData
+	}
+
+}
+
 export default function ViewRestaurantRecord({ userId, restaurant_data, experiences }) {
 	const title = `${siteTitle} - ${restaurant_data.name}`;
 
 	const router = useRouter();
+	// const [shareId, setShareId] = useState(null);
+	const [rId, setRId] = useState(null);
+	const [dId, setDataId] = useState(null);
+	let shareLink;
 
 	const confirmDelete = () => {
 
@@ -75,6 +114,32 @@ export default function ViewRestaurantRecord({ userId, restaurant_data, experien
 			]
 		});
 	} 
+
+	const clickToShare = () => {
+		
+		const body = {
+			senderId: userId,
+			restaurantId: restaurant_data._id,
+			shareName: true,
+			shareRating: true,
+			sharePriceRating: true,
+			shareCuisine: true,
+			shareAddress: true,
+			shareOptionTags: true
+		};
+	
+		// has share id 
+		const URL = '/user/restaurant/share/generate-link';
+		const returned = generateRestaurantShareLink(URL, body);
+		setRId(returned);
+	
+		// has shared restaurant data 
+		const concatedURL = URL + rId;
+		const returnedFull = getSharedRestaurantData(concatedURL);
+		console.log("returnedFull ---> " + returnedFull );
+	
+		setDataId(returnedFull);
+	}
 
 	const deleteRestaurant = async (url, body) => {
 		await axiosInstance.delete(url, { data: body })
@@ -100,8 +165,8 @@ export default function ViewRestaurantRecord({ userId, restaurant_data, experien
 						{restaurant_data.name}
 					</h1>
 					<div className={styles.icon_group}>
-						<Link href={{pathname: '/restaurant-collection/share-list', query: {_id: userId, rest_id: restaurant_data._id } }}>
-							<a>
+						<Link onClick={() => clickToShare()} href={{pathname: '/restaurant-collection/share-list', query: dId }}>
+							<a> 
 								<div className={styles.icons}>
 									<img src='/src/nav-icons/share-icon.svg' width='40vw' />
 									<p>Share</p>
