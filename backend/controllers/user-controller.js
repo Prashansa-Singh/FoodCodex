@@ -19,6 +19,30 @@ const getDisplayName = async (req, res) => {
 };
 
 
+const updateDisplayName = async (req, res, next) => {
+	try {
+		const userId = req.body.userId
+		delete req.body.userId
+
+		console.log(
+			`Received the following userId: ${userId}`
+		);
+
+		await User.updateOne(
+			{ _id: userId },
+			{ $set: req.body }
+		).lean()
+
+		let user = await User.findById(userId)
+
+		console.log(user);
+		return res.send(JSON.stringify({"displayName": user.displayName}));
+	} catch (err) {
+		return next(err);
+	}
+}
+
+
 const validateUser = async (req, res, next) => {
 	try {
 		console.log(
@@ -51,5 +75,6 @@ module.exports = {
 	loginUser,
 	logoutUser,
 	validateUser,
-	getDisplayName
+	getDisplayName,
+	updateDisplayName
 }
