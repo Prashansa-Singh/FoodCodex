@@ -17,6 +17,7 @@ userRouter.get('/logout', userController.logoutUser);
 
 userRouter.post('/validate-user', userController.validateUser);
 
+userRouter.get('/view-display-name', userController.getDisplayName);
 
 
 module.exports = userRouter;

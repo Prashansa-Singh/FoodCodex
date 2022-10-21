@@ -292,7 +292,7 @@ export default function ViewRestaurantCollection({ data, displayName }) {
 											<img className={styles.sortIcon} src='/src/nav-icons/sort-icon.svg' alt='Sort Price Icon' onClick={sortPrice} id='sortIcon'></img>
 										</div>
 									</th>
-									<th className={styles.th}>Label</th>
+									<th className={styles.th}>Tags</th>
 								</tr>
 							</thead>
 							<tbody>

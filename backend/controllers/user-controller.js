@@ -9,6 +9,15 @@ const logoutUser = async (req, res) => {
 
 }
 
+const getDisplayName = async (req, res) => {
+	try {
+		const user = await User.findOne({ _id: req.body.userId })
+		return res.send(JSON.stringify({"displayName": user.displayName}));
+	} catch (err) {
+		return next(err);
+	}
+};
+
 
 const validateUser = async (req, res, next) => {
 	try {
@@ -41,5 +50,6 @@ const validateUser = async (req, res, next) => {
 module.exports = {
 	loginUser,
 	logoutUser,
-	validateUser
+	validateUser,
+	getDisplayName
 }
