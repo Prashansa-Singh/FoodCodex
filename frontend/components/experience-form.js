@@ -58,6 +58,14 @@ export default function ExperienceForm({id}) {
 
     }
 
+    const toggleForm = () => {
+        if (document.getElementById("experienceform").style.display == "none") {
+            openForm();
+        } else {
+            closeForm();
+        }
+    }
+
     const openForm = () => {
         document.getElementById("experienceform").style.display = "flex";
     }
@@ -69,7 +77,7 @@ export default function ExperienceForm({id}) {
 
     return ( 
         <>
-            <button className={styles.addbutton} onClick={() => openForm()}><img src='/src/plus-icon.svg' /></button>
+            <button className={styles.addbutton} onClick={() => toggleForm()}><img src='/src/plus-icon.svg' /></button>
             <form id='experienceform' className={styles.experience_form} onSubmit={submitExperience}>
                 <div className={styles.formTop}>
                     <TextField id="outlined-title" label="Title" variant="outlined" name="experiencetitle" placeholder='Title of the Experience' required margin="dense" />
