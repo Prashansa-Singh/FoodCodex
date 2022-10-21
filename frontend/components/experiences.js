@@ -43,24 +43,34 @@ export default function Experiences({experiences, id}) {
 			});
 	}
 
+    console.log(experiences.length);
+
     return (
         <div className={styles.experiences_container}>
             <h5>Experiences</h5>
             <ExperienceForm id={id} />
-            <div className={styles.cards}>
-                {experiences.reverse().map(experience => {
-                    return (
-                        <div key={experience._id} >
-                            <Experience experience={experience} />
-                            <ExperienceView experience={experience} />
-                            <ExperienceEdit experience={experience} restId={id} />
-                        </div>
-                    );
-                })}
-            </div>
-            <div className={styles.button_container}>
-                <button onClick={() => confirmDelete()} className={styles.delete_button} >Delete All Experiences</button>
-            </div>
+            {
+                experiences.length == 0 
+                ? <>
+                      <p>Click on the '+' button to add your first experience!</p>
+                  </> 
+                : <>
+                    <div className={styles.cards}>
+                        {experiences.reverse().map(experience => {
+                            return (
+                                <div key={experience._id} >
+                                    <Experience experience={experience} />
+                                    <ExperienceView experience={experience} />
+                                    <ExperienceEdit experience={experience} restId={id} />
+                                </div>
+                            );
+                        })}
+                    </div>
+                    <div className={styles.button_container}>
+                        <button onClick={() => confirmDelete()} className={styles.delete_button} >Delete All Experiences</button>
+                    </div>
+                </>
+            }
         </div>
     );
 }
