@@ -31,6 +31,12 @@ export default function ExperienceView({experience}) {
         document.getElementById(viewId).style.display = "none";
     }
 
+    const openEdit = () => {
+        const editId = "experience_edit" + experience._id;
+        document.getElementById(editId).style.display = "flex";
+        closeView();
+    }
+
     const confirmDelete = () => {
 
 		const body = {
@@ -74,7 +80,7 @@ export default function ExperienceView({experience}) {
                 <div className={styles.topExperienceContainer}>
                     <p className={styles.viewTitle}><b>{experience.title}</b></p>
                     <div>
-                        <EditIcon className={styles.viewIcon} />
+                        <EditIcon className={styles.viewIcon} onClick={() => openEdit()} />
                         <DeleteIcon className={styles.viewIcon} onClick={() => confirmDelete()} />
                     </div>
                 </div>

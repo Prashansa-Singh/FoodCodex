@@ -1,5 +1,6 @@
 import styles from './css/experience.module.css';
 import Experience from './experience';
+import ExperienceEdit from './experience-edit';
 import ExperienceForm from './experience-form';
 import ExperienceView from './experience-view';
 
@@ -14,6 +15,7 @@ export default function Experiences({experiences, id}) {
                         <div key={experience._id} >
                             <Experience experience={experience} />
                             <ExperienceView experience={experience} />
+                            <ExperienceEdit experience={experience} restId={id} />
                         </div>
                     );
                 })}
