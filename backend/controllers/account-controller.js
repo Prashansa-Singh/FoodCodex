@@ -19,10 +19,10 @@ const deleteUser = async (req, res, next) => {
 
     try {
         // delete the users restaurants
-        deleteAllRestaurantsInteract(req);
+        await deleteAllRestaurantsInteract(req);
 
         // delete user account
-        await User.deleteOne({ _id: userId })
+        await User.deleteOne({ _id: req.body.userId })
         return res.sendStatus(200)
     }
     catch (err) {
