@@ -218,6 +218,7 @@
     word-break: break-all;
     white-space: normal;
     line-height: 1.5;
+    overflow-y: scroll;
 }
 
 .formButtonsEdit {
@@ -226,7 +227,14 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 30px;
+    margin-top: 3px;
+}
+
+.editFormInner {
+    width: 100%;
+    background-color: white;
+    padding: 20px;
+    border-radius: 15px;
 }
 
 @media screen and (max-width: 450px) {
