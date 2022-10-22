@@ -12,7 +12,7 @@ const logoutUser = async (req, res) => {
 const getDisplayName = async (req, res) => {
 	try {
 		const user = await User.findOne({ _id: req.body.userId })
-		return res.send(JSON.stringify({"displayName": user.displayName}));
+		return res.send(JSON.stringify({ "displayName": user.displayName }));
 	} catch (err) {
 		return next(err);
 	}
@@ -25,18 +25,20 @@ const validateUser = async (req, res, next) => {
 			`Received the following username: ${req.body.username} and password: ${req.body.password}`
 		);
 
-		let fetchUser = await User.findOne({
+		let rawUser = await User.findOne({
 			userName: req.body.username,
 		});
 
-		console.log(fetchUser);
-
-		if (!fetchUser) {
+		if (!rawUser) {
 			return res.send(null);
 		}
 
+		rawUser = rawUser.toObject()
+
+		const { password, restaurants, ...fetchUser } = rawUser;
+
 		// compare passwords => currently a plaintext check
-		if (fetchUser.password === req.body.password) {
+		if (password === req.body.password) {
 			return res.send(JSON.stringify(fetchUser));
 		} else {
 			return res.send(null);
