@@ -55,9 +55,7 @@ export default function ViewRestaurantRecord({ userId, restaurant_data, experien
 
 	const router = useRouter();
 	const [shareId, setShareId] = useState(null);
-	const [rId, setRId] = useState(null);
-	const [restaurantSharedData, setSharedData] = useState(null);
-	const [aname, setAname] = useState(null);
+
 	let shareLink;
 	console.log("1");
 
@@ -147,19 +145,15 @@ export default function ViewRestaurantRecord({ userId, restaurant_data, experien
 
 	}
 	
-	const getSharedRestaurantData = async (concatedURL) => {
-		console.log('4');
-		const response = await axiosInstance.get(concatedURL);
+	// const getSharedRestaurantData = async (concatedURL) => {
+	// 	console.log('4');
+	// 	const response = await axiosInstance.get(concatedURL);
+	// 	console.log("getSharedRestaurantData's response" + JSON.stringify(response));
 
-		console.log("getSharedRestaurantData's response" + JSON.stringify(response));
-		setSharedData(response);
-		const stringfyResponse = JSON.stringify(response.data.name);
-		setAname(stringfyResponse);
-		const {name} = response;
-		console.log("name out" + stringfyResponse);
-		// console.log("name out" + stringfyResponse.data.name);
-	
-	}
+	// 	setSharedData(response);
+	// 	const stringfyResponse = JSON.stringify(response.data.name);
+
+	// }
 
 	return (
 		<Layout>
@@ -178,7 +172,7 @@ export default function ViewRestaurantRecord({ userId, restaurant_data, experien
 									<img src='/src/nav-icons/share-icon.svg' width='40vw' />
 									<p>Share
 
-										share link is here: http://localhost:3000/restaurant-collection/share-list?name=633e130ef0a48a106f5d0463
+										share link: http://localhost:3000/restaurant-collection/share-list?name=Hii
 									</p>
 								</div>
 							</a>
