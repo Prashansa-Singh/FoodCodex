@@ -158,8 +158,6 @@ export default function ViewRestaurantRecord({ userId, restaurant_data, experien
 		const {name} = response;
 		console.log("name out" + stringfyResponse);
 		// console.log("name out" + stringfyResponse.data.name);
-		
-
 	
 	}
 

@@ -21,6 +21,7 @@
 		"react-dom": "18.2.0"
 	},
 	"devDependencies": {
+		"circular-json": "^0.5.9",
 		"eslint": "8.23.0",
 		"eslint-config-next": "12.2.5"
 	}

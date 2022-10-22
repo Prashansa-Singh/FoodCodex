@@ -14,6 +14,8 @@ import { confirmAlert } from 'react-confirm-alert';
 import { Typography, Button, Grid, Paper, TextField, Stack, Box } from '@mui/material';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 
+// converting circular structure 
+import CircularJSON from 'circular-json'
 
 export async function getServerSideProps({query}) {
 
@@ -24,28 +26,15 @@ export async function getServerSideProps({query}) {
 	console.log("name in server " + name);
 	const concatenatedURL = url + name;
 	const response = await axiosInstance.get(concatenatedURL);
-	let restaurantData = response;
+	let restaurantData = response.data;
 	
 	console.log("restaurantData type before" + typeof(restaurantData));
-	console.log("restaurantData before " + JSON.stringify(restaurantData));
+	// console.log("restaurantData before " + restaurantData);
 
-	// restaurantData = JSON.parse(JSON.stringify(restaurantData));
+	restaurantData = CircularJSON.parse(CircularJSON.stringify(restaurantData));
 
 	console.log("restaurantData type after" + typeof(restaurantData));
 	console.log("restaurantData after " + restaurantData);
-
-// 	// const restaurant_data = response.data;
-// 	// const userId = user;
-
-// 	// const experiences_data = (await axiosInstance.get('user/restaurant/experience/view-all', {data: {restaurantId: rest_id,}}));
-// 	// const experiences = experiences_data.data;
-
-// 	// ------------- Share id ---------------- post restId to get shareId, put shareId in get request to get sharedRestaurantdata, pass this restaurantdata to linkId.js using Link href, query, render restaurantData in linkId page by having getServerSideProps get the url. If I want to add restaurant data, call post API, restaurant data in body to add that in restaurant collection. router.push(viewrestaurantcollection)
-// 	// if same share at once, might crash, at the start, id is empty, thenignore, from second time onwards, get the restaurantdata by using viewRestaurantRouter in the backend,
-
-// 	// const resShare = await axiosInstance.get('user/restaurant/share/public' + id);
-	
-// 	console.log("name inside server props" + JSON.stringify(name));
 
 	return {
 		// props: {userId, restaurant_data, experiences},
@@ -67,9 +56,6 @@ export async function getServerSideProps({query}) {
 export default function ShareList({ name, restaurantData }) {
 	const title = `${siteTitle} - Share`;
 	const router = useRouter();
-	// const {name} = router.query;
-
-	// const {data} = query;
 
 	const [shareId, setShareId] = useState(null);
 	let shareLink;
@@ -183,11 +169,6 @@ export default function ShareList({ name, restaurantData }) {
 	console.log("restaurant data type in share " + typeof(restaurantData));
 	console.log("restaurant data in share " + restaurantData);
 
-	// console.log("query type " + typeof(query));
-	// console.log('type ' + typeof(name.data));
-	// console.log("name name " + data.name);
-	// console.log("name 5" + JSON.parse(props.router.query.data));
-
 	return (
 		<Layout>
 			<Head>
@@ -203,35 +184,8 @@ export default function ShareList({ name, restaurantData }) {
 				</p>
 
 				<div> { name } </div>
-
-				{/* <div className={styles.button_container}>
-					<button onClick={() => confirmShare()} className={styles.delete_button} >Share Restaurant</button>
-				</div> */}
-
-				{/* <Box>
-					Here is your link: 
-					<Link href={shareURL}>
-						<Paper>		
-							
-							Click to Direct : {shareURL}
-						</Paper>
-					</Link>
-
-				</Box> */}
-
-				{/* <div className={styles.filter}>
-						<img className={styles.icon} src='/src/nav-icons/filter-icon.svg' alt='Filter Icon' onClick={openPopUp} id='filterIcon' />
-						<div className={styles.filter_options} id='filter'>
-							<p className={styles.close} onClick={closePopUp}>&#10006;</p>
-							<form onSubmit={submitOptions}>
-								<div restaurant_data={customShareOptions} page='edit' />
-								<div className={styles.button_container}>
-									<input type='submit' value='Apply' />
-									<button type='button' onClick={() => cancelOptions()}>Discard</button>
-								</div>
-							</form>
-						</div>
-					</div> */}
+				<div> { restaurantData.name } </div>
+				
 			</section>
 		</Layout>
 	);
