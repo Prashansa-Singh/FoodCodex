@@ -144,9 +144,12 @@
     vertical-align: middle;
 }
 
+.td:hover {
+    cursor: pointer;
+}
+
 .tr:hover {
     background-color: #98b6db;
-    cursor: pointer;
 }
 
 .viewTop {
