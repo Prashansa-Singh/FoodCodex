@@ -19,26 +19,22 @@ import CircularJSON from 'circular-json'
 
 export async function getServerSideProps({query}) {
 
-// 	// // --------------- Single Restaurant Data -------------
-// 	// const user = '6310521c744ac9f1587375fa';
+	// --------------- Single Restaurant Data -------------
+	const user = '6310521c744ac9f1587375fa';
 	const url =  'user/restaurant/share/public/'
-	const { name } = query;
-	console.log("name in server " + name);
-	const concatenatedURL = url + name;
-	const response = await axiosInstance.get(concatenatedURL);
+	const { link } = query;
+	console.log("name in server " + link);
+	const getDataConcatedURL = url + link;
+	const response = await axiosInstance.get(getDataConcatedURL);
 	let restaurantData = response.data;
 	
 	console.log("restaurantData type before" + typeof(restaurantData));
-	// console.log("restaurantData before " + restaurantData);
-
-	restaurantData = CircularJSON.parse(CircularJSON.stringify(restaurantData));
-
 	console.log("restaurantData type after" + typeof(restaurantData));
 	console.log("restaurantData after " + restaurantData);
 
 	return {
-		// props: {userId, restaurant_data, experiences},
-		props: { name, restaurantData }, 
+	
+		props: { link, restaurantData }, 
 	};
 }
 
@@ -53,7 +49,7 @@ export async function getServerSideProps({query}) {
 // }
 
 
-export default function ShareList({ name, restaurantData }) {
+export default function ShareList({ link, restaurantData }) {
 	const title = `${siteTitle} - Share`;
 	const router = useRouter();
 
@@ -160,12 +156,10 @@ export default function ShareList({ name, restaurantData }) {
 	// }
 
 	// --------------------- Presenting Sharing URLs ---------------------------
-	const baseURL = (process.env.NODE_ENV == "production") ? process.env.NEXT_PUBLIC_PRODUCTION_BACKEND : process.env.NEXT_PUBLIC_DEVELOPMENT_FRONTEND; //backend to frontend 
-	const midURL = "user/restaurant/share/public/";
-	const shareURL = baseURL + midURL + shareId;
+	
 
 	console.log("5");
-	console.log("name " + name);
+	console.log("data " + link);
 	console.log("restaurant data type in share " + typeof(restaurantData));
 	console.log("restaurant data in share " + restaurantData);
 
@@ -183,7 +177,7 @@ export default function ShareList({ name, restaurantData }) {
 					Page where users can share records
 				</p>
 
-				<div> { name } </div>
+				<div> { link } </div>
 				<div> { restaurantData.name } </div>
 				
 			</section>

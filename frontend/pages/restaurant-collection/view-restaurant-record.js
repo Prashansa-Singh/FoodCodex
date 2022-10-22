@@ -11,10 +11,11 @@ import { confirmAlert } from 'react-confirm-alert';
 import { useState } from 'react';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 
-
+// Material Ui
 import { Rating } from "@mui/material";
 import PaidIcon from '@mui/icons-material/Paid';
 import PaidOutlinedIcon from '@mui/icons-material/PaidOutlined';
+import Modal from '@mui/material/Modal';
 
 import { getSession } from "next-auth/react"
 
@@ -54,11 +55,57 @@ export default function ViewRestaurantRecord({ userId, restaurant_data, experien
 	const title = `${siteTitle} - ${restaurant_data.name}`;
 
 	const router = useRouter();
-	const [shareId, setShareId] = useState(null);
 
-	let shareLink;
 	console.log("1");
 
+	// -------------------------- sharing --------------------------
+	const [shareId, setShareId] = useState(null);
+	let shareLink;
+
+	const clickToShare = async() => {
+		
+		const body = {
+			senderId: userId,
+			restaurantId: restaurant_data._id,
+			shareName: true,
+			shareRating: true,
+			sharePriceRating: true,
+			shareCuisine: true,
+			shareAddress: true,
+			shareOptionTags: true
+		};
+		
+		console.log("2");
+		// has share id 
+		const URL = '/user/restaurant/share/generate-link';
+		await generateRestaurantShareLink(URL, body);
+	
+		// present full share link
+		const baseURL = (process.env.NODE_ENV == "production") ? process.env.NEXT_PUBLIC_PRODUCTION_BACKEND : process.env.NEXT_PUBLIC_DEVELOPMENT_FRONTEND; //backend to frontend 
+		const midURL = "restaurant-collection/share-list?link=";
+		const concatedURL = baseURL + midURL + shareId;
+		console.log("concatedURL ---> " + concatedURL);
+
+	}
+
+	const generateRestaurantShareLink = async (url, body) => {
+		await axiosInstance.post(url, body)
+		.then(function (response) {
+			shareLink = response.data;
+			console.log('3');
+			console.log(response.data);
+			console.log("sharelink --> " + shareLink);
+			setShareId(shareLink);
+			console.log("shareId --> " + shareId);
+		
+		})
+		.catch(function (error) {
+			console.log(error);
+		});
+
+	}
+
+	
 	const confirmDelete = () => {
 
 		const body = {
@@ -82,39 +129,6 @@ export default function ViewRestaurantRecord({ userId, restaurant_data, experien
 		});
 	} 
 
-	const clickToShare = async() => {
-		
-		const body = {
-			senderId: userId,
-			restaurantId: restaurant_data._id,
-			shareName: true,
-			shareRating: true,
-			sharePriceRating: true,
-			shareCuisine: true,
-			shareAddress: true,
-			shareOptionTags: true
-		};
-		
-		console.log("2");
-		// has share id 
-		const URL = '/user/restaurant/share/generate-link';
-		await generateRestaurantShareLink(URL, body);
-	
-		// has shared restaurant data 
-		const viewURL = '/user/restaurant/share/public/'
-		const concatedURL = viewURL + shareLink;
-		console.log("concatedURL ---> " + concatedURL);
-		await getSharedRestaurantData(concatedURL);
-
-		// await router.push({
-		// 	pathname: '/restaurant-collection/share-list', 
-		// 	// query: { data: JSON.stringify(aname) },
-		// 	query: { name: "Hi" },
-
-		// })
-
-	}
-
 	const deleteRestaurant = async (url, body) => {
 		await axiosInstance.delete(url, { data: body })
 			.then(function (response) {
@@ -125,35 +139,7 @@ export default function ViewRestaurantRecord({ userId, restaurant_data, experien
 				console.log(error);
 			});
 	}
-
 	
-	const generateRestaurantShareLink = async (url, body) => {
-	 
-		await axiosInstance.post(url, body)
-		.then(function (response) {
-			shareLink = response.data;
-			console.log('3');
-			console.log(response.data);
-			console.log("sharelink --> " + shareLink);
-			setShareId(shareLink);
-			console.log("shareId --> " + shareId);
-			//router.push('/restaurant-collection/shared-with-me');
-		})
-		.catch(function (error) {
-			console.log(error);
-		});
-
-	}
-	
-	// const getSharedRestaurantData = async (concatedURL) => {
-	// 	console.log('4');
-	// 	const response = await axiosInstance.get(concatedURL);
-	// 	console.log("getSharedRestaurantData's response" + JSON.stringify(response));
-
-	// 	setSharedData(response);
-	// 	const stringfyResponse = JSON.stringify(response.data.name);
-
-	// }
 
 	return (
 		<Layout>
@@ -166,8 +152,8 @@ export default function ViewRestaurantRecord({ userId, restaurant_data, experien
 						{restaurant_data.name}
 					</h1>
 					<div className={styles.icon_group}>
-						{/* <Link> */}
-							<a  onClick={() => clickToShare()}> 
+						<Link onClick={() => clickToShare()}>
+							<a> 
 								<div className={styles.icons}>
 									<img src='/src/nav-icons/share-icon.svg' width='40vw' />
 									<p>Share
@@ -176,7 +162,7 @@ export default function ViewRestaurantRecord({ userId, restaurant_data, experien
 									</p>
 								</div>
 							</a>
-						{/* </Link> */}
+						</Link>
 						<Link href={{ pathname: '/restaurant-collection/edit-restaurant-record', query: { _id: userId, rest_id: restaurant_data._id } }}>
 							<a>
 								<div className={styles.icons}>
