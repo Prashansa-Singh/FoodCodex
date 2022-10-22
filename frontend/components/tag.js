@@ -1,7 +1,7 @@
 import styles from './css/tag.module.css';
 
 const tagNames = {
-    personalOption: 'Personal',
+    personalOption: 'Other',
     halalOption: 'Halal',
     veganOption: 'Vegan',
     vegetarianOption: 'Vegetarian',
@@ -14,7 +14,7 @@ const tagNames = {
 }
 
 const shortNames = {
-    personalOption: 'P',
+    personalOption: 'O',
     halalOption: 'H',
     veganOption: 'V',
     vegetarianOption: 'Ve',
