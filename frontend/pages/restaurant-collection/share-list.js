@@ -23,12 +23,29 @@ import PaidOutlinedIcon from '@mui/icons-material/PaidOutlined';
 import { confirmAlert } from 'react-confirm-alert';
 import SaveAltIcon from '@mui/icons-material/SaveAlt';
 
-export async function getServerSideProps({query}) {
+export async function getServerSideProps(context) {
 
+	// --------------- authentication --------------------
+	const session = await getSession(context);
+
+	if (!session) {
+		return {
+			redirect: {
+				destination: '/login',
+				permanent: false,
+			},
+		}
+	}
+
+	const { _id } = context.query;
+	// const user = '6310521c744ac9f1587375fa';
+	// const user = await session.user._id;
+
+	
 	// --------------- Single Restaurant Data -------------
-	const user = '6310521c744ac9f1587375fa';
+	
 	const url =  'user/restaurant/share/public/'
-	const { link } = query;
+	const { link } = context.query;
 	console.log("name in server " + link);
 	const getDataConcatedURL = url + link;
 	const response = await axiosInstance.get(getDataConcatedURL);

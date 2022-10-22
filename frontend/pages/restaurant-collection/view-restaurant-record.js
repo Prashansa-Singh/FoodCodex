@@ -87,7 +87,9 @@ export default function ViewRestaurantRecord({ userId, restaurant_data, experien
 		// present full share link
 		const baseURL = (process.env.NODE_ENV == "production") ? process.env.NEXT_PUBLIC_PRODUCTION_BACKEND : process.env.NEXT_PUBLIC_DEVELOPMENT_FRONTEND; //backend to frontend 
 		const midURL = "restaurant-collection/share-list?link=";
-		const concatedURL = baseURL + midURL + shareLink; // works, but shareId is null for some reason ?? pending solve
+		const connectionURL = "&_id=";
+		const midIdURL = userId;
+		const concatedURL = baseURL + midURL + shareLink + connectionURL + midIdURL; // works, but shareId is null for some reason ?? pending solve
 		setShareURL(concatedURL); // I think no need of setState since it's working? shareURL and concatedURL are the same restaurant but different link ??
 		console.log("concatedURL ---> " + concatedURL);
 		console.log("shareURL ---> " + shareURL);
@@ -167,7 +169,9 @@ export default function ViewRestaurantRecord({ userId, restaurant_data, experien
 									<p> 
 										Click to Share: {shareURL}
 									</p>
-									<PopupModal shareURL ={shareURL}/>
+									<PopupModal shareURL ={shareURL}>
+										
+									</PopupModal>
 								</div>
 							</a>
 						</div>

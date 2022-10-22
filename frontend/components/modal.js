@@ -21,7 +21,7 @@ const TestModals = ( { shareURL } ) => {
             type="button"
             onClick={() => setShowModal(true)}
             >
-            Click to Share <AiFillFire className="text-xl" />
+            Click to View <AiFillFire className="text-xl" />
             </button>
             {/* <button
             className="border border-blue-100  text-gray-800 hover:text-white active:bg-black hover:bg-black flex justify-center items-center gap-2
@@ -35,10 +35,10 @@ const TestModals = ( { shareURL } ) => {
         {showModal ? (
             <div className="mt-10 flex justify-center items-center flex-col w-72 rounded-lg shadow-xl h-auto p-2">
             <Image src={happyMan} width={100} height={100} objectFit="contain" />
-            <h2 className="text-base mt-2 mx-4 text-gray-400 font-semibold text-center">
+            <p className="text-base mt-2 mx-4 text-gray-400 font-semibold text-center">
                 Here's your share link, {shareURL}.
                 Congratulations!
-            </h2>
+            </p>
             <button
                 className="my-5 w-auto px-8 h-10 bg-blue-600 text-white rounded-md shadow hover:shadow-lg font-semibold"
                 onClick={() => setShowModal(false)}
