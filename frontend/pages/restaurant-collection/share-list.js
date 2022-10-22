@@ -301,7 +301,7 @@ export default function ShareList({ link, restaurantData }) {
 				{saveState && (
 						<>
 						<form onSubmit={submitEdit}>
-							{/* <div className={styles.button_container}>
+							<div className={styles.button_container}>
 								<button type='submit' className={styles.submitButton}><b>Save</b></button>
 								<button type='button' className={styles.discardButton} onClick={() => discard()}><b>Discard</b></button>	
 							</div>
@@ -311,8 +311,8 @@ export default function ShareList({ link, restaurantData }) {
 									label="Restaurant Name" 
 									variant="outlined" 
 									name="name" 
-									placeholder={restaurant_data.name}
-									defaultValue={restaurant_data.name}
+									placeholder={restaurantData.name}
+									defaultValue={restaurantData.name}
 									required 
 									margin="dense" 
 									className={styles.textFields}
@@ -322,8 +322,8 @@ export default function ShareList({ link, restaurantData }) {
 									label="Type of Cuisine" 
 									variant="outlined" 
 									name="cuisine" 
-									placeholder={restaurant_data.cuisine}
-									defaultValue={restaurant_data.cuisine}
+									placeholder={restaurantData.cuisine}
+									defaultValue={restaurantData.cuisine}
 									required 
 									margin="dense" 
 									className={styles.textFields}
@@ -334,8 +334,8 @@ export default function ShareList({ link, restaurantData }) {
 								label="Restaurant Address" 
 								variant="outlined" 
 								name="address" 
-								placeholder={restaurant_data.address}
-								defaultValue={restaurant_data.address}
+								placeholder={restaurantData.address}
+								defaultValue={restaurantData.address}
 								required 
 								margin="dense" 
 								className={styles.address}
@@ -343,15 +343,15 @@ export default function ShareList({ link, restaurantData }) {
 							<div className={styles.editFormBottom}>
 								<div className={styles.picker}>
 									<label> Rating (out of 5 stars): </label>
-									<Rating precision={0.5} defaultValue={restaurant_data.rating} onChange={(event, newValue) => { setValue(newValue) }} />
+									<Rating precision={0.5} defaultValue={restaurantData.rating} onChange={(event, newValue) => { setValue(newValue) }} />
 								</div>
 								<div className={styles.picker}>
 									<label> Price Range: </label>
-									<Rating icon={<PaidIcon />} emptyIcon={<PaidOutlinedIcon />} defaultValue={restaurant_data.priceRating} onChange={(event, newPriceValue) => { setPriceValue(newPriceValue) }} />
+									<Rating icon={<PaidIcon />} emptyIcon={<PaidOutlinedIcon />} defaultValue={restaurantData.priceRating} onChange={(event, newPriceValue) => { setPriceValue(newPriceValue) }} />
 								</div>
 							</div>
 							<br/>
-							<label> Tags: </label>
+							{/* <label> Tags: </label>
 							<Tags restaurant_data={restaurant_data} page='edit' /> */}
 						</form>
 						<p>Note: Experiences can only be added, updated and deleted from the view restaurant page.</p>
