@@ -39,7 +39,12 @@ export async function getServerSideProps(context) {
 	} else {
 		const url = '/user/restaurant/view-one'
 		const response = await axiosInstance.get(url, { data: { userId: userId, restaurantId: rest_id, } });
+		console.log("response in edit ", response);
+		console.log("response in edit type ", typeof(response));
 		restaurant_data = response.data;
+		console.log("restaurant_data in edit ", restaurant_data);
+		
+		console.log("restaurant_data in edit ", typeof(restaurant_data));
 		new_data = false;
 	}
 

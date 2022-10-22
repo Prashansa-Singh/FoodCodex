@@ -108,11 +108,12 @@ export default function ViewRestaurantRecord({ userId, restaurant_data, experien
 		console.log("concatedURL ---> " + concatedURL);
 		await getSharedRestaurantData(concatedURL);
 
-		router.push({
-			pathname: '/restaurant-collection/share-list', 
-			query: { name: aname },
+		// await router.push({
+		// 	pathname: '/restaurant-collection/share-list', 
+		// 	// query: { data: JSON.stringify(aname) },
+		// 	query: { name: "Hi" },
 
-		})
+		// })
 
 	}
 
@@ -147,8 +148,9 @@ export default function ViewRestaurantRecord({ userId, restaurant_data, experien
 	}
 	
 	const getSharedRestaurantData = async (concatedURL) => {
-		
+		console.log('4');
 		const response = await axiosInstance.get(concatedURL);
+
 		console.log("getSharedRestaurantData's response" + JSON.stringify(response));
 		setSharedData(response);
 		const stringfyResponse = JSON.stringify(response.data.name);
@@ -161,7 +163,6 @@ export default function ViewRestaurantRecord({ userId, restaurant_data, experien
 	
 	}
 
-	console.log(" restaurantSharedData " + restaurantSharedData);
 	return (
 		<Layout>
 			<Head>
@@ -173,14 +174,17 @@ export default function ViewRestaurantRecord({ userId, restaurant_data, experien
 						{restaurant_data.name}
 					</h1>
 					<div className={styles.icon_group}>
-						<Link onClick={() => clickToShare()}>
-							<a> 
+						{/* <Link> */}
+							<a  onClick={() => clickToShare()}> 
 								<div className={styles.icons}>
 									<img src='/src/nav-icons/share-icon.svg' width='40vw' />
-									<p>Share</p>
+									<p>Share
+
+										share link is here: http://localhost:3000/restaurant-collection/share-list?name=633e130ef0a48a106f5d0463
+									</p>
 								</div>
 							</a>
-						</Link>
+						{/* </Link> */}
 						<Link href={{ pathname: '/restaurant-collection/edit-restaurant-record', query: { _id: userId, rest_id: restaurant_data._id } }}>
 							<a>
 								<div className={styles.icons}>

@@ -15,13 +15,25 @@ import { Typography, Button, Grid, Paper, TextField, Stack, Box } from '@mui/mat
 import 'react-confirm-alert/src/react-confirm-alert.css';
 
 
-// export async function getServerSideProps({query}) {
+export async function getServerSideProps({query}) {
 
 // 	// // --------------- Single Restaurant Data -------------
 // 	// const user = '6310521c744ac9f1587375fa';
-// 	// const url =  '/user/restaurant/view-one'
-// 	const { name } = query;
-// 	// const response = await axiosInstance.get(url, {data: {userId: user,}});
+	const url =  'user/restaurant/share/public/'
+	const { name } = query;
+	console.log("name in server " + name);
+	const concatenatedURL = url + name;
+	const response = await axiosInstance.get(concatenatedURL);
+	let restaurantData = response;
+	
+	console.log("restaurantData type before" + typeof(restaurantData));
+	console.log("restaurantData before " + JSON.stringify(restaurantData));
+
+	// restaurantData = JSON.parse(JSON.stringify(restaurantData));
+
+	console.log("restaurantData type after" + typeof(restaurantData));
+	console.log("restaurantData after " + restaurantData);
+
 // 	// const restaurant_data = response.data;
 // 	// const userId = user;
 
@@ -34,11 +46,12 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
 // 	// const resShare = await axiosInstance.get('user/restaurant/share/public' + id);
 	
 // 	console.log("name inside server props" + JSON.stringify(name));
-// 	return {
-// 		// props: {userId, restaurant_data, experiences},
-// 		props: { name },
-// 	};
-// }
+
+	return {
+		// props: {userId, restaurant_data, experiences},
+		props: { name, restaurantData }, 
+	};
+}
 
 // const customShareOptions = {
 // 	shareName : true,
@@ -51,10 +64,13 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
 // }
 
 
-export default function ShareList({ query }) {
+export default function ShareList({ name, restaurantData }) {
 	const title = `${siteTitle} - Share`;
 	const router = useRouter();
-	const {name} = router.query;
+	// const {name} = router.query;
+
+	// const {data} = query;
+
 	const [shareId, setShareId] = useState(null);
 	let shareLink;
 
@@ -162,7 +178,15 @@ export default function ShareList({ query }) {
 	const midURL = "user/restaurant/share/public/";
 	const shareURL = baseURL + midURL + shareId;
 
-	console.log("4");
+	console.log("5");
+	console.log("name " + name);
+	console.log("restaurant data type in share " + typeof(restaurantData));
+	console.log("restaurant data in share " + restaurantData);
+
+	// console.log("query type " + typeof(query));
+	// console.log('type ' + typeof(name.data));
+	// console.log("name name " + data.name);
+	// console.log("name 5" + JSON.parse(props.router.query.data));
 
 	return (
 		<Layout>
