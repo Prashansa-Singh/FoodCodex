@@ -101,7 +101,7 @@ export default function Nav() {
                     {navItems.map(({ href, title, icon, alt }) => (
                         <li className={` ${styles.unselected} ${router.asPath === href && styles.selected}`} key={title}>
                             <Link href={href} title={alt}>
-                                <a title={title}>
+                                <a title={alt}>
                                     <div className={styles.icons}>
                                         {title}
                                         <img src={icon} alt={alt} />
