@@ -93,22 +93,22 @@ export default function EditRestaurantRecord({ userId, restaurant_data, new_data
 		
 		if (new_data){
 			await axiosInstance.post(urlCreate, body)
-				.then(function (response) {
-					console.log(response.data);
-					router.push('/restaurant-collection/view-restaurant-collection');
-				})
-				.catch(function (error) {
-					console.log(error);
-				});
+			.then(function (response) {
+				console.log(response.data);
+				router.push('/restaurant-collection/view-restaurant-collection');
+			})
+			.catch(function (error) {
+				console.log(error);
+			});
 		} else {
 			await axiosInstance.post(url, body)
-				.then(function (response) {
-					console.log(response.data);
-					router.push('/restaurant-collection/view-restaurant-collection');
-				})
-				.catch(function (error) {
-					console.log(error);
-				});
+			.then(function (response) {
+				console.log(response.data);
+				router.push('/restaurant-collection/view-restaurant-collection');
+			})
+			.catch(function (error) {
+				console.log(error);
+			});
 		}
 
 	}
@@ -242,6 +242,10 @@ export default function EditRestaurantRecord({ userId, restaurant_data, new_data
 								<label> Tags: </label>
 								<Tags restaurant_data={restaurant_data} page='edit' />
 							</form>
+							<p>Note: Experiences can only be added, updated and deleted from the view restaurant page.</p>
+							<br/>
+							<br/>
+							<br/>
 						</>
 					)}
 				</>

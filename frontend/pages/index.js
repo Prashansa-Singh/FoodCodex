@@ -32,7 +32,7 @@ export default function Home() {
 					>ABOUT</Button>
 				</Stack>	
 				<section className={utilStyles.content}>
-					<img src='/src/homepage-foodpic.jpg' alt="Home page laughter pic" className={utilStyles.image} />
+					<img src='/src/homepage-foodpic.jpg' alt="Picture of people enjoying meal and laughing" className={utilStyles.image} />
 					<h1>"Laughter is brightest in the place where food is good"</h1>	
 				</section>					
 			</section>

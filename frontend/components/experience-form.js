@@ -1,7 +1,6 @@
 import styles from './css/experience.module.css';
 import TextField from '@mui/material/TextField';
 import { axiosInstance } from '../pages/api/axiosConfig';
-import { useRouter } from 'next/router';
 
 const defaultTime = () => {
     const today = new Date();
@@ -28,7 +27,6 @@ const defaultTime = () => {
 }
 
 export default function ExperienceForm({id}) {
-    const router = useRouter();
 
     const submitExperience = async (event) => {
         event.preventDefault();
@@ -71,7 +69,7 @@ export default function ExperienceForm({id}) {
 
     return ( 
         <>
-            <button className={styles.addbutton} onClick={() => openForm()}><img src='/src/plus-icon.svg' /></button>
+            <button className={styles.addbutton} onClick={() => openForm()}><img src='/src/plus-icon.svg' alt='Add Experience' /></button>
             <form id='experienceform' className={styles.experience_form} onSubmit={submitExperience}>
                 <div className={styles.formTop}>
                     <TextField id="outlined-title" label="Title" variant="outlined" name="experiencetitle" placeholder='Title of the Experience' required margin="dense" />

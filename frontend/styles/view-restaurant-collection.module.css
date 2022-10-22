@@ -135,6 +135,7 @@
 .hcontent {
     display: flex;
     justify-content: center;
+    cursor: pointer;
 }
 
 .td {
@@ -143,8 +144,16 @@
     vertical-align: middle;
 }
 
+.td:hover {
+    cursor: pointer;
+}
+
 .tr:hover {
     background-color: #98b6db;
+}
+
+.viewTop {
+    line-height: 0.5;
 }
 
 @media screen and (max-width: 450px) {
