@@ -77,23 +77,9 @@ const deleteRestaurant = async (req, res, next) => {
 	try {
 		const restaurantId = req.body.restaurantId
 		const countBefore = await Restaurant.countDocuments({ _id: restaurantId })
-		/*
-		// Delete all experiences of the restaurant
-		const body = {restaurantId: restaurantId}
-		const request = {data: body}
-		const expResponse = experienceController.deleteAllExperiences(request)
-		console.log("HERE!!")
-		console.log(`expResponse: ${expResponse}$`)
-		// add async or ; ?
-		*/
 
 		// Delete all experiences of the restaurant
-		/*
-		const expResponse = experienceController.deleteAllExperiencesInteract(req)
-		console.log("HERE!!")
-		console.log(`expResponse: ${expResponse}$`)
-		*/
-
+		experienceController.deleteAllExperiencesInteract(restaurantId);
 
 		// Delete the restaurant
 		await Restaurant.deleteOne({ _id: restaurantId })
@@ -117,6 +103,11 @@ const deleteAllRestaurantsInteract = async (req) => {
 		let i = 0
 		for (i = 0; i < arrayLength; i++) {
 			const restaurantId = restaurants[i]._id
+
+			// Delete all experiences of the restaurant
+			experienceController.deleteAllExperiencesInteract(restaurantId);
+
+			// Delete the restaurant
 			await Restaurant.deleteOne({ _id: restaurantId })
 		}
 
