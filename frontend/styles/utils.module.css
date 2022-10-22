@@ -72,12 +72,16 @@
 	font-weight: bolder;
 }
 
-.homepageText{
-	position: absolute;
-	width: 806px;
-	height: 210px;
-	left: 309px;
-	top: 407px;
+.content {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding-top: 2.5%;
+}
+
+.image {
+	width: 30vw;
 }
 
 .emptyCircle{
@@ -90,8 +94,4 @@
 	background-image:  url('../public/src/checkedCircle.svg');
 	width: 30px;
 	height: 30px;
-}
-
-.image {
-	max-height: 20vw;
 }

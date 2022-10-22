@@ -64,12 +64,11 @@ export default function Signup() {
 	}
 
 	return (
-		<Layout home>
+		<Layout homeOther>
 			<Head>
 				<title>{title}</title>
 			</Head>
 			<section className={utilStyles.headingMdCenter}>
-
 				<form onSubmit={submitUser}>
 					<Grid align='center'>
 
@@ -104,7 +103,6 @@ export default function Signup() {
 								placeholder='At least 8 symbols' 
 								type='password' 
 								margin="dense"
-								minlength="8"
 								error={!isValidConfirm()}
 								helperText={!isValidConfirm() ? "Password mismatch" : ""}
 								onChange={event => setValidConfirm({ password: validConfirm.password, confirm: event.target.value })}

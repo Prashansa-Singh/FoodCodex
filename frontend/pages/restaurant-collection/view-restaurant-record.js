@@ -16,6 +16,7 @@ import { Rating } from "@mui/material";
 import PaidIcon from '@mui/icons-material/Paid';
 import PaidOutlinedIcon from '@mui/icons-material/PaidOutlined';
 import Modal from '@mui/material/Modal';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 import { getSession } from "next-auth/react"
 
@@ -163,10 +164,10 @@ export default function ViewRestaurantRecord({ userId, restaurant_data, experien
 								</div>
 							</a>
 						</Link>
-						<Link href={{ pathname: '/restaurant-collection/edit-restaurant-record', query: { _id: userId, rest_id: restaurant_data._id } }}>
-							<a>
+						<Link href={{ pathname: '/restaurant-collection/edit-restaurant-record', query: { _id: userId, rest_id: restaurant_data._id } }} title='Edit Record'>
+							<a title='Edit'>
 								<div className={styles.icons}>
-									<img src='/src/nav-icons/add-edit-nav-icon.svg' width='40vw' />
+									<img src='/src/nav-icons/add-edit-nav-icon.svg' width='40vw' alt='Edit' />
 									<p>Edit</p>
 								</div>
 							</a>
@@ -192,10 +193,6 @@ export default function ViewRestaurantRecord({ userId, restaurant_data, experien
 					<br />
 					<Experiences experiences={experiences} id={restaurant_data._id} />
 				</div>
-				<div className={styles.button_container}>
-					<button onClick={() => confirmDelete()} className={styles.delete_button} >Delete Restaurant</button>
-				</div>
-
 				<br />
 				<br />
 				<br />

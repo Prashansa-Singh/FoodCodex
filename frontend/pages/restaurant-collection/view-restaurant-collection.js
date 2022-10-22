@@ -1,7 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import { useRef, useState } from 'react';
-import { resolve } from 'styled-jsx/css';
+import { useState } from 'react';
 import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
 import Layout, { siteTitle } from '../../components/layout';
@@ -111,7 +110,7 @@ export default function ViewRestaurantCollection({ data, displayName }) {
 
 	const clearFilter = () => {
 		setFilter({ ...filterTags });
-		console.log(filterTags);
+		closePopUp();
 		window.location.reload();
 	}
 
@@ -241,78 +240,98 @@ export default function ViewRestaurantCollection({ data, displayName }) {
 				<title>{title}</title>
 			</Head>
 			<section className={utilStyles.headingMd}>
-				<h1>
-					Welcome Back {displayName.displayName}
-				</h1>
+				<div className={styles.viewTop}>
+					<h1>
+						Welcome Back {displayName.displayName}
+					</h1>
+					{
+						data.length == 0
+						? <p>Click "Add Restaurant" to get started</p>
+						: <p>Click on a restaurant to view or edit it.</p>
+					}
+				</div>
 
-				<div className={styles.collection_container}>
-					<TextField
-						id='searchbar'
-						size="small"
-						type="search"
-						name="search"
-						placeholder="Search..."
-						variant="outlined"
-						onChange={changeSearchName}
-						InputProps={{
-							startAdornment: <InputAdornment position="start"><img src="/src/nav-icons/search-icon.svg" /></InputAdornment>,
-						}}
-					/>
-					<div className={styles.filter}>
-						<img className={styles.icon} src='/src/nav-icons/filter-icon.svg' alt='Filter Icon' onClick={openPopUp} id='filterIcon' />
-						<div className={styles.filter_options} id='filter'>
-							<p className={styles.close} onClick={closePopUp}>&#10006;</p>
-							<form onSubmit={submitFilter}>
-								<Tags restaurant_data={filterTags} page='edit' />
-								<div className={styles.button_container}>
-									<input type='submit' value='Apply' />
-									<button type='button' onClick={() => clearFilter()}>Discard</button>
-								</div>
-							</form>
+				{
+					data.length == 0
+					? <></>
+					: <div className={styles.collection_container}>
+						<TextField
+							id='searchbar'
+							size="small"
+							type="search"
+							name="search"
+							placeholder="Search..."
+							variant="outlined"
+							onChange={changeSearchName}
+							InputProps={{
+								startAdornment: <InputAdornment position="start"><img src="/src/nav-icons/search-icon.svg" /></InputAdornment>,
+							}}
+						/>
+						<div className={styles.filter}>
+							<img className={styles.icon} src='/src/nav-icons/filter-icon.svg' alt='Filter Icon' onClick={openPopUp} id='filterIcon' />
+							<div className={styles.filter_options} id='filter'>
+								<p className={styles.close} onClick={closePopUp}>&#10006;</p>
+								<form onSubmit={submitFilter}>
+									<Tags restaurant_data={filterTags} page='edit' />
+									<div className={styles.button_container}>
+										<button type='submit'  className={styles.submitButton} onClick={() => closePopUp()}><b>Apply</b></button>
+										<button type='button'  className={styles.discardButton} onClick={() => clearFilter()}><b>Discard</b></button>
+									</div>
+								</form>
+							</div>
+						</div>
+						<div className={styles.table_container}>
+							<table id="restaurantTable" className={styles.table}>
+								<thead className={styles.thead}>
+									<tr className={styles.tr}>
+										<th className={styles.th}>
+											<div className={styles.hcontent} onClick={sortName}>
+												Name
+												<img className={styles.sortIcon} src='/src/nav-icons/sort-icon.svg' alt='Sort Name Icon' id='sortIcon'></img>
+											</div>
+										</th>
+										<th className={styles.th}>
+											<div className={styles.hcontent} onClick={sortRating}>
+												Rating
+												<img className={styles.sortIcon} src='/src/nav-icons/sort-icon.svg' alt='Sort Rating Icon' id='sortIcon'></img>
+											</div>
+										</th>
+										<th className={styles.th}>
+											<div className={styles.hcontent} onClick={sortPrice}>
+												Price
+												<img className={styles.sortIcon} src='/src/nav-icons/sort-icon.svg' alt='Sort Price Icon' id='sortIcon'></img>
+											</div>
+										</th>
+										<th className={styles.th}>Tags</th>
+									</tr>
+								</thead>
+								<tbody>
+									{data.map(({ _id, name, rating, priceRating, personalOption, halalOption, veganOption, vegetarianOption, pescatarianOption, nutsFreeOption, dairyFreeOption, glutenFreeOption, allergyFriendlyOption, diabetesFriendlyOption }) => (
+										<tr className={styles.tr} key={_id} style={{ 'display': updateTable(_id) ? '' : 'none' }}>
+											<Link href={{ pathname: '/restaurant-collection/view-restaurant-record', query: { _id: _id } }} title='Go to restaurant record'><td className={styles.td}>{name}</td></Link>
+											<Link href={{ pathname: '/restaurant-collection/view-restaurant-record', query: { _id: _id } }} title='Go to restaurant record'><td className={styles.td}>{rating}</td></Link>
+											<Link href={{ pathname: '/restaurant-collection/view-restaurant-record', query: { _id: _id } }} title='Go to restaurant record'><td className={styles.td}>{priceRating}</td></Link>
+											<Link href={{ pathname: '/restaurant-collection/view-restaurant-record', query: { _id: _id } }} title='Go to restaurant record'>
+												<td className={styles.td}><Tags restaurant_data={{
+													personalOption: personalOption,
+													halalOption: halalOption,
+													veganOption: veganOption,
+													vegetarianOption: vegetarianOption,
+													pescatarianOption: pescatarianOption,
+													nutsFreeOption: nutsFreeOption,
+													dairyFreeOption: dairyFreeOption,
+													glutenFreeOption: glutenFreeOption,
+													allergyFriendlyOption: allergyFriendlyOption,
+													diabetesFriendlyOption: diabetesFriendlyOption
+												}} page='viewAll' /></td>
+											</Link>
+										</tr>
+									))}
+								</tbody>
+							</table>
 						</div>
 					</div>
-					<div className={styles.table_container}>
-						<table id="restaurantTable" className={styles.table}>
-							<thead className={styles.thead}>
-								<tr className={styles.tr}> 
-									<th className={styles.th}>Name
-										<img className={styles.icon} src='/src/nav-icons/sort-icon.svg' alt='Sort Name Icon' onClick={sortName} id='sortIcon'></img>
-									</th>
-									<th className={styles.th}>Rating
-										<img className={styles.icon} src='/src/nav-icons/sort-icon.svg' alt='Sort Rating Icon' onClick={sortRating} id='sortIcon'></img>
-									</th>
-									<th className={styles.th}>Price
-										<img className={styles.icon} src='/src/nav-icons/sort-icon.svg' alt='Sort Price Icon' onClick={sortPrice} id='sortIcon'></img>
-									</th>
-									<th className={styles.th}>Label</th>
-								</tr>
-							</thead>
-							<tbody>
-								{data.map(({ _id, name, rating, priceRating, personalOption, halalOption, veganOption, vegetarianOption, pescatarianOption, nutsFreeOption, dairyFreeOption, glutenFreeOption, allergyFriendlyOption, diabetesFriendlyOption }) => (
-									<tr className={styles.tr} key={_id} style={{ 'display': updateTable(_id) ? '' : 'none' }}>
-										<Link href={{ pathname: '/restaurant-collection/view-restaurant-record', query: { _id: _id } }}><td className={styles.td}>{name}</td></Link>
-										<Link href={{ pathname: '/restaurant-collection/view-restaurant-record', query: { _id: _id } }}><td className={styles.td}>{rating}</td></Link>
-										<Link href={{ pathname: '/restaurant-collection/view-restaurant-record', query: { _id: _id } }}><td className={styles.td}>{priceRating}</td></Link>
-										<Link href={{ pathname: '/restaurant-collection/view-restaurant-record', query: { _id: _id } }}>
-											<td className={styles.td}><Tags restaurant_data={{
-												personalOption: personalOption,
-												halalOption: halalOption,
-												veganOption: veganOption,
-												vegetarianOption: vegetarianOption,
-												pescatarianOption: pescatarianOption,
-												nutsFreeOption: nutsFreeOption,
-												dairyFreeOption: dairyFreeOption,
-												glutenFreeOption: glutenFreeOption,
-												allergyFriendlyOption: allergyFriendlyOption,
-												diabetesFriendlyOption: diabetesFriendlyOption
-											}} page='viewAll' /></td>
-										</Link>
-									</tr>
-								))}
-							</tbody>
-						</table>
-					</div>
-				</div>
+				}
 			</section>
 		</Layout>
 	);

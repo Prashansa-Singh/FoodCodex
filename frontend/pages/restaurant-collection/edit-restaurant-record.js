@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Layout, { siteTitle } from '../../components/layout';
 import utilStyles from '../../styles/utils.module.css';
+import styles from '../../styles/edit-restaurant-record.module.css'
 import { axiosInstance } from '../api/axiosConfig';
 import { useRouter } from 'next/router';
 import Tags from '../../components/tags';
@@ -9,6 +10,7 @@ import { Rating } from "@mui/material";
 import * as React from 'react';
 import PaidIcon from '@mui/icons-material/Paid';
 import PaidOutlinedIcon from '@mui/icons-material/PaidOutlined';
+import TextField from '@mui/material/TextField';
 
 import { getSession } from "next-auth/react"
 
@@ -96,22 +98,22 @@ export default function EditRestaurantRecord({ userId, restaurant_data, new_data
 		
 		if (new_data){
 			await axiosInstance.post(urlCreate, body)
-				.then(function (response) {
-					console.log(response.data);
-					router.push('/restaurant-collection/view-restaurant-collection');
-				})
-				.catch(function (error) {
-					console.log(error);
-				});
+			.then(function (response) {
+				console.log(response.data);
+				router.push('/restaurant-collection/view-restaurant-collection');
+			})
+			.catch(function (error) {
+				console.log(error);
+			});
 		} else {
 			await axiosInstance.post(url, body)
-				.then(function (response) {
-					console.log(response.data);
-					router.push('/restaurant-collection/view-restaurant-collection');
-				})
-				.catch(function (error) {
-					console.log(error);
-				});
+			.then(function (response) {
+				console.log(response.data);
+				router.push('/restaurant-collection/view-restaurant-collection');
+			})
+			.catch(function (error) {
+				console.log(error);
+			});
 		}
 
 	}
@@ -133,32 +135,56 @@ export default function EditRestaurantRecord({ userId, restaurant_data, new_data
 								Add Restaurant Record
 							</h1>
 							<form onSubmit={submitEdit}>
-								<input type='submit' value='Save' />
-								<button type='button' onClick={() => discard()} >Discard</button>
-								<br />
-								<label> Restaurant Name </label>
-								<input type="text" placeholder="Restaurant Name" name="name" required />
-								<br />
-								<label> Type of Cuisine </label>
-								<input type="text" placeholder="Type of Cuisine" name="cuisine" />
-								<br />
-								<label> Restaurant Address </label>
-								<input type="text" placeholder="Restaurant Address" name="address" />
-								<br />
+								<div className={styles.button_container}>
+									<button type='submit' className={styles.submitButton}><b>Save</b></button>
+									<button type='button' className={styles.discardButton} onClick={() => discard()}><b>Discard</b></button>	
+								</div>	
+								<div className={styles.editFormTop}>
+									<TextField 
+										id="outlined-restaurant-name" 
+										label="Restaurant Name" 
+										variant="outlined" 
+										name="name" 
+										placeholder="Restaurant Name"
+										required 
+										margin="dense" 
+										className={styles.textFields}
+									/>
+									<TextField 
+										id="outlined-restaurant-cuisine" 
+										label="Type of Cuisine" 
+										variant="outlined" 
+										name="cuisine" 
+										placeholder="Type of Cuisine"
+										required 
+										margin="dense" 
+										className={styles.textFields}
+									/>
+								</div>
+								<TextField 
+									id="outlined-restaurant-address" 
+									label="Restaurant Address" 
+									variant="outlined" 
+									name="address" 
+									placeholder="Restaurant Address"
+									required 
+									margin="dense" 
+									className={styles.address}
+								/>
+								<div className={styles.editFormBottom}>
+									<div className={styles.picker}>
+										<label> Rating (out of 5 stars): </label>
+										<Rating precision={0.5} onChange={(event, newValue) => { setValue(newValue) }} />
+									</div>
+									<div className={styles.picker}>
+										<label> Price Range: </label>
+										<Rating icon={<PaidIcon />} emptyIcon={<PaidOutlinedIcon />} onChange={(event, newPriceValue) => { setPriceValue(newPriceValue) }} />
+									</div>
+								</div>
+								<br/>
 								<label> Tags </label>
 								<Tags restaurant_data={restaurant_data} page='edit' />
-								<br />
-
-								<label> Rating (out of 5 stars) </label>
-								<Rating precision={0.5} onChange={(event, newValue) => { setValue(newValue) }} />
-								<br />
-
-								<label> Price Range </label>
-								<Rating icon={<PaidIcon />} emptyIcon={<PaidOutlinedIcon />} onChange={(event, newPriceValue) => { setPriceValue(newPriceValue) }} />
-								<br />
 							</form>
-
-							<label> Experiences </label>
 
 						</>
 					)}
@@ -168,32 +194,63 @@ export default function EditRestaurantRecord({ userId, restaurant_data, new_data
 								Edit Restaurant Record
 							</h1>
 							<form onSubmit={submitEdit}>
-								<input type='submit' value='Save' />
-								<button type='button' onClick={() => discard()} >Discard</button>
-								<br />
-								<label> Restaurant Name </label>
-								<input type="text" placeholder={restaurant_data.name} defaultValue={restaurant_data.name} name="name" />
-								<br />
-								<label> Type of Cuisine </label>
-								<input type="text" placeholder={restaurant_data.cuisine} defaultValue={restaurant_data.cuisine} name="cuisine" />
-								<br />
-								<label> Restaurant Address </label>
-								<input type="text" placeholder={restaurant_data.address} defaultValue={restaurant_data.address} name="address" />
-								<br />
-								<label> Tags </label>
+								<div className={styles.button_container}>
+									<button type='submit' className={styles.submitButton}><b>Save</b></button>
+									<button type='button' className={styles.discardButton} onClick={() => discard()}><b>Discard</b></button>	
+								</div>
+								<div className={styles.editFormTop}>
+									<TextField 
+										id="outlined-restaurant-name" 
+										label="Restaurant Name" 
+										variant="outlined" 
+										name="name" 
+										placeholder={restaurant_data.name}
+										defaultValue={restaurant_data.name}
+										required 
+										margin="dense" 
+										className={styles.textFields}
+									/>
+									<TextField 
+										id="outlined-restaurant-cuisine" 
+										label="Type of Cuisine" 
+										variant="outlined" 
+										name="cuisine" 
+										placeholder={restaurant_data.cuisine}
+										defaultValue={restaurant_data.cuisine}
+										required 
+										margin="dense" 
+										className={styles.textFields}
+									/>
+								</div>
+								<TextField 
+									id="outlined-restaurant-address" 
+									label="Restaurant Address" 
+									variant="outlined" 
+									name="address" 
+									placeholder={restaurant_data.address}
+									defaultValue={restaurant_data.address}
+									required 
+									margin="dense" 
+									className={styles.address}
+								/>
+								<div className={styles.editFormBottom}>
+									<div className={styles.picker}>
+										<label> Rating (out of 5 stars): </label>
+										<Rating precision={0.5} defaultValue={restaurant_data.rating} onChange={(event, newValue) => { setValue(newValue) }} />
+									</div>
+									<div className={styles.picker}>
+										<label> Price Range: </label>
+										<Rating icon={<PaidIcon />} emptyIcon={<PaidOutlinedIcon />} defaultValue={restaurant_data.priceRating} onChange={(event, newPriceValue) => { setPriceValue(newPriceValue) }} />
+									</div>
+								</div>
+								<br/>
+								<label> Tags: </label>
 								<Tags restaurant_data={restaurant_data} page='edit' />
-								<br />
-								<label> Rating (out of 5 stars) </label>
-								<Rating precision={0.5} defaultValue={restaurant_data.rating} onChange={(event, newValue) => { setValue(newValue) }} />
-
-								<br />
-								<label> Price Range </label>
-								<Rating icon={<PaidIcon />} emptyIcon={<PaidOutlinedIcon />} defaultValue={restaurant_data.priceRating} onChange={(event, newPriceValue) => { setPriceValue(newPriceValue) }} />
-								<br />
 							</form>
-
-							<label> Experiences </label>
-
+							<p>Note: Experiences can only be added, updated and deleted from the view restaurant page.</p>
+							<br/>
+							<br/>
+							<br/>
 						</>
 					)}
 				</>

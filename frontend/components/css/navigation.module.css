@@ -65,6 +65,37 @@
         width: 100%;
         bottom: 0;
         height: auto;
+        z-index: 100;
+    }
+
+    .logo {
+        display: none;
+    }
+    
+    .navlist {
+        display: none;
+    }
+
+    .navbar {
+        display: flex;
+        flex-direction: row;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        align-items: center;
+        justify-content: space-around;
+    }
+}
+
+@media screen and (min-width: 450px) and (max-width: 950px) {
+    .nav {
+        box-shadow: 0 -4px 5px 0 rgba(0, 0, 0, 0.2);
+        background-color: #E7E0EC;
+        position: fixed;
+        width: 100%;
+        bottom: 0;
+        height: auto;
+        z-index: 100;
     }
 
     .logo {

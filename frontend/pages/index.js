@@ -15,19 +15,26 @@ export default function Home() {
 			</Head>
 			<section className={utilStyles.headingMdCenter}>
 				<Stack direction="row" spacing={25}>
-					<Button className = {utilStyles.homepageButton} variant="contained" style ={{margin: '0 auto', display: "flex"}} onClick={() => {
-    window.location.href= "/login"}}>LOGIN</Button>
-					<Button className = {utilStyles.homepageButton} variant="contained" style ={{margin: '0 auto', display: "flex"}} onClick={() => {
-    window.location.href= "/signup"}}>SIGN UP</Button>
-					<Button className = {utilStyles.homepageButton} variant="contained" style ={{margin: '0 auto', display: "flex"}} onClick={() => {
-    window.location.href= "/about"}}size="large">ABOUT</Button>
-	
+					<Button 
+						className = {utilStyles.homepageButton} 
+						variant="contained" style ={{margin: '0 auto', display: "flex"}} 
+						onClick={() => {window.location.href= "/login"}}
+					>LOGIN</Button>
+					<Button 
+						className = {utilStyles.homepageButton} 
+						variant="contained" style ={{margin: '0 auto', display: "flex"}} 
+						onClick={() => {window.location.href= "/signup"}}
+					>SIGN UP</Button>
+					<Button 
+						className = {utilStyles.homepageButton} 
+						variant="contained" style ={{margin: '0 auto', display: "flex"}} 
+						onClick={() => { window.location.href= "/about"}}size="large"
+					>ABOUT</Button>
 				</Stack>	
-				<h1 classname = {utilStyles.homepageText}>
-					"Laughter is brightest in the place where food is good"
-				</h1>
-
-                <img src='/src/homepage-foodpic.jpg' alt="Home page laughter pic" className={utilStyles.image} />						
+				<section className={utilStyles.content}>
+					<img src='/src/homepage-foodpic.jpg' alt="Picture of people enjoying meal and laughing" className={utilStyles.image} />
+					<h1>"Laughter is brightest in the place where food is good"</h1>	
+				</section>					
 			</section>
 		</Layout>
 	);
