@@ -15,27 +15,30 @@ import { Typography, Button, Grid, Paper, TextField, Stack, Box } from '@mui/mat
 import 'react-confirm-alert/src/react-confirm-alert.css';
 
 
-export async function getServerSideProps({query}) {
+// export async function getServerSideProps({query}) {
 
-	// --------------- Single Restaurant Data -------------
-	const user = '6310521c744ac9f1587375fa';
-	const url =  '/user/restaurant/view-one'
-	const { rest_id } = query;
-	const response = await axiosInstance.get(url, {data: {userId: user, restaurantId: rest_id,}});
-	const restaurant_data = response.data;
-	const userId = user;
+// 	// // --------------- Single Restaurant Data -------------
+// 	// const user = '6310521c744ac9f1587375fa';
+// 	// const url =  '/user/restaurant/view-one'
+// 	const { name } = query;
+// 	// const response = await axiosInstance.get(url, {data: {userId: user,}});
+// 	// const restaurant_data = response.data;
+// 	// const userId = user;
 
+// 	// const experiences_data = (await axiosInstance.get('user/restaurant/experience/view-all', {data: {restaurantId: rest_id,}}));
+// 	// const experiences = experiences_data.data;
 
+// 	// ------------- Share id ---------------- post restId to get shareId, put shareId in get request to get sharedRestaurantdata, pass this restaurantdata to linkId.js using Link href, query, render restaurantData in linkId page by having getServerSideProps get the url. If I want to add restaurant data, call post API, restaurant data in body to add that in restaurant collection. router.push(viewrestaurantcollection)
+// 	// if same share at once, might crash, at the start, id is empty, thenignore, from second time onwards, get the restaurantdata by using viewRestaurantRouter in the backend,
 
-	// ------------- Share id ---------------- post restId to get shareId, put shareId in get request to get sharedRestaurantdata, pass this restaurantdata to linkId.js using Link href, query, render restaurantData in linkId page by having getServerSideProps get the url. If I want to add restaurant data, call post API, restaurant data in body to add that in restaurant collection. router.push(viewrestaurantcollection)
-	// if same share at once, might crash, at the start, id is empty, thenignore, from second time onwards, get the restaurantdata by using viewRestaurantRouter in the backend,
-
-	const resShare = await axiosInstance.get('user/restaurant/share/public' + id);
+// 	// const resShare = await axiosInstance.get('user/restaurant/share/public' + id);
 	
-	return {
-		props: {userId, restaurant_data},
-	};
-}
+// 	console.log("name inside server props" + JSON.stringify(name));
+// 	return {
+// 		// props: {userId, restaurant_data, experiences},
+// 		props: { name },
+// 	};
+// }
 
 // const customShareOptions = {
 // 	shareName : true,
@@ -47,9 +50,11 @@ export async function getServerSideProps({query}) {
 	
 // }
 
-export default function ShareList({userId, restaurant_data, experiences}) {
+
+export default function ShareList({ query }) {
 	const title = `${siteTitle} - Share`;
 	const router = useRouter();
+	const {name} = router.query;
 	const [shareId, setShareId] = useState(null);
 	let shareLink;
 
@@ -99,63 +104,65 @@ export default function ShareList({userId, restaurant_data, experiences}) {
 	// // updateBody
 
 
-	const confirmShare = () => {
+	// const confirmShare = () => {
 		
-		const body = {
-			senderId: userId,
-			restaurantId: restaurant_data._id,
-			shareName: true,
-			shareRating: true,
-			sharePriceRating: true,
-			shareCuisine: true,
-			shareAddress: true,
-			shareOptionTags: true
-		};
+	// 	const body = {
+	// 		senderId: userId,
+	// 		restaurantId: restaurant_data._id,
+	// 		shareName: true,
+	// 		shareRating: true,
+	// 		sharePriceRating: true,
+	// 		shareCuisine: true,
+	// 		shareAddress: true,
+	// 		shareOptionTags: true
+	// 	};
 
-		console.log("body "+ typeof(body));
+	// 	console.log("body "+ typeof(body));
 
-		const url = '/user/restaurant/share/generate-link';
+	// 	const url = '/user/restaurant/share/generate-link';
 
-		confirmAlert({
-			title: 'Confirm to share',
-			message: 'Are you sure you wish to share this restaurant record?',
-			buttons: [
-			  {
-				label: 'Yes',
-				onClick: () => generateRestaurantShareLink(url, body),
-			  },
-			  {
-				label: 'No',
-			  }
-			]
-		});
-	} 
+	// 	confirmAlert({
+	// 		title: 'Confirm to share',
+	// 		message: 'Are you sure you wish to share this restaurant record?',
+	// 		buttons: [
+	// 		  {
+	// 			label: 'Yes',
+	// 			onClick: () => generateRestaurantShareLink(url, body),
+	// 		  },
+	// 		  {
+	// 			label: 'No',
+	// 		  }
+	// 		]
+	// 	});
+	// } 
 
-	const generateRestaurantShareLink = async (url, body) => {
-		// try {
-		// 	const response = await axiosInstance.post()
-		// } catch(error) {
-		// }
+	// const generateRestaurantShareLink = async (url, body) => {
+	// 	// try {
+	// 	// 	const response = await axiosInstance.post()
+	// 	// } catch(error) {
+	// 	// }
 
 		
-		await axiosInstance.post(url, body)
-		.then(function (response) {
-			shareLink = response.data;
-			setShareId(shareLink);
-			console.log("shareId --> " + shareId);
-			console.log(response.data);
-			console.log("sharelink --> " + shareLink);
-			//router.push('/restaurant-collection/shared-with-me');
-		})
-		.catch(function (error) {
-			console.log(error);
-		});
-	}
+	// 	await axiosInstance.post(url, body)
+	// 	.then(function (response) {
+	// 		shareLink = response.data;
+	// 		setShareId(shareLink);
+	// 		console.log("shareId --> " + shareId);
+	// 		console.log(response.data);
+	// 		console.log("sharelink --> " + shareLink);
+	// 		//router.push('/restaurant-collection/shared-with-me');
+	// 	})
+	// 	.catch(function (error) {
+	// 		console.log(error);
+	// 	});
+	// }
 
 	// --------------------- Presenting Sharing URLs ---------------------------
 	const baseURL = (process.env.NODE_ENV == "production") ? process.env.NEXT_PUBLIC_PRODUCTION_BACKEND : process.env.NEXT_PUBLIC_DEVELOPMENT_FRONTEND; //backend to frontend 
 	const midURL = "user/restaurant/share/public/";
 	const shareURL = baseURL + midURL + shareId;
+
+	console.log("4");
 
 	return (
 		<Layout>
@@ -171,11 +178,13 @@ export default function ShareList({userId, restaurant_data, experiences}) {
 					Page where users can share records
 				</p>
 
-				<div className={styles.button_container}>
-					<button onClick={() => confirmShare()} className={styles.delete_button} >Share Restaurant</button>
-				</div>
+				<div> { name } </div>
 
-				<Box>
+				{/* <div className={styles.button_container}>
+					<button onClick={() => confirmShare()} className={styles.delete_button} >Share Restaurant</button>
+				</div> */}
+
+				{/* <Box>
 					Here is your link: 
 					<Link href={shareURL}>
 						<Paper>		
@@ -184,7 +193,7 @@ export default function ShareList({userId, restaurant_data, experiences}) {
 						</Paper>
 					</Link>
 
-				</Box>
+				</Box> */}
 
 				{/* <div className={styles.filter}>
 						<img className={styles.icon} src='/src/nav-icons/filter-icon.svg' alt='Filter Icon' onClick={openPopUp} id='filterIcon' />

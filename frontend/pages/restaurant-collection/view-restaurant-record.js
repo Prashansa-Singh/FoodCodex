@@ -50,47 +50,16 @@ export async function getServerSideProps(context) {
 }
 
 
-const generateRestaurantShareLink = async (url, body) => {
-	 
-
-	await axiosInstance.post(url, body)
-	.then(function (response) {
-		shareLink = response.data;
-		setShareId(shareLink);
-		console.log("shareId --> " + shareId);
-		console.log(response.data);
-		console.log("sharelink --> " + shareLink);
-		//router.push('/restaurant-collection/shared-with-me');
-	})
-	.catch(function (error) {
-		console.log(error);
-	});
-
-	return {
-		shareId
-	}
-}
-
-const getSharedRestaurantData = async (concatedURL) => {
-	
-	const response = await axiosInstance.get(concatedURL);
-	console.log("getSharedRestaurantData's response" + response);
-	const responseData = response.data;
-
-	return {
-		response, responseData
-	}
-
-}
-
 export default function ViewRestaurantRecord({ userId, restaurant_data, experiences }) {
 	const title = `${siteTitle} - ${restaurant_data.name}`;
 
 	const router = useRouter();
-	// const [shareId, setShareId] = useState(null);
+	const [shareId, setShareId] = useState(null);
 	const [rId, setRId] = useState(null);
-	const [dId, setDataId] = useState(null);
+	const [restaurantSharedData, setSharedData] = useState(null);
+	const [aname, setAname] = useState(null);
 	let shareLink;
+	console.log("1");
 
 	const confirmDelete = () => {
 
@@ -115,7 +84,7 @@ export default function ViewRestaurantRecord({ userId, restaurant_data, experien
 		});
 	} 
 
-	const clickToShare = () => {
+	const clickToShare = async() => {
 		
 		const body = {
 			senderId: userId,
@@ -127,18 +96,24 @@ export default function ViewRestaurantRecord({ userId, restaurant_data, experien
 			shareAddress: true,
 			shareOptionTags: true
 		};
-	
+		
+		console.log("2");
 		// has share id 
 		const URL = '/user/restaurant/share/generate-link';
-		const returned = generateRestaurantShareLink(URL, body);
-		setRId(returned);
+		await generateRestaurantShareLink(URL, body);
 	
 		// has shared restaurant data 
-		const concatedURL = URL + rId;
-		const returnedFull = getSharedRestaurantData(concatedURL);
-		console.log("returnedFull ---> " + returnedFull );
-	
-		setDataId(returnedFull);
+		const viewURL = '/user/restaurant/share/public/'
+		const concatedURL = viewURL + shareLink;
+		console.log("concatedURL ---> " + concatedURL);
+		await getSharedRestaurantData(concatedURL);
+
+		router.push({
+			pathname: '/restaurant-collection/share-list', 
+			query: { name: aname },
+
+		})
+
 	}
 
 	const deleteRestaurant = async (url, body) => {
@@ -153,7 +128,40 @@ export default function ViewRestaurantRecord({ userId, restaurant_data, experien
 	}
 
 	
+	const generateRestaurantShareLink = async (url, body) => {
+	 
+		await axiosInstance.post(url, body)
+		.then(function (response) {
+			shareLink = response.data;
+			console.log('3');
+			console.log(response.data);
+			console.log("sharelink --> " + shareLink);
+			setShareId(shareLink);
+			console.log("shareId --> " + shareId);
+			//router.push('/restaurant-collection/shared-with-me');
+		})
+		.catch(function (error) {
+			console.log(error);
+		});
 
+	}
+	
+	const getSharedRestaurantData = async (concatedURL) => {
+		
+		const response = await axiosInstance.get(concatedURL);
+		console.log("getSharedRestaurantData's response" + JSON.stringify(response));
+		setSharedData(response);
+		const stringfyResponse = JSON.stringify(response.data.name);
+		setAname(stringfyResponse);
+		const {name} = response;
+		console.log("name out" + stringfyResponse);
+		// console.log("name out" + stringfyResponse.data.name);
+		
+
+	
+	}
+
+	console.log(" restaurantSharedData " + restaurantSharedData);
 	return (
 		<Layout>
 			<Head>
@@ -165,7 +173,7 @@ export default function ViewRestaurantRecord({ userId, restaurant_data, experien
 						{restaurant_data.name}
 					</h1>
 					<div className={styles.icon_group}>
-						<Link onClick={() => clickToShare()} href={{pathname: '/restaurant-collection/share-list', query: dId }}>
+						<Link onClick={() => clickToShare()}>
 							<a> 
 								<div className={styles.icons}>
 									<img src='/src/nav-icons/share-icon.svg' width='40vw' />

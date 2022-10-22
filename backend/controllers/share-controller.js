@@ -60,6 +60,7 @@ const readSharedRestaurant = async (linkId) => {
 const viewSharedRestaurant = async (req, res, next) => {
     try {
         const restaurant = await readSharedRestaurant(req.params.linkId)
+        console.log("view --> " + restaurant.name)
         return res.send(JSON.stringify(restaurant))
     }
     catch (err) {
