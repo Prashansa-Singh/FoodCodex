@@ -1,21 +1,23 @@
 import Head from 'next/head';
 import Layout, { siteTitle } from '../../components/layout';
+import Tags from '../../components/tags';
+import Experiences from '../../components/experiences';
+import PopupModal from "../../components/modal";
 import utilStyles from '../../styles/utils.module.css';
 import styles from '../../styles/view-restaurant-record.module.css';
 import { axiosInstance } from '../api/axiosConfig';
 import Link from 'next/link';
-import Tags from '../../components/tags';
-import Experiences from '../../components/experiences';
+
 import { useRouter } from 'next/router';
 import { confirmAlert } from 'react-confirm-alert';
 import { useState } from 'react';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 
 // Material Ui
-import { Rating } from "@mui/material";
+import * as React from 'react';
+import { Rating, Modal, Box, Button, Typography } from "@mui/material";
 import PaidIcon from '@mui/icons-material/Paid';
 import PaidOutlinedIcon from '@mui/icons-material/PaidOutlined';
-import Modal from '@mui/material/Modal';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 import { getSession } from "next-auth/react"
@@ -61,6 +63,7 @@ export default function ViewRestaurantRecord({ userId, restaurant_data, experien
 
 	// -------------------------- sharing --------------------------
 	const [shareId, setShareId] = useState(null);
+	const [shareURL, setShareURL] = useState(null);
 	let shareLink;
 
 	const clickToShare = async() => {
@@ -84,8 +87,10 @@ export default function ViewRestaurantRecord({ userId, restaurant_data, experien
 		// present full share link
 		const baseURL = (process.env.NODE_ENV == "production") ? process.env.NEXT_PUBLIC_PRODUCTION_BACKEND : process.env.NEXT_PUBLIC_DEVELOPMENT_FRONTEND; //backend to frontend 
 		const midURL = "restaurant-collection/share-list?link=";
-		const concatedURL = baseURL + midURL + shareId;
+		const concatedURL = baseURL + midURL + shareLink; // works, but shareId is null for some reason ?? pending solve
+		setShareURL(concatedURL); // I think no need of setState since it's working? shareURL and concatedURL are the same restaurant but different link ??
 		console.log("concatedURL ---> " + concatedURL);
+		console.log("shareURL ---> " + shareURL);
 
 	}
 
@@ -152,18 +157,21 @@ export default function ViewRestaurantRecord({ userId, restaurant_data, experien
 					<h1>
 						{restaurant_data.name}
 					</h1>
+
 					<div className={styles.icon_group}>
-						
-						<Link onClick={() => clickToShare()} title='Share Record'>
+
+						<div onClick={() => clickToShare()} title='Share Record'>
 							<a title='Share'> 
 								<div className={styles.icons}>
 									<img src='/src/nav-icons/share-icon.svg' width='40vw' alt='Share'/>
-									<p> Share
-										share link: http://localhost:3000/restaurant-collection/share-list?name=Hii
+									<p> 
+										Click to Share: {shareURL}
 									</p>
+									<PopupModal data={shareURL}/>
 								</div>
 							</a>
-						</Link>
+						</div>
+						
 
 						<div className={styles.icons}>
 							<DeleteIcon className={styles.bin} onClick={() => confirmDelete()} />
