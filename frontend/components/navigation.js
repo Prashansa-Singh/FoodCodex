@@ -32,31 +32,37 @@ export default function Nav() {
             href: '/restaurant-collection/view-restaurant-collection',
             title: 'Home',
             icon: '/src/nav-icons/home-icon.svg',
+            alt: 'Home',
         },
         {
             href: '/restaurant-collection/edit-restaurant-record',
             title: 'Add Restaurant',
             icon: '/src/nav-icons/add-edit-nav-icon.svg',
+            alt: 'Add Restaurant',
         },
         {
             href: '/restaurant-collection/share-list',
             title: 'Share My List',
             icon: '/src/nav-icons/share-icon.svg',
+            alt: 'Share My List',
         },
         {
             href: '/restaurant-collection/shared-with-me',
             title: 'Shared With Me',
             icon: '/src/nav-icons/share-with-me-icon.svg',
+            alt: 'Shared With Me',
         },
         {
             href: '/restaurant-collection/settings',
             title: 'Settings',
             icon: '/src/nav-icons/settings-icon.svg',
+            alt: 'Settings',
         },
         {
             href: '/about',
             title: 'About Us',
             icon: '/src/nav-icons/about-us-icon.svg',
+            alt: 'About Us',
         },
         {
             href: '/logout',
@@ -65,6 +71,7 @@ export default function Nav() {
                 router.push('/logout')
             }}>Logout</div>,
             icon: '/src/nav-icons/logout-icon.svg',
+            alt: 'Logout',
         }
     ];
 
@@ -91,13 +98,13 @@ export default function Nav() {
             <div>
                 <img alt='FoodCodex Logo' src='/src/foodcodex-logo.png' className={styles.logo} id='logo' />
                 <ul className={styles.navlist}>
-                    {navItems.map(({ href, title, icon }) => (
+                    {navItems.map(({ href, title, icon, alt }) => (
                         <li className={` ${styles.unselected} ${router.asPath === href && styles.selected}`} key={title}>
-                            <Link href={href} title={title}>
+                            <Link href={href} title={alt}>
                                 <a title={title}>
                                     <div className={styles.icons}>
                                         {title}
-                                        <img src={icon} alt={title} />
+                                        <img src={icon} alt={alt} />
                                     </div>
                                 </a>
                             </Link>
