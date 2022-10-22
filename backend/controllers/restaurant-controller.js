@@ -107,7 +107,7 @@ const deleteAllRestaurantsInteract = async (req) => {
 
 		return arrayLength
 	}
-	catch (err){
+	catch (err) {
 		console.error(err);
 	}
 }
@@ -135,5 +135,6 @@ module.exports = {
 	getRestaurant,
 	updateRestaurant,
 	deleteRestaurant,
-	deleteAllRestaurants
+	deleteAllRestaurants,
+	deleteAllRestaurantsInteract,
 }

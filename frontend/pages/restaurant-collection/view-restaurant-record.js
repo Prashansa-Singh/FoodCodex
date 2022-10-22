@@ -132,6 +132,7 @@ export default function ViewRestaurantRecord({ userId, restaurant_data, experien
 					<br />
 					<Experiences experiences={experiences} id={restaurant_data._id} />
 				</div>
+				<br />
 				<div className={styles.button_container}>
 					<button onClick={() => confirmDelete()} className={styles.delete_button} >Delete Restaurant</button>
 				</div>
