@@ -1,5 +1,6 @@
 const { User } = require('../models/user');
 const { Restaurant } = require('../models/restaurant');
+const experienceController = require('../controllers/experience-controller');
 
 const getAllRestaurants = async (req, res) => {
 	const user = await User.findOne({ _id: req.body.userId }).populate('restaurants');
@@ -76,6 +77,25 @@ const deleteRestaurant = async (req, res, next) => {
 	try {
 		const restaurantId = req.body.restaurantId
 		const countBefore = await Restaurant.countDocuments({ _id: restaurantId })
+		/*
+		// Delete all experiences of the restaurant
+		const body = {restaurantId: restaurantId}
+		const request = {data: body}
+		const expResponse = experienceController.deleteAllExperiences(request)
+		console.log("HERE!!")
+		console.log(`expResponse: ${expResponse}$`)
+		// add async or ; ?
+		*/
+
+		// Delete all experiences of the restaurant
+		/*
+		const expResponse = experienceController.deleteAllExperiencesInteract(req)
+		console.log("HERE!!")
+		console.log(`expResponse: ${expResponse}$`)
+		*/
+
+
+		// Delete the restaurant
 		await Restaurant.deleteOne({ _id: restaurantId })
 		const countAfter = await Restaurant.countDocuments({ _id: restaurantId })
 
