@@ -93,8 +93,8 @@ export default function Nav() {
                 <ul className={styles.navlist}>
                     {navItems.map(({ href, title, icon }) => (
                         <li className={` ${styles.unselected} ${router.asPath === href && styles.selected}`} key={title}>
-                            <Link href={href}>
-                                <a>
+                            <Link href={href} title={title}>
+                                <a title={title}>
                                     <div className={styles.icons}>
                                         {title}
                                         <img src={icon} alt={title} />
@@ -109,8 +109,8 @@ export default function Nav() {
                 <ul className={styles.navbar}>
                     {navItemsPhone.map(({ href, title, icon }) => (
                         <li className={styles.unselected} key={title}>
-                            <Link href={href}>
-                                <a>
+                            <Link href={href} title={title}>
+                                <a title={title}>
                                     <div className={styles.icons}>
                                         {icon}
                                     </div>
