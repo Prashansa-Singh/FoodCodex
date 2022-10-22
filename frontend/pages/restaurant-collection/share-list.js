@@ -4,18 +4,24 @@ import utilStyles from '../../styles/utils.module.css';
 import { useRef, useState } from 'react';
 import { getSession } from "next-auth/react"
 
-import styles from '../../styles/view-restaurant-record.module.css';
 import {axiosInstance} from '../api/axiosConfig';
 import Link from 'next/link';
 import Tags from '../../components/tags';
-import Experiences from '../../components/experiences';
 import { useRouter } from 'next/router';
-import { confirmAlert } from 'react-confirm-alert';
-import { Typography, Button, Grid, Paper, TextField, Stack, Box } from '@mui/material';
+
+// styles
+import styles from '../../styles/view-restaurant-record.module.css';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 
 // converting circular structure 
 import CircularJSON from 'circular-json'
+
+// Material Ui and other decorations 
+import { Rating, Modal, Box, Button, Typography, Grid, Paper, TextField, Stack } from "@mui/material";
+import PaidIcon from '@mui/icons-material/Paid';
+import PaidOutlinedIcon from '@mui/icons-material/PaidOutlined';
+import { confirmAlert } from 'react-confirm-alert';
+import SaveAltIcon from '@mui/icons-material/SaveAlt';
 
 export async function getServerSideProps({query}) {
 
@@ -168,17 +174,48 @@ export default function ShareList({ link, restaurantData }) {
 			<Head>
 				<title>{title}</title>
 			</Head>
+			<h1>
+				Shared List
+			</h1>
+
+			<p>
+				The Restaurant a human being shared with you. For Debug: share is {link}
+			</p>
 			<section className={utilStyles.headingMd}>
-				<h1>
-					Share My List
-				</h1>
+				<div className={styles.top}>
+						<h1>
+							{restaurantData.name}
+						</h1>
 
-				<p>
-					Page where users can share records
-				</p>
+						<div className={styles.icon_group}>
+							<div className={styles.icons}>
+								<SaveAltIcon/>
+								<p>Save</p>
+							</div>
+						</div>
+				</div>
 
-				<div> { link } </div>
-				<div> { restaurantData.name } </div>
+				<div className={styles.restaurant_details}>
+					<p>
+						<i>{restaurantData.cuisine}</i>
+					</p>
+
+					<p>
+						<i>{restaurantData.address}</i>
+					</p>
+					<h5>Rating (out of 5 stars)</h5>
+					<p>{<Rating name="read-only" value={restaurantData.rating} readOnly />}</p>
+
+					<h5>Price Category</h5>
+					<p>{<Rating icon={<PaidIcon />} emptyIcon={<PaidOutlinedIcon />} name="read-only" value={restaurantData.priceRating} readOnly />}</p>
+
+					{/* <Tags restaurantData={restaurantData} page='view' /> */}
+					<br />
+					
+				</div>
+				<br />
+				<br />
+				<br />
 				
 			</section>
 		</Layout>

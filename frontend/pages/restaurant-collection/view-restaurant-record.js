@@ -167,7 +167,7 @@ export default function ViewRestaurantRecord({ userId, restaurant_data, experien
 									<p> 
 										Click to Share: {shareURL}
 									</p>
-									<PopupModal data={shareURL}/>
+									<PopupModal shareURL ={shareURL}/>
 								</div>
 							</a>
 						</div>
