@@ -23,7 +23,7 @@ const deleteUser = async (req, res, next) => {
 
         // delete user account
         await User.deleteOne({ _id: req.body.userId })
-        return res.sendStatus(200)
+        return res.sendStatus(204)
     }
     catch (err) {
         return next(err);
