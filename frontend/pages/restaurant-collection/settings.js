@@ -147,7 +147,7 @@ export default function Settings({ userId, displayName }) {
 				<h1>
 					Settings
 				</h1>
-				<form onSubmit={changeDisplayName}>
+				<form onSubmit={changeDisplayName} className={styles.displayNameForm}>
 					<TextField 
 						id="outlined-restaurant-name" 
 						label="Display Name" 
@@ -159,6 +159,7 @@ export default function Settings({ userId, displayName }) {
 						margin="dense" 
 						className={styles.textFields}
 					/>
+					<button type='submit' className={styles.submitButton}><b>Update</b></button>
 				</form>
 				<br/>
 				<br/>
