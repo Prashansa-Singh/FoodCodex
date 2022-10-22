@@ -104,9 +104,8 @@ const deleteExperience = async (req, res, next) => {
 
 }
 
-const deleteAllExperiencesInteract = async (req) => {
+const deleteAllExperiencesInteract = async (restaurantId) => {
 	try {
-		const restaurantId = req.body.restaurantId
 		const restaurant = await Restaurant.findOne({ _id: restaurantId }).populate('experiences');
 		const experiences = restaurant['experiences'];
 		const arrayLength = experiences.length;
@@ -134,7 +133,7 @@ const deleteAllExperiencesInteract = async (req) => {
 const deleteAllExperiences = async (req, res, next) => {
 	try {
 		const restaurantId = req.body.restaurantId
-		const arrayLength = await deleteAllExperiencesInteract(req)
+		const arrayLength = await deleteAllExperiencesInteract(restaurantId)
 
 		// Return number of restaurants before and after deletion for this user
 		const countBefore = arrayLength
