@@ -308,10 +308,10 @@ export default function ViewRestaurantCollection({ data, displayName }) {
 								<tbody>
 									{data.map(({ _id, name, rating, priceRating, personalOption, halalOption, veganOption, vegetarianOption, pescatarianOption, nutsFreeOption, dairyFreeOption, glutenFreeOption, allergyFriendlyOption, diabetesFriendlyOption }) => (
 										<tr className={styles.tr} key={_id} style={{ 'display': updateTable(_id) ? '' : 'none' }}>
-											<Link href={{ pathname: '/restaurant-collection/view-restaurant-record', query: { _id: _id } }}><td className={styles.td}>{name}</td></Link>
-											<Link href={{ pathname: '/restaurant-collection/view-restaurant-record', query: { _id: _id } }}><td className={styles.td}>{rating}</td></Link>
-											<Link href={{ pathname: '/restaurant-collection/view-restaurant-record', query: { _id: _id } }}><td className={styles.td}>{priceRating}</td></Link>
-											<Link href={{ pathname: '/restaurant-collection/view-restaurant-record', query: { _id: _id } }}>
+											<Link href={{ pathname: '/restaurant-collection/view-restaurant-record', query: { _id: _id } }} title='Go to restaurant record'><td className={styles.td}>{name}</td></Link>
+											<Link href={{ pathname: '/restaurant-collection/view-restaurant-record', query: { _id: _id } }} title='Go to restaurant record'><td className={styles.td}>{rating}</td></Link>
+											<Link href={{ pathname: '/restaurant-collection/view-restaurant-record', query: { _id: _id } }} title='Go to restaurant record'><td className={styles.td}>{priceRating}</td></Link>
+											<Link href={{ pathname: '/restaurant-collection/view-restaurant-record', query: { _id: _id } }} title='Go to restaurant record'>
 												<td className={styles.td}><Tags restaurant_data={{
 													personalOption: personalOption,
 													halalOption: halalOption,
