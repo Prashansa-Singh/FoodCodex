@@ -153,17 +153,23 @@ export default function ViewRestaurantRecord({ userId, restaurant_data, experien
 						{restaurant_data.name}
 					</h1>
 					<div className={styles.icon_group}>
-						<Link onClick={() => clickToShare()}>
-							<a> 
+						
+						<Link onClick={() => clickToShare()} title='Share Record'>
+							<a title='Share'> 
 								<div className={styles.icons}>
-									<img src='/src/nav-icons/share-icon.svg' width='40vw' />
-									<p>Share
-
+									<img src='/src/nav-icons/share-icon.svg' width='40vw' alt='Share'/>
+									<p> Share
 										share link: http://localhost:3000/restaurant-collection/share-list?name=Hii
 									</p>
 								</div>
 							</a>
 						</Link>
+
+						<div className={styles.icons}>
+							<DeleteIcon className={styles.bin} onClick={() => confirmDelete()} />
+							<p>Delete</p>
+						</div>
+
 						<Link href={{ pathname: '/restaurant-collection/edit-restaurant-record', query: { _id: userId, rest_id: restaurant_data._id } }} title='Edit Record'>
 							<a title='Edit'>
 								<div className={styles.icons}>
