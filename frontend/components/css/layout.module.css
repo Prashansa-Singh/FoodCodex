@@ -49,3 +49,12 @@
         margin-left: 0; 
     }
 }
+
+@media screen and (min-width: 450px) and (max-width: 950px) {
+    .container {
+        display: flex;
+        flex-direction: column-reverse;  
+        row-gap: 0;   
+        margin-left: 0; 
+    }
+}

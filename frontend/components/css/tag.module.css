@@ -16,6 +16,5 @@
     flex-flow: row wrap;
     justify-content: center;
     align-items: center;
-    align-content: space-around;
     gap: 10px;
 }

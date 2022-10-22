@@ -1,8 +1,8 @@
 import styles from './css/experience.module.css';
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 
 export default function Experience({experience}) {
     const displayTime = () => {
-        console.log(experience.visitTime)
              
         let visitTime  = experience.visitTime
         visitTime = visitTime.substring(0, visitTime.length - 1);
@@ -21,11 +21,21 @@ export default function Experience({experience}) {
         );
     }
 
+    const openView = () => {
+        const viewId = "experience_view" + experience._id;
+        document.getElementById(viewId).style.display = "flex";
+    }
+
     return (
         <div className={styles.experience_container}>
-            <p><b>{experience.title}</b></p>
+            <div className={styles.topExperienceContainer}>
+                <p><b>{experience.title}</b></p>
+                <MoreHorizIcon className={styles.more} onClick={() => openView()} />
+            </div>
             {displayTime()}
-            <p>{experience.comment}</p>
+            <div className={styles.commentContainer}>
+                <p>{experience.comment}</p>
+            </div>
         </div>
     );
 }

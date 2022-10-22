@@ -30,7 +30,7 @@ export default function Logout() {
             <section className={utilStyles.headingMdCenter}>
                 <Grid align='center'>
                     <Paper elevation={10} className={Styles.paperStyle}>
-                        <h1>Would you like to logout?</h1>
+                        <h1>Are you sure you want to logout?</h1>
 
                         <Box>
                             <Button className={Styles.loginButton} variant="contained" onClick={() => { signOut({ redirect: true, callbackUrl: '/' }) }}>Yes logout</Button>
