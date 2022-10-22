@@ -103,7 +103,7 @@ export default function ViewRestaurantRecord({ userId, restaurant_data, experien
 						<Link href='/restaurant-collection/share-list'>
 							<a>
 								<div className={styles.icons}>
-									<img src='/src/nav-icons/share-icon.svg' width='40vw' />
+									<img src='/src/nav-icons/share-icon.svg' width='40vw' alt='Share' />
 									<p>Share</p>
 								</div>
 							</a>
@@ -111,7 +111,7 @@ export default function ViewRestaurantRecord({ userId, restaurant_data, experien
 						<Link href={{ pathname: '/restaurant-collection/edit-restaurant-record', query: { _id: userId, rest_id: restaurant_data._id } }}>
 							<a>
 								<div className={styles.icons}>
-									<img src='/src/nav-icons/add-edit-nav-icon.svg' width='40vw' />
+									<img src='/src/nav-icons/add-edit-nav-icon.svg' width='40vw' alt='Edit' />
 									<p>Edit</p>
 								</div>
 							</a>

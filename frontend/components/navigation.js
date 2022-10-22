@@ -77,12 +77,12 @@ export default function Nav() {
         {
             href: '/restaurant-collection/view-restaurant-collection',
             title: 'Home Phone',
-            icon: <img src='/src/nav-icons/home-icon.svg' />,
+            icon: <img src='/src/nav-icons/home-icon.svg' alt='Home' />,
         },
         {
             href: '/restaurant-collection/edit-restaurant-record',
             title: 'Add New Restaurant',
-            icon: <img src='/src/nav-icons/add-new-icon.svg' />,
+            icon: <img src='/src/nav-icons/add-new-icon.svg' alt='Add New Restaurant' />,
         }
     ];
 
@@ -97,7 +97,7 @@ export default function Nav() {
                                 <a>
                                     <div className={styles.icons}>
                                         {title}
-                                        <img src={icon} />
+                                        <img src={icon} alt={title} />
                                     </div>
                                 </a>
                             </Link>
