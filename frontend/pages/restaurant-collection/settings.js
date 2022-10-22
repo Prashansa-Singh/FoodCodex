@@ -6,9 +6,8 @@ import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import { axiosInstance } from '../api/axiosConfig';
 import Button from '@mui/material/Button';
-
+import TextField from '@mui/material/TextField';
 import { getSession, signOut } from "next-auth/react"
-import { Router } from 'next/router';
 
 export async function getServerSideProps(context) {
 	const session = await getSession(context);
@@ -23,19 +22,20 @@ export async function getServerSideProps(context) {
 	}
 
 	const userId = await session.user._id;
-	// console.log(userId)
+	
+	const url = '/user/view-display-name';
+	const displayNameResponse = await axiosInstance.get(url, { data: { userId: userId, } });
+	const displayName = displayNameResponse.data;
 
 	return {
-		props: { userId },
+		props: { userId, displayName },
 	};
 }
 
-export default function Settings({ userId }) {
+export default function Settings({ userId, displayName }) {
 	const title = `${siteTitle} - Settings`;
 
 	const confirmDelete = () => {
-
-		// const userId = '6310539f4af1428a18a7509d';
 
 		const body = {
 			userId: userId,
@@ -121,6 +121,23 @@ export default function Settings({ userId }) {
 			});
 	}
 
+	const changeDisplayName = async (event) => {
+		event.preventDefault();
+		const newName = event.target.displayName.value;
+		const url = '/user/update-display-name';
+		const body = {
+			userId: userId,
+			displayName: newName,
+		};
+		await axiosInstance.post(url, body)
+		.then(function (response) {
+			console.log(response.data);
+		})
+		.catch(function (error) {
+			console.log(error);
+		})
+	}
+
 	return (
 		<Layout>
 			<Head>
@@ -130,6 +147,21 @@ export default function Settings({ userId }) {
 				<h1>
 					Settings
 				</h1>
+				<form onSubmit={changeDisplayName}>
+					<TextField 
+						id="outlined-restaurant-name" 
+						label="Display Name" 
+						variant="outlined" 
+						name="displayName" 
+						placeholder={displayName.displayName}
+						defaultValue={displayName.displayName}
+						required 
+						margin="dense" 
+						className={styles.textFields}
+					/>
+				</form>
+				<br/>
+				<br/>
 				<div className={styles.button_container}>
 					<Button
 						onClick={() => confirmDelete()}
