@@ -25,7 +25,7 @@ export default function Layout({ children, home, homeOther }) {
                 ) : (<></>)}
                 {homeOther ? (
                     <>
-                        <Link href='/'>
+                        <Link href='/' title='Home'>
                             <img src="/src/nav-icons/home-icon.svg" alt='Home Button' className={styles.home} />
                         </Link>
                         <img alt='FoodCodex Logo' src='/src/foodcodex-logo.png' className={styles.homelogo} />
