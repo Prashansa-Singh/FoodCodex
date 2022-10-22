@@ -21,9 +21,9 @@ const getDisplayName = async (req, res) => {
 
 const validateUser = async (req, res, next) => {
 	try {
-		console.log(
-			`Received the following username: ${req.body.username} and password: ${req.body.password}`
-		);
+		// console.log(
+		// 	`Received the following username: ${req.body.username} and password: ${req.body.password}`
+		// );
 
 		let rawUser = await User.findOne({
 			userName: req.body.username,
