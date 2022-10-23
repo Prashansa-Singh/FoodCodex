@@ -242,7 +242,7 @@ export default function ViewRestaurantCollection({ data, displayName }) {
 			<section className={utilStyles.headingMd}>
 				<div className={styles.viewTop}>
 					<h1>
-						Welcome Back {displayName.displayName}
+						Welcome {displayName.displayName}
 					</h1>
 					{
 						data.length == 0

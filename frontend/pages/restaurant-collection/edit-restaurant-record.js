@@ -95,7 +95,7 @@ export default function EditRestaurantRecord({ userId, restaurant_data, new_data
 			await axiosInstance.post(urlCreate, body)
 			.then(function (response) {
 				console.log(response.data);
-				router.push('/restaurant-collection/view-restaurant-collection');
+				router.push('/restaurant-collection/view-restaurant-record?_id=' + response.data);
 			})
 			.catch(function (error) {
 				console.log(error);
@@ -104,7 +104,7 @@ export default function EditRestaurantRecord({ userId, restaurant_data, new_data
 			await axiosInstance.post(url, body)
 			.then(function (response) {
 				console.log(response.data);
-				router.push('/restaurant-collection/view-restaurant-collection');
+				router.push('/restaurant-collection/view-restaurant-record?_id=' + restaurant_data._id);
 			})
 			.catch(function (error) {
 				console.log(error);
