@@ -1,0 +1,39 @@
+
+/* responsive design for about page */
+@media screen and (max-width: 576px ) {
+	
+.aboutPaper {
+    padding: 20px;
+	height: 20vh;
+	width: 60%;
+	margin: 20px;
+}
+
+/* h5{
+    font-size: 200px;
+} */
+
+}
+
+@media screen and (min-width: 577px) {
+	.aboutPaper {
+        padding: 20px;
+        height: 20vh;
+        width: 80%;
+        margin: 20px;
+    }
+}
+
+/* Footer */
+
+.footer {
+	padding-bottom: 10px ;
+	padding-top: 60px;
+	border-top: 1px solid #FFE29A;
+}
+
+.aboutPaper h5 {
+    font-size: 1rem;
+}
+
+

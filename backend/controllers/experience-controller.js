@@ -104,10 +104,8 @@ const deleteExperience = async (req, res, next) => {
 
 }
 
-
-const deleteAllExperiences = async (req, res, next) => {
+const deleteAllExperiencesInteract = async (restaurantId) => {
 	try {
-		const restaurantId = req.body.restaurantId
 		const restaurant = await Restaurant.findOne({ _id: restaurantId }).populate('experiences');
 		const experiences = restaurant['experiences'];
 		const arrayLength = experiences.length;
@@ -118,6 +116,24 @@ const deleteAllExperiences = async (req, res, next) => {
 			const experienceId = experiences[i]._id		
 			await Experience.deleteOne({_id: experienceId})
 		}
+
+		await Restaurant.updateOne(
+			{ _id: restaurantId },
+			{ $set: { experiences: [] } }
+		);
+
+		return arrayLength
+	}
+	catch (err) {
+		console.error(err);
+	}
+}
+
+
+const deleteAllExperiences = async (req, res, next) => {
+	try {
+		const restaurantId = req.body.restaurantId
+		const arrayLength = await deleteAllExperiencesInteract(restaurantId)
 
 		// Return number of restaurants before and after deletion for this user
 		const countBefore = arrayLength
@@ -136,5 +152,6 @@ module.exports = {
     updateAllExperiences,
 	updateExperience,
     deleteExperience,
-    deleteAllExperiences
+    deleteAllExperiences,
+	deleteAllExperiencesInteract
 }
