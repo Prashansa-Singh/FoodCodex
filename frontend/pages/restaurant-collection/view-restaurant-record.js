@@ -9,8 +9,8 @@ import { axiosInstance } from '../api/axiosConfig';
 import Link from 'next/link';
 
 import { useRouter } from 'next/router';
-import { confirmAlert } from 'react-confirm-alert';
 import { useState } from 'react';
+import Share from '../../components/share';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 
 // Material Ui
@@ -33,7 +33,7 @@ export async function getServerSideProps(context) {
 			},
 		}
 	}
-
+ 
 	const { _id } = context.query;
 
 	// const user = '6310521c744ac9f1587375fa';
@@ -66,52 +66,52 @@ export default function ViewRestaurantRecord({ userId, restaurant_data, experien
 	const [shareURL, setShareURL] = useState(null);
 	let shareLink;
 
-	const clickToShare = async() => {
+	// const clickToShare = async() => {
 		
-		const body = {
-			senderId: userId,
-			restaurantId: restaurant_data._id,
-			shareName: true,
-			shareRating: true,
-			sharePriceRating: true,
-			shareCuisine: true,
-			shareAddress: true,
-			shareOptionTags: true
-		};
+	// 	const body = {
+	// 		senderId: userId,
+	// 		restaurantId: restaurant_data._id,
+	// 		shareName: true,
+	// 		shareRating: true,
+	// 		sharePriceRating: true,
+	// 		shareCuisine: true,
+	// 		shareAddress: true,
+	// 		shareOptionTags: true
+	// 	};
 		
-		console.log("2");
-		// has share id 
-		const URL = '/user/restaurant/share/generate-link';
-		await generateRestaurantShareLink(URL, body);
+	// 	console.log("2");
+	// 	// has share id 
+	// 	const URL = '/user/restaurant/share/generate-link';
+	// 	await generateRestaurantShareLink(URL, body);
 	
-		// present full share link
-		const baseURL = (process.env.NODE_ENV == "production") ? process.env.NEXT_PUBLIC_PRODUCTION_BACKEND : process.env.NEXT_PUBLIC_DEVELOPMENT_FRONTEND; //backend to frontend 
-		const midURL = "restaurant-collection/share-list?link=";
-		const connectionURL = "&_id=";
-		const midIdURL = userId;
-		const concatedURL = baseURL + midURL + shareLink + connectionURL + midIdURL; // works, but shareId is null for some reason ?? pending solve
-		setShareURL(concatedURL); // I think no need of setState since it's working? shareURL and concatedURL are the same restaurant but different link ??
-		console.log("concatedURL ---> " + concatedURL);
-		console.log("shareURL ---> " + shareURL);
+	// 	// present full share link
+	// 	const baseURL = (process.env.NODE_ENV == "production") ? process.env.NEXT_PUBLIC_PRODUCTION_BACKEND : process.env.NEXT_PUBLIC_DEVELOPMENT_FRONTEND; //backend to frontend 
+	// 	const midURL = "restaurant-collection/share-list?link=";
+	// 	const connectionURL = "&_id=";
+	// 	const midIdURL = userId;
+	// 	const concatedURL = baseURL + midURL + shareLink + connectionURL + midIdURL; // works, but shareId is null for some reason ?? pending solve
+	// 	setShareURL(concatedURL); // I think no need of setState since it's working? shareURL and concatedURL are the same restaurant but different link ??
+	// 	console.log("concatedURL ---> " + concatedURL);
+	// 	console.log("shareURL ---> " + shareURL);
 
-	}
+	// }
 
-	const generateRestaurantShareLink = async (url, body) => {
-		await axiosInstance.post(url, body)
-		.then(function (response) {
-			shareLink = response.data;
-			console.log('3');
-			console.log(response.data);
-			console.log("sharelink --> " + shareLink);
-			setShareId(shareLink);
-			console.log("shareId --> " + shareId);
+	// const generateRestaurantShareLink = async (url, body) => {
+	// 	await axiosInstance.post(url, body)
+	// 	.then(function (response) {
+	// 		shareLink = response.data;
+	// 		console.log('3');
+	// 		console.log(response.data);
+	// 		console.log("sharelink --> " + shareLink);
+	// 		setShareId(shareLink);
+	// 		console.log("shareId --> " + shareId);
 		
-		})
-		.catch(function (error) {
-			console.log(error);
-		});
+	// 	})
+	// 	.catch(function (error) {
+	// 		console.log(error);
+	// 	});
 
-	}
+	// }
 
 	
 	const confirmDelete = () => {
@@ -162,7 +162,9 @@ export default function ViewRestaurantRecord({ userId, restaurant_data, experien
 
 					<div className={styles.icon_group}>
 
-						<Button onClick={() => clickToShare()} title='Share Record' shareURL ={shareURL}>
+						<Share userId={userId} restaurant_data={restaurant_data} experiences={experiences}/>
+
+						{/* <Button onClick={() => clickToShare()} title='Share Record' shareURL ={shareURL}>
 							<a title='Share'> 
 								<div className={styles.icons} >
 									<img src='/src/nav-icons/share-icon.svg' width='40vw' alt='Share'/>
@@ -172,7 +174,7 @@ export default function ViewRestaurantRecord({ userId, restaurant_data, experien
 									</p>
 								</div>
 							</a>
-						</Button>
+						</Button> */}
 						
 
 						<div className={styles.icons}>
