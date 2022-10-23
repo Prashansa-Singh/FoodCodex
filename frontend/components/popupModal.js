@@ -21,7 +21,7 @@ const TestModals = ( { shareURL } ) => {
             onClick={() => setShowModal(true)}
             >
                  <img src='/src/nav-icons/share-icon.svg' width='40vw' alt='Share'/>
-                 <p>Click to View</p> 
+                 <p>Click to Share</p> 
                 
             </div>
             {/* <button
@@ -37,7 +37,7 @@ const TestModals = ( { shareURL } ) => {
             <div className="mt-10 flex justify-center items-center flex-col w-72 rounded-lg shadow-xl h-auto p-2">
             <Image src={happyMan} width={100} height={100} objectFit="contain" />
             <p className="text-base mt-2 mx-4 text-gray-400 font-semibold text-center">
-                Here's your share link, {shareURL}.
+                Here's your share link, {shareURL}
                 Congratulations!
             </p>
             <button

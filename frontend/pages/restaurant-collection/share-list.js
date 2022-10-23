@@ -36,16 +36,19 @@ export async function getServerSideProps(context) {
 		}
 	}
 
+	// get user id
 	const { _id } = context.query;
 	// const user = '6310521c744ac9f1587375fa';
-	// const user = await session.user._id;
+	const user = await session.user._id;
+	const userId = user;
 
 
 	// --------------- Single Restaurant Data -------------
 	
-	const url =  'user/restaurant/share/public/'
+	// get share link id
 	const { link } = context.query;
 	console.log("name in server " + link);
+	const url =  'user/restaurant/share/public/'
 	const getDataConcatedURL = url + link;
 	const response = await axiosInstance.get(getDataConcatedURL);
 	let restaurantData = response.data;
@@ -56,7 +59,7 @@ export async function getServerSideProps(context) {
 
 	return {
 	
-		props: { link, restaurantData }, 
+		props: { link, restaurantData, userId }, 
 	};
 }
 
@@ -71,7 +74,7 @@ export async function getServerSideProps(context) {
 // }
 
 
-export default function ShareList({ link, restaurantData }) {
+export default function ShareList({ link, restaurantData, userId}) {
 	const title = `${siteTitle} - Share`;
 	const router = useRouter();
 
@@ -179,6 +182,7 @@ export default function ShareList({ link, restaurantData }) {
 
 	console.log("5");
 	console.log("data " + link);
+	console.log("userId " + userId);
 	console.log("restaurant data type in share " + typeof(restaurantData));
 	console.log("restaurant data in share " + restaurantData);
 
@@ -198,7 +202,7 @@ export default function ShareList({ link, restaurantData }) {
 		const address = event.target.address.value;
 
 		const body = {
-			// userId: userId,
+			userId: userId,
 			restaurantId: restaurantData._id,
 			name: (name != "") ? name : restaurantData.name,
 			cuisine: (cuisine != "") ? cuisine : restaurantData.cuisine,
@@ -223,7 +227,7 @@ export default function ShareList({ link, restaurantData }) {
 		if (saveState){
 			await axiosInstance.post(urlCreate, body)
 			.then(function (response) {
-				console.log("response.data in saveState" + response.data);
+				console.log("in post, saveState is true, response.data " + response.data);
 				router.push('/restaurant-collection/view-restaurant-collection');
 			})
 			.catch(function (error) {
@@ -232,7 +236,7 @@ export default function ShareList({ link, restaurantData }) {
 		} else {
 			await axiosInstance.post(url, body)
 			.then(function (response) {
-				console.log(response.data);
+				console.log("in post, saveState is false, response.data  " + response.data);
 				router.push('/restaurant-collection/view-restaurant-collection');
 			})
 			.catch(function (error) {

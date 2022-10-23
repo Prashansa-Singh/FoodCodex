@@ -162,16 +162,17 @@ export default function ViewRestaurantRecord({ userId, restaurant_data, experien
 
 					<div className={styles.icon_group}>
 
-						<PopupModal onClick={() => clickToShare()} title='Share Record' shareURL ={shareURL}>
+						<Button onClick={() => clickToShare()} title='Share Record' shareURL ={shareURL}>
 							<a title='Share'> 
-								<div className={styles.icons}>
+								<div className={styles.icons} >
 									<img src='/src/nav-icons/share-icon.svg' width='40vw' alt='Share'/>
-									<p> 
+									
+									<p className='white-space: normal width: 100px'> 
 										Click to Share: {shareURL}
 									</p>
 								</div>
 							</a>
-						</PopupModal>
+						</Button>
 						
 
 						<div className={styles.icons}>
