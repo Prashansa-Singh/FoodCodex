@@ -21,7 +21,7 @@ const navLink = [
 export default function About() {
 	const title = `${siteTitle} - About`;
 	return (
-		<Layout home>
+		<Layout homeOther>
 			<Head>
 				<title>{title}</title>
 			</Head>

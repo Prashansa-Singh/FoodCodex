@@ -2,12 +2,13 @@ import Head from 'next/head';
 import styles from './css/layout.module.css';
 import Nav from './navigation';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export const siteTitle = 'FoodCodex';
 
-export default function Layout({ children, home }) {
+export default function Layout({ children, home, homeOther }) {
     return (
-        <div className={` ${styles.container} ${home && styles.containerhome}`}>
+        <div className={` ${styles.container} ${(home || homeOther) && styles.containerhome}`}>
             <Head>
                 <link rel="icon" href="/src/foodcodex-icon.png" />
                 <meta
@@ -22,12 +23,20 @@ export default function Layout({ children, home }) {
                         <img alt='FoodCodex Logo' src='/src/foodcodex-logo.png' className={styles.homelogo} />
                     </>
                 ) : (<></>)}
+                {homeOther ? (
+                    <>
+                        <Link href='/' title='Home'>
+                            <img src="/src/nav-icons/home-icon.svg" alt='Home Button' className={styles.home} />
+                        </Link>
+                        <img alt='FoodCodex Logo' src='/src/foodcodex-logo.png' className={styles.homelogo} />
+                    </>
+                ) : (<></>)}
             </header>
-            {!home && (
+            {!home && !homeOther && (
                 <Nav className={styles.nav} />
             )}
             <main className={styles.main}>{children}</main>
-            {home && (
+            {(home || homeOther) && (
                 <div className={styles.background}>
                     <Image 
                         src="/src/home-background.svg"
@@ -38,7 +47,7 @@ export default function Layout({ children, home }) {
                     />
                 </div>
             )}
-            {!home && (
+            {!home && !homeOther && (
                 <div className={styles.background}>
                     <Image 
                         src="/src/logged-in-background.svg"

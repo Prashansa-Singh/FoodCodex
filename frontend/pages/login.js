@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import Layout, { siteTitle } from '../components/layout';
 import utilStyles from '../styles/utils.module.css';
-import Styles from '../components/css/login-signup.module.css';
+import Styles from '../styles/login-signup.module.css';
 import LoginButton from '../components/loginbutton';
 
 import { useRouter } from 'next/router';
@@ -65,7 +65,7 @@ export default function Login() {
 	const title = `${siteTitle} - Login`;
 
 	return (
-		<Layout home>
+		<Layout homeOther>
 			<Head>
 				<title>{title}</title>
 			</Head>

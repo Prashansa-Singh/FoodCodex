@@ -19,16 +19,16 @@ const inactiveColour = '#d7d6d4';
 
 export default function Tags({restaurant_data, page}) {
     const onTagsDefault = {
-        personalOption: restaurant_data.personalOption,
-        halalOption: restaurant_data.halalOption,
-        veganOption: restaurant_data.veganOption,
-        vegetarianOption: restaurant_data.vegetarianOption,
-        pescatarianOption: restaurant_data.pescatarianOption,
-        nutsFreeOption: restaurant_data.nutsFreeOption,
-        dairyFreeOption: restaurant_data.dairyFreeOption,
-        glutenFreeOption: restaurant_data.glutenFreeOption,
-        allergyFriendlyOption: restaurant_data.allergyFriendlyOption,
-        diabetesFriendlyOption: restaurant_data.diabetesFriendlyOption
+        personalOption: restaurant_data.personalOption === undefined ? false : restaurant_data.personalOption,
+        halalOption: restaurant_data.halalOption === undefined ? false : restaurant_data.halalOption,
+        veganOption: restaurant_data.veganOption === undefined ? false : restaurant_data.veganOption,
+        vegetarianOption: restaurant_data.vegetarianOption === undefined ? false : restaurant_data.vegetarianOption,
+        pescatarianOption: restaurant_data.pescatarianOption === undefined ? false : restaurant_data.pescatarianOption,
+        nutsFreeOption: restaurant_data.nutsFreeOption === undefined ? false : restaurant_data.nutsFreeOption,
+        dairyFreeOption: restaurant_data.dairyFreeOption === undefined ? false : restaurant_data.dairyFreeOption,
+        glutenFreeOption: restaurant_data.glutenFreeOption === undefined ? false : restaurant_data.glutenFreeOption,
+        allergyFriendlyOption: restaurant_data.allergyFriendlyOption === undefined ? false : restaurant_data.allergyFriendlyOption,
+        diabetesFriendlyOption: restaurant_data.diabetesFriendlyOption === undefined ? false : restaurant_data.diabetesFriendlyOption
     }
 
     const tags = [
