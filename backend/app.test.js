@@ -1,5 +1,6 @@
 const request = require('supertest')
 const app = require('./app')
+const { Restaurant, Experience } = require('./models/restaurant')
 const { User } = require('./models/user')
 
 /**
@@ -239,8 +240,9 @@ describe('Experience Records: ~/user/restaurant/experiences', () => {
 
     let experience_body = {
         visitTime: Date.now(),
-        title: "First Visit to Ho Ho's Canteen",
+        title: "100th Visit to Ho Ho's Canteen",
         comment: "One of the better places on campus for fresh, healthy options.",
+        lastUpdated: Date.now(),
     }
 
     it('Restaurant Experiences Test Setup ---> Create User + Add Restaurant to User', async () => {
@@ -271,8 +273,8 @@ describe('Experience Records: ~/user/restaurant/experiences', () => {
         user = fetchUser._id.toString();
 
         // create restaurant record for user
-        create_restaurant_body['userId'] = user
-        const add_restaurant = await request(app).post('/user/restaurant/create-one').send(create_restaurant_body)
+        // create_restaurant_body['userId'] = user
+        const add_restaurant = await request(app).post('/user/restaurant/create-one').send({ ...create_restaurant_body, userId: user })
         expect(add_restaurant.status).toEqual(200);
         expect(add_restaurant.text).toEqual(`Done. ${create_restaurant_body.name} has been added to this userId: ${user}.`)
 
@@ -283,10 +285,46 @@ describe('Experience Records: ~/user/restaurant/experiences', () => {
         if (userRestaurants.restaurants.length >= 0) {
             restaurantId = userRestaurants.restaurants[0].toString()
         }
+
+        expect(typeof restaurantId).toBe("string");
     })
 
     it('POST /create-one ---> Add Restaurant Experience', async () => {
+        const response = await request(app).post('/user/restaurant/experience/create-one').send({
+            ...experience_body,
+            restaurantId: restaurantId
+        });
 
+        console.log(response)
+
+        expect(response.status).toBe(200);
+
+        // get experience record id
+        let userExperience = await Restaurant.findById(restaurantId, "experiences")
+        expect(userExperience.experiences).toEqual(expect.anything())
+
+        if (userExperience.experiences.length >= 0) {
+            experienceId = userExperience.experiences[0].toString()
+        }
+
+        expect(typeof experienceId).toBe("string");
+
+        let experience = await Experience.findById(experienceId, "title");
+
+        console.log(response.text)
+        console.log(experience)
+
+        expect(typeof experience.text).toBe("string")
+        expect(response.text).toBe(`Done. Experience Id:${experienceId} with Title: ${experience.title} has been added to this restaurantId: ${restaurantId}.`)
+    })
+
+    it('DELETE /delete-one ---> Delete Restaurant Experience', async () => {
+        const response = await request(app).delete('/user/restaurant/experience/delete-one').send({
+            experienceId: experienceId
+        });
+
+        expect(response.status).toBe(200);
+        expect(response.text).toBe(`Number of documents with experienceId: ${experienceId} is [Before Deletion: 1] and [After Deletion: 0].`)
     })
 
     afterAll(async () => {
