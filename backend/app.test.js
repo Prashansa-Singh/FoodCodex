@@ -155,11 +155,6 @@ describe('Restaurant Records: ~/user/restaurant', () => {
 
         const response = await request(app).post('/user/restaurant/create-one').send(req_body)
 
-        expect(response.status).toEqual(200);
-        expect(response.text).toEqual(`Done. ${req_body.name} has been added to this userId: ${user}.`)
-    })
-
-    it('POST /update-one ---> Update Restaurant Record', async () => {
         // get restaurant id to update record
         let userRestaurants = await User.findById(user, "restaurants")
 
@@ -171,6 +166,13 @@ describe('Restaurant Records: ~/user/restaurant', () => {
 
         expect(typeof restaurantId).toBe("string")
 
+        let responseId = JSON.parse(response.text)
+        expect(response.status).toEqual(200);
+        expect(responseId).toEqual(restaurantId);
+        // expect(response.text).toEqual(`Done. ${req_body.name} has been added to this userId: ${user}.`)
+    })
+
+    it('POST /update-one ---> Update Restaurant Record', async () => {
         // update cuisine field of the restaurant
         let edited_body = Object.assign(req_body, { restaurantId: restaurantId });
         edited_body["cuisine"] = "Noodles";
@@ -247,7 +249,7 @@ describe('Experience Records: ~/user/restaurant/experiences', () => {
         lastUpdated: Date.now(),
     }
 
-    it('Restaurant Experiences Test Setup ---> Create User + Add Restaurant to User', async () => {
+    it('Experiences Test Setup ---> Create User + Add Restaurant to User', async () => {
         let rawUser = await User.findOne({
             userName: "test-514",
         });
@@ -276,8 +278,6 @@ describe('Experience Records: ~/user/restaurant/experiences', () => {
 
         // create restaurant record for user
         const add_restaurant = await request(app).post('/user/restaurant/create-one').send({ ...create_restaurant_body, userId: user })
-        expect(add_restaurant.status).toEqual(200);
-        expect(add_restaurant.text).toEqual(`Done. ${create_restaurant_body.name} has been added to this userId: ${user}.`)
 
         // get restaurant record id
         let userRestaurants = await User.findById(user, "restaurants")
@@ -288,6 +288,11 @@ describe('Experience Records: ~/user/restaurant/experiences', () => {
         }
 
         expect(typeof restaurantId).toBe("string");
+
+        let responseId = JSON.parse(add_restaurant.text)
+        expect(add_restaurant.status).toEqual(200);
+        expect(responseId).toEqual(restaurantId);
+        // expect(add_restaurant.text).toEqual(`Done. ${create_restaurant_body.name} has been added to this userId: ${user}.`)
     })
 
     it('POST /create-one ---> Add Restaurant Experience', async () => {
@@ -328,6 +333,23 @@ describe('Experience Records: ~/user/restaurant/experiences', () => {
 
         expect(response.status).toBe(200);
         expect(response.text).toBe(`Done.  The experienceId ${experienceId} of restaurantId: ${restaurantId} has been updated.`)
+    })
+
+    it('GET /view-all ---> View All Restaurant Experience', async () => {
+        const response = await request(app).get('/user/restaurant/experience/view-all').send({
+            restaurantId: restaurantId,
+        });
+
+        expect(response.status).toBe(200);
+
+        console.log(JSON.parse(response.text))
+
+        let parseResponse = JSON.parse(response.text)[0]
+        let repsonseResult;
+        let { lastUpdated, updatedAt, createdAt, __v, ...responseResult } = parseResponse
+
+
+        console.log(responseResult)
     })
 
     it('DELETE /delete-one ---> Delete Restaurant Experience', async () => {
