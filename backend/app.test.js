@@ -101,79 +101,96 @@ describe('Account ~/account', () => {
 /**
  * Restaurant Records: ~/user/restaurant
  */
-// describe('Restaurant Records: ~/user/restaurant', () => {
-//     let user;
+describe('Restaurant Records: ~/user/restaurant', () => {
+    let user;
 
-//     beforeAll(async () => {
-//         user_details = {
-//             userName: 'yipp-217',
-//             password: 'akd9#n$d',
-//             displayName: 'Ed',
-//         }
+    beforeAll(async () => {
+        let rawUser = await User.findOne({
+            userName: "test-217",
+        });
 
-//         createUser = new User(user_details)
-//         user = await createUser.save()
-//     })
+        if (rawUser) {
+            await request(app).delete('/account/delete').send({
+                userId: rawUser._id.toString(),
+            })
+        }
 
-//     it('POST /create-one --->', async () => {
-//         const req_body = {
-//             userId: user._id,
-//             name: "Hakata Gensuke Carlton",
-//             cuisine: "Japanese Ramen",
-//             address: "126 Lygon Street, Carlton 3053 Victoria",
-//             rating: 4.5,
-//             priceRating: 3,
-//             personalOption: false,
-//             halalOption: true,
-//             veganOption: true,
-//             vegetarianOption: true,
-//             pescatarianOption: true,
-//             nutsFreeOption: false,
-//             dairyFreeOption: false,
-//             glutenFreeOption: true,
-//             allergyFriendlyOption: false,
-//             diabetesFriendlyOption: true,
-//         }
+        user_details = {
+            userName: 'test-217',
+            password: '123456789',
+            displayName: 'TEST',
+        }
 
-//         // console.log(req_body.name)
-//         // console.log(user._id.toString())
+        createUser = new User(user_details)
+        user = await createUser.save()
+    })
 
-//         const response = await request(app).post('/user/restaurant/create-one').send(req_body)
-//         expect(response.status).toEqual(200);
-//         expect(response.text).toEqual(`Done. ${req_body.name} has been added to this userId: ${user._id}.`)
-//     })
+    it('POST /create-one --->', async () => {
+        const req_body = {
+            userId: user._id.toString(),
+            name: "Hakata Gensuke Carlton",
+            cuisine: "Japanese Ramen",
+            address: "126 Lygon Street, Carlton 3053 Victoria",
+            rating: 4.5,
+            priceRating: 3,
+            personalOption: false,
+            halalOption: true,
+            veganOption: true,
+            vegetarianOption: true,
+            pescatarianOption: true,
+            nutsFreeOption: false,
+            dairyFreeOption: false,
+            glutenFreeOption: true,
+            allergyFriendlyOption: false,
+            diabetesFriendlyOption: true,
+        }
 
-//     // it('POST /update-one --->', () => {
-//     //     request(app).post('/account/signup')
-//     //         .send({
+        // console.log(req_body.name)
+        // console.log(user._id.toString())
 
-//     //         })
-//     //         .expect(201)
-//     // })
+        const response = await request(app).post('/user/restaurant/create-one').send(req_body)
 
-//     // it('POST /view-all --->', () => {
-//     //     request(app).post('/account/signup')
-//     //         .send({
+        expect(response.status).toEqual(200);
+        expect(response.text).toEqual(`Done. ${req_body.name} has been added to this userId: ${user._id}.`)
+    })
 
-//     //         })
-//     //         .expect(201)
-//     // })
+    // it('POST /update-one --->', () => {
+    //     request(app).post('/account/signup')
+    //         .send({
 
-//     // it('POST /delete-all --->', () => {
-//     //     request(app).post('/account/signup')
-//     //         .send({
+    //         })
+    //         .expect(201)
+    // })
 
-//     //         })
-//     //         .expect(201)
-//     // })
+    // it('POST /view-all --->', () => {
+    //     request(app).post('/account/signup')
+    //         .send({
 
-//     // afterAll(async () => {
-//     //     let rawUser = await User.findOne({
-//     //         userName: "yipp-217",
-//     //     });
+    //         })
+    //         .expect(201)
+    // })
 
-//     //     if (rawUser) {
-//     //         await User.deleteOne({ _id: rawUser._id })
-//     //     }
-//     // })
-// })
+    it('DELETE /delete-one --->', async () => {
+        let userRestaurants = await User.findById(user._id.toString(), "restaurants")
+
+        expect(userRestaurants.restaurants).toEqual(expect.anything())
+
+        let restaurantId;
+        if (userRestaurants.restaurants.length >= 0) {
+            restaurantId = userRestaurants.restaurants[0].toString()
+        }
+
+        const response = await request(app).delete('/user/restaurant/delete-one').send({
+            restaurantId: restaurantId,
+        })
+
+        expect(response.status).toEqual(200);
+        expect(response.text).toEqual(`Number of documents with restaurantId: ${restaurantId} is [Before Deletion: 1] and [After Deletion: 0].`)
+    })
+
+    afterAll(async () => {
+        await request(app).delete('/account/delete').send({
+            userId: user._id.toString(),
+        })
+    })
+})
