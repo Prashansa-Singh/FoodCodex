@@ -22,7 +22,7 @@ const createRestaurant = async (req, res, next) => {
 		);
 
 		console.log(restaurant);
-		return res.send(`Done. ${restaurant.name} has been added to this userId: ${userId}.`);
+		return res.send(restaurant._id);
 	} catch (err) {
 		return next(err);
 	}
