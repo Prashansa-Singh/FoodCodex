@@ -2,8 +2,10 @@ import styles from './css/experience.module.css';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 
 export default function Experience({experience}) {
+
+    console.log("experience in Experience function: " + experience);
+
     const displayTime = () => {
-             
         let visitTime  = experience.visitTime
         visitTime = visitTime.substring(0, visitTime.length - 1);
 

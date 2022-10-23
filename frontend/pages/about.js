@@ -51,7 +51,6 @@ export default function About() {
 					<AccountCircleOutlinedIcon  sx={{ fontSize: 80 }}/>
 				</Box>
 			</section>
-			
 		</Layout>
 	);
 }

@@ -18,3 +18,7 @@
     align-items: center;
     gap: 10px;
 }
+
+.tag_container:hover {
+    box-shadow: 0 16px 32px 0 rgba(156, 248, 138, 0.4);
+}
