@@ -230,6 +230,8 @@ describe('Experience Records: ~/user/restaurant/experiences', () => {
     let restaurantId;
     let experienceId;
 
+    const newtitle = "(Correction) 99th Visit to Ho Ho's Canteen";
+
     let create_restaurant_body = {
         name: "Ho Ho's Canteen",
         cuisine: "Middle Eastern and Italian",
@@ -317,11 +319,16 @@ describe('Experience Records: ~/user/restaurant/experiences', () => {
         expect(response.text).toBe(`Done. Experience Id:${experienceId} with Title: ${experience.title} has been added to this restaurantId: ${restaurantId}.`)
     })
 
-    // it('POST /update-one ---> Update Restaurant Experience', async () => {
-    //     const response = await request(app).post('/user/restaurant/experience/update-one').send({
-    //         experienceId: experienceId
-    //     });
-    // })
+    it('POST /update-one ---> Update Restaurant Experience', async () => {
+        const response = await request(app).post('/user/restaurant/experience/update-one').send({
+            experienceId: experienceId,
+            restaurantId: restaurantId,
+            title: newtitle,
+        });
+
+        expect(response.status).toBe(200);
+        expect(response.text).toBe(`Done.  The experienceId ${experienceId} of restaurantId: ${restaurantId} has been updated.`)
+    })
 
     it('DELETE /delete-one ---> Delete Restaurant Experience', async () => {
         const response = await request(app).delete('/user/restaurant/experience/delete-one').send({
