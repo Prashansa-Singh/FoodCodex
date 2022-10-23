@@ -22,6 +22,7 @@ const createRestaurant = async (req, res, next) => {
 		);
 
 		console.log(restaurant);
+
 		return res.send(restaurant._id);
 	} catch (err) {
 		return next(err);
@@ -97,6 +98,11 @@ const deleteAllRestaurantsInteract = async (req) => {
 		const userId = req.body.userId
 		const user = await User.findOne({ _id: userId }).populate('restaurants');
 		const restaurants = user['restaurants'];
+
+		if (restaurants === null) {
+			return 0
+		}
+
 		const arrayLength = restaurants.length;
 
 		// Loop through each of user's restaurant records and delete
