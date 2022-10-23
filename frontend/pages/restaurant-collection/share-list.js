@@ -14,9 +14,6 @@ import { useRouter } from 'next/router';
 import styles from '../../styles/view-restaurant-record.module.css';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 
-// converting circular structure 
-import CircularJSON from 'circular-json'
-
 // Material Ui and other decorations 
 import { Rating, Modal, Box, Button, Typography, Grid, Paper, TextField, Stack } from "@mui/material";
 import PaidIcon from '@mui/icons-material/Paid';
@@ -27,6 +24,7 @@ import SaveAltIcon from '@mui/icons-material/SaveAlt';
 export async function getServerSideProps(context) {
 
 	// --------------- authentication --------------------
+
 	const session = await getSession(context);
 
 	if (!session) {
@@ -243,7 +241,6 @@ export default function ShareList({ link, restaurantData }) {
 		}
 
 	}
-
 	
 	const discard = () => {
 		router.push('/restaurant-collection/view-restaurant-collection');

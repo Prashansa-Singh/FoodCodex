@@ -2,7 +2,7 @@ import Head from 'next/head';
 import Layout, { siteTitle } from '../../components/layout';
 import Tags from '../../components/tags';
 import Experiences from '../../components/experiences';
-import PopupModal from "../../components/modal";
+import PopupModal from "../../components/popupModal";
 import utilStyles from '../../styles/utils.module.css';
 import styles from '../../styles/view-restaurant-record.module.css';
 import { axiosInstance } from '../api/axiosConfig';
@@ -162,19 +162,16 @@ export default function ViewRestaurantRecord({ userId, restaurant_data, experien
 
 					<div className={styles.icon_group}>
 
-						<div onClick={() => clickToShare()} title='Share Record'>
+						<PopupModal onClick={() => clickToShare()} title='Share Record' shareURL ={shareURL}>
 							<a title='Share'> 
 								<div className={styles.icons}>
 									<img src='/src/nav-icons/share-icon.svg' width='40vw' alt='Share'/>
 									<p> 
 										Click to Share: {shareURL}
 									</p>
-									<PopupModal shareURL ={shareURL}>
-										
-									</PopupModal>
 								</div>
 							</a>
-						</div>
+						</PopupModal>
 						
 
 						<div className={styles.icons}>

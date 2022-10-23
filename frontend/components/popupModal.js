@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { AiFillFire } from "react-icons/ai";
 import Image from "next/image";
 import happyMan from "../public/src/happy.png";
-// import Trophy from "../public/trophy.png";
-// import Gift from "../public/gift.png";
+import styles from './../styles/view-restaurant-record.module.css';
+
 
 const TestModals = ( { shareURL } ) => {
     const linkDataReceived = shareURL;
@@ -14,15 +14,16 @@ const TestModals = ( { shareURL } ) => {
 
     return (
         <div className="flex md:flex-col justify-center items-center mt-40 ">
-        <div className="flex gap-5 ">
-            <button
-            className="bg-blue-600 text-white active:bg-black hover:bg-black flex justify-center items-center gap-2
-        font-bold px-6 h-12 rounded-md shadow hover:shadow-lg outline-none focus:outline-none"
-            type="button"
+        <div className={styles.icon_group}>			
+            <div
+            className={styles.icons}
+           
             onClick={() => setShowModal(true)}
             >
-            Click to View <AiFillFire className="text-xl" />
-            </button>
+                 <img src='/src/nav-icons/share-icon.svg' width='40vw' alt='Share'/>
+                 <p>Click to View</p> 
+                
+            </div>
             {/* <button
             className="border border-blue-100  text-gray-800 hover:text-white active:bg-black hover:bg-black flex justify-center items-center gap-2
         font-bold px-6 h-12 rounded-md hover:shadow-lg outline-none focus:outline-none"
