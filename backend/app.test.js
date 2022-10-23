@@ -249,7 +249,8 @@ describe('Experience Records: ~/user/restaurant/experiences', () => {
         lastUpdated: Date.now(),
     }
 
-    it('Experiences Test Setup ---> Create User + Add Restaurant to User', async () => {
+    // 'Experiences Test Setup ---> Create User + Add Restaurant to User', 
+    beforeAll(async () => {
         let rawUser = await User.findOne({
             userName: "test-514",
         });
@@ -342,14 +343,12 @@ describe('Experience Records: ~/user/restaurant/experiences', () => {
 
         expect(response.status).toBe(200);
 
-        console.log(JSON.parse(response.text))
-
         let parseResponse = JSON.parse(response.text)[0]
         let repsonseResult;
         let { lastUpdated, updatedAt, createdAt, __v, ...responseResult } = parseResponse
 
-
-        console.log(responseResult)
+        // console.log(experience_body)
+        // console.log(responseResult)
     })
 
     it('DELETE /delete-one ---> Delete Restaurant Experience', async () => {
