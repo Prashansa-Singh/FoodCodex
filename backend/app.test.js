@@ -345,10 +345,17 @@ describe('Experience Records: ~/user/restaurant/experiences', () => {
 
         let parseResponse = JSON.parse(response.text)[0]
         let repsonseResult;
-        let { lastUpdated, updatedAt, createdAt, __v, ...responseResult } = parseResponse
+        let { lastUpdated, updatedAt, visitTime, createdAt, __v, ...responseResult } = parseResponse
+        delete experience_body.lastUpdated
+        delete experience_body.visitTime
+
+        experience_body['_id'] = experienceId
+        experience_body['title'] = newtitle
 
         // console.log(experience_body)
         // console.log(responseResult)
+
+        expect(responseResult).toEqual(experience_body);
     })
 
     it('DELETE /delete-one ---> Delete Restaurant Experience', async () => {
