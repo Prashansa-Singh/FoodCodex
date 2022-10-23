@@ -273,7 +273,6 @@ describe('Experience Records: ~/user/restaurant/experiences', () => {
         user = fetchUser._id.toString();
 
         // create restaurant record for user
-        // create_restaurant_body['userId'] = user
         const add_restaurant = await request(app).post('/user/restaurant/create-one').send({ ...create_restaurant_body, userId: user })
         expect(add_restaurant.status).toEqual(200);
         expect(add_restaurant.text).toEqual(`Done. ${create_restaurant_body.name} has been added to this userId: ${user}.`)
@@ -295,7 +294,7 @@ describe('Experience Records: ~/user/restaurant/experiences', () => {
             restaurantId: restaurantId
         });
 
-        console.log(response)
+        // console.log(response)
 
         expect(response.status).toBe(200);
 
@@ -311,12 +310,18 @@ describe('Experience Records: ~/user/restaurant/experiences', () => {
 
         let experience = await Experience.findById(experienceId, "title");
 
-        console.log(response.text)
-        console.log(experience)
+        // console.log(response.text)
+        // console.log(experience)
 
-        expect(typeof experience.text).toBe("string")
+        expect(typeof experience.title).toBe("string")
         expect(response.text).toBe(`Done. Experience Id:${experienceId} with Title: ${experience.title} has been added to this restaurantId: ${restaurantId}.`)
     })
+
+    // it('POST /update-one ---> Update Restaurant Experience', async () => {
+    //     const response = await request(app).post('/user/restaurant/experience/update-one').send({
+    //         experienceId: experienceId
+    //     });
+    // })
 
     it('DELETE /delete-one ---> Delete Restaurant Experience', async () => {
         const response = await request(app).delete('/user/restaurant/experience/delete-one').send({
