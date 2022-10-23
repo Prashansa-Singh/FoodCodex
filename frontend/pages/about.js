@@ -1,25 +1,25 @@
-import { Grid, Paper, Box, Card } from '@mui/material';
+import Link from "next/link";
 import Head from 'next/head';
 import Layout, { siteTitle } from '../components/layout';
 import utilStyles from '../styles/utils.module.css';
 import abtStyles from '../components/css/about.module.css';
 
+import { useRouter } from 'next/router';
+import { useState, useEffect } from 'react';
+import { signIn, useSession } from "next-auth/react"
+
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
-import Link from "next/link";
 import styles from '../components/css/header.module.css';
-import Footer from '../components/footer';
+// import Footer from '../components/footer';
+import { Grid, Paper, Box, Card } from '@mui/material';
 
 
-const navLink = [
-    {
-        href: '/',
-        // title: 'Home',
-        icon: '/src/nav-icons/home-icon.svg',
-    }
-]
+// make about page public, no need of getServerSideProps
 
 export default function About() {
+
 	const title = `${siteTitle} - About`;
+	
 	return (
 		<Layout homeOther>
 			<Head>
@@ -27,16 +27,6 @@ export default function About() {
 			</Head>
 	
 			<section className={utilStyles.headingMdCenter}>
-				{navLink.map(({ href, title, icon }) => (
-					<Link href={href}>
-						<a>
-							<div className={styles.icons}>
-								{/* {title} */}
-								<img src={icon} />
-							</div>
-						</a>
-					</Link>
-				))}
 				<h1>
 					About Us
 				</h1>
@@ -61,7 +51,7 @@ export default function About() {
 					<AccountCircleOutlinedIcon  sx={{ fontSize: 80 }}/>
 				</Box>
 			</section>
-			<Footer></Footer>
+			{/* <Footer></Footer> */}
 		</Layout>
 	);
 }
