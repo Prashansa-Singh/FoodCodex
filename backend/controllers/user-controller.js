@@ -1,13 +1,7 @@
 const { User } = require('../models/user');
 
-const loginUser = async (req, res) => {
-
-}
-
-
-const logoutUser = async (req, res) => {
-
-}
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 const getDisplayName = async (req, res) => {
 	try {
@@ -36,7 +30,7 @@ const updateDisplayName = async (req, res, next) => {
 		let user = await User.findById(userId)
 
 		console.log(user);
-		return res.send(JSON.stringify({"displayName": user.displayName}));
+		return res.send(JSON.stringify({ "displayName": user.displayName }));
 	} catch (err) {
 		return next(err);
 	}
@@ -61,12 +55,13 @@ const validateUser = async (req, res, next) => {
 
 		const { password, restaurants, ...fetchUser } = rawUser;
 
-		// compare passwords => currently a plaintext check
-		if (password === req.body.password) {
+		const check_password = bcrypt.compareSync(req.body.password, password);
+		if (check_password) {
 			return res.send(JSON.stringify(fetchUser));
 		} else {
 			return res.send(null);
 		}
+
 	} catch (err) {
 		return next(err);
 	}
@@ -74,8 +69,6 @@ const validateUser = async (req, res, next) => {
 
 
 module.exports = {
-	loginUser,
-	logoutUser,
 	validateUser,
 	getDisplayName,
 	updateDisplayName
