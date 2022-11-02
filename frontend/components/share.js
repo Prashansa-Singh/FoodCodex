@@ -48,13 +48,14 @@ export default function Share({userId, restaurant_data, experiences}) {
     };
 
     // for selecting sharing option view
-    // const closeOptionView = () => {
-    //     const viewId = "option" + userId;
-    //     document.getElementById(viewId).style.display="none";
-    // }
+    const closeOptionView = () => {
+        const viewId = "option" + userId;
+        document.getElementById(viewId).style.display="none";
+    }
 
     const openOptionView = () =>{
         const viewId = "option" + userId;
+        console.log("doc --> ", document.getElementById(viewId));
         document.getElementById(viewId).style.display="flex";
     }
 
@@ -141,6 +142,15 @@ export default function Share({userId, restaurant_data, experiences}) {
             <div id={"share" + userId}>
                     In Share, {shareURL}
             </div>
+
+            {/* <div id={"option" + userId}>
+                In option
+                <Checkbox onClick={() => setPriceChecked(true)}
+                    checked={checked}
+                    onChange={handlesharePriceRating}
+                    inputProps={{ 'aria-label': 'controlled' }} label="sharePriceName"
+                />
+            </div> */}
            
            
         </div>
@@ -160,13 +170,8 @@ export default function Share({userId, restaurant_data, experiences}) {
                     />
                 </div> */}
                 
-                {/* In Option
-                <Checkbox onClick={() => setPriceChecked(true)}
-                        checked={checked}
-                        onChange={handlesharePriceRating}
-                        inputProps={{ 'aria-label': 'controlled' }} label="sharePriceName"
-                    />
-                <Button onClick={() => { openPresentShareLinkView(); setPresentShareLinkState(true); } }>
+             
+                {/* <Button onClick={() => { openPresentShareLinkView(); setPresentShareLinkState(true); } }>
                     confirm
                 </Button>
                 <Button onClick={() => { closeOptionView(); setOpenOptionState(false); } }>

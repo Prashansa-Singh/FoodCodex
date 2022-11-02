@@ -1,4 +1,4 @@
-import styles from './css/experience.module.css';
+import styles from './css/share.module.css';
 
 export default function ShareOption({userId, restaurant_data, experiences}) {
 
@@ -8,8 +8,8 @@ export default function ShareOption({userId, restaurant_data, experiences}) {
     }
 
     return (
-        <div className={styles.experience_container} id={"option" + userId}>
-            <div id={"option" + userId}>
+        <div className={styles.view_share_option} id={"option" + userId}>
+            <div>
                 In option
                 <Checkbox onClick={() => setPriceChecked(true)}
                     checked={checked}

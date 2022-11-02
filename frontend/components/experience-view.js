@@ -6,7 +6,7 @@ import { confirmAlert } from 'react-confirm-alert';
 import { axiosInstance } from '../pages/api/axiosConfig';
 
 export default function ExperienceView({experience}) {
-    
+     
     const displayTime = () => {
              
         let visitTime  = experience.visitTime
