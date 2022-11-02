@@ -3,7 +3,7 @@ import styles from './../styles/view-restaurant-record.module.css';
 import { axiosInstance } from './../pages/api/axiosConfig';
 import { confirmAlert } from 'react-confirm-alert';
 import { useState } from "react";
-
+ 
 import 'react-confirm-alert/src/react-confirm-alert.css';
 
 // Material Ui
@@ -26,7 +26,8 @@ export default function Share({userId, restaurant_data, experiences}) {
     console.log("6 Share " + restaurant_data );
     console.log("6 Share " + experiences);
 
-    const [showModal, setShowModal] = useState(false);
+    const [showOpenOptionState, setOpenOptionState] = useState(false);
+    const [showPresentShareLink, setPresentShareLinkState] = useState(false);
     const [checked, setChecked] = useState(false);
     const [priceCheck, setPriceChecked] = useState(false);
 
@@ -36,7 +37,6 @@ export default function Share({userId, restaurant_data, experiences}) {
         console.log("check status " + event);
     };
 
-     
     const handleshareRating = (event) => {
         setChecked(event.target.checked);
         console.log("check status " + checked);
@@ -47,17 +47,28 @@ export default function Share({userId, restaurant_data, experiences}) {
         console.log("check status " + checked);
     };
 
+    // for selecting sharing option view
+    // const closeOptionView = () => {
+    //     const viewId = "option" + userId;
+    //     document.getElementById(viewId).style.display="none";
+    // }
 
-    const closeView = () => {
+    const openOptionView = () =>{
+        const viewId = "option" + userId;
+        document.getElementById(viewId).style.display="flex";
+    }
 
+    // for presenting share link view 
+    const closePresentShareLinkView = () => {
         const viewId = "share" + userId;
         document.getElementById(viewId).style.display="none";
     }
 
-    const openView = () =>{
+    const openPresentShareLinkView = () =>{
         const viewId = "share" + userId;
         document.getElementById(viewId).style.display="flex";
     }
+
 
     // -------------------------- sharing --------------------------
 	const [shareId, setShareId] = useState(null);
@@ -84,10 +95,10 @@ export default function Share({userId, restaurant_data, experiences}) {
 	
 		// present full share link
 		const baseURL = (process.env.NODE_ENV == "production") ? process.env.NEXT_PUBLIC_PRODUCTION_BACKEND : process.env.NEXT_PUBLIC_DEVELOPMENT_FRONTEND; //backend to frontend 
-		const midURL = "restaurant-collection/share-list?link=";
-		const connectionURL = "&_id=";
-		const midIdURL = userId;
-		const concatedURL = baseURL + midURL + shareLink + connectionURL + midIdURL; // works, but shareId is null for some reason ?? pending solve
+		const linkURL = "restaurant-collection/share-list?link=";
+		const _idURL = "&_id=";
+		const userIdURL = userId;
+		const concatedURL = baseURL + linkURL + shareLink + _idURL + userIdURL; // works, but shareId is null for some reason ?? pending solve
 		setShareURL(concatedURL); // I think no need of setState since it's working? shareURL and concatedURL are the same restaurant but different link ??
 		console.log("concatedURL ---> " + concatedURL);
 		console.log("shareURL ---> " + shareURL);
@@ -112,52 +123,57 @@ export default function Share({userId, restaurant_data, experiences}) {
 	}
 
     return (
-        <><div>
+        <>
+        <div>
             <div className={styles.experience_container}>
 
                 <div className={styles.topExperienceContainer}>
-                 <button className={styles.more} onClick={() => {openView(); setShowModal(true);}}  >
-                    open
-                 </button>
+                    <button className={styles.icons} onClick={() => {setOpenOptionState(true); openOptionView();}}>
+                        <img src='/src/nav-icons/share-icon.svg' width='40vw' alt='Share' />
+                            <p className='white-space: normal width: 100px'>
+                                    Click to Share
+                            </p>
+                    </button>
                 </div>
+                
+            </div>
+
+            <div id={"share" + userId}>
+                    In Share, {shareURL}
             </div>
            
+           
         </div>
-        <div>
-            <div id={"share" + userId}>
-                I am in Share, {shareURL}
-         
-                    {/* <FormControlLabel disabled control={<Checkbox />} label="shareName" />
-                    <FormControlLabel control={<Checkbox checked={checked}  onChange={handleChange} inputProps={{ 'aria-label': 'controlled' }}/>} label="shareRating" />
-                    <FormControlLabel control={<Checkbox checked={checked}  onChange={handleChange} inputProps={{ 'aria-label': 'controlled' }}/>} label="shareCuisine" /> */}
-                    {/* <FormControlLabel control={<Checkbox checked={checked}  onChange={handleChange} inputProps={{ 'aria-label': 'controlled' }}/>} label="Label" />
-                    <FormControlLabel control={<Checkbox checked={checked}  onChange={handleChange} inputProps={{ 'aria-label': 'controlled' }}/>} label="Label" />
-                    <FormControlLabel control={<Checkbox checked={checked}  onChange={handleChange} inputProps={{ 'aria-label': 'controlled' }}/>} label="Label" /> */}
+    
+       
 
+  
+                    
+        {showOpenOptionState ? (
+            <>
+                {/* <div id={"share" + userId}>
+                    I am in Share, {shareURL}
                     <Checkbox onClick={() => setPriceChecked(true)}
                         checked={checked}
                         onChange={handlesharePriceRating}
                         inputProps={{ 'aria-label': 'controlled' }} label="sharePriceName"
                     />
-           
-                    
-            </div>
+                </div> */}
+                
+                {/* In Option
+                <Checkbox onClick={() => setPriceChecked(true)}
+                        checked={checked}
+                        onChange={handlesharePriceRating}
+                        inputProps={{ 'aria-label': 'controlled' }} label="sharePriceName"
+                    />
+                <Button onClick={() => { openPresentShareLinkView(); setPresentShareLinkState(true); } }>
+                    confirm
+                </Button>
+                <Button onClick={() => { closeOptionView(); setOpenOptionState(false); } }>
+                    cancel
+                </Button> */}
 
-        </div>
-        {showModal ? (
-            <><Button onClick={() => { closeView(); setShowModal(false); } }>
-                    close
-                </Button><Button onClick={() => clickToShare()} title='Share Record' shareURL={shareURL}>
-                        <a title='Share'>
-                            <div className={styles.icons}>
-                                <img src='/src/nav-icons/share-icon.svg' width='40vw' alt='Share' />
-
-                                <p className='white-space: normal width: 100px'>
-                                    Click to Share: {shareURL}
-                                </p>
-                            </div>
-                        </a>
-                    </Button></>
+            </>
 
         ): null}
             
@@ -165,3 +181,16 @@ export default function Share({userId, restaurant_data, experiences}) {
         
     )
 }
+
+
+// for Button template
+{/* </Button><Button onClick={() => clickToShare()} title='Share Record' shareURL={shareURL}>
+                <a title='Share'>
+                    <div className={styles.icons}>
+                        <img src='/src/nav-icons/share-icon.svg' width='40vw' alt='Share' />
+
+                        <p className='white-space: normal width: 100px'>
+                            Click to Share: {shareURL}
+                        </p>
+                    </div>
+                </a> */}

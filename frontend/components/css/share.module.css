@@ -1,0 +1,121 @@
+
+/* share Option View CSS */
+
+.view_share_option {
+    display: none;
+    background-color: #9868A6;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+    border: 1px solid #000000;
+    border-radius: 12px;
+    line-height: 0;
+    font-size: 16px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    position: fixed;
+    top: 15%;
+    left: 35%;
+    width: 50%;
+    height: 75%;
+}
+
+.topExperienceContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+/* from experience.module.css */
+@media screen and (max-width: 450px) {
+
+    .experience_container {
+        width: 80vw;
+    }
+
+    .cards {
+        flex-direction: column;
+    }
+
+    .formTop {
+        flex-direction: column;
+        gap: 5px;
+        align-items: center;
+    }
+
+    .submitButton {
+        width: 20vw;
+    }
+
+    .discardButton {
+        width: 20vw;
+    }
+
+    .view_share_option {
+        width: 80%;
+        left: 10%;
+        top: 15%;
+        height: 65%;
+    }
+
+    .editFormInner {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .formTopEdit {
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+    }
+
+}
+
+@media screen and (min-width: 450px) and (max-width: 950px) {
+
+    .experience_container {
+        width: 40vw;
+    }
+
+    .cards {
+        flex-direction: row;
+    }
+
+    .formTop {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .submitButton {
+        width: 10vw;
+    }
+
+    .discardButton {
+        width: 10vw;
+    }
+
+    .view_share_option {
+        width: 80%;
+        left: 10%;
+        top: 15%;
+        height: 65%;
+    }
+
+    .editFormInner {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .formTopEdit {
+        flex-direction: row;
+        align-items: center;
+    }
+
+}
