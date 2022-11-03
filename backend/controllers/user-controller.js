@@ -1,13 +1,5 @@
 const { User } = require('../models/user');
 
-const loginUser = async (req, res) => {
-
-}
-
-
-const logoutUser = async (req, res) => {
-
-}
 
 const getDisplayName = async (req, res) => {
 	try {
@@ -74,8 +66,6 @@ const validateUser = async (req, res, next) => {
 
 
 module.exports = {
-	loginUser,
-	logoutUser,
 	validateUser,
 	getDisplayName,
 	updateDisplayName
