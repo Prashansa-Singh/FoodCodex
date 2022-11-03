@@ -13,10 +13,6 @@ const settingsRouter = require('../routes/settings-router')
 userRouter.use('/settings', settingsRouter);
 
 
-
-userRouter.get('/login', userController.loginUser);
-userRouter.get('/logout', userController.logoutUser);
-
 userRouter.post('/validate-user', userController.validateUser);
 
 userRouter.get('/view-display-name', userController.getDisplayName);
