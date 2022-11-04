@@ -1,6 +1,6 @@
 .nav {
     box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.2);
-    background-color: #E7E0EC;
+    background-color: #d4e3f7;
     position: fixed;
     left: 0;
     height: 100%;
@@ -60,7 +60,7 @@
 @media screen and (max-width: 450px) {
     .nav {
         box-shadow: 0 -4px 5px 0 rgba(0, 0, 0, 0.2);
-        background-color: #E7E0EC;
+        background-color: #d4e3f7;
         position: fixed;
         width: 100%;
         bottom: 0;
@@ -90,7 +90,7 @@
 @media screen and (min-width: 450px) and (max-width: 950px) {
     .nav {
         box-shadow: 0 -4px 5px 0 rgba(0, 0, 0, 0.2);
-        background-color: #E7E0EC;
+        background-color: #d4e3f7;
         position: fixed;
         width: 100%;
         bottom: 0;

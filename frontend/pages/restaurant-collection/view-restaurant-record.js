@@ -37,7 +37,6 @@ export async function getServerSideProps(context) {
  
 	const { _id } = context.query;
 
-	// const user = '6310521c744ac9f1587375fa';
 	const user = await session.user._id;
 	const url = '/user/restaurant/view-one'
 	const response = await axiosInstance.get(url, { data: { userId: user, restaurantId: _id, } });
@@ -111,20 +110,7 @@ export default function ViewRestaurantRecord({ userId, restaurant_data, experien
 					<div className={styles.icon_group}>
 
 						<Share userId={userId} restaurant_data={restaurant_data} experiences={experiences}/>
-
-						{/* <Button onClick={() => clickToShare()} title='Share Record' shareURL ={shareURL}>
-							<a title='Share'> 
-								<div className={styles.icons} >
-									<img src='/src/nav-icons/share-icon.svg' width='40vw' alt='Share'/>
-									
-									<p className='white-space: normal width: 100px'> 
-										Click to Share: {shareURL}
-									</p>
-								</div>
-							</a>
-						</Button> */}
 						
-
 						<div className={styles.icons}>
 							<DeleteIcon className={styles.bin} onClick={() => confirmDelete()} />
 							<p>Delete</p>

@@ -1,5 +1,5 @@
 .delete_button {
-    background-color: red; 
+    background-color: rgb(245, 153, 153); 
     border: none;
     border-radius: 50px;
     color: white;
@@ -43,7 +43,7 @@
 }
 
 .submitButton:active {
-    background-color: #1d8e49;
+    background-color: #708f7c;
     transform: translateY(4px);
 }
 

@@ -39,7 +39,7 @@
     display: none;
     flex-direction: column;
     position: fixed;
-    background-color: #5989C5;
+    background: linear-gradient(180deg, #BEDBFF 0%, #7CB6FF 100%);
     border-radius: 10px;
     border: 2px solid black;
     padding: 2%;
@@ -60,7 +60,7 @@
 }
 
 .submitButton {
-    background-color: #24B25C;
+    background: linear-gradient(180deg, #FFCC4D 0%, #FF6726 100%);
     cursor: pointer;
     padding: 1%;
     min-width: 7vw;
@@ -79,7 +79,7 @@
 }
 
 .discardButton {
-    background-color: #F28157;
+    background: linear-gradient(180deg, #FFCC4D 0%, #FF6726 100%);
     cursor: pointer;
     padding: 1%;
     min-width: 7vw;
@@ -129,7 +129,8 @@
 .th {
     border: 1px solid;
     padding: 2%;
-    background-color: #5989C5;
+    background: linear-gradient(180deg, #FBB3B8 0%, #FBD233 100%);
+    /* background-color: #8599b3; */
 }
 
 .hcontent {
@@ -149,7 +150,8 @@
 }
 
 .tr:hover {
-    background-color: #98b6db;
+    background: linear-gradient(180deg, #FFE8D2 0%, #FFF6D5 97.4%);
+    
 }
 
 .viewTop {

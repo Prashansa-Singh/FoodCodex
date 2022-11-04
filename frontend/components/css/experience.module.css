@@ -42,7 +42,7 @@
     align-items: center;
     padding-bottom: 20px;
     gap: 5px;
-    background-color: #E7E0EC;
+    background-color: #d4e3f7;
     text-align: center;
     border-radius: 10px;
     position: relative;
@@ -177,7 +177,7 @@
 
 .view_experience {
     display: none;
-    background-color: #9868A6;
+    background: linear-gradient(180deg, #BEDBFF 0%, #7CB6FF 100%);
     flex-direction: column;
     align-items: flex-start;
     padding: 10px;

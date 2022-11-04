@@ -37,44 +37,7 @@ export default function Share({userId, restaurant_data, experiences}) {
             <ShareOption userId={userId} restaurant_data={restaurant_data} experiences={experiences}/> 
         </div>
     
-                    
-        {showOpenOptionState ? (
-            <>
-                {/* <div id={"share" + userId}>
-                    I am in Share, {shareURL}
-                    <Checkbox onClick={() => setPriceChecked(true)}
-                        checked={checked}
-                        onChange={handlesharePriceRating}
-                        inputProps={{ 'aria-label': 'controlled' }} label="sharePriceName"
-                    />
-                </div> */}
-                
-             
-                {/* <Button onClick={() => { openPresentShareLinkView(); setPresentShareLinkState(true); } }>
-                    confirm
-                </Button>
-                <Button onClick={() => { closeOptionView(); setOpenOptionState(false); } }>
-                    cancel
-                </Button> */}
-
-            </>
-
-        ): null}
-            
         </>
         
     )
 }
-
-
-// for Button template
-{/* </Button><Button onClick={() => clickToShare()} title='Share Record' shareURL={shareURL}>
-                <a title='Share'>
-                    <div className={styles.icons}>
-                        <img src='/src/nav-icons/share-icon.svg' width='40vw' alt='Share' />
-
-                        <p className='white-space: normal width: 100px'>
-                            Click to Share: {shareURL}
-                        </p>
-                    </div>
-                </a> */}

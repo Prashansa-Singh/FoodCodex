@@ -243,8 +243,8 @@ export default function ShareList({ link, restaurantData, userId}) {
 								</div>
 							</div>
 							<br/>
-							{/* <label> Tags: </label>
-							<Tags restaurant_data={restaurant_data} page='edit' /> */}
+							<label> Tags: </label>
+							<Tags restaurant_data={restaurant_data} page='edit' />
 						</form>
 						<p>Note: Experiences can only be added, updated and deleted from the view restaurant page.</p>
 						<br/>
@@ -264,4 +264,3 @@ export default function ShareList({ link, restaurantData, userId}) {
 	);
 }
 
-// getstaticprops return query with the share data, render it on the linkId page? 
