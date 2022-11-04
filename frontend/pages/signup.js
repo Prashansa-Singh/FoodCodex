@@ -108,7 +108,7 @@ export default function Signup() {
 								placeholder='e.g. johnsmith1' 
 								margin="dense"
 								error={!uniqueUsername}
-								helperText={!uniqueUsername ? "This username is not available" : ""}
+								helperText={!uniqueUsername ? "This username is taken" : ""}
 								required 
 							/>
 							<TextField 
