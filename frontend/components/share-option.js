@@ -1,12 +1,14 @@
 import styles from './css/share.module.css';
+import SharePresent from './share-present';
 import experienceStyles from './css/experience.module.css';
 import { Modal, Box, Button, Typography, Checkbox } from "@mui/material";
 
 export default function ShareOption({userId, restaurant_data, experiences}) {
    
-    
+    // for selecting share option view 
     const openOptionView = () =>{
         const viewId = "option" + userId;
+        console.log("in ShareOption --> " + viewId);
         document.getElementById(viewId).style.display="flex";
     }
 
@@ -14,17 +16,16 @@ export default function ShareOption({userId, restaurant_data, experiences}) {
         const viewId = "option" + userId;
         document.getElementById(viewId).style.display="none";
     }
-    
+
+
     return (
         <>
-        <div className={styles.topExperienceContainer}>
-            <button className={styles.icons} onClick={() => {  openOptionView(); } }>
-                <img src='/src/nav-icons/share-icon.svg' width='40vw' alt='Share' />
-                <p className='white-space: normal width: 100px'>
-                    Click to Share
-                </p>
-            </button>
-        </div>
+            <div className={styles.topExperienceContainer}>
+                <button className={styles.icons} onClick={() => {  openOptionView(); } }>
+                    <img src='/src/nav-icons/share-icon.svg' width='40vw' alt='Share' />
+                    <p> Click to Share </p>
+                </button>
+            </div>
 
         <div className={styles.view_share_option} id={"option" + userId}>
             <div>
@@ -35,12 +36,12 @@ export default function ShareOption({userId, restaurant_data, experiences}) {
                     inputProps={{ 'aria-label': 'controlled' }} label="sharePriceName"
                 /> */}
             </div>
-                {/* <Button onClick={() => { openPresentShareLinkView()} }>
-                        confirm
-                </Button> */}
+                <SharePresent userId={userId} restaurant_data={restaurant_data} experiences={experiences}/>
                 <Button onClick={() => { closeOptionView()} }>
-                    cancel
+                    Cancel
                 </Button>
-            </div></>
+            </div>
+            
+        </>
     )
 }
