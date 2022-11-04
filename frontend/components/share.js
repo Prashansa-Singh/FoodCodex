@@ -21,7 +21,7 @@ export default function Share({userId, restaurant_data, experiences}) {
     const [showOpenOptionState, setOpenOptionState] = useState(false);
     const [showPresentShareLink, setPresentShareLinkState] = useState(false);
     const [checked, setChecked] = useState(false);
-    const [priceCheck, setPriceChecked] = useState(false);
+
 
     const handleChange = (event) => {
         setChecked(event.target.checked);
@@ -29,15 +29,7 @@ export default function Share({userId, restaurant_data, experiences}) {
         console.log("check status " + event);
     };
 
-    const handleshareRating = (event) => {
-        setChecked(event.target.checked);
-        console.log("check status " + checked);
-    };
 
-    const handlesharePriceRating = (event) => {
-        setChecked(event.target.checked);
-        console.log("check status " + checked);
-    };
 
     return (
         <>

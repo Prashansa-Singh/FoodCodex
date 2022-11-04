@@ -8,7 +8,6 @@ export default function ShareOption({userId, restaurant_data, experiences}) {
     // for selecting share option view 
     const openOptionView = () =>{
         const viewId = "option" + userId;
-        console.log("in ShareOption --> " + viewId);
         document.getElementById(viewId).style.display="flex";
     }
 
@@ -29,11 +28,6 @@ export default function ShareOption({userId, restaurant_data, experiences}) {
         <div className={styles.view_share_option} id={"option" + userId}>
             <div>
                 In option
-                {/* <Checkbox onClick={() => setPriceChecked(true)}
-                    checked={checked}
-                    onChange={handlesharePriceRating}
-                    inputProps={{ 'aria-label': 'controlled' }} label="sharePriceName"
-                /> */}
             </div>
                 <SharePresent userId={userId} restaurant_data={restaurant_data} experiences={experiences}/>
                 <Button onClick={() => { closeOptionView()} }>

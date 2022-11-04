@@ -17,7 +17,6 @@ export default function SharePresent({userId, restaurant_data, experiences}) {
 
     const openPresentShareLinkView = () =>{
         const viewId = "present" + userId;
-        console.log("in present --> " + viewId);
         document.getElementById(viewId).style.display="flex";
     }
 
@@ -26,6 +25,27 @@ export default function SharePresent({userId, restaurant_data, experiences}) {
         const viewId = "option" + userId;
         document.getElementById(viewId).style.display="none";
     }
+
+    // --------------------- selecting share options -----------------------
+    const [shareRating, setShareRating] = useState(false);
+    const [priceCheck, setPriceChecked] = useState(false);
+
+    const handleshareRating = (event) => {
+        if (event.target.checked) {
+            console.log('✅ Checkbox is checked');
+        } else {
+            console.log('⛔️ Checkbox is NOT checked');
+        }
+
+        setShareRating(current => !current);
+    };
+
+    const handlesharePriceRating = (event) => {
+        setChecked(event.target.checked);
+        console.log("check status " + checked);
+    };
+
+
 
      // -------------------------- sharing --------------------------
 	const [shareId, setShareId] = useState(null);
@@ -38,7 +58,7 @@ export default function SharePresent({userId, restaurant_data, experiences}) {
 			senderId: userId,
 			restaurantId: restaurant_data._id,
 			shareName: true,
-			shareRating: true,
+			shareRating: shareRating,
 			sharePriceRating: true,
 			shareCuisine: true,
 			shareAddress: true,
@@ -57,7 +77,6 @@ export default function SharePresent({userId, restaurant_data, experiences}) {
 		const userIdURL = userId;
 		const concatedURL = baseURL + linkURL + shareLink + _idURL + userIdURL; // works, but shareId is null for some reason ?? pending solve
 		setShareURL(concatedURL); // I think no need of setState since it's working? shareURL and concatedURL are the same restaurant but different link ??
-		console.log("concatedURL ---> " + concatedURL);
 		console.log("shareURL ---> " + shareURL);
 
 	}
@@ -67,10 +86,8 @@ export default function SharePresent({userId, restaurant_data, experiences}) {
 		.then(function (response) {
 			shareLink = response.data;
 			console.log('3');
-			console.log(response.data);
-			console.log("sharelink --> " + shareLink);
 			setShareId(shareLink);
-			console.log("shareId --> " + shareId);
+
 		
 		})
 		.catch(function (error) {
@@ -82,14 +99,38 @@ export default function SharePresent({userId, restaurant_data, experiences}) {
     return (
         <>
             <div>
+                <label htmlFor="shareRating">
+                    <input
+                        type="checkbox"
+                        value={shareRating}
+                        onChange={handleshareRating}
+                        id="shareRating"
+                        name="shareRating"
+                    />
+                    shareRating
+                </label>
+
+                {/* <Checkbox onClick={() => setPriceChecked(true)}
+                    checked={checked}
+                    onChange={handlesharePriceRating}
+                    inputProps={{ 'aria-label': 'controlled' }} label="sharePriceName"
+                /> */}
+            </div>
+            <div>
                 <Button onClick={() => { openPresentShareLinkView(); clickToShare(); } }>
                     confirm
                 </Button>
             </div>
+
             <div className={styles.view_share_present} id={"present" + userId}>
                 <Image src={happyMan} width={100} height={100} objectFit="contain" />
-                    {shareURL} 
-                <Button onClick={() => { closePresentShareLinkView() } }>
+
+                    <p className={styles.viewLink}>
+                        Here's your share link: 
+                        <p>{shareURL}</p>
+                        Congratulations!
+                    </p>
+                <Button onClick={() => { closePresentShareLinkView(); closeOptionView(); } }>
                     Done
                 </Button>
 

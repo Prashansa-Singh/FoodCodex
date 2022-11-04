@@ -61,58 +61,6 @@ export default function ViewRestaurantRecord({ userId, restaurant_data, experien
 
 	console.log("1");
 
-	// -------------------------- sharing --------------------------
-	const [shareId, setShareId] = useState(null);
-	const [shareURL, setShareURL] = useState(null);
-	let shareLink;
-
-	// const clickToShare = async() => {
-		
-	// 	const body = {
-	// 		senderId: userId,
-	// 		restaurantId: restaurant_data._id,
-	// 		shareName: true,
-	// 		shareRating: true,
-	// 		sharePriceRating: true,
-	// 		shareCuisine: true,
-	// 		shareAddress: true,
-	// 		shareOptionTags: true
-	// 	};
-		
-	// 	console.log("2");
-	// 	// has share id 
-	// 	const URL = '/user/restaurant/share/generate-link';
-	// 	await generateRestaurantShareLink(URL, body);
-	
-	// 	// present full share link
-	// 	const baseURL = (process.env.NODE_ENV == "production") ? process.env.NEXT_PUBLIC_PRODUCTION_BACKEND : process.env.NEXT_PUBLIC_DEVELOPMENT_FRONTEND; //backend to frontend 
-	// 	const midURL = "restaurant-collection/share-list?link=";
-	// 	const connectionURL = "&_id=";
-	// 	const midIdURL = userId;
-	// 	const concatedURL = baseURL + midURL + shareLink + connectionURL + midIdURL; // works, but shareId is null for some reason ?? pending solve
-	// 	setShareURL(concatedURL); // I think no need of setState since it's working? shareURL and concatedURL are the same restaurant but different link ??
-	// 	console.log("concatedURL ---> " + concatedURL);
-	// 	console.log("shareURL ---> " + shareURL);
-
-	// }
-
-	// const generateRestaurantShareLink = async (url, body) => {
-	// 	await axiosInstance.post(url, body)
-	// 	.then(function (response) {
-	// 		shareLink = response.data;
-	// 		console.log('3');
-	// 		console.log(response.data);
-	// 		console.log("sharelink --> " + shareLink);
-	// 		setShareId(shareLink);
-	// 		console.log("shareId --> " + shareId);
-		
-	// 	})
-	// 	.catch(function (error) {
-	// 		console.log(error);
-	// 	});
-
-	// }
-
 	
 	const confirmDelete = () => {
 
