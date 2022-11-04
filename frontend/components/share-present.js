@@ -59,7 +59,6 @@ export default function SharePresent({userId, restaurant_data, experiences}) {
     };
 
 
-
      // -------------------------- sharing --------------------------
 	const [shareId, setShareId] = useState(null);
 	const [shareURL, setShareURL] = useState(null);
@@ -119,50 +118,10 @@ export default function SharePresent({userId, restaurant_data, experiences}) {
                     <FormControlLabel control={<Checkbox checked={shareAdrs} onChange={handleShareAdrs}/>} label="shareAdrs"/>
                     <FormControlLabel control={<Checkbox checked={shareTags} onChange={handleShareTags}/>} label="shareTags"/>
                 </FormGroup>
-                {/* <label htmlFor="shareRating">
-                    
-                    <input
-                        type="checkbox"
-                        value={shareRating}
-                        onChange={handleshareRating}
-                        id="shareRating"
-                        name="shareRating"
-                    />
-                    shareRating
-                </label> */}
-
-                <label htmlFor="sharePriceRating">
-                    <input
-                        type="checkbox"
-                        value={priceRating}
-                        onChange={handlesharePriceRating}
-                        id="sharePriceRating"
-                        name="sharePriceRating"
-                    />
-                    sharePriceRating
-                </label> 
-
-                <label htmlFor="shareCuisine">
-                    <input
-                        type="checkbox"
-                        value={shareCuisine}
-                        onChange={handleShareCuisine}
-                        id="shareCuisine"
-                        name="shareCuisine"
-                    />
-                    shareCuisine
-                </label> 
-
-                
-
-                {/* <Checkbox onClick={() => setPriceChecked(true)}
-                    checked={checked}
-                    onChange={handlesharePriceRating}
-                    inputProps={{ 'aria-label': 'controlled' }} label="sharePriceName"
-                /> */}
+    
             </div>
             <div>
-                <Button onClick={() => { openPresentShareLinkView(); clickToShare(); } }>
+                <Button variant="outlined" onClick={() => { openPresentShareLinkView(); clickToShare(); } }>
                     confirm
                 </Button>
             </div>
@@ -175,7 +134,7 @@ export default function SharePresent({userId, restaurant_data, experiences}) {
                         <p>{shareURL}</p>
                         Congratulations!
                     </p>
-                <Button onClick={() => { closePresentShareLinkView(); closeOptionView(); } }>
+                <Button variant="outlined" onClick={() => { closePresentShareLinkView(); closeOptionView(); } }>
                     Done
                 </Button>
 

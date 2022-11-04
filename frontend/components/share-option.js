@@ -30,7 +30,7 @@ export default function ShareOption({userId, restaurant_data, experiences}) {
                 In option
             </div>
                 <SharePresent userId={userId} restaurant_data={restaurant_data} experiences={experiences}/>
-                <Button onClick={() => { closeOptionView()} }>
+                <Button variant="outlined" onClick={() => { closeOptionView()} }>
                     Cancel
                 </Button>
             </div>

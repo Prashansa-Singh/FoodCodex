@@ -181,7 +181,7 @@ export default function ShareList({ link, restaurantData, userId}) {
 					<h5>Price Category</h5>
 					<p>{<Rating icon={<PaidIcon />} emptyIcon={<PaidOutlinedIcon />} name="read-only" value={restaurantData.priceRating} readOnly />}</p>
 
-					{/* <Tags restaurantData={restaurantData} page='view' /> */}
+					<Tags restaurant_data={restaurantData} page='view' />
 					<br />
 					
 				</div>
