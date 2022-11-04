@@ -26,9 +26,6 @@ export default function ShareOption({userId, restaurant_data, experiences}) {
             </div>
 
         <div className={styles.view_share_option} id={"option" + userId}>
-            <div>
-                In option
-            </div>
                 <SharePresent userId={userId} restaurant_data={restaurant_data} experiences={experiences}/>
                 <Button variant="outlined" onClick={() => { closeOptionView()} }>
                     Cancel
