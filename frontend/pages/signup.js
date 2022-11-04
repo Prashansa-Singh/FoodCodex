@@ -38,6 +38,30 @@ export default function Signup() {
 	
 	}
 
+	const checkUsername = async (event) => {
+		event.preventDefault();
+
+        const url = '/account/is-username-taken';
+
+		const body = {
+			userName: event.target.userName.value,
+		}
+
+		await axiosInstance.post(url, body)
+		.then(function (response) {
+			console.log(response.data);
+			if (response.data == true) { 
+				setUniqueUsername(false);
+			} else {
+				setUniqueUsername(true);
+				submitUser(event);
+			}
+		})
+		.catch(function (error) {
+			console.log(error);
+		});
+	}
+
 	const [validPassword, setValidPassword] = useState({passwordLen: 0});
 
 	const isValidPassword = () => {
@@ -63,13 +87,15 @@ export default function Signup() {
 		return false;
 	}
 
+	const [uniqueUsername, setUniqueUsername] = useState(true);
+
 	return (
 		<Layout homeOther>
 			<Head>
 				<title>{title}</title>
 			</Head>
 			<section className={utilStyles.headingMdCenter}>
-				<form onSubmit={submitUser}>
+				<form onSubmit={checkUsername}>
 					<Grid align='center'>
 
 						<Paper className={Styles.paperStyle}>
@@ -81,6 +107,8 @@ export default function Signup() {
 								variant="outlined" 
 								placeholder='e.g. johnsmith1' 
 								margin="dense"
+								error={!uniqueUsername}
+								helperText={!uniqueUsername ? "This username is taken" : ""}
 								required 
 							/>
 							<TextField 

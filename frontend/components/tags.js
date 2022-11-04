@@ -33,10 +33,6 @@ export default function Tags({restaurant_data, page}) {
 
     const tags = [
         {
-            name: 'personalOption',
-            tag: getTag(restaurant_data.personalOption, page, 'personalOption', tagColours['personalOption'])
-        },
-        {
             name: 'halalOption',
             tag: getTag(restaurant_data.halalOption, page, 'halalOption', tagColours['halalOption'])
         },
@@ -71,7 +67,11 @@ export default function Tags({restaurant_data, page}) {
         {
             name: 'diabetesFriendlyOption',
             tag: getTag(restaurant_data.diabetesFriendlyOption, page, 'diabetesFriendlyOption', tagColours['diabetesFriendlyOption'])
-        }
+        },
+        {
+            name: 'personalOption',
+            tag: getTag(restaurant_data.personalOption, page, 'personalOption', tagColours['personalOption'])
+        },
     ]
 
     const [onTags, setOnTags] = useState(onTagsDefault);

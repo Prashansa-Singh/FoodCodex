@@ -1,7 +1,7 @@
 const { User } = require('../models/user');
 const { deleteAllRestaurantsInteract } = require('./restaurant-controller')
 
-// 634cf23ec87beeb6a190ced1
+
 const signupUser = async (req, res, next) => {
     try {
         const user = new User(req.body)
@@ -13,17 +13,26 @@ const signupUser = async (req, res, next) => {
     }
 };
 
-const deleteUser = async (req, res, next) => {
-    // delete all restaurants associated with the user
-    // then delete the user account
 
+const deleteUser = async (req, res, next) => {
     try {
         // delete the users restaurants
         await deleteAllRestaurantsInteract(req);
 
         // delete user account
         await User.deleteOne({ _id: req.body.userId })
-        return res.sendStatus(200)
+        return res.sendStatus(204)
+    }
+    catch (err) {
+        return next(err);
+    }
+}
+
+
+const isUsernameTaken = async (req, res, next) => {
+    try {
+        // return true if the username already exists, false otherwise
+        return res.send(!!(await User.findOne({userName: req.body.userName})));
     }
     catch (err) {
         return next(err);
@@ -33,5 +42,6 @@ const deleteUser = async (req, res, next) => {
 
 module.exports = {
     signupUser,
-    deleteUser
+    deleteUser,
+    isUsernameTaken
 };
