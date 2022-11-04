@@ -1,3 +1,6 @@
+import { useState } from 'react';
+import { axiosInstance } from './../pages/api/axiosConfig';
+
 import styles from './css/share.module.css';
 import experienceStyles from './css/experience.module.css';
 import Image from "next/image";
@@ -18,13 +21,13 @@ export default function SharePresent({userId, restaurant_data, experiences}) {
         document.getElementById(viewId).style.display="flex";
     }
 
-    // for selecting share option view
+    // for presenting share option view
     const closeOptionView = () => {
         const viewId = "option" + userId;
         document.getElementById(viewId).style.display="none";
     }
 
-    // -------------------------- sharing --------------------------
+     // -------------------------- sharing --------------------------
 	const [shareId, setShareId] = useState(null);
 	const [shareURL, setShareURL] = useState(null);
 	let shareLink;
@@ -36,7 +39,7 @@ export default function SharePresent({userId, restaurant_data, experiences}) {
 			restaurantId: restaurant_data._id,
 			shareName: true,
 			shareRating: true,
-			sharePriceRating: priceCheck,
+			sharePriceRating: true,
 			shareCuisine: true,
 			shareAddress: true,
 			shareOptionTags: true
@@ -76,18 +79,17 @@ export default function SharePresent({userId, restaurant_data, experiences}) {
 
 	}
 
-
     return (
         <>
             <div>
-                <Button onClick={() => { openPresentShareLinkView() } }>
+                <Button onClick={() => { openPresentShareLinkView(); clickToShare(); } }>
                     confirm
                 </Button>
             </div>
             <div className={styles.view_share_present} id={"present" + userId}>
                 <Image src={happyMan} width={100} height={100} objectFit="contain" />
-                    shareURL 
-                <Button onClick={() => { openPresentShareLinkView() } }>
+                    {shareURL} 
+                <Button onClick={() => { closePresentShareLinkView() } }>
                     Done
                 </Button>
 

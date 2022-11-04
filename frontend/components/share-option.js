@@ -17,7 +17,6 @@ export default function ShareOption({userId, restaurant_data, experiences}) {
         document.getElementById(viewId).style.display="none";
     }
 
-
     return (
         <>
             <div className={styles.topExperienceContainer}>

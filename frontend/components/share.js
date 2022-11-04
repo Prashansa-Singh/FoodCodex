@@ -9,8 +9,6 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
 import * as React from 'react';
 import { Rating, Modal, Box, Button, Typography } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 
 
