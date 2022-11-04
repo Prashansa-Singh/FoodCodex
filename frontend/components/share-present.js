@@ -5,7 +5,7 @@ import styles from './css/share.module.css';
 import experienceStyles from './css/experience.module.css';
 import Image from "next/image";
 import happyMan from "../public/src/happy.png";
-import { Modal, Box, Button, Typography, Checkbox } from "@mui/material";
+import { FormGroup, FormControlLabel , Button, Typography, Checkbox } from "@mui/material";
 
 export default function SharePresent({userId, restaurant_data, experiences}) {
 
@@ -28,7 +28,10 @@ export default function SharePresent({userId, restaurant_data, experiences}) {
 
     // --------------------- selecting share options -----------------------
     const [shareRating, setShareRating] = useState(false);
-    const [priceCheck, setPriceChecked] = useState(false);
+    const [priceRating, setPriceRating] = useState(false);
+    const [shareCuisine, setShareCuisine] = useState(false);
+    const [shareAdrs, setShareAdrs] = useState(false);
+    const [shareTags, setShareTags] = useState(false);
 
     const handleshareRating = (event) => {
         if (event.target.checked) {
@@ -36,13 +39,23 @@ export default function SharePresent({userId, restaurant_data, experiences}) {
         } else {
             console.log('⛔️ Checkbox is NOT checked');
         }
-
         setShareRating(current => !current);
     };
 
     const handlesharePriceRating = (event) => {
-        setChecked(event.target.checked);
-        console.log("check status " + checked);
+        setPriceRating(current => !current);
+    };
+
+    const handleShareCuisine = (event) => {
+        setShareCuisine(current => !current);
+    };
+
+    const handleShareAdrs = (event) => {
+        setShareAdrs(current => !current);
+    };
+
+    const handleShareTags = (event) => {
+        setShareTags(current => !current);
     };
 
 
@@ -59,10 +72,10 @@ export default function SharePresent({userId, restaurant_data, experiences}) {
 			restaurantId: restaurant_data._id,
 			shareName: true,
 			shareRating: shareRating,
-			sharePriceRating: true,
-			shareCuisine: true,
-			shareAddress: true,
-			shareOptionTags: true
+			sharePriceRating: priceRating,
+			shareCuisine: shareCuisine,
+			shareAddress: shareAdrs,
+			shareOptionTags: shareTags
 		};
 		
 		console.log("2");
@@ -99,7 +112,15 @@ export default function SharePresent({userId, restaurant_data, experiences}) {
     return (
         <>
             <div>
-                <label htmlFor="shareRating">
+                <FormGroup>
+                    <FormControlLabel control={<Checkbox checked={shareRating} onChange={handleshareRating}/>} label="shareRating"/>
+                    <FormControlLabel control={<Checkbox checked={priceRating} onChange={handlesharePriceRating}/>} label="sharePriceRating"/>
+                    <FormControlLabel control={<Checkbox checked={shareCuisine} onChange={handleShareCuisine}/>} label="shareCuisine"/>
+                    <FormControlLabel control={<Checkbox checked={shareAdrs} onChange={handleShareAdrs}/>} label="shareAdrs"/>
+                    <FormControlLabel control={<Checkbox checked={shareTags} onChange={handleShareTags}/>} label="shareTags"/>
+                </FormGroup>
+                {/* <label htmlFor="shareRating">
+                    
                     <input
                         type="checkbox"
                         value={shareRating}
@@ -108,7 +129,31 @@ export default function SharePresent({userId, restaurant_data, experiences}) {
                         name="shareRating"
                     />
                     shareRating
-                </label>
+                </label> */}
+
+                <label htmlFor="sharePriceRating">
+                    <input
+                        type="checkbox"
+                        value={priceRating}
+                        onChange={handlesharePriceRating}
+                        id="sharePriceRating"
+                        name="sharePriceRating"
+                    />
+                    sharePriceRating
+                </label> 
+
+                <label htmlFor="shareCuisine">
+                    <input
+                        type="checkbox"
+                        value={shareCuisine}
+                        onChange={handleShareCuisine}
+                        id="shareCuisine"
+                        name="shareCuisine"
+                    />
+                    shareCuisine
+                </label> 
+
+                
 
                 {/* <Checkbox onClick={() => setPriceChecked(true)}
                     checked={checked}

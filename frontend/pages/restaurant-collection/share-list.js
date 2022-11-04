@@ -63,123 +63,14 @@ export async function getServerSideProps(context) {
 	};
 }
 
-// const customShareOptions = {
-// 	shareName : true,
-// 	shareRating : false,
-// 	sharePriceRating : false,
-// 	shareCuisine : false,
-// 	shareAddress : false,
-// 	shareOptionTags : false
-	
-// }
 
 
 export default function ShareList({ link, restaurantData, userId}) {
 	const title = `${siteTitle} - Share`;
 	const router = useRouter();
 
-	// // useState of customeShareOptions 
-	// const [options, setOptions] = useState(customShareOptions);
-
-	// // submitOptions, setOptions, Options indicator function
-	// const submitOptions = (event) => {
-	// 	event.preventDefault();
-	// 	let updateShareName = {shareName: event.target.shareName.value === 'true'}
-	// 	setOptions(options => ({
-	// 		...options,
-	// 		...updateShareName,
-	// 	}));
-
-	// 	optionsColorChange();
-
-	// }
-
-	// // optionsColorChange
-	// const optionsColorChange = () => {
-	// 	const icon = document.getElementById('filterIcon');
-	// 	if (Object.values(options).includes(true)) {
-	// 		icon.src = '/src/nav-icons/filter-icon.svg';
-	// 	} else {
-	// 		icon.src = '/src/nav-icons/filter-applied-icon.svg';
-	// 	}
-	// }
-
-	// // cancelOptions
-	// const cancelOptions = () => {
-	// 	setOptions({ ...customShareOptions });
-	// 	console.log(customShareOptions);
-	// 	window.location.reload();
-	// }
-
-	// // openPopUp
-	// const openPopUp = () => {
-	// 	const elem = document.getElementById('filter');
-	// 	elem.style.display = 'flex';
-	// }
-	// // closePopUp
-	// const closePopUp = () => {
-	// 	const elem = document.getElementById('filter');
-	// 	elem.style.display = 'none';
-	// }
-	// // updateBody
-
-
-	// const confirmShare = () => {
-		
-	// 	const body = {
-	// 		senderId: userId,
-	// 		restaurantId: restaurant_data._id,
-	// 		shareName: true,
-	// 		shareRating: true,
-	// 		sharePriceRating: true,
-	// 		shareCuisine: true,
-	// 		shareAddress: true,
-	// 		shareOptionTags: true
-	// 	};
-
-	// 	console.log("body "+ typeof(body));
-
-	// 	const url = '/user/restaurant/share/generate-link';
-
-	// 	confirmAlert({
-	// 		title: 'Confirm to share',
-	// 		message: 'Are you sure you wish to share this restaurant record?',
-	// 		buttons: [
-	// 		  {
-	// 			label: 'Yes',
-	// 			onClick: () => generateRestaurantShareLink(url, body),
-	// 		  },
-	// 		  {
-	// 			label: 'No',
-	// 		  }
-	// 		]
-	// 	});
-	// } 
-
-	// const generateRestaurantShareLink = async (url, body) => {
-	// 	// try {
-	// 	// 	const response = await axiosInstance.post()
-	// 	// } catch(error) {
-	// 	// }
-
-		
-	// 	await axiosInstance.post(url, body)
-	// 	.then(function (response) {
-	// 		shareLink = response.data;
-	// 		setShareId(shareLink);
-	// 		console.log("shareId --> " + shareId);
-	// 		console.log(response.data);
-	// 		console.log("sharelink --> " + shareLink);
-	// 		//router.push('/restaurant-collection/shared-with-me');
-	// 	})
-	// 	.catch(function (error) {
-	// 		console.log(error);
-	// 	});
-	// }
-
 	// --------------------- Presenting Sharing URLs ---------------------------
 	
-
 	console.log("5");
 	console.log("data " + link);
 	console.log("userId " + userId);
@@ -209,16 +100,16 @@ export default function ShareList({ link, restaurantData, userId}) {
 			address: (address != "") ? address : restaurantData.address,
 			rating: value,
 			priceRating: priceValue,
-			// personalOption: event.target.personalOption.value,
-			// halalOption: event.target.halalOption.value,
-			// veganOption: event.target.veganOption.value,
-			// vegetarianOption: event.target.vegetarianOption.value,
-			// pescatarianOption: event.target.pescatarianOption.value,
-			// nutsFreeOption: event.target.nutsFreeOption.value,
-			// dairyFreeOption: event.target.dairyFreeOption.value,
-			// glutenFreeOption: event.target.glutenFreeOption.value,
-			// allergyFriendlyOption: event.target.allergyFriendlyOption.value,
-			// diabetesFriendlyOption: event.target.diabetesFriendlyOption.value,
+			personalOption: event.target.personalOption.value,
+			halalOption: event.target.halalOption.value,
+			veganOption: event.target.veganOption.value,
+			vegetarianOption: event.target.vegetarianOption.value,
+			pescatarianOption: event.target.pescatarianOption.value,
+			nutsFreeOption: event.target.nutsFreeOption.value,
+			dairyFreeOption: event.target.dairyFreeOption.value,
+			glutenFreeOption: event.target.glutenFreeOption.value,
+			allergyFriendlyOption: event.target.allergyFriendlyOption.value,
+			diabetesFriendlyOption: event.target.diabetesFriendlyOption.value,
 		};
 
 		const url = 'user/restaurant/update-one';
