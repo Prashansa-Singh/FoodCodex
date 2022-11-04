@@ -72,7 +72,7 @@ describe('Account ~/account', () => {
 
         const response = await request(app).post('/user/validate-user').send({
             username: user.userName,
-            password: user.password,
+            password: 'akd9#n$d',
         })
 
         expect(response.status).toEqual(200);
