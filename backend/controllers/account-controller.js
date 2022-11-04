@@ -4,7 +4,6 @@ const { deleteAllRestaurantsInteract } = require('./restaurant-controller')
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
-// 634cf23ec87beeb6a190ced1
 const signupUser = async (req, res, next) => {
     try {
         const hash = bcrypt.hashSync(req.body.password, saltRounds);
@@ -18,10 +17,8 @@ const signupUser = async (req, res, next) => {
     }
 };
 
-const deleteUser = async (req, res, next) => {
-    // delete all restaurants associated with the user
-    // then delete the user account
 
+const deleteUser = async (req, res, next) => {
     try {
         // delete the users restaurants
         await deleteAllRestaurantsInteract(req);
@@ -36,7 +33,19 @@ const deleteUser = async (req, res, next) => {
 }
 
 
+const isUsernameTaken = async (req, res, next) => {
+    try {
+        // return true if the username already exists, false otherwise
+        return res.send(!!(await User.findOne({userName: req.body.userName})));
+    }
+    catch (err) {
+        return next(err);
+    }
+}
+
+
 module.exports = {
     signupUser,
-    deleteUser
+    deleteUser,
+    isUsernameTaken
 };
