@@ -4,7 +4,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { confirmAlert } from 'react-confirm-alert';
 import { axiosInstance } from '../pages/api/axiosConfig';
-
+ 
 export default function ExperienceView({experience}) {
      
     const displayTime = () => {

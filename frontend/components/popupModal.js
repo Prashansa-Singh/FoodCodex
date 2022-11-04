@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { AiFillFire } from "react-icons/ai";
 import Image from "next/image";
 import happyMan from "../public/src/happy.png";
-import styles from './../styles/view-restaurant-record.module.css';
+import styles from './../styles/view-restaurant-record.module.css'; 
 
 
 const TestModals = ( { shareURL } ) => {

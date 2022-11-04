@@ -1,26 +1,20 @@
 import utilStyles from './../styles/utils.module.css';
 import styles from './../styles/view-restaurant-record.module.css';
 import { axiosInstance } from './../pages/api/axiosConfig';
-import { confirmAlert } from 'react-confirm-alert';
 import { useState } from "react";
- 
+import ShareOption from './share-option';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 
 // Material Ui
 import * as React from 'react';
 import { Rating, Modal, Box, Button, Typography } from "@mui/material";
-import PaidIcon from '@mui/icons-material/Paid';
-import PaidOutlinedIcon from '@mui/icons-material/PaidOutlined';
 import DeleteIcon from '@mui/icons-material/Delete';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 
-// for checkboxes 
-// const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
 export default function Share({userId, restaurant_data, experiences}) {
-    
 
     console.log("6 Share " + userId );
     console.log("6 Share " + restaurant_data );
@@ -51,12 +45,6 @@ export default function Share({userId, restaurant_data, experiences}) {
     const closeOptionView = () => {
         const viewId = "option" + userId;
         document.getElementById(viewId).style.display="none";
-    }
-
-    const openOptionView = () =>{
-        const viewId = "option" + userId;
-        console.log("doc --> ", document.getElementById(viewId));
-        document.getElementById(viewId).style.display="flex";
     }
 
     // for presenting share link view 
@@ -126,32 +114,7 @@ export default function Share({userId, restaurant_data, experiences}) {
     return (
         <>
         <div>
-            <div className={styles.experience_container}>
-
-                <div className={styles.topExperienceContainer}>
-                    <button className={styles.icons} onClick={() => {setOpenOptionState(true); openOptionView();}}>
-                        <img src='/src/nav-icons/share-icon.svg' width='40vw' alt='Share' />
-                            <p className='white-space: normal width: 100px'>
-                                    Click to Share
-                            </p>
-                    </button>
-                </div>
-                
-            </div>
-
-            <div id={"share" + userId}>
-                    In Share, {shareURL}
-            </div>
-
-            {/* <div id={"option" + userId}>
-                In option
-                <Checkbox onClick={() => setPriceChecked(true)}
-                    checked={checked}
-                    onChange={handlesharePriceRating}
-                    inputProps={{ 'aria-label': 'controlled' }} label="sharePriceName"
-                />
-            </div> */}
-           
+            <ShareOption/>
            
         </div>
     

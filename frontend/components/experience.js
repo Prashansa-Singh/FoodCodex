@@ -1,6 +1,6 @@
 import styles from './css/experience.module.css';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-
+ 
 export default function Experience({experience}) {
 
     console.log("experience in Experience function: " + experience);
