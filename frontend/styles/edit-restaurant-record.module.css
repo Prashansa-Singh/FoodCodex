@@ -6,7 +6,7 @@
     gap: 10px;
     padding-top: 0;
 }
-
+ 
 .submitButton {
     background: linear-gradient(180deg, #FFCC4D 0%, #FF6726 100%);
     cursor: pointer;

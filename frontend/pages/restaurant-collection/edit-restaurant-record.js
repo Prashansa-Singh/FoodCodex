@@ -170,7 +170,7 @@ export default function EditRestaurantRecord({ userId, restaurant_data, new_data
 									required 
 									margin="dense" 
 									className={styles.address}
-								/>
+								/> 
 								<div className={styles.editFormBottom}>
 									<div className={styles.picker}>
 										<label> Rating (out of 5 stars): </label>

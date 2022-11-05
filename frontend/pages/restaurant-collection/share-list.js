@@ -12,6 +12,7 @@ import { useRouter } from 'next/router';
 import styles from '../../styles/view-restaurant-record.module.css';
 import utilStyles from '../../styles/utils.module.css';
 import shareStyles from '../../components/css/share.module.css';
+import editStyles from '../../styles/edit-restaurant-record.module.css';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 
 // Material Ui and other decorations 
@@ -47,15 +48,10 @@ export async function getServerSideProps(context) {
 	
 	// get share link id
 	const { link } = context.query;
-	console.log("name in server " + link);
 	const url =  'user/restaurant/share/public/'
 	const getDataConcatedURL = url + link;
 	const response = await axiosInstance.get(getDataConcatedURL);
 	let restaurantData = response.data;
-	
-	console.log("restaurantData type before" + typeof(restaurantData));
-	console.log("restaurantData type after" + typeof(restaurantData));
-	console.log("restaurantData after " + restaurantData);
 
 	return {
 	
@@ -70,21 +66,11 @@ export default function ShareList({ link, restaurantData, userId}) {
 	const router = useRouter();
 
 	// --------------------- Presenting Sharing URLs ---------------------------
-	
-	console.log("5");
-	console.log("data " + link);
-	console.log("userId " + userId);
-	console.log("restaurant data type in share " + typeof(restaurantData));
-	console.log("restaurant data in share " + restaurantData);
 
 	// implement add function 
 	const [saveState, setSaveState] = useState(false);
-
 	const [value, setValue] = React.useState(restaurantData.rating);
-	console.log("value " + value);
-
 	const [priceValue, setPriceValue] = React.useState(restaurantData.priceValue);
-	console.log("priceValue " + priceValue);
 
 	const submitEdit = async (event) => {
 		event.preventDefault();
@@ -149,7 +135,6 @@ export default function ShareList({ link, restaurantData, userId}) {
 			<h1>
 				Shared List
 			</h1>
-
 			<p>
 				The Restaurant a human being shared with you. For Debug: share is {link}
 			</p>
@@ -197,7 +182,7 @@ export default function ShareList({ link, restaurantData, userId}) {
 								<button type='submit' className={shareStyles.submitButton}><b>Save</b></button>
 								<button type='button' className={shareStyles.discardButton} onClick={() => discard()}><b>Discard</b></button>	
 							</div>
-							<div className={styles.editFormTop}>
+							<div className={editStyles.editFormTop}>
 								<TextField 
 									id="outlined-restaurant-name" 
 									label="Restaurant Name" 
@@ -207,7 +192,7 @@ export default function ShareList({ link, restaurantData, userId}) {
 									defaultValue={restaurantData.name}
 									required 
 									margin="dense" 
-									className={styles.textFields}
+									className={editStyles.textFields}
 								/>
 								<TextField 
 									id="outlined-restaurant-cuisine" 
@@ -218,7 +203,7 @@ export default function ShareList({ link, restaurantData, userId}) {
 									defaultValue={restaurantData.cuisine}
 									required 
 									margin="dense" 
-									className={styles.textFields}
+									className={editStyles.textFields}
 								/>
 							</div>
 							<TextField 
@@ -230,14 +215,14 @@ export default function ShareList({ link, restaurantData, userId}) {
 								defaultValue={restaurantData.address}
 								required 
 								margin="dense" 
-								className={styles.address}
+								className={editStyles.address}
 							/>
-							<div className={styles.editFormBottom}>
-								<div className={styles.picker}>
+							<div className={shareStyles.editFormBottom}>
+								<div className={shareStyles.picker}>
 									<label> Rating (out of 5 stars): </label>
 									<Rating precision={0.5} defaultValue={restaurantData.rating} onChange={(event, newValue) => { setValue(newValue) }} />
 								</div>
-								<div className={styles.picker}>
+								<div className={shareStyles.picker}>
 									<label> Price Range: </label>
 									<Rating icon={<PaidIcon />} emptyIcon={<PaidOutlinedIcon />} defaultValue={restaurantData.priceRating} onChange={(event, newPriceValue) => { setPriceValue(newPriceValue) }} />
 								</div>
@@ -246,7 +231,7 @@ export default function ShareList({ link, restaurantData, userId}) {
 							<label> Tags: </label>
 							<Tags restaurant_data={restaurantData} page='edit' />
 						</form>
-						
+
 						<div>
 							<p>Note: Experiences can only be added, updated and deleted from the view restaurant page.</p>
 						</div>
