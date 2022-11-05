@@ -95,6 +95,38 @@
     line-height: 1.5;
 }
 
+/* for saving shared restaurants, from experience.module.css */
+
+.submitButton {
+    background: linear-gradient(180deg, #FFCC4D 0%, #FF6726 100%);
+    cursor: pointer;
+    padding: 1%;
+    min-width: 7vw;
+    border-radius: 15px;
+    border: none;
+    font-size: 16px;
+    box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.14), 0px 1px 10px rgba(0, 0, 0, 0.12), 0px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.discardButton {
+    background: linear-gradient(180deg, #FFCC4D 0%, #FF6726 100%);
+    box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.14), 0px 1px 10px rgba(0, 0, 0, 0.12), 0px 2px 4px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    padding: 1%;
+    min-width: 7vw;
+    border-radius: 15px;
+    border: none;
+    font-size: 16px;
+}
+
+.formButtons {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    align-items: center;
+    gap: 20px;
+}
 
 /* responsive styles */
 

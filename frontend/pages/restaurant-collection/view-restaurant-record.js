@@ -9,7 +9,6 @@ import { axiosInstance } from '../api/axiosConfig';
 import Link from 'next/link';
 
 import { useRouter } from 'next/router';
-import { useState } from 'react';
 import Share from '../../components/share';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';

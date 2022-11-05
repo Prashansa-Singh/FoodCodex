@@ -1,17 +1,17 @@
 import Head from 'next/head';
 import Layout, { siteTitle } from '../../components/layout';
-import utilStyles from '../../styles/utils.module.css';
 import { useRef, useState } from 'react';
 import { getSession } from "next-auth/react"
 
 import * as React from 'react';
 import {axiosInstance} from '../api/axiosConfig';
-import Link from 'next/link';
 import Tags from '../../components/tags';
 import { useRouter } from 'next/router';
 
 // styles
 import styles from '../../styles/view-restaurant-record.module.css';
+import utilStyles from '../../styles/utils.module.css';
+import shareStyles from '../../components/css/share.module.css';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 
 // Material Ui and other decorations 
@@ -193,9 +193,9 @@ export default function ShareList({ link, restaurantData, userId}) {
 				{saveState && (
 						<>
 						<form onSubmit={submitEdit}>
-							<div className={styles.button_container}>
-								<button type='submit' className={styles.submitButton}><b>Save</b></button>
-								<button type='button' className={styles.discardButton} onClick={() => discard()}><b>Discard</b></button>	
+							<div className={shareStyles.formButtons}>
+								<button type='submit' className={shareStyles.submitButton}><b>Save</b></button>
+								<button type='button' className={shareStyles.discardButton} onClick={() => discard()}><b>Discard</b></button>	
 							</div>
 							<div className={styles.editFormTop}>
 								<TextField 
@@ -246,18 +246,15 @@ export default function ShareList({ link, restaurantData, userId}) {
 							<label> Tags: </label>
 							<Tags restaurant_data={restaurantData} page='edit' />
 						</form>
-						<p>Note: Experiences can only be added, updated and deleted from the view restaurant page.</p>
+						
+						<div>
+							<p>Note: Experiences can only be added, updated and deleted from the view restaurant page.</p>
+						</div>
 						<br/>
 						<br/>
 						<br/>
 					</>
 					
-				)}
-				{!saveState &&(
-					<h1>
-						User did not choose to save 
-					</h1>
-
 				)}
 			</section>
 		</Layout>
