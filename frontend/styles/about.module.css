@@ -1,0 +1,75 @@
+
+h5.aboutDescrip {
+    font-size: 10px;
+    color: red;
+    text-align:justify;
+}
+
+h3.aboutDescrip {
+    font-size: 12px;
+    color: red;
+    text-align:center;
+}
+
+.paperStyle{
+    display: flex;
+    flex-direction: column;
+    height: 45vh;
+    width: 75vw;
+    overflow: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+
+/* responsive design for about page */
+@media screen and (max-width: 576px ) {
+	
+    .aboutPaper {
+        padding: 20px;
+        height: 20vh;
+        width: 60%;
+        margin: 20px;
+    }
+
+    h5.aboutDescrip {
+        font-size: 15px;
+    }
+    
+    h3.aboutDescrip {
+        font-size: 17px;
+    }
+}
+    
+@media screen and (min-width: 577px) {
+    .aboutPaper {
+        padding: 20px;
+        height: 20vh;
+        width: 80%;
+        margin: 20px;
+    }
+    
+    h5.aboutDescrip {
+        font-size: 20px;
+        color:blue;
+    }
+
+    h3.aboutDescrip {
+        font-size: 22px;
+    }
+}
+
+/* Footer */
+
+.footer {
+    padding-bottom: 10px ;
+    padding-top: 60px;
+    border-top: 1px solid #FFE29A;
+}
+
+.aboutPaper h5 {
+    font-size: 1rem;
+}
+    
+    
+    
