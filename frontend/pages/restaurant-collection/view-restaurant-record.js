@@ -102,14 +102,9 @@ export default function ViewRestaurantRecord({ userId, restaurant_data, experien
 			</Head>
 			<section className={utilStyles.headingMd}>
 				<div className={styles.top}>
-					<h1>
-						{restaurant_data.name}
-					</h1>
-
+					<h1> { restaurant_data.name } </h1>
 					<div className={styles.icon_group}>
-
 						<Share userId={userId} restaurant_data={restaurant_data} experiences={experiences}/>
-						
 						<div className={styles.icons}>
 							<DeleteIcon className={styles.bin} onClick={() => confirmDelete()} />
 							<p>Delete</p>

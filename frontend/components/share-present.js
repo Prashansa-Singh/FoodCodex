@@ -112,7 +112,8 @@ export default function SharePresent({userId, restaurant_data, experiences}) {
         <>
             <div>
                 <Grid align='space-between'>
-                    <FormControlLabel control={<Checkbox classes={{root: 'custom-checkbox-root'}} checked={shareRating} onChange={handleshareRating}  />} label={<Typography className={styles.checkboxFont} >Share Rating</Typography>}/>
+                    {/* <FormControlLabel control={<Checkbox classes={{root: 'custom-checkbox-root'}} checked={shareRating} onChange={handleshareRating}  />} label={<Typography className={styles.checkboxFont} >Share Rating</Typography>}/> */}
+                    <FormControlLabel control={<Checkbox checked={shareRating} onChange={handleshareRating}  />} label={<Typography className={styles.checkboxFont} >Share Rating</Typography>}/>
                     <FormControlLabel control={<Checkbox checked={priceRating} onChange={handlesharePriceRating}/>} label="Share Price Rating"/>
                     <FormControlLabel control={<Checkbox checked={shareCuisine} onChange={handleShareCuisine}/>} label="Share Cuisine"/>
                     <FormControlLabel control={<Checkbox checked={shareAdrs} onChange={handleShareAdrs}/>} label="Share Address"/>
