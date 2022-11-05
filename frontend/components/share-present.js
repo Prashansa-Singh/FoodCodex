@@ -5,7 +5,7 @@ import styles from './css/share.module.css';
 import experienceStyles from './css/experience.module.css';
 import Image from "next/image";
 import happyMan from "../public/src/happy.png";
-import { FormGroup, FormControlLabel , Button, Typography, Checkbox, Box } from "@mui/material";
+import { FormGroup, FormControlLabel , Button, Typography, Checkbox, Box, Grid} from "@mui/material";
 
 export default function SharePresent({userId, restaurant_data, experiences}) {
 
@@ -111,19 +111,22 @@ export default function SharePresent({userId, restaurant_data, experiences}) {
     return (
         <>
             <div>
-                <FormGroup>
-                    <FormControlLabel control={<Checkbox checked={shareRating} onChange={handleshareRating}/>} label="Share Rating"/>
+                <Grid align='space-between'>
+                    <FormControlLabel  control={<Checkbox checked={shareRating} onChange={handleshareRating} />} label={<Typography className={styles.checkboxFont}  >Share Rating</Typography>}/>
                     <FormControlLabel control={<Checkbox checked={priceRating} onChange={handlesharePriceRating}/>} label="Share Price Rating"/>
                     <FormControlLabel control={<Checkbox checked={shareCuisine} onChange={handleShareCuisine}/>} label="Share Cuisine"/>
                     <FormControlLabel control={<Checkbox checked={shareAdrs} onChange={handleShareAdrs}/>} label="Share Address"/>
                     <FormControlLabel control={<Checkbox checked={shareTags} onChange={handleShareTags}/>} label="Share Tags"/>
-                </FormGroup>
+                </Grid>
     
             </div>
             <Box>
                 <Button className={styles.confirmButton} variant="outlined" onClick={() => { openPresentShareLinkView(); clickToShare(); } }>
                     confirm
                 </Button>
+                {/* <But className={styles.confirmButton} onClick={() => { openPresentShareLinkView(); clickToShare(); } }>
+                    confirm
+                </button> */}
 
             <div className={styles.view_share_present} id={"present" + userId}>
                 <Image src={happyMan} width={100} height={100} objectFit="contain"/>
