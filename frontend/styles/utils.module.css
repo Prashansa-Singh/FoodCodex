@@ -83,3 +83,44 @@
 .image {
 	width: 30vw;
 }
+
+/* responsive style */
+
+@media screen and (max-width: 1400px){
+	.image {
+		width: 40vw;
+	}
+
+}
+
+@media (min-width:601px) and (max-width:800px){
+
+	.image {
+		position: relative;
+		top: 50%;
+		margin: 20px 0;
+		width: 50vw;
+	}
+
+	.content {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		padding-top: 2.5%;
+		font-size: 15px;
+	}
+
+}
+
+@media screen and (max-width:600px){
+
+	.image {
+		width: 60vw;
+	}
+
+	.content {
+		font-size: 13px;
+	}
+
+}
