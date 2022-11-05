@@ -1,6 +1,11 @@
 
 /* share Option View CSS */
 
+.custom-checkbox-root .MuiSvgIcon-root{
+    width: 36px;
+    height: 36px;
+}
+
 .checkboxFont{
     font-size: 18px;
 }
@@ -186,7 +191,11 @@
         font-size: 12px;
     }
     
-
+    .custom-checkbox-root{
+        width: 20px;
+        height: 20px;
+    }
+    
     
 
 }
@@ -238,5 +247,9 @@
         font-size: 18px;
     }
 
+    .custom-checkbox-root{
+        width: 10px;
+        height: 10px;
+    }
 
 }
