@@ -41,18 +41,6 @@ export default function Nav() {
             alt: 'Add Restaurant',
         },
         {
-            href: '/restaurant-collection/share-list',
-            title: 'Share My List',
-            icon: '/src/nav-icons/share-icon.svg',
-            alt: 'Share My List',
-        },
-        {
-            href: '/restaurant-collection/shared-with-me',
-            title: 'Shared With Me',
-            icon: '/src/nav-icons/share-with-me-icon.svg',
-            alt: 'Shared With Me',
-        },
-        {
             href: '/restaurant-collection/settings',
             title: 'Settings',
             icon: '/src/nav-icons/settings-icon.svg',
