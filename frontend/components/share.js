@@ -18,19 +18,6 @@ export default function Share({userId, restaurant_data, experiences}) {
     console.log("6 Share " + restaurant_data );
     console.log("6 Share " + experiences);
 
-    const [showOpenOptionState, setOpenOptionState] = useState(false);
-    const [showPresentShareLink, setPresentShareLinkState] = useState(false);
-    const [checked, setChecked] = useState(false);
-
-
-    const handleChange = (event) => {
-        setChecked(event.target.checked);
-        console.log("check status " + checked);
-        console.log("check status " + event);
-    };
-
-
-
     return (
         <>
         <div>

@@ -77,7 +77,6 @@ export default function Login() {
 			<section className={utilStyles.headingMdCenter}>
 				<form onSubmit={submitUser}>
 					<Grid align='center'>
-
 						<Paper elevation={10} className={Styles.paperStyle}>
 							{error != null && <h5>{error}</h5>}
 							<h1>Login</h1>

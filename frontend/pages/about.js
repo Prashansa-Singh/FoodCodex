@@ -23,6 +23,10 @@ export default function About() {
 	return (
 		<Layout homeOther>
 			<Head>
+				<meta
+                    name="viewport"
+                    content="width=device-width, initial-scale=1.0"
+                />
 				<title>{title}</title>
 			</Head>
 	
@@ -36,7 +40,6 @@ export default function About() {
 							Programming Quokkas are a group of passionate rockstar developers dedicated to bring the best restaurant recording experience for you
 						
 						</h5>
-					
 					</Paper>
 				</Box>
 				<h1 >

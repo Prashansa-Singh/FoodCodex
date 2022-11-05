@@ -63,6 +63,13 @@
 }
 /* Large devices (laptops/desktops, 992px and up) */
 @media screen and (min-width: 992px) {
+    .paperStyle{
+        padding: 20px;
+        height: 80vh;
+        width: 20%;
+        left: auto;
+        top: auto;
+    }
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */

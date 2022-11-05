@@ -112,28 +112,27 @@ export default function SharePresent({userId, restaurant_data, experiences}) {
         <>
             <div>
                 <FormGroup>
-                    <FormControlLabel control={<Checkbox checked={shareRating} onChange={handleshareRating}/>} label="shareRating"/>
-                    <FormControlLabel control={<Checkbox checked={priceRating} onChange={handlesharePriceRating}/>} label="sharePriceRating"/>
-                    <FormControlLabel control={<Checkbox checked={shareCuisine} onChange={handleShareCuisine}/>} label="shareCuisine"/>
-                    <FormControlLabel control={<Checkbox checked={shareAdrs} onChange={handleShareAdrs}/>} label="shareAdrs"/>
-                    <FormControlLabel control={<Checkbox checked={shareTags} onChange={handleShareTags}/>} label="shareTags"/>
+                    <FormControlLabel control={<Checkbox checked={shareRating} onChange={handleshareRating}/>} label="Share Rating"/>
+                    <FormControlLabel control={<Checkbox checked={priceRating} onChange={handlesharePriceRating}/>} label="Share Price Rating"/>
+                    <FormControlLabel control={<Checkbox checked={shareCuisine} onChange={handleShareCuisine}/>} label="Share Cuisine"/>
+                    <FormControlLabel control={<Checkbox checked={shareAdrs} onChange={handleShareAdrs}/>} label="Share Address"/>
+                    <FormControlLabel control={<Checkbox checked={shareTags} onChange={handleShareTags}/>} label="Share Tags"/>
                 </FormGroup>
     
             </div>
             <div>
-                <Button variant="outlined" onClick={() => { openPresentShareLinkView(); clickToShare(); } }>
+                <Button className={styles.confirmButton} variant="outlined" onClick={() => { openPresentShareLinkView(); clickToShare(); } }>
                     confirm
                 </Button>
             </div>
 
             <div className={styles.view_share_present} id={"present" + userId}>
-                <Image src={happyMan} width={100} height={100} objectFit="contain" />
-
+                <Image src={happyMan} width={100} height={100} objectFit="contain"/>
                     <p className={styles.viewLink}>
-                        Here's your share link: 
+                        Here's your share link:
                         <p>{shareURL}</p>
                         Congratulations!
-                    </p>
+                    </p> 
                 <Button variant="outlined" onClick={() => { closePresentShareLinkView(); closeOptionView(); } }>
                     Done
                 </Button>

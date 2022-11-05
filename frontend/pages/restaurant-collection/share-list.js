@@ -244,7 +244,7 @@ export default function ShareList({ link, restaurantData, userId}) {
 							</div>
 							<br/>
 							<label> Tags: </label>
-							<Tags restaurant_data={restaurant_data} page='edit' />
+							<Tags restaurant_data={restaurantData} page='edit' />
 						</form>
 						<p>Note: Experiences can only be added, updated and deleted from the view restaurant page.</p>
 						<br/>

@@ -66,13 +66,14 @@
 }
 
 .submitButton {
-    background-color: #24B25C;
+    background: linear-gradient(180deg, #FFCC4D 0%, #FF6726 100%);
     cursor: pointer;
     padding: 1%;
     min-width: 7vw;
     border-radius: 15px;
     border: none;
     font-size: 16px;
+    box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.14), 0px 1px 10px rgba(0, 0, 0, 0.12), 0px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .submitButton:hover {
@@ -85,7 +86,8 @@
 }
 
 .discardButton {
-    background-color: #F28157;
+    background: linear-gradient(180deg, #FFCC4D 0%, #FF6726 100%);
+    box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.14), 0px 1px 10px rgba(0, 0, 0, 0.12), 0px 2px 4px rgba(0, 0, 0, 0.2);
     cursor: pointer;
     padding: 1%;
     min-width: 7vw;
@@ -293,7 +295,7 @@
     .submitButton {
         width: 20vw;
     }
-
+ 
     .discardButton {
         width: 20vw;
     }

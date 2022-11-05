@@ -1,13 +1,17 @@
 
 /* share Option View CSS */
  
+.fontColor{
+    color: white;
+}
+
 .view_share_option {
     display: none;
-    background-color: #5989C5;
+    background: linear-gradient(180deg, #F8C5DF 0%, #7CB6FF 100%);
     flex-direction: column;
     align-items: flex-start;
     padding: 10px;
-    border: 1px solid #000000;
+    border: 1px solid #ebe1e1;
     border-radius: 12px;
     line-height: 0;
     font-size: 16px;
@@ -32,24 +36,57 @@
 
 .view_share_present {
     display: none;
-    background-color: #58a0f1;
+    background: linear-gradient(180deg, #BEDBFF 0%, #7CB6FF 100%);
     flex-direction: column;
     align-items: flex-start;
     padding: 10px;
-    border: 1px solid #000000;
+    border: 1px solid #ebe1e1;
     border-radius: 12px;
     line-height: 0;
     font-size: 16px;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.14), 0px 1px 10px rgba(0, 0, 0, 0.12), 0px 2px 4px rgba(0, 0, 0, 0.2);
     position: fixed;
-    top: 20%;
+    top: 5%;
     left: 55%;
     width: 25%;
     height: 36%;
 }
 
-.cancelButton{
+.confirmButton{
     z-index: -1;
+    background: linear-gradient(180deg, #FF6B34 0%, #8FBE24 100%);
+    mix-blend-mode: normal;
+    box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.14), 0px 1px 10px rgba(0, 0, 0, 0.12), 0px 2px 4px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+/* 
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    width: 90px;
+    height: 45px; */
+}
+
+.cancelButton{
+    background: linear-gradient(180deg, #FF6B34 0%, #8FBE24 100%);
+    mix-blend-mode: normal;
+    box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.14), 0px 1px 10px rgba(0, 0, 0, 0.12), 0px 2px 4px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+
+    /* Auto layout */
+/* 
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    width: 90px;
+    height: 45px;
+    top: -14%;
+    left: 74%; */
 }
 
 .viewLink {
@@ -57,6 +94,10 @@
     white-space: normal;
     line-height: 1.5;
 }
+
+
+/* responsive styles */
+
 
 /* from experience.module.css */
 @media screen and (max-width: 450px) {
@@ -75,19 +116,19 @@
         align-items: center;
     }
 
-    .submitButton {
+    .confirmButton {
         width: 20vw;
     }
 
-    .discardButton {
+    .cancelButton {
         width: 20vw;
     }
 
     .view_share_option {
-        width: 80%;
-        left: 10%;
-        top: 15%;
-        height: 65%;
+        top: 10%;
+        left: 65%;
+        width: 35%;
+        height: 46%;
     }
 
     .editFormInner {
@@ -121,19 +162,19 @@
         align-items: center;
     }
 
-    .submitButton {
+    .confirmButton {
         width: 10vw;
     }
 
-    .discardButton {
+    .cancelButton {
         width: 10vw;
     }
 
     .view_share_option {
-        width: 80%;
-        left: 10%;
-        top: 15%;
-        height: 65%;
+        top: 10%;
+        left: 45%;
+        width: 45%;
+        height: 46%;
     }
 
     .editFormInner {
