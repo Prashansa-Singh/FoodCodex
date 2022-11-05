@@ -12,7 +12,6 @@ userRouter.use('/restaurant', restaurantRouter);
 const settingsRouter = require('../routes/settings-router')
 userRouter.use('/settings', settingsRouter);
 
-
 userRouter.post('/validate-user', userController.validateUser);
 
 userRouter.get('/view-display-name', userController.getDisplayName);

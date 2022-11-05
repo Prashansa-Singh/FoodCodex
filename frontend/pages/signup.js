@@ -3,7 +3,7 @@ import Layout, { siteTitle } from '../components/layout';
 import utilStyles from '../styles/utils.module.css';
 import Styles from '../styles/login-signup.module.css';
 
-import {axiosInstance} from './api/axiosConfig';
+import { axiosInstance } from './api/axiosConfig';
 import { useRouter } from 'next/router';
 
 import React, { useState } from 'react'
@@ -28,15 +28,17 @@ export default function Signup() {
 		const url = '/account/signup';
 
 		axiosInstance.post(url, body)
-		.then(function (response) {
-			console.log(response.data);
-			router.push('/login');
-		})
-		.catch(function (error) {
-			console.log(error);
-		});	
-	
+			.then(function (response) {
+				console.log(response.data);
+				router.push('/login');
+			})
+			.catch(function (error) {
+				console.log(error);
+			});
+
 	}
+
+	const [validPassword, setValidPassword] = useState({ passwordLen: 0 });
 
 	const checkUsername = async (event) => {
 		event.preventDefault();
@@ -62,7 +64,6 @@ export default function Signup() {
 		});
 	}
 
-	const [validPassword, setValidPassword] = useState({passwordLen: 0});
 
 	const isValidPassword = () => {
 		if (validPassword.passwordLen >= 8) {
@@ -71,7 +72,7 @@ export default function Signup() {
 		return false;
 	}
 
-	const [validConfirm, setValidConfirm] = useState({password: "", confirm: ""});
+	const [validConfirm, setValidConfirm] = useState({ password: "", confirm: "" });
 
 	const isValidConfirm = () => {
 		if (validConfirm.password === validConfirm.confirm) {
@@ -101,35 +102,35 @@ export default function Signup() {
 						<Paper className={Styles.paperStyle}>
 							<h1>Sign Up</h1>
 
-							<TextField 
-								name='userName' 
-								label="Username" 
-								variant="outlined" 
-								placeholder='e.g. johnsmith1' 
+							<TextField
+								name='userName'
+								label="Username"
+								variant="outlined"
+								placeholder='e.g. johnsmith1'
 								margin="dense"
 								error={!uniqueUsername}
 								helperText={!uniqueUsername ? "This username is taken" : ""}
 								required 
 							/>
-							<TextField 
-								name='password' 
-								label="Password" 
-								variant="outlined" 
-								placeholder='At least 8 symbols' 
-								type='password' 
+							<TextField
+								name='password'
+								label="Password"
+								variant="outlined"
+								placeholder='At least 8 symbols'
+								type='password'
 								margin="dense"
 								error={!isValidPassword()}
 								helperText={!isValidPassword() ? "Password must be at least 8 characters" : ""}
-								onChange={event => {setValidPassword({ passwordLen: event.target.value.length }); setValidConfirm({ password: event.target.value, confirm: validConfirm.confirm });}}
+								onChange={event => { setValidPassword({ passwordLen: event.target.value.length }); setValidConfirm({ password: event.target.value, confirm: validConfirm.confirm }); }}
 								required
 							/>
-							<TextField 
-								name='confirmPassword' 
-								id="outlined-basic" 
-								label="Confirm Password" 
-								variant="outlined" 
-								placeholder='At least 8 symbols' 
-								type='password' 
+							<TextField
+								name='confirmPassword'
+								id="outlined-basic"
+								label="Confirm Password"
+								variant="outlined"
+								placeholder='At least 8 symbols'
+								type='password'
 								margin="dense"
 								error={!isValidConfirm()}
 								helperText={!isValidConfirm() ? "Password mismatch" : ""}
@@ -139,11 +140,11 @@ export default function Signup() {
 
 							<Box>
 								{
-									checkValid() 
-									? <Button type="submit" className={Styles.loginButton} variant="contained">SIGN UP</Button> 
-									: <Button disabled type="submit" className={Styles.loginButton} variant="contained">SIGN UP</Button>}
+									checkValid()
+										? <Button type="submit" className={Styles.loginButton} variant="contained">SIGN UP</Button>
+										: <Button disabled type="submit" className={Styles.loginButton} variant="contained">SIGN UP</Button>}
 							</Box>
-							
+
 						</Paper>
 					</Grid>
 				</form>

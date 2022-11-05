@@ -1,9 +1,13 @@
 const { User } = require('../models/user');
 const { deleteAllRestaurantsInteract } = require('./restaurant-controller')
 
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 const signupUser = async (req, res, next) => {
     try {
+        const hash = bcrypt.hashSync(req.body.password, saltRounds);
+        req.body.password = hash
         const user = new User(req.body)
         await user.save()
         return res.sendStatus(201)
