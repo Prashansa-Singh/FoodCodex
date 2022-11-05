@@ -136,7 +136,7 @@ export default function ShareList({ link, restaurantData, userId}) {
 				Shared List
 			</h1>
 			<p>
-				The Restaurant a human being shared with you. For Debug: share is {link}
+				The Restaurant a human being shared with you.
 			</p>
 			<section className={utilStyles.headingMd}>
 				<div className={styles.top}>
