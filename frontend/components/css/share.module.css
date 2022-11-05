@@ -26,14 +26,10 @@
     font-size: 16px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     position: fixed;
-    /* top: 5%;
+    top: 5%;
     left: 55%;
-    width: 25%;
-    height: 50%; */
-    top: 10px;
-    left: 700px;
-    width: 25%;
-    height: 50%;
+    width: 30%;
+    height: 45%;
     z-index: 1;
     overflow:hidden
 }
@@ -64,6 +60,7 @@
     left: 55%;
     width: 30%;
     height: 45%;
+    overflow:hidden
 }
 
 .confirmButton{
@@ -89,6 +86,7 @@
     word-break: break-all;
     white-space: normal;
     line-height: 1.5;
+    font-size: 16px;
 }
 
 /* for saving shared restaurants, from experience.module.css */
@@ -172,10 +170,17 @@
     }
 
     .view_share_option {
-        top: 10%;
+        top: 5%;
         left: 65%;
         width: 35%;
         height: 60%;
+    }
+
+    .view_share_present {
+        top: 5%;
+        left: 45%;
+        width: 45%;
+        height: 46%;
     }
 
     .editFormInner {
@@ -201,7 +206,9 @@
         height: 20px;
     }
     
-    
+    .viewLink {
+        font-size: 0.8em;
+    }
 
 }
 
@@ -229,7 +236,14 @@
     }
 
     .view_share_option {
-        top: 10%;
+        top: 5%;
+        left: 45%;
+        width: 45%;
+        height: 46%;
+    }
+
+    .view_share_present {
+        top: 5%;
         left: 45%;
         width: 45%;
         height: 46%;
@@ -257,4 +271,7 @@
         height: 10px;
     }
 
+    .viewLink {
+        font-size: 0.9em;
+    }
 }
