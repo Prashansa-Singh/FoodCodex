@@ -22,7 +22,7 @@ export default function Layout({ children, home, homeOther }) {
                     <>
                         <img alt='FoodCodex Logo' src='/src/foodcodex-logo.png' className={styles.homelogo} />
                     </>
-                ) : (<></>)}
+                ) : (<></>)} 
                 {homeOther ? (
                     <>
                         <Link href='/' title='Home'>
@@ -50,7 +50,7 @@ export default function Layout({ children, home, homeOther }) {
             {!home && !homeOther && (
                 <div className={styles.background}>
                     <Image 
-                        src="/src/logged-in-background.svg"
+                        src="/src/logged-in-clear-background.svg"
                         alt="Background"
                         layout="fill"
                         objectFit="cover"

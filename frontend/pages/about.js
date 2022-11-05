@@ -31,13 +31,13 @@ export default function About() {
 			</Head>
 	
 			<section className={utilStyles.headingMdCenter}>
-				<h1>
+				<h1 id="abtTitle" className={abtStyles.abtTitle}>
 					About Us
 				</h1>
 				<Grid align='center'>
 					<Paper elevation={10} className={abtStyles.paperStyle}>
 						<h5 className={abtStyles.aboutDescrip} id="aboutDescrip">
-							FoodCodex is a secure restaurant storing and sharing application. You can keep it to yourself by using just the storing and managing features or make it social by sharing your restaurant records.
+							<span id="keyword" className={abtStyles.keyword}>FoodCodex</span> is a secure restaurant storing and sharing application. You can keep it to yourself by using just the storing and managing features or make it social by sharing your restaurant records.
 							You can also remember your dining experience by creating restaurants and share a restaurant to friends and families. 
 						</h5>
 						<h5 className={abtStyles.aboutDescrip} id="aboutDescrip">
@@ -46,16 +46,16 @@ export default function About() {
 						<h3 className={abtStyles.aboutDescrip} id="aboutDescrip" >So why wait! Sign up to start storing and sharing.</h3>
 					</Paper>
 				</Grid>
-				<h1 >
+				<h1 id="abtTitle" className={abtStyles.abtTitle}>
 					Meet Our Developers 
 				</h1>
  
 				<Box>
-					<AccountCircleOutlinedIcon  sx={{ fontSize: 80 }}/>
-					<AccountCircleOutlinedIcon  sx={{ fontSize: 80 }}/>
-					<AccountCircleOutlinedIcon  sx={{ fontSize: 80 }}/>
-					<AccountCircleOutlinedIcon  sx={{ fontSize: 80 }}/>
-					<AccountCircleOutlinedIcon  sx={{ fontSize: 80 }}/>
+					<AccountCircleOutlinedIcon  id="dev"  className={abtStyles.dev} />
+					<AccountCircleOutlinedIcon  id="dev"  className={abtStyles.dev} />
+					<AccountCircleOutlinedIcon  id="dev"  className={abtStyles.dev} />
+					<AccountCircleOutlinedIcon  id="dev"  className={abtStyles.dev} />
+					<AccountCircleOutlinedIcon  id="dev"  className={abtStyles.dev} />
 				</Box>
 			</section>
 		</Layout>
