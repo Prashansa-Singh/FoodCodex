@@ -43,7 +43,7 @@
 }
 
 .submitButton:active {
-    background-color: #708f7c;
+    background-color: #1d8e49;
     transform: translateY(4px);
 }
 
