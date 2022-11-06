@@ -17,7 +17,7 @@ export default function Experience({experience}) {
         let finalTime = hours + ":" + mins + " " + AmOrPm; 
 
         return (
-            <div>{visitDate.toDateString()} {finalTime}</div>
+            <p>{visitDate.toDateString()} {finalTime}</p>
         );
     }
 
@@ -29,12 +29,12 @@ export default function Experience({experience}) {
     return (
         <div className={styles.experience_container}>
             <div className={styles.topExperienceContainer}>
-                <div><b>{experience.title}</b></div>
+                <p><b>{experience.title}</b></p>
                 <MoreHorizIcon className={styles.more} onClick={() => openView()} />
             </div>
-            <div>{displayTime()}</div>
+            {displayTime()}
             <div className={styles.commentContainer}>
-                <div>{experience.comment}</div>
+                <p>{experience.comment}</p>
             </div>
         </div>
     );

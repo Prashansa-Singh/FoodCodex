@@ -22,7 +22,7 @@ export default function ExperienceView({experience}) {
         let finalTime = hours + ":" + mins + " " + AmOrPm; 
 
         return (
-            <div>{visitDate.toDateString()} {finalTime}</div>
+            <p>{visitDate.toDateString()} {finalTime}</p>
         );
     }
 
@@ -78,14 +78,14 @@ export default function ExperienceView({experience}) {
             </div>
             <div className={styles.viewInformation}>
                 <div className={styles.topExperienceContainer}>
-                    <div className={styles.viewTitle}><b>{experience.title}</b></div>
+                    <p className={styles.viewTitle}><b>{experience.title}</b></p>
                     <div>
                         <EditIcon className={styles.viewIcon} onClick={() => openEdit()} />
                         <DeleteIcon className={styles.viewIcon} onClick={() => confirmDelete()} />
                     </div>
                 </div>
-                <div>{displayTime()}</div>
-                <div className={styles.viewComment}>{experience.comment}</div>
+                {displayTime()}
+                <p className={styles.viewComment}>{experience.comment}</p>
             </div>
         </div>
     );
