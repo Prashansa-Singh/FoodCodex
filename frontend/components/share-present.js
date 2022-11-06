@@ -122,11 +122,11 @@ export default function SharePresent({userId, restaurant_data}) {
                 </div>
                 <div className={styles.view_share_present} id={"present" + userId}>
                     <Image src={foodcodexIcon} width={100} height={100} objectFit="contain"/>
-                        <p className={styles.viewLink}>
+                        <div className={styles.viewLink}>
                             Here's your share link:
                             <p>{shareURL}</p>
                             Congratulations!
-                        </p> 
+                        </div> 
                     <div className={styles.formButtons}>        
                         <Button className={styles.confirmButton} onClick={() => { closePresentShareLinkView(); closeOptionView(); } }>
                             <b className={styles.textButton}>Done</b>
