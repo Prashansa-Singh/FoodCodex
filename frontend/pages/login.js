@@ -67,13 +67,16 @@ export default function Login() {
 	return (
 		<Layout homeOther>
 			<Head>
+				<meta
+                    name="viewport"
+                    content="width=device-width, initial-scale=1.0"
+                />
 				<title>{title}</title>
 			</Head>
-
+ 
 			<section className={utilStyles.headingMdCenter}>
 				<form onSubmit={submitUser}>
 					<Grid align='center'>
-
 						<Paper elevation={10} className={Styles.paperStyle}>
 							{error != null && <h5>{error}</h5>}
 							<h1>Login</h1>
@@ -82,11 +85,8 @@ export default function Login() {
 							<TextField id="outlined-password" label="Password" variant="outlined" name="password" placeholder='Enter password' type='password' required margin="dense" />
 
 							<Box>
-								<Button type="submit" className={Styles.loginButton} variant="contained">LOGIN</Button>
-							</Box>
-
-							<Box>
-								<Button variant="contained" href="/signup">New here?</Button>
+								<Button className={Styles.loginButton} type="submit" variant="contained">LOGIN</Button>
+								<Button className={Styles.newHereButton} variant="contained" href="/signup">New here?</Button>
 							</Box>
 						</Paper>
 					</Grid>

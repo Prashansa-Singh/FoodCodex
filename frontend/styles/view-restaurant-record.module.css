@@ -6,7 +6,7 @@
     gap: 0;
     line-height: 0%;
 }
-
+ 
 .icon_group {
     display: flex;
     flex-direction: row;
@@ -18,7 +18,7 @@
 .bin {
     font-size: 3vw;
 }
-
+ 
 .restaurant_details {
     line-height: 0.5;
 }
@@ -48,7 +48,7 @@
 }
 
 .delete_button:active {
-    background-color: red; 
+    background-color: rgb(255, 65, 65); 
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
     transform: translateY(4px);
 }

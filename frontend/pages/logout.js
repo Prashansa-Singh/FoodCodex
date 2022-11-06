@@ -4,12 +4,11 @@ import utilStyles from '../styles/utils.module.css';
 import Styles from '../styles/login-signup.module.css';
 
 import { useRouter } from 'next/router';
-import { useState, useEffect } from 'react';
 import { signOut, useSession, getSession } from "next-auth/react"
 
 // Login Page Style
 import React from 'react';
-import { Typography, Button, Grid, Paper, TextField, Stack, Box } from '@mui/material';
+import { Typography, Button, Grid, Paper, Box } from '@mui/material';
 
 
 export default function Logout() {
@@ -24,6 +23,10 @@ export default function Logout() {
     return (
         <Layout home>
             <Head>
+                <meta
+                    name="viewport"
+                    content="width=device-width, initial-scale=1.0"
+                />
                 <title>{title}</title>
             </Head>
 
@@ -34,12 +37,8 @@ export default function Logout() {
 
                         <Box>
                             <Button className={Styles.loginButton} variant="contained" onClick={() => { signOut({ redirect: true, callbackUrl: '/' }) }}>Yes logout</Button>
+                            <Button className={Styles.newHereButton} variant="contained" onClick={() => { router.push('/restaurant-collection/view-restaurant-collection') }}>Cancel</Button>
                         </Box>
-
-                        <Box>
-                            <Button variant="contained" onClick={() => { router.push('/restaurant-collection/view-restaurant-collection') }}>Cancel</Button>
-                        </Box>
-
                     </Paper>
                 </Grid>
             </section>

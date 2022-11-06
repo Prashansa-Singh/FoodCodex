@@ -3,7 +3,7 @@ import styles from './css/navigation.module.css';
 import { useRouter } from 'next/router';
 import Hamburger from './hamburger';
 import { useState } from 'react';
-import { signOut } from 'next-auth/react';
+import { signOut } from 'next-auth/react'; 
 
 export default function Nav() {
     const router = useRouter();
@@ -39,18 +39,6 @@ export default function Nav() {
             title: 'Add Restaurant',
             icon: '/src/nav-icons/add-edit-nav-icon.svg',
             alt: 'Add Restaurant',
-        },
-        {
-            href: '/restaurant-collection/share-list',
-            title: 'Share My List',
-            icon: '/src/nav-icons/share-icon.svg',
-            alt: 'Share My List',
-        },
-        {
-            href: '/restaurant-collection/shared-with-me',
-            title: 'Shared With Me',
-            icon: '/src/nav-icons/share-with-me-icon.svg',
-            alt: 'Shared With Me',
         },
         {
             href: '/restaurant-collection/settings',

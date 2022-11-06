@@ -9,8 +9,10 @@ const { Link } = require('../models/link');
  */
 const generateRestaurantShareLink = async (req, res, next) => {
     try {
+        console.log("req.body --> " + req.body)
         const link = new Link(req.body)
         await link.save()
+        console.log("link -->" + link)
         return res.send(link._id)
     }
     catch (err) {
@@ -58,6 +60,7 @@ const readSharedRestaurant = async (linkId) => {
 const viewSharedRestaurant = async (req, res, next) => {
     try {
         const restaurant = await readSharedRestaurant(req.params.linkId)
+        console.log("view --> " + restaurant.name)
         return res.send(JSON.stringify(restaurant))
     }
     catch (err) {

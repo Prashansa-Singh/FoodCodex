@@ -6,7 +6,7 @@ export default function Hamburger({isOpen}) {
                 <div className="burger burger2" />
                 <div className="burger burger3" />
             </div>
-
+ 
             <style jsx>{`
                 .hamburger {
                     width: 2rem;

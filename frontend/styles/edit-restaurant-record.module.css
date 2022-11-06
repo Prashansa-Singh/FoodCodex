@@ -6,9 +6,9 @@
     gap: 10px;
     padding-top: 0;
 }
-
+ 
 .submitButton {
-    background-color: #24B25C;
+    background: linear-gradient(180deg, #1EE079 0%, #078513 100%);
     cursor: pointer;
     padding: 1%;
     min-width: 7vw;
@@ -27,7 +27,7 @@
 }
 
 .discardButton {
-    background-color: #F28157;
+    background: linear-gradient(180deg, #FFCC4D 0%, #FF6726 100%);
     cursor: pointer;
     padding: 1%;
     min-width: 7vw;

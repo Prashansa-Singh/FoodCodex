@@ -13,7 +13,7 @@
     flex: 0 0 30%;
     width: 23vw;
 }
-
+  
 .experience_container:hover {
     box-shadow: 0 16px 32px 0 rgba(0,0,0,0.4);
 }
@@ -42,7 +42,7 @@
     align-items: center;
     padding-bottom: 20px;
     gap: 5px;
-    background-color: #E7E0EC;
+    background-color: #d4e3f7;
     text-align: center;
     border-radius: 10px;
     position: relative;
@@ -66,13 +66,14 @@
 }
 
 .submitButton {
-    background-color: #24B25C;
+    background: linear-gradient(180deg, #1EE079 0%, #078513 100%);
     cursor: pointer;
     padding: 1%;
     min-width: 7vw;
     border-radius: 15px;
     border: none;
     font-size: 16px;
+    box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.14), 0px 1px 10px rgba(0, 0, 0, 0.12), 0px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .submitButton:hover {
@@ -85,7 +86,8 @@
 }
 
 .discardButton {
-    background-color: #F28157;
+    background: linear-gradient(180deg, #FFCC4D 0%, #FF6726 100%);
+    box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.14), 0px 1px 10px rgba(0, 0, 0, 0.12), 0px 2px 4px rgba(0, 0, 0, 0.2);
     cursor: pointer;
     padding: 1%;
     min-width: 7vw;
@@ -170,14 +172,14 @@
     align-items: center;
     width: 100%;
 }
-
+ 
 .more:hover {
     cursor: pointer;
 }
 
 .view_experience {
     display: none;
-    background-color: #9868A6;
+    background: linear-gradient(180deg, #BEDBFF 0%, #7CB6FF 100%);
     flex-direction: column;
     align-items: flex-start;
     padding: 10px;
@@ -293,7 +295,7 @@
     .submitButton {
         width: 20vw;
     }
-
+ 
     .discardButton {
         width: 20vw;
     }

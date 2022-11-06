@@ -167,7 +167,7 @@ export default function Settings({ userId, displayName }) {
 					<Button
 						onClick={() => confirmDelete()}
 						variant="contained"
-						color="error"
+						className={styles.delete_button}
 					>
 						Delete All Restaurants
 					</Button>
@@ -175,7 +175,7 @@ export default function Settings({ userId, displayName }) {
 					<Button
 						onClick={() => confirmAccountDeletion()}
 						variant="contained"
-						color="error"
+						className={styles.delete_button}
 					>
 						Delete Account
 					</Button>

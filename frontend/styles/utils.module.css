@@ -57,7 +57,7 @@
 .lightText {
 	color: #666;
 }
-
+ 
 
 /* homepage  */
 .homepageButton {
@@ -84,14 +84,43 @@
 	width: 30vw;
 }
 
-/* .emptyCircle{
-	background-image:  url('../public/src/emptyCircle.svg');
-	width: 30px;
-	height: 30px;
+/* responsive style */
+
+@media screen and (max-width: 1400px){
+	.image {
+		width: 40vw;
+	}
+
 }
 
-.checkedCircle{
-	background-image:  url('../public/src/checkedCircle.svg');
-	width: 30px;
-	height: 30px;
-} */
+@media (min-width:601px) and (max-width:800px){
+
+	.image {
+		position: relative;
+		top: 50%;
+		margin: 20px 0;
+		width: 50vw;
+	}
+
+	.content {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		padding-top: 2.5%;
+		font-size: 15px;
+	}
+
+}
+
+@media screen and (max-width:600px){
+
+	.image {
+		width: 60vw;
+	}
+
+	.content {
+		font-size: 13px;
+	}
+
+}

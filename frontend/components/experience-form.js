@@ -65,8 +65,8 @@ export default function ExperienceForm({id}) {
     const closeForm = () => {
         document.getElementById("experienceform").style.display = "none";
         document.getElementById("experienceform").reset();
-    }
-
+    } 
+ 
     return ( 
         <>
             <button className={styles.addbutton} onClick={() => openForm()}><img src='/src/plus-icon.svg' alt='Add Experience' /></button>

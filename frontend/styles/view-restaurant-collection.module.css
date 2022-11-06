@@ -39,9 +39,9 @@
     display: none;
     flex-direction: column;
     position: fixed;
-    background-color: #5989C5;
+    background: linear-gradient(180deg, #BEDBFF 0%, #7CB6FF 100%);
     border-radius: 10px;
-    border: 2px solid black;
+    box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.14), 0px 1px 10px rgba(0, 0, 0, 0.12), 0px 2px 4px rgba(0, 0, 0, 0.2);
     padding: 2%;
     padding-top: 0;
     width: 50%;
@@ -60,7 +60,7 @@
 }
 
 .submitButton {
-    background-color: #24B25C;
+    background: linear-gradient(180deg, #FFCC4D 0%, #FF6726 100%);
     cursor: pointer;
     padding: 1%;
     min-width: 7vw;
@@ -79,7 +79,7 @@
 }
 
 .discardButton {
-    background-color: #F28157;
+    background: linear-gradient(180deg, #1EE079 0%, #078513 100%);
     cursor: pointer;
     padding: 1%;
     min-width: 7vw;
@@ -129,7 +129,8 @@
 .th {
     border: 1px solid;
     padding: 2%;
-    background-color: #5989C5;
+    background: linear-gradient(180deg, #FBB3B8 0%, #FBD233 100%);
+    /* background-color: #8599b3; */
 }
 
 .hcontent {
@@ -149,7 +150,8 @@
 }
 
 .tr:hover {
-    background-color: #98b6db;
+    background: linear-gradient(180deg, #FFE8D2 0%, #FFF6D5 97.4%);
+    
 }
 
 .viewTop {

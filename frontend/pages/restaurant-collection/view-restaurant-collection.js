@@ -23,7 +23,7 @@ export async function getServerSideProps(context) {
 		}
 	}
 
-	// const user = '6310521c744ac9f1587375fa';
+	// const user = '6310521c744ac9f1587375fa'; 
 	// console.log(session)
 	const user = await session.user._id;
 

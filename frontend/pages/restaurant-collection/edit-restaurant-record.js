@@ -57,10 +57,8 @@ export default function EditRestaurantRecord({ userId, restaurant_data, new_data
 
 	// Ratings method 2
 	const [value, setValue] = React.useState(restaurant_data.rating);
-	console.log(value);
-
 	const [priceValue, setPriceValue] = React.useState(restaurant_data.priceValue);
-	console.log(priceValue);
+
 
 	const submitEdit = async (event) => {
 		event.preventDefault();
@@ -165,7 +163,7 @@ export default function EditRestaurantRecord({ userId, restaurant_data, new_data
 									required 
 									margin="dense" 
 									className={styles.address}
-								/>
+								/> 
 								<div className={styles.editFormBottom}>
 									<div className={styles.picker}>
 										<label> Rating (out of 5 stars): </label>

@@ -1,15 +1,19 @@
 import Head from 'next/head';
 import Layout, { siteTitle } from '../../components/layout';
+import Tags from '../../components/tags';
+import Experiences from '../../components/experiences';
 import utilStyles from '../../styles/utils.module.css';
 import styles from '../../styles/view-restaurant-record.module.css';
 import { axiosInstance } from '../api/axiosConfig';
 import Link from 'next/link';
-import Tags from '../../components/tags';
-import Experiences from '../../components/experiences';
+
 import { useRouter } from 'next/router';
+import Share from '../../components/share';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 
+// Material Ui
+import * as React from 'react';
 import { Rating } from "@mui/material";
 import PaidIcon from '@mui/icons-material/Paid';
 import PaidOutlinedIcon from '@mui/icons-material/PaidOutlined';
@@ -28,10 +32,9 @@ export async function getServerSideProps(context) {
 			},
 		}
 	}
-
+ 
 	const { _id } = context.query;
 
-	// const user = '6310521c744ac9f1587375fa';
 	const user = await session.user._id;
 	const url = '/user/restaurant/view-one'
 	const response = await axiosInstance.get(url, { data: { userId: user, restaurantId: _id, } });
@@ -45,6 +48,7 @@ export async function getServerSideProps(context) {
 		props: { userId, restaurant_data, experiences },
 	};
 }
+
 
 export default function ViewRestaurantRecord({ userId, restaurant_data, experiences }) {
 	const title = `${siteTitle} - ${restaurant_data.name}`;
@@ -72,7 +76,7 @@ export default function ViewRestaurantRecord({ userId, restaurant_data, experien
 				}
 			]
 		});
-	}
+	} 
 
 	const deleteRestaurant = async (url, body) => {
 		await axiosInstance.delete(url, { data: body })
@@ -84,6 +88,7 @@ export default function ViewRestaurantRecord({ userId, restaurant_data, experien
 				console.log(error);
 			});
 	}
+	
 
 	return (
 		<Layout>
@@ -92,22 +97,14 @@ export default function ViewRestaurantRecord({ userId, restaurant_data, experien
 			</Head>
 			<section className={utilStyles.headingMd}>
 				<div className={styles.top}>
-					<h1>
-						{restaurant_data.name}
-					</h1>
+					<h1> { restaurant_data.name } </h1>
 					<div className={styles.icon_group}>
+						<Share userId={userId} restaurant_data={restaurant_data} experiences={experiences}/>
 						<div className={styles.icons}>
 							<DeleteIcon className={styles.bin} onClick={() => confirmDelete()} />
 							<p>Delete</p>
 						</div>
-						<Link href='/restaurant-collection/share-list' title='Share Record'>
-							<a title='Share'>
-								<div className={styles.icons}>
-									<img src='/src/nav-icons/share-icon.svg' width='40vw' alt='Share' />
-									<p>Share</p>
-								</div>
-							</a>
-						</Link>
+
 						<Link href={{ pathname: '/restaurant-collection/edit-restaurant-record', query: { _id: userId, rest_id: restaurant_data._id } }} title='Edit Record'>
 							<a title='Edit'>
 								<div className={styles.icons}>

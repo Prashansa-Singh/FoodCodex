@@ -93,6 +93,10 @@ export default function Signup() {
 	return (
 		<Layout homeOther>
 			<Head>
+				<meta
+                    name="viewport"
+                    content="width=device-width, initial-scale=1.0"
+                />
 				<title>{title}</title>
 			</Head>
 			<section className={utilStyles.headingMdCenter}>
