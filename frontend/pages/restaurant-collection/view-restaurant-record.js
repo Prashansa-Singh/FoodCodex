@@ -97,8 +97,8 @@ export default function ViewRestaurantRecord({ userId, restaurant_data, experien
 					</h1>
 					<div className={styles.icon_group}>
 						<div className={styles.icons}>
-							<DeleteIcon className={styles.bin} onClick={() => confirmDelete()} />
-							<p>Delete</p>
+							<img src='/src/nav-icons/bin-icon.svg' width='40vw' alt='Bin' onClick={() => confirmDelete()} />
+							<p onClick={() => confirmDelete()}>Delete</p>
 						</div>
 						<Link href='/restaurant-collection/share-list' title='Share Record'>
 							<a title='Share'>
