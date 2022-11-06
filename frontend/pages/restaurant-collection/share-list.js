@@ -113,7 +113,7 @@ export default function ShareList({ link, restaurantData, userId}) {
 					</h1>
 					<div >
 						<Button  className={shareStyles.saveButton} onClick={() => submitEdit()} >
-							<b className={shareStyles.textButton}>Save to Collection</b>
+							<b className={shareStyles.textButton}>Save</b>
 						</Button>
 					</div>
 				</div>
