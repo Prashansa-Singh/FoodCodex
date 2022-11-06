@@ -20,5 +20,5 @@ So why wait! Sign up to start storing and sharing.
 
 </br>
 
-## Acknowledgement and Remark
-Develop by Programming Quokkas 
+## Acknowledgement and Remarks
+Developed by Programming Quokkas 
