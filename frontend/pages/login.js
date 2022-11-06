@@ -38,11 +38,7 @@ export default function Login() {
 		const userName = event.target.userName.value;
 		const password = event.target.password.value;
 
-		// console.log(`${userName} and ${password}`)
-
 		let loginResponse = await signIn("mongodb-credentials", { username: userName, password: password, redirect: false })
-
-		// console.log(loginResponse)
 
 		// Check for Login Errors
 		let errorCode = null;

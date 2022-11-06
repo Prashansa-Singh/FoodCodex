@@ -104,18 +104,18 @@ export default function ShareList({ link, restaurantData, userId}) {
 				Shared List
 			</h1>
 			<p>
-				The Restaurant your friend shared with you.
+				The restaurant your friend shared with you.
 			</p>
 			<section className={utilStyles.headingMd}>
 				<div className={styles.top}>
-						<h1>
-							{restaurantData.name}
-						</h1>
-						<div >
-							<Button  className={shareStyles.saveButton} onClick={() => submitEdit()} >
-								<span className={shareStyles.textButton}>Save</span>
-							</Button>
-						</div>
+					<h1>
+						{restaurantData.name}
+					</h1>
+					<div >
+						<Button  className={shareStyles.saveButton} onClick={() => submitEdit()} >
+							<span className={shareStyles.textButton}>Save</span>
+						</Button>
+					</div>
 				</div>
 
 				<div className={styles.restaurant_details}>
