@@ -80,7 +80,7 @@ export default function Login() {
 							<TextField id="outlined-username" label="Username" variant="outlined" name="userName" placeholder='Enter username' required margin="dense" />
 							<TextField id="outlined-password" label="Password" variant="outlined" name="password" placeholder='Enter password' type='password' required margin="dense" />
 
-							<Box>
+							<Box className={Styles.buttonContainer}>
 								<Button className={Styles.loginButton} type="submit" variant="contained">LOGIN</Button>
 								<Button className={Styles.newHereButton} variant="contained" href="/signup">New here?</Button>
 							</Box>
