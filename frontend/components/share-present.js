@@ -87,8 +87,8 @@ export default function SharePresent({userId, restaurant_data, experiences}) {
 		const linkURL = "restaurant-collection/share-list?link=";
 		const _idURL = "&_id=";
 		const userIdURL = userId;
-		const concatedURL = baseURL + linkURL + shareLink + _idURL + userIdURL; // works, but shareId is null for some reason ?? pending solve
-		setShareURL(concatedURL); // I think no need of setState since it's working? shareURL and concatedURL are the same restaurant but different link ??
+		const concatedURL = baseURL + linkURL + shareLink + _idURL + userIdURL; 
+		setShareURL(concatedURL); 
 		console.log("shareURL ---> " + shareURL);
 
 	}

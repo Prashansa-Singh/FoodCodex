@@ -10,11 +10,7 @@ import { signIn, useSession } from "next-auth/react"
 
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import styles from '../components/css/header.module.css';
-// import Footer from '../components/footer';
 import { Grid, Paper, Box, Card } from '@mui/material';
-
-
-// make about page public, no need of getServerSideProps
 
 export default function About() {
 

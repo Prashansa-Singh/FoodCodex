@@ -29,7 +29,7 @@
     top: 5%;
     left: 55%;
     width: 30%;
-    height: 45%;
+    height: 55%;
     z-index: 1;
     overflow:hidden
 }
@@ -143,7 +143,6 @@
 
 /* responsive styles */
 
-
 /* from experience.module.css */
 @media screen and (max-width: 450px) {
 
@@ -173,7 +172,7 @@
         top: 5%;
         left: 65%;
         width: 35%;
-        height: 60%;
+        height: 70%;
     }
 
     .view_share_present {
@@ -239,7 +238,7 @@
         top: 5%;
         left: 45%;
         width: 45%;
-        height: 46%;
+        height: 55%;
     }
 
     .view_share_present {

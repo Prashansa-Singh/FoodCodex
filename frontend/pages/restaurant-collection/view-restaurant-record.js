@@ -2,7 +2,6 @@ import Head from 'next/head';
 import Layout, { siteTitle } from '../../components/layout';
 import Tags from '../../components/tags';
 import Experiences from '../../components/experiences';
-import PopupModal from "../../components/popupModal";
 import utilStyles from '../../styles/utils.module.css';
 import styles from '../../styles/view-restaurant-record.module.css';
 import { axiosInstance } from '../api/axiosConfig';
