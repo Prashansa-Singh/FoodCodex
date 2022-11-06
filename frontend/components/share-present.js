@@ -2,12 +2,14 @@ import { useState } from 'react';
 import { axiosInstance } from './../pages/api/axiosConfig';
 
 import styles from './css/share.module.css';
-import experienceStyles from './css/experience.module.css';
 import Image from "next/image";
-import happyMan from "../public/src/happy.png";
+import foodcodexIcon from "../public/src/foodcodex-icon.png";
 import { FormGroup, FormControlLabel , Button, Typography, Checkbox, Box, Grid} from "@mui/material";
 
+
+
 export default function SharePresent({userId, restaurant_data, experiences}) {
+
 
     // for presenting share link view 
     const closePresentShareLinkView = () => {
@@ -122,22 +124,24 @@ export default function SharePresent({userId, restaurant_data, experiences}) {
     
             </div>
             <Box>
-                <Button className={styles.confirmButton} variant="outlined" onClick={() => { openPresentShareLinkView(); clickToShare(); } }>
-                    confirm
-                </Button>
-
-            <div className={styles.view_share_present} id={"present" + userId}>
-                <Image src={happyMan} width={100} height={100} objectFit="contain"/>
-                    <p className={styles.viewLink}>
-                        Here's your share link:
-                        <p>{shareURL}</p>
-                        Congratulations!
-                    </p> 
-                <Button variant="outlined" onClick={() => { closePresentShareLinkView(); closeOptionView(); } }>
-                    Done
-                </Button>
-
-            </div>
+                <div className={styles.formButtons}>
+                    <Button className={styles.confirmButton} onClick={() => { openPresentShareLinkView(); clickToShare(); } }>
+                        <b className={styles.textButton}>Submit</b>
+                    </Button>
+                </div>
+                <div className={styles.view_share_present} id={"present" + userId}>
+                    <Image src={foodcodexIcon} width={100} height={100} objectFit="contain"/>
+                        <p className={styles.viewLink}>
+                            Here's your share link:
+                            <p>{shareURL}</p>
+                            Congratulations!
+                        </p> 
+                    <div className={styles.formButtons}>        
+                        <Button className={styles.confirmButton} onClick={() => { closePresentShareLinkView(); closeOptionView(); } }>
+                            <b className={styles.textButton}>Done</b>
+                        </Button>
+                    </div>
+                </div>
             </Box>
             
         

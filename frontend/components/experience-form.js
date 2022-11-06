@@ -65,7 +65,7 @@ export default function ExperienceForm({id}) {
     const closeForm = () => {
         document.getElementById("experienceform").style.display = "none";
         document.getElementById("experienceform").reset();
-    }
+    } 
  
     return ( 
         <>

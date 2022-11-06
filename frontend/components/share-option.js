@@ -1,7 +1,7 @@
 import styles from './css/share.module.css';
 import viewRestStyles from '../styles/view-restaurant-record.module.css';
 import SharePresent from './share-present';
-import { Modal, Box, Button, Typography, Checkbox } from "@mui/material";
+import { Button } from "@mui/material";
 
 export default function ShareOption({userId, restaurant_data, experiences}) {
    
@@ -29,8 +29,8 @@ export default function ShareOption({userId, restaurant_data, experiences}) {
 
         <div className={styles.view_share_option} id={"option" + userId}>
                 <SharePresent userId={userId} restaurant_data={restaurant_data} experiences={experiences}/>
-                <Button className={styles.cancelButton} variant="outlined" onClick={() => { closeOptionView()} }>
-                    Cancel
+                <Button className={styles.cancelButton} color="secondary" variant="contained" onClick={() => { closeOptionView()} }>
+                    <b className={styles.textButton}>Cancel</b>
                 </Button>
         </div>
             

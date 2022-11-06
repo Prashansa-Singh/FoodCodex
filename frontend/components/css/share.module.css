@@ -10,8 +10,9 @@
     font-size: 18px;
 } */
 
-.fontColor{
-    color: white;
+.textButton{
+    color: rgb(17, 17, 17);
+    font-size: 16px;
 }
 
 .view_share_option {
@@ -31,7 +32,6 @@
     width: 30%;
     height: 55%;
     z-index: 1;
-    /* overflow:hidden */
     overflow-y: scroll;
 }
 
@@ -60,7 +60,7 @@
     top: 5%;
     left: 55%;
     width: 30%;
-    height: 45%;
+    height: 55%;
     overflow:hidden
 }
 
@@ -179,9 +179,9 @@
 
     .view_share_present {
         top: 5%;
-        left: 45%;
-        width: 45%;
-        height: 46%;
+        left: 65%;
+        width: 35%;
+        height: 70%;
     }
 
     .editFormInner {
@@ -247,7 +247,7 @@
         top: 5%;
         left: 45%;
         width: 45%;
-        height: 46%;
+        height: 55%;
     }
 
     .editFormInner {

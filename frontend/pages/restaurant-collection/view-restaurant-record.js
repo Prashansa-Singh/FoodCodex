@@ -14,7 +14,7 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
 
 // Material Ui
 import * as React from 'react';
-import { Rating, Modal, Box, Button, Typography } from "@mui/material";
+import { Rating } from "@mui/material";
 import PaidIcon from '@mui/icons-material/Paid';
 import PaidOutlinedIcon from '@mui/icons-material/PaidOutlined';
 import DeleteIcon from '@mui/icons-material/Delete';

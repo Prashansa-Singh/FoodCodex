@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import Layout, { siteTitle } from '../../components/layout';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { getSession } from "next-auth/react"
 
 import * as React from 'react';
@@ -73,53 +73,41 @@ export default function ShareList({ link, restaurantData, userId}) {
 	const [priceValue, setPriceValue] = React.useState(restaurantData.priceValue);
 
 	const submitEdit = async (event) => {
-		event.preventDefault();
-		const name = event.target.name.value;
-		const cuisine = event.target.cuisine.value;
-		const address = event.target.address.value;
+		// event.preventDefault();
+		// const name = event.target.name.value;
+		// const cuisine = event.target.cuisine.value;
+		// const address = event.target.address.value;
 
 		const body = {
 			userId: userId,
 			restaurantId: restaurantData._id,
-			name: (name != "") ? name : restaurantData.name,
-			cuisine: (cuisine != "") ? cuisine : restaurantData.cuisine,
-			address: (address != "") ? address : restaurantData.address,
-			rating: value,
-			priceRating: priceValue,
-			personalOption: event.target.personalOption.value,
-			halalOption: event.target.halalOption.value,
-			veganOption: event.target.veganOption.value,
-			vegetarianOption: event.target.vegetarianOption.value,
-			pescatarianOption: event.target.pescatarianOption.value,
-			nutsFreeOption: event.target.nutsFreeOption.value,
-			dairyFreeOption: event.target.dairyFreeOption.value,
-			glutenFreeOption: event.target.glutenFreeOption.value,
-			allergyFriendlyOption: event.target.allergyFriendlyOption.value,
-			diabetesFriendlyOption: event.target.diabetesFriendlyOption.value,
+			name: restaurantData.name,
+			cuisine: restaurantData.cuisine,
+			address: restaurantData.address,
+			rating: restaurantData.rating,
+			priceRating: restaurantData.priceRating,
+			personalOption: restaurantData.personalOption,
+			halalOption: restaurantData.halalOption,
+			veganOption: restaurantData.veganOption,
+			vegetarianOption: restaurantData.vegetarianOption,
+			pescatarianOption:restaurantData.pescatarianOption,
+			nutsFreeOption: restaurantData.nutsFreeOption,
+			dairyFreeOption: restaurantData.dairyFreeOption,
+			glutenFreeOption: restaurantData.glutenFreeOption,
+			allergyFriendlyOption: restaurantData.allergyFriendlyOption,
+			diabetesFriendlyOption: restaurantData.diabetesFriendlyOption,
 		};
 
-		const url = 'user/restaurant/update-one';
 		const urlCreate = 'user/restaurant/create-one';
 		
-		if (saveState){
-			await axiosInstance.post(urlCreate, body)
-			.then(function (response) {
-				console.log("in post, saveState is true, response.data " + response.data);
-				router.push('/restaurant-collection/view-restaurant-collection');
-			})
-			.catch(function (error) {
-				console.log(error);
-			});
-		} else {
-			await axiosInstance.post(url, body)
-			.then(function (response) {
-				console.log("in post, saveState is false, response.data  " + response.data);
-				router.push('/restaurant-collection/view-restaurant-collection');
-			})
-			.catch(function (error) {
-				console.log(error);
-			});
-		}
+		await axiosInstance.post(urlCreate, body)
+		.then(function (response) {
+			console.log("in post, saveState is true, response.data " + response.data);
+			router.push('/restaurant-collection/view-restaurant-collection');
+		})
+		.catch(function (error) {
+			console.log(error);
+		});
 
 	}
 	
@@ -136,7 +124,7 @@ export default function ShareList({ link, restaurantData, userId}) {
 				Shared List
 			</h1>
 			<p>
-				The Restaurant a human being shared with you.
+				The Restaurant your friend shared with you.
 			</p>
 			<section className={utilStyles.headingMd}>
 				<div className={styles.top}>
@@ -145,9 +133,9 @@ export default function ShareList({ link, restaurantData, userId}) {
 						</h1>
 
 						<div className={styles.icon_group}>
-							<Button onClick={() => setSaveState(true)} className={styles.icons} >
+							<Button onClick={() => submitEdit()} className={styles.icons} >
 								<SaveAltIcon/>
-								<p>Save</p>
+								<p className={shareStyles.textButton}>Save</p>
 							</Button>
 						</div>
 				</div>
