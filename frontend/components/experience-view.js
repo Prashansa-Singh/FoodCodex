@@ -3,6 +3,7 @@ import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 import { axiosInstance } from '../pages/api/axiosConfig';
  
 export default function ExperienceView({experience}) {

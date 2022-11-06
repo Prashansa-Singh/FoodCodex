@@ -78,44 +78,46 @@ export default function ExperienceEdit({experience, restId}) {
                 <CloseRoundedIcon className={styles.viewIcon} onClick={() => closeEdit()} />
             </div>
             <h2>Edit Experience</h2>
-            <div className={styles.editFormInner}>
-                <div className={styles.formTopEdit}>
-                    <TextField 
-                        id="outlined-title" 
-                        label="Title" 
+            <div className={styles.inner_view}>
+                <div className={styles.editFormInner}>
+                    <div className={styles.formTopEdit}>
+                        <TextField 
+                            id="outlined-title" 
+                            label="Title" 
+                            variant="outlined" 
+                            name="experiencetitle" 
+                            placeholder={experience.title}
+                            defaultValue={experience.title}
+                            margin="dense"
+                        />
+                        <TextField
+                            id="datetime-local"
+                            label="Time Visited"
+                            type="datetime-local"
+                            defaultValue={experience.visitTime.slice(0,19)}
+                            name='experiencetime'
+                            sx={{ width: 250 }}
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                        />
+                    </div>
+                    <TextField  
+                        id="outlined-comment" 
+                        label="Comment" 
                         variant="outlined" 
-                        name="experiencetitle" 
-                        placeholder={experience.title}
-                        defaultValue={experience.title}
-                        margin="dense"
-                    />
-                    <TextField
-                        id="datetime-local"
-                        label="Time Visited"
-                        type="datetime-local"
-                        defaultValue={experience.visitTime.slice(0,19)}
-                        name='experiencetime'
-                        sx={{ width: 250 }}
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
+                        name="experiencecomment" 
+                        placeholder={experience.comment}
+                        defaultValue={experience.comment} 
+                        margin="dense" 
+                        multiline 
+                        rows={6} 
+                        className={styles.comment}
                     />
                 </div>
-                <TextField  
-                    id="outlined-comment" 
-                    label="Comment" 
-                    variant="outlined" 
-                    name="experiencecomment" 
-                    placeholder={experience.comment}
-                    defaultValue={experience.comment} 
-                    margin="dense" 
-                    multiline 
-                    rows={6} 
-                    className={styles.comment}
-                />
-            </div>
-            <div className={styles.formButtonsEdit}>
-                <button type='submit' className={styles.submitButton}><b>Save</b></button>
+                <div className={styles.formButtonsEdit}>
+                    <button type='submit' className={styles.submitButton}><b>Save</b></button>
+                </div>
             </div>
         </form>
     );

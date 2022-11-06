@@ -195,6 +195,11 @@
     height: 75%;
 }
 
+.inner_view {
+    overflow-y: scroll;
+    width: 100%;
+}
+
 .close_container {
     width: 100%;
     display: flex;

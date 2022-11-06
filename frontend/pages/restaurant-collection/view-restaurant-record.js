@@ -101,8 +101,8 @@ export default function ViewRestaurantRecord({ userId, restaurant_data, experien
 					<div className={styles.icon_group}>
 						<Share userId={userId} restaurant_data={restaurant_data} experiences={experiences}/>
 						<div className={styles.icons}>
-							<DeleteIcon className={styles.bin} onClick={() => confirmDelete()} />
-							<p>Delete</p>
+							<img src='/src/nav-icons/bin-icon.svg' width='40vw' alt='Bin' onClick={() => confirmDelete()} />
+							<p onClick={() => confirmDelete()}>Delete</p>
 						</div>
 
 						<Link href={{ pathname: '/restaurant-collection/edit-restaurant-record', query: { _id: userId, rest_id: restaurant_data._id } }} title='Edit Record'>
