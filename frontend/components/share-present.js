@@ -83,7 +83,7 @@ export default function SharePresent({userId, restaurant_data, experiences}) {
 		await generateRestaurantShareLink(URL, body);
 	
 		// present full share link
-		const baseURL = (process.env.NODE_ENV == "production") ? process.env.NEXT_PUBLIC_PRODUCTION_BACKEND : process.env.NEXT_PUBLIC_DEVELOPMENT_FRONTEND; //backend to frontend 
+		const baseURL = (process.env.NODE_ENV == "production") ? process.env.NEXT_PUBLIC_PRODUCTION_FRONTEND : process.env.NEXT_PUBLIC_DEVELOPMENT_FRONTEND; //backend to frontend 
 		const linkURL = "restaurant-collection/share-list?link=";
 		const _idURL = "&_id=";
 		const userIdURL = userId;
