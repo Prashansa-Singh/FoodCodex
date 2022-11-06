@@ -100,16 +100,16 @@ export default function Tags({restaurant_data, page}) {
     const displayTags = (name, tag, pageName) => {
         if (pageName === 'edit') {
             return (
-                <>
+                <div key={name}>
                     <span onClick={() => updateTags(name)}>
                         {tag}
                     </span>
                     <input type='hidden' name={name} value={onTags[name]} />
-                </>
+                </div>
             );
         } else {
             return (
-                <>{tag}</>
+                <div key={name}>{tag}</div>
             );
         }
     }
