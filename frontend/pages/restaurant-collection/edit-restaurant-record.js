@@ -41,12 +41,7 @@ export async function getServerSideProps(context) {
 	} else {
 		const url = '/user/restaurant/view-one'
 		const response = await axiosInstance.get(url, { data: { userId: userId, restaurantId: rest_id, } });
-		console.log("response in edit ", response);
-		console.log("response in edit type ", typeof(response));
 		restaurant_data = response.data;
-		console.log("restaurant_data in edit ", restaurant_data);
-		
-		console.log("restaurant_data in edit ", typeof(restaurant_data));
 		new_data = false;
 	}
 
@@ -62,10 +57,8 @@ export default function EditRestaurantRecord({ userId, restaurant_data, new_data
 
 	// Ratings method 2
 	const [value, setValue] = React.useState(restaurant_data.rating);
-	console.log(value);
-
 	const [priceValue, setPriceValue] = React.useState(restaurant_data.priceValue);
-	console.log(priceValue);
+
 
 	const submitEdit = async (event) => {
 		event.preventDefault();

@@ -11,11 +11,10 @@ import { useRouter } from 'next/router';
 import styles from '../../styles/view-restaurant-record.module.css';
 import utilStyles from '../../styles/utils.module.css';
 import shareStyles from '../../components/css/share.module.css';
-import editStyles from '../../styles/edit-restaurant-record.module.css';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 
 // Material Ui and other decorations 
-import { Rating, Modal, Box, Button, Typography, Grid, Paper, TextField, Stack } from "@mui/material";
+import { Rating, Button, Typography, Grid, Paper, TextField, Stack } from "@mui/material";
 import PaidIcon from '@mui/icons-material/Paid';
 import PaidOutlinedIcon from '@mui/icons-material/PaidOutlined';
 import SaveAltIcon from '@mui/icons-material/SaveAlt';
@@ -88,7 +87,6 @@ export default function ShareList({ link, restaurantData, userId}) {
 		
 		await axiosInstance.post(urlCreate, body)
 		.then(function (response) {
-			console.log("in post, saveState is true, response.data " + response.data);
 			router.push('/restaurant-collection/view-restaurant-collection');
 		})
 		.catch(function (error) {
@@ -115,7 +113,6 @@ export default function ShareList({ link, restaurantData, userId}) {
 						</h1>
 						<div >
 							<Button  className={shareStyles.saveButton} onClick={() => submitEdit()} >
-								{/* <SaveAltIcon/> */}
 								<span className={shareStyles.textButton}>Save</span>
 							</Button>
 						</div>

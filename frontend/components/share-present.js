@@ -4,11 +4,11 @@ import { axiosInstance } from './../pages/api/axiosConfig';
 import styles from './css/share.module.css';
 import Image from "next/image";
 import foodcodexIcon from "../public/src/foodcodex-icon.png";
-import { FormGroup, FormControlLabel , Button, Typography, Checkbox, Box, Grid} from "@mui/material";
+import { FormControlLabel , Button, Typography, Checkbox, Box, Grid} from "@mui/material";
 
 
 
-export default function SharePresent({userId, restaurant_data, experiences}) {
+export default function SharePresent({userId, restaurant_data}) {
 
 
     // for presenting share link view 
@@ -36,11 +36,6 @@ export default function SharePresent({userId, restaurant_data, experiences}) {
     const [shareTags, setShareTags] = useState(false);
 
     const handleshareRating = (event) => {
-        if (event.target.checked) {
-            console.log('✅ Checkbox is checked');
-        } else {
-            console.log('⛔️ Checkbox is NOT checked');
-        }
         setShareRating(current => !current);
     };
 
@@ -79,7 +74,6 @@ export default function SharePresent({userId, restaurant_data, experiences}) {
 			shareOptionTags: shareTags
 		};
 		
-		console.log("2");
 		// has share id 
 		const URL = '/user/restaurant/share/generate-link';
 		await generateRestaurantShareLink(URL, body);
@@ -91,7 +85,6 @@ export default function SharePresent({userId, restaurant_data, experiences}) {
 		const userIdURL = userId;
 		const concatedURL = baseURL + linkURL + shareLink + _idURL + userIdURL; 
 		setShareURL(concatedURL); 
-		console.log("shareURL ---> " + shareURL);
 
 	}
 
@@ -99,7 +92,6 @@ export default function SharePresent({userId, restaurant_data, experiences}) {
 		await axiosInstance.post(url, body)
 		.then(function (response) {
 			shareLink = response.data;
-			console.log('3');
 			setShareId(shareLink);
 
 		
@@ -114,7 +106,6 @@ export default function SharePresent({userId, restaurant_data, experiences}) {
         <>
             <div>
                 <Grid align='space-between'>
-                    {/* <FormControlLabel control={<Checkbox classes={{root: 'custom-checkbox-root'}} checked={shareRating} onChange={handleshareRating}  />} label={<Typography className={styles.checkboxFont} >Share Rating</Typography>}/> */}
                     <FormControlLabel control={<Checkbox checked={shareRating} onChange={handleshareRating}  />} label={<Typography className={styles.checkboxFont} >Share Rating</Typography>}/>
                     <FormControlLabel control={<Checkbox checked={priceRating} onChange={handlesharePriceRating}/>} label="Share Price Rating"/>
                     <FormControlLabel control={<Checkbox checked={shareCuisine} onChange={handleShareCuisine}/>} label="Share Cuisine"/>

@@ -38,10 +38,8 @@ export async function getServerSideProps(context) {
 	const user = await session.user._id;
 	const url = '/user/restaurant/view-one'
 	const response = await axiosInstance.get(url, { data: { userId: user, restaurantId: _id, } });
-	console.log('response -->' + response);
 
 	const restaurant_data = response.data;
-	console.log('restaurant_data -->' + JSON.stringify(restaurant_data._id));
 	const userId = user;
 
 	const experiences_data = (await axiosInstance.get('user/restaurant/experience/view-all', { data: { restaurantId: _id, } }));
@@ -56,8 +54,6 @@ export default function ViewRestaurantRecord({ userId, restaurant_data, experien
 	const title = `${siteTitle} - ${restaurant_data.name}`;
 
 	const router = useRouter();
-
-	console.log("1");
 
 	const confirmDelete = () => {
 

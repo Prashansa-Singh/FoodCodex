@@ -6,10 +6,6 @@
     height: 36px;
 }
 
-/* .checkboxFont{
-    font-size: 18px;
-} */
-
 .textButton{
     color: rgb(17, 17, 17);
     font-size: 16px;
@@ -211,9 +207,7 @@
         align-items: center;
     }
 
-    /* .checkboxFont{
-        font-size: 12px;
-    } */
+
     
     .custom-checkbox-root{
         width: 20px;
@@ -280,9 +274,7 @@
         align-items: center;
     }
 
-    /* .checkboxFont{
-        font-size: 18px;
-    } */
+
 
     .custom-checkbox-root{
         width: 10px;
