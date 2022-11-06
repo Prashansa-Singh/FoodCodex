@@ -32,7 +32,7 @@ export default function Experience({experience}) {
                 <p><b>{experience.title}</b></p>
                 <MoreHorizIcon className={styles.more} onClick={() => openView()} />
             </div>
-            
+            {displayTime()}
             <div className={styles.commentContainer}>
                 <p>{experience.comment}</p>
             </div>
