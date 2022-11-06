@@ -42,9 +42,6 @@ export default function Experiences({experiences, id}) {
 				console.log(error);
 			});
 	}
-    // the id read in from Experiences function up there is restaurant id (e.g. HochiMama's )
-    console.log("experience.length: " + experiences.length);
-    console.log("experience : " + experiences);
  
     return (
         <div className={styles.experiences_container}>

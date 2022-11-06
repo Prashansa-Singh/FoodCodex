@@ -12,12 +12,12 @@
 
 .background {
     z-index: -10;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
 }
-
-/* html{
-    min-height: 100%;
-    background-image: ;
-} */
 
 .header {
     grid-area: header; 

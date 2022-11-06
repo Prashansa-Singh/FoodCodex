@@ -50,7 +50,7 @@ export default function Layout({ children, home, homeOther }) {
             {!home && !homeOther && (
                 <div className={styles.background}>
                     <Image 
-                        src="/src/logged-in-clear-background.svg"
+                        src="/src/logged-in-background-faint.png"
                         alt="Background"
                         layout="fill"
                         objectFit="cover"

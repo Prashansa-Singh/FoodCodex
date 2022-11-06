@@ -109,7 +109,9 @@ export default function Tags({restaurant_data, page}) {
             );
         } else {
             return (
-                <div key={name}>{tag}</div>
+                <div key={name} id={'div' + name} style={{display: onTags[name] ? 'flex' : 'none'}}>
+                    {tag}
+                </div>
             );
         }
     }
