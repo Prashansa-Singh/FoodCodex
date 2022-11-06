@@ -92,6 +92,34 @@ span.keyword{
 
 }
 
+@media screen and (min-width: 900px) {
+    .aboutPaper {
+        padding: 20px;
+        height: 20vh;
+        width: 80%;
+        margin: 20px;
+    }
+    
+    h5.aboutDescrip {
+        font-size: 20px;
+        color:rgb(43, 39, 39);
+    }
+
+    h3.aboutDescrip {
+        font-size: 23px;
+    }
+
+    h1.abtTitle{
+        font-size: 50px;
+        text-align:center;
+    }
+
+    .dev{
+        font-size: 100px;
+     }
+
+}
+
 /* Footer */
 
 .footer {

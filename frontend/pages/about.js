@@ -42,17 +42,6 @@ export default function About() {
 						<h3 className={abtStyles.aboutDescrip} id="aboutDescrip" >So why wait! Sign up to start storing and sharing.</h3>
 					</Paper>
 				</Grid>
-				<h1 id="abtTitle" className={abtStyles.abtTitle}>
-					Meet Our Developers 
-				</h1>
- 
-				<Box>
-					<AccountCircleOutlinedIcon  id="dev"  className={abtStyles.dev} />
-					<AccountCircleOutlinedIcon  id="dev"  className={abtStyles.dev} />
-					<AccountCircleOutlinedIcon  id="dev"  className={abtStyles.dev} />
-					<AccountCircleOutlinedIcon  id="dev"  className={abtStyles.dev} />
-					<AccountCircleOutlinedIcon  id="dev"  className={abtStyles.dev} />
-				</Box>
 			</section>
 		</Layout>
 	);
