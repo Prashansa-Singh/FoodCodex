@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+mongoose.set('strictQuery', false);
 const logger = require('../logger')
 
 if (process.env.NODE_ENV !== 'production') {
